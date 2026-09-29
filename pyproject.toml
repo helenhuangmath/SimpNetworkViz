@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simpnetworkviz"
+version = "0.1.0"
+description = "Simple pathway enrichment + EnrichmentMap-style pathway and gene network plots"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.21",
+    "pandas>=1.3",
+    "scipy>=1.7",
+    "networkx>=2.8",
+    "matplotlib>=3.5",
+    "requests>=2.25",
+]
+
+[project.optional-dependencies]
+gui = ["streamlit>=1.30"]
+test = ["pytest>=7"]
+
+[project.scripts]
+simpnetworkviz = "simpnetworkviz.cli:main"
+snv = "simpnetworkviz.cli:main"
+
+[tool.setuptools]
+packages = ["simpnetworkviz"]
+package-dir = { "" = "src" }
+
+[tool.setuptools.package-data]
+simpnetworkviz = ["data/*"]
