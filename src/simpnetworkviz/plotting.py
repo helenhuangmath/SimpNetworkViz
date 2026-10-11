@@ -9,11 +9,12 @@ import numpy as np
 from matplotlib import colormaps, patheffects
 from matplotlib.colors import to_rgba
 from matplotlib.collections import LineCollection, PatchCollection
-from matplotlib.patches import Circle, Polygon
+from matplotlib.patches import Circle, Polygon, Wedge
 from scipy.spatial import ConvexHull
 
 from .layout import HULL_PAD, LABEL_FONTSIZE, NODE_LABEL_SIZE, NODE_LABEL_WRAP, label_width_chars, wrap_label
-from .style import DIVERGING_CMAP, DOWN_CMAP, SEQ_CMAP, UP_CMAP, darken, group_color, hull_colors, hulls_colored, lighten, node_colors
+from .style import (DIVERGING_CMAP, DOWN_CMAP, SEQ_CMAP, UP_CMAP, condition_color, darken, group_color, hull_colors,
+                    hulls_colored, lighten, node_colors)
 
 plt.rcParams["pdf.fonttype"] = 42  # editable text in Illustrator
 plt.rcParams["svg.fonttype"] = "none"
@@ -193,10 +194,25 @@ class _Panel:
             ax.add_collection(LineCollection(segs, linewidths=widths, colors=rgba, zorder=1, capstyle="round"))
 
         order = sorted(G.nodes, key=lambda n: -rad[n])
-        circles = [Circle(pos[n], rad[n]) for n in order]
-        fc = [colors[n] for n in order]
-        ec = [darken(colors[n], 0.35) for n in order]
+        wedges = self.leg.get("wedges") or {}
+        plain = [n for n in order if n not in wedges]
+        circles = [Circle(pos[n], rad[n]) for n in plain]
+        fc = [colors[n] for n in plain]
+        ec = [darken(colors[n], 0.35) for n in plain]
         ax.add_collection(PatchCollection(circles, facecolors=fc, edgecolors=ec, linewidths=lw(0.7), zorder=2))
+        if wedges:
+            # Pie nodes: one slice per condition, clockwise from 12 o'clock; empty slices white.
+            patches, wfc = [], []
+            for n in order:
+                if n not in wedges:
+                    continue
+                k = len(wedges[n])
+                for i, c in enumerate(wedges[n]):
+                    patches.append(Wedge(pos[n], rad[n], 90 - 360 * (i + 1) / k, 90 - 360 * i / k))
+                    wfc.append(c or "#FFFFFF")
+            ax.add_collection(PatchCollection(patches, facecolors=wfc, edgecolors="#5A5A5A", linewidths=lw(0.4), zorder=2))
+            ax.add_collection(PatchCollection([Circle(pos[n], rad[n]) for n in order if n in wedges], facecolors="none",
+                                              edgecolors="#444444", linewidths=lw(0.8), zorder=3))
 
         stroke = [patheffects.withStroke(linewidth=lw(2.2), foreground="white")]
         colored_hulls = hulls_colored(net, self.mode, self.hull_style)
@@ -255,14 +271,21 @@ def plot_network(
     title_band = 0.6 if title else 0.0
     legend_band = LEGEND_BAND if legend else 0.0
     total_h = H + title_band + legend_band
-    f = min(1.0, max_width / W, max_height / total_h)
-    fig = plt.figure(figsize=(W * f, total_h * f), facecolor="white")
-    ax = fig.add_axes([0, legend_band / total_h, 1, H / total_h])
-    panel.draw(ax, f)
-    if title:
-        fig.text(0.5, 1 - (title_band * 0.5) / total_h, title, ha="center", va="center", fontsize=max(TITLE_SIZE * f, 3.0))
-    if legend:
-        _draw_legend(fig, net, panel.leg, W, legend_band, [0, 0, 1, legend_band / total_h], f)
+    W_fig = W
+    for _ in range(2):  # second pass widens the figure when the legend row needs more room
+        f = min(1.0, max_width / W_fig, max_height / total_h)
+        fig = plt.figure(figsize=(W_fig * f, total_h * f), facecolor="white")
+        ax = fig.add_axes([(W_fig - W) / 2 / W_fig, legend_band / total_h, W / W_fig, H / total_h])
+        panel.draw(ax, f)
+        if title:
+            fig.text(0.5, 1 - (title_band * 0.5) / total_h, title, ha="center", va="center", fontsize=max(TITLE_SIZE * f, 3.0))
+        if not legend:
+            break
+        used = _draw_legend(fig, net, panel.leg, W_fig, legend_band, [0, 0, 1, legend_band / total_h], f)
+        if used <= W_fig + 1e-6:
+            break
+        plt.close(fig)
+        W_fig = used
     if path:
         fig.savefig(path, dpi=dpi, facecolor="white")
     return fig
@@ -384,6 +407,37 @@ def _draw_legend(fig, net, leg, W, band, rect, f):
         for tx, tl in ticks:
             lax.text(x + tx * bar_w, y - bar_h / 2 - 0.05, tl, fontsize=fs(LEGEND_TEXT_SIZE), ha="center", va="top")
 
+    conds = leg.get("conditions")
+    if conds and mode in ("condition", "direction"):
+        # Pie key: slice order (clockwise from 12 o'clock) with the condition names.
+        heading(x, "Conditions (pie slices)")
+        k = len(conds)
+        r = 0.2
+        cx, cy = x + r + 0.05, y_row
+        for i, c in enumerate(conds):
+            col = condition_color(i) if mode == "condition" else "#D0D0D0"
+            lax.add_patch(Wedge((cx, cy), r, 90 - 360 * (i + 1) / k, 90 - 360 * i / k, facecolor=col,
+                                edgecolor="#444444", linewidth=0.6 * f))
+            ang = np.deg2rad(90 - 360 * (i + 0.5) / k)
+            lax.text(cx + 0.62 * r * np.cos(ang), cy + 0.62 * r * np.sin(ang), str(i + 1), fontsize=fs(LEGEND_TEXT_SIZE - 3),
+                     ha="center", va="center", color="#111111")
+        x = cx + r + 0.15
+        per_col = 3
+        col_w = max(len(f"{i + 1} {c}") for i, c in enumerate(conds)) * 0.56 * pt(LEGEND_TEXT_SIZE) + 0.25
+        for i, c in enumerate(conds):
+            colx = x + (i // per_col) * col_w
+            rowy = y_row + (1 - (i % per_col)) * pt(LEGEND_TEXT_SIZE) * 1.5
+            if mode == "condition":
+                lax.add_patch(Circle((colx + 0.06, rowy), 0.05, facecolor=condition_color(i), edgecolor="#444444", linewidth=0.5 * f))
+                lax.text(colx + 0.16, rowy, f"{i + 1}  {c}", fontsize=fs(LEGEND_TEXT_SIZE), va="center", ha="left")
+            else:
+                lax.text(colx, rowy, f"{i + 1}  {c}", fontsize=fs(LEGEND_TEXT_SIZE), va="center", ha="left")
+        x += ((len(conds) - 1) // per_col + 1) * col_w + 0.3
+        if mode == "condition":
+            heading(x, "Shade: -log10 FDR")
+            lax.text(x, y_row, f"light = 0, full = {leg['vmax']:.1f}\nwhite slice = not enriched", fontsize=fs(LEGEND_TEXT_SIZE),
+                     va="center", ha="left", color="#555555")
+            x += 2.2
     if mode == "direction":
         heading(x, "-log10 FDR")
         x += 0.6
@@ -394,15 +448,21 @@ def _draw_legend(fig, net, leg, W, band, rect, f):
         heading(x, "-log10 FDR")
         bar(x + 0.1, SEQ_CMAP, 0.25, 0.95, "", [(0, "0"), (1, f"{leg['vmax']:.1f}")], y=y_row)
         x += bar_w + 0.6
-    elif mode != "cluster":
+    elif mode not in ("cluster", "condition"):
         heading(x, leg.get("label", mode))
         v = leg["vmax"]
         bar(x + 0.1, DIVERGING_CMAP, 0.08, 0.92, "", [(0, f"{-v:.1f}"), (0.5, "0"), (1, f"{v:.1f}")], y=y_row)
         x += bar_w + 0.6
+    if any(d.get("highlight") is False for _, d in G.nodes(data=True)):
+        heading(x, "Grey nodes")
+        lax.text(x, y_row, "library pathways\nnot enriched", fontsize=fs(LEGEND_TEXT_SIZE), va="center", ha="left", color="#555555")
+        x += 1.6
     if net.kind == "pathway" and G.number_of_edges():
         heading(x, "Edge width")
         lax.text(x, y_row, "gene-set overlap\n(similarity)", fontsize=fs(LEGEND_TEXT_SIZE), va="center", ha="left",
                  color="#555555")
+        x += 1.6
+    return x + 0.2  # width (inches) the legend row needs
 
 
 def plot_cluster_barplot(net, path: Optional[str] = None, max_clusters: int = 20, width: float = 7.0, dpi: int = 300):
