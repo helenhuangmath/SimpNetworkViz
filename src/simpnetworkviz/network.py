@@ -32,6 +32,8 @@ class Network:
     groups : node -> cluster id (0 = not in a cluster)
     group_labels : cluster id -> annotation text
     pos : node -> (x, y) in layout units (≈ inches at scale 1)
+    conditions : names of the compared conditions (empty for a single data set);
+        nodes then carry ``fdr__<condition>`` / ``direction__<condition>`` attributes
     """
 
     graph: nx.Graph
@@ -42,6 +44,7 @@ class Network:
     radius: Dict[str, float] = field(default_factory=dict)
     layout_style: str = "clustered"
     label_nodes: set = field(default_factory=set)
+    conditions: List[str] = field(default_factory=list)
 
     # -- tables -------------------------------------------------------------
     def node_table(self) -> pd.DataFrame:
@@ -98,7 +101,7 @@ class Network:
         from .export import write_graphml
         return write_graphml(self, path)
 
-    def save(self, outdir, prefix: str = "network", formats: Sequence[str] = ("png", "pdf", "html", "cyjs", "graphml", "csv"), **plot_kwargs):
+    def save(self, outdir, prefix: str = "network", formats: Sequence[str] = ("pdf", "svg", "html", "cyjs", "graphml", "csv"), **plot_kwargs):
         from .export import save_all
         return save_all(self, outdir, prefix, formats, **plot_kwargs)
 
@@ -261,26 +264,195 @@ def mcl_clusters(G: nx.Graph, inflation: float = 2.0, weight: str = "weight", ma
     return clusters
 
 
-def cluster_graph(G: nx.Graph, method: str = "mcl", inflation: float = 2.0, resolution: float = 1.0, seed: int = 0) -> List[set]:
+CLUSTER_METHODS = ("mcl", "louvain", "greedy", "label_propagation", "hierarchical", "components", "category", "keyword", "none")
+
+
+def hierarchical_clusters(G: nx.Graph, sets: Dict[str, set], metric: str = "combined", threshold: float = 0.5) -> List[set]:
+    """Average-linkage clustering on gene-set distance (1 - similarity).
+
+    Unlike the graph methods this also groups pathways whose pairwise similarity
+    falls below the edge cutoff, as long as the cluster-average distance stays
+    under ``threshold``.
+    """
+    from scipy.cluster.hierarchy import fcluster, linkage
+    from scipy.spatial.distance import squareform
+
+    nodes = list(G.nodes)
+    n = len(nodes)
+    if n < 2:
+        return [set(nodes)]
+    D = np.ones((n, n))
+    for i in range(n):
+        D[i, i] = 0.0
+        for j in range(i + 1, n):
+            D[i, j] = D[j, i] = 1.0 - similarity(sets[nodes[i]], sets[nodes[j]], metric)
+    Z = linkage(squareform(D, checks=False), method="average")
+    labels = fcluster(Z, t=threshold, criterion="distance")
+    out = defaultdict(set)
+    for node, lab in zip(nodes, labels):
+        out[lab].add(node)
+    return list(out.values())
+
+
+_CATEGORY_PREFIX = re.compile(r"^(HALLMARK|KEGG_MEDICUS|KEGG|REACTOME|GOBP|GOCC|GOMF|WP|BIOCARTA|PID|NABA|WIKIPATHWAYS|BIOPLANET)[_:\s]", re.I)
+_CATEGORY_SUFFIX = [
+    (re.compile(r"\(GO:\d{7}\)\s*$|\bGO:\d{7}\s*$"), "GO"),
+    (re.compile(r"R-(HSA|MMU)-\d+\s*$"), "Reactome"),
+    (re.compile(r"\bWP\d+\s*$"), "WikiPathways"),
+    (re.compile(r"\b(hsa|mmu)\d{5}\s*$"), "KEGG"),
+]
+
+
+def pathway_category(name: str, mapping: Optional[Dict[str, str]] = None) -> str:
+    """Source collection of a pathway name (``HALLMARK``, ``KEGG``, ``Reactome``, ``GO`` ...).
+
+    ``mapping`` (``{pathway: category}``, e.g. MSigDB sub-collections or your own
+    grouping) takes precedence; unmatched names fall back to the prefix/suffix
+    conventions of MSigDB and Enrichr, else ``"Other"``.
+    """
+    if mapping:
+        if name in mapping:
+            return str(mapping[name])
+        low = {str(k).lower(): v for k, v in mapping.items()}
+        if name.lower() in low:
+            return str(low[name.lower()])
+    if ": " in name:  # "Library: pathway" from load_gene_sets() with several libraries
+        return name.split(": ", 1)[0]
+    m = _CATEGORY_PREFIX.match(name)
+    if m:
+        p = m.group(1).upper()
+        return {"GOBP": "GO biological process", "GOCC": "GO cellular component", "GOMF": "GO molecular function",
+                "WP": "WikiPathways", "REACTOME": "Reactome", "HALLMARK": "Hallmark"}.get(p, p)
+    for rx, cat in _CATEGORY_SUFFIX:
+        if rx.search(name):
+            return cat
+    return "Other"
+
+
+def group_by_category(names: Sequence[str], mapping: Optional[Dict[str, str]] = None) -> Dict[str, List[str]]:
+    """``{category: [pathway names]}`` via :func:`pathway_category`."""
+    out = defaultdict(list)
+    for n in names:
+        out[pathway_category(n, mapping)].append(n)
+    return dict(out)
+
+
+def group_by_keywords(names: Sequence[str], themes: Dict[str, Sequence[str]], other: Optional[str] = None) -> Dict[str, List[str]]:
+    """Assign pathways to user-defined themes by keyword.
+
+    ``themes`` is ``{"Cell cycle": ["cycle", "mitotic", "E2F"], "Immune": ["interferon", ...]}``.
+    Matching is case-insensitive on the cleaned pathway name; the first theme
+    with a hit wins (so order themes from specific to general). Pathways
+    matching nothing go to ``other`` (a theme name) or stay unclustered when
+    ``other`` is ``None``.
+    """
+    out = defaultdict(list)
+    for n in names:
+        text = (clean_pathway_name(n) + " " + n.replace("_", " ")).lower()
+        hit = next((t for t, kws in themes.items() if any(k.lower() in text for k in ([kws] if isinstance(kws, str) else kws))), None)
+        if hit is None and other is None:
+            continue
+        out[hit if hit is not None else other].append(n)
+    return dict(out)
+
+
+def read_theme_file(path) -> Dict[str, List[str]]:
+    """``theme<TAB>keyword1, keyword2 ...`` per line (``#`` comments allowed)."""
+    themes = {}
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            if not line.strip() or line.startswith("#"):
+                continue
+            parts = re.split(r"\t|:\s", line.rstrip("\n"), maxsplit=1)
+            name = parts[0].strip()
+            kws = [k.strip() for k in re.split(r"[,;\t]", parts[1])] if len(parts) > 1 else [name]
+            themes[name] = [k for k in kws if k] or [name]
+    return themes
+
+
+def read_category_file(path) -> Dict[str, str]:
+    """``pathway<TAB>category`` per line (a header is skipped)."""
+    df = pd.read_csv(path, sep=None, engine="python", header=None, comment="#", dtype=str)
+    if str(df.iloc[0, 0]).strip().lower() in {"pathway", "term", "name", "gene_set", "gs_name"}:
+        df = df.iloc[1:]
+    return {str(a).strip(): str(b).strip() for a, b in zip(df.iloc[:, 0], df.iloc[:, 1])}
+
+
+def cluster_graph(G: nx.Graph, method: str = "mcl", inflation: float = 2.0, resolution: float = 1.0, seed: int = 0,
+                  sets: Optional[Dict[str, set]] = None, metric: str = "combined", threshold: float = 0.5,
+                  categories: Optional[Dict[str, str]] = None, themes: Optional[Dict[str, Sequence[str]]] = None,
+                  names: Optional[Dict[str, str]] = None) -> List[set]:
+    """Split the nodes of ``G`` into clusters.
+
+    method
+        ``mcl`` Markov clustering (AutoAnnotate default); ``louvain``, ``greedy``
+        (greedy modularity) and ``label_propagation`` are community detection
+        methods; ``hierarchical`` is average-linkage on gene-set distance (needs
+        ``sets``); ``components`` uses connected components; ``category`` groups
+        by pathway source (``categories`` mapping or name prefix); ``keyword``
+        groups by user ``themes``; ``none`` leaves every pathway on its own.
+    """
     if method == "mcl":
         return mcl_clusters(G, inflation=inflation)
     if method == "louvain":
         return [set(c) for c in nx.community.louvain_communities(G, weight="weight", resolution=resolution, seed=seed)]
+    if method == "greedy":
+        return [set(c) for c in nx.community.greedy_modularity_communities(G, weight="weight", resolution=resolution)]
+    if method == "label_propagation":
+        return [set(c) for c in nx.community.asyn_lpa_communities(G, weight="weight", seed=seed)]
+    if method == "hierarchical":
+        if sets is None:
+            raise ValueError("hierarchical clustering needs the gene sets of the nodes")
+        return hierarchical_clusters(G, sets, metric, threshold)
     if method in ("components", "connected"):
         return [set(c) for c in nx.connected_components(G)]
+    if method in ("category", "keyword"):
+        names = names or {n: n for n in G.nodes}
+        by_name = defaultdict(list)
+        for node, name in names.items():
+            by_name[name].append(node)
+        if method == "category":
+            grouped = group_by_category(list(by_name), categories)
+        else:
+            if not themes:
+                raise ValueError("cluster_method='keyword' needs themes={'Theme': ['keyword', ...]}")
+            grouped = group_by_keywords(list(by_name), themes)
+        clusters = [{node for name in members for node in by_name[name]} for members in grouped.values()]
+        clustered = set().union(*clusters) if clusters else set()
+        return clusters + [{n} for n in G.nodes if n not in clustered]
     if method in ("none", None):
         return [{n} for n in G.nodes]
-    raise ValueError(f"Unknown cluster method {method!r} (use mcl, louvain, components or none)")
+    raise ValueError(f"Unknown cluster method {method!r} (use one of {', '.join(CLUSTER_METHODS)})")
 
 
-def _rank_groups(clusters: List[set], score, min_cluster_size: int) -> Tuple[Dict[str, int], List[List[str]]]:
-    """Order clusters by size then significance; clusters < min size get id 0."""
+def _named_groups(method: str, clusters: List[set], names: Dict[str, str], categories, themes) -> Dict[frozenset, str]:
+    """Labels for category/keyword clusters (the group name rather than word statistics)."""
+    out = {}
+    if method not in ("category", "keyword"):
+        return out
+    for c in clusters:
+        sample = names[next(iter(c))]
+        if method == "category":
+            out[frozenset(c)] = pathway_category(sample, categories)
+        else:
+            grouped = group_by_keywords([sample], themes or {})
+            if grouped:  # pathways matching no theme stay unclustered
+                out[frozenset(c)] = next(iter(grouped))
+    return out
+
+
+def _rank_groups(clusters: List[set], score, min_cluster_size: int, keep=()) -> Tuple[Dict[str, int], List[List[str]]]:
+    """Order clusters by size then significance; clusters < min size get id 0.
+
+    ``keep``: clusters (frozensets) that stay a group whatever their size, e.g.
+    a category or theme with a single pathway.
+    """
     clusters = sorted(clusters, key=lambda c: (-len(c), -max(score(n) for n in c), sorted(c)[0]))
     groups, ordered = {}, []
     gid = 0
     for c in clusters:
         members = sorted(c, key=lambda n: -score(n))
-        if len(c) >= min_cluster_size:
+        if len(c) >= min_cluster_size or frozenset(c) in keep:
             gid += 1
             ordered.append(members)
             for n in members:
@@ -319,6 +491,12 @@ def build_pathway_network(
     layout: str = "clustered",
     node_labels="auto",
     seed: int = 0,
+    louvain_resolution: float = 1.0,
+    hierarchical_threshold: Optional[float] = None,
+    categories: Optional[Dict[str, str]] = None,
+    themes: Optional[Dict[str, Sequence[str]]] = None,
+    highlight_only: bool = False,
+    conditions: Optional[Sequence[str]] = None,
 ) -> Network:
     """Build an EnrichmentMap-style pathway network.
 
@@ -327,14 +505,35 @@ def build_pathway_network(
     pathways are clustered (MCL by default) and annotated with a short label.
 
     ``table`` is an enrichment table (DataFrame or path; see
-    :func:`read_enrichment`). ``gene_sets`` supplies the full pathway gene
-    lists used for similarity (as EnrichmentMap does); without it, the genes in
-    the table are used.
+    :func:`read_enrichment`). A comparison table with a ``condition`` column
+    (:func:`~simpnetworkviz.compare.compare_conditions`) gives one node per
+    pathway with per-condition attributes, drawn as pie charts. ``gene_sets``
+    supplies the full pathway gene lists used for similarity (as EnrichmentMap
+    does); ``use_full_gene_sets=False`` compares only the hit genes instead.
+
+    Grouping: ``cluster_method`` is one of :data:`CLUSTER_METHODS`.
+    ``category`` groups by pathway source (``categories`` = ``{pathway: group}``
+    or the name prefix such as HALLMARK/KEGG/REACTOME), ``keyword`` by your
+    ``themes`` (``{"Theme": ["keyword", ...]}``), ``hierarchical`` by average
+    linkage on gene-set distance (``hierarchical_threshold``, default
+    ``1 - similarity_cutoff``: clusters whose average similarity is above the
+    edge cutoff).
+
+    ``highlight_only``: keep rows that fail ``fdr_cutoff`` as grey "context"
+    nodes instead of dropping them (used by :func:`build_library_network`).
     """
+    from .compare import condition_names, merge_conditions
+
     df = table if isinstance(table, pd.DataFrame) and "genes" in table.columns and "fdr" in table.columns else read_enrichment(table)
     df = df.copy()
+    conditions = [str(c) for c in conditions] if conditions else condition_names(df)
+    if conditions:
+        df = merge_conditions(df, fdr_cutoff, conditions)
     if fdr_cutoff is not None and df["fdr"].notna().any():
-        df = df[df["fdr"].isna() | (df["fdr"] <= fdr_cutoff)]
+        if highlight_only:
+            df["highlight"] = df["fdr"].notna() & (df["fdr"] <= fdr_cutoff)
+        else:
+            df = df[df["fdr"].isna() | (df["fdr"] <= fdr_cutoff)]
     df = df.sort_values("fdr", na_position="last")
     if max_pathways:
         df = df.head(max_pathways)
@@ -344,6 +543,7 @@ def build_pathway_network(
     G = nx.Graph()
     sets: Dict[str, set] = {}
     dup = df["pathway"].duplicated(keep=False)
+    extra_cols = [c for c in df.columns if "__" in c or c in ("conditions", "n_conditions", "es", "highlight")]
     for (_, row), is_dup in zip(df.iterrows(), dup):
         direction = str(row.get("direction", "") or "")
         node = f"{row['pathway']} [{direction}]" if is_dup and direction else str(row["pathway"])
@@ -358,6 +558,10 @@ def build_pathway_network(
         set_size = row.get("set_size")
         if set_size is None or pd.isna(set_size):
             set_size = len(full) if full else len(members)
+        attrs = {}
+        for c in extra_cols:
+            v = row[c]
+            attrs[c] = None if (not isinstance(v, str) and pd.isna(v)) else (v.item() if hasattr(v, "item") else v)
         G.add_node(
             node,
             name=str(row["pathway"]),
@@ -371,6 +575,7 @@ def build_pathway_network(
             overlap=len(hits),
             genes=";".join(hits),
             size_value=float(set_size),
+            **attrs,
         )
     nodes = list(G.nodes)
     for i, a in enumerate(nodes):
@@ -380,11 +585,17 @@ def build_pathway_network(
                 G.add_edge(a, b, weight=round(s, 4), shared=len(sets[a] & sets[b]))
 
     score = lambda n: _neg_log10(G.nodes[n].get("fdr")) + 1e-6 * G.nodes[n]["size_value"]
-    clusters = cluster_graph(G, cluster_method, inflation=mcl_inflation, seed=seed)
-    groups, ordered = _rank_groups(clusters, score, min_cluster_size)
+    names = {n: G.nodes[n]["name"] for n in G.nodes}
+    if hierarchical_threshold is None:
+        hierarchical_threshold = 1.0 - similarity_cutoff
+    clusters = cluster_graph(G, cluster_method, inflation=mcl_inflation, resolution=louvain_resolution, seed=seed,
+                             sets=sets, metric=similarity_metric, threshold=hierarchical_threshold,
+                             categories=categories, themes=themes, names=names)
+    named = _named_groups(cluster_method, clusters, names, categories, themes)
+    groups, ordered = _rank_groups(clusters, score, min_cluster_size, keep=set(named))
     labels = {}
     for gid, members in enumerate(ordered, start=1):
-        labels[gid] = annotate_cluster(
+        labels[gid] = named.get(frozenset(members)) or annotate_cluster(
             [G.nodes[n]["name"] for n in members], [score(n) for n in members], label_words, label_method
         )
     if cluster_labels:
@@ -393,8 +604,61 @@ def build_pathway_network(
         G.nodes[n]["cluster"] = groups[n]
         G.nodes[n]["cluster_label"] = labels.get(groups[n], "")
 
-    net = Network(G, "pathway", groups, labels)
+    net = Network(G, "pathway", groups, labels, conditions=conditions)
     _layout(net, layout, seed, node_labels)
+    return net
+
+
+def build_library_network(
+    enrichment,
+    gene_sets: GeneSets,
+    fdr_cutoff: Optional[float] = 0.05,
+    max_pathways: Optional[int] = 400,
+    **kwargs,
+) -> Network:
+    """Network of a *whole* gene-set library with the enriched pathways highlighted.
+
+    Every pathway of ``gene_sets`` becomes a node, so the figure shows the full
+    landscape of the library (e.g. all 50 Hallmark sets) and which parts of it
+    your genes, or each cell cluster's markers, fall into. Pathways absent from
+    ``enrichment`` (or failing ``fdr_cutoff``) are drawn as grey context nodes.
+
+    ``enrichment`` is an enrichment or comparison table (or ``None`` for the bare
+    library). Libraries with more than ``max_pathways`` sets are trimmed to the
+    enriched pathways plus the largest remaining sets; pass ``None`` to keep all
+    (slow for GO-sized libraries: use Hallmark/KEGG/Reactome or a GMT subset).
+    """
+    from .compare import condition_names
+
+    rows = [{"pathway": p, "fdr": np.nan, "pvalue": np.nan, "set_size": len(g), "overlap": 0, "direction": "",
+             "nes": np.nan, "genes": ""} for p, g in gene_sets.items()]
+    base = pd.DataFrame(rows)
+    if enrichment is not None:
+        enr = enrichment if isinstance(enrichment, pd.DataFrame) and "fdr" in enrichment.columns else read_enrichment(enrichment)
+        conds = condition_names(enr)  # before filtering, so conditions without hits keep their slice
+        enr = enr[enr["pathway"].isin(gene_sets)]
+        if fdr_cutoff is not None:
+            enr = enr[enr["fdr"].notna() & (enr["fdr"] <= fdr_cutoff)]
+        base = base[~base["pathway"].isin(enr["pathway"])]
+        if conds:
+            base["condition"] = ""
+        table = pd.concat([enr, base], ignore_index=True, sort=False)
+    else:
+        table = base
+        conds = []
+    if max_pathways and table["pathway"].nunique() > max_pathways:
+        sig = table[table["fdr"].notna()]
+        rest = table[table["fdr"].isna()].sort_values("set_size", ascending=False)
+        table = pd.concat([sig, rest.head(max(max_pathways - sig["pathway"].nunique(), 0))], ignore_index=True)
+        warnings.warn(f"Library has {len(gene_sets)} sets; showing the enriched ones plus the largest others "
+                      f"(max_pathways={max_pathways}). Pass max_pathways=None for all.", stacklevel=2)
+    kwargs.setdefault("min_cluster_size", 2)
+    net = build_pathway_network(table, gene_sets, fdr_cutoff=fdr_cutoff, max_pathways=None, highlight_only=True,
+                                conditions=conds or None, **kwargs)
+    for n, d in net.graph.nodes(data=True):
+        if d.get("highlight") is None:
+            d["highlight"] = bool(d.get("fdr") is not None and (fdr_cutoff is None or d["fdr"] <= fdr_cutoff))
+    net.kind = "pathway"
     return net
 
 
@@ -577,7 +841,14 @@ def build_gene_network(
         G.nodes[n]["cluster_label"] = labels.get(groups.get(n, 0), "")
     used = {groups[n] for n in G.nodes}
     labels = {k: v for k, v in labels.items() if k in used}
-    net = Network(G, kind, groups, labels)
+    # Which conditions each gene is a hit in (comparison networks).
+    if pathway_network.conditions:
+        for g in genes:
+            hit_in = [c for c in pathway_network.conditions
+                      if any(g in split_genes(pathway_network.graph.nodes[p].get(f"genes__{c}", "")) for p in membership[g])]
+            G.nodes[g]["conditions"] = ";".join(hit_in)
+            G.nodes[g]["n_conditions"] = len(hit_in)
+    net = Network(G, kind, groups, labels, conditions=list(pathway_network.conditions))
     _layout(net, layout or default_layout, seed, node_labels)
     return net
 

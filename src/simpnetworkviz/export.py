@@ -32,9 +32,10 @@ def _clean(v):
 
 def cytoscape_elements(net, color_by: str = "auto", compound: bool = True) -> Dict[str, list]:
     """Cytoscape.js-style element dicts (positions in pixels, y pointing down)."""
-    colors, _ = node_colors(net, color_by)
+    colors, leg = node_colors(net, color_by)
     mode = resolve_color_by(net, color_by)
     hcols = hull_colors(net, mode)
+    wedges = leg.get("wedges") or {}
     nodes, edges = [], []
     if compound:
         for gid, label in net.group_labels.items():
@@ -49,12 +50,16 @@ def cytoscape_elements(net, color_by: str = "auto", compound: bool = True) -> Di
         data.update(id=str(n), color=colors[n], border_color=darken(colors[n], 0.35),
                     size_px=round(2 * net.radius[n] * PX_PER_UNIT, 2), cluster=net.groups.get(n, 0),
                     cluster_label=net.group_labels.get(net.groups.get(n, 0), ""))
+        if n in wedges:
+            data["pie_n"] = len(wedges[n])
+            for i, c in enumerate(wedges[n], start=1):
+                data[f"pie{i}"] = c or "#FFFFFF"
         gid = net.groups.get(n, 0)
         if compound and gid and net.layout_style == "clustered":
             data["parent"] = f"cluster_{gid}"
         x, y = net.pos[n]
         nodes.append({"data": data, "position": {"x": round(x * PX_PER_UNIT, 2), "y": round(-y * PX_PER_UNIT, 2)},
-                      "classes": d.get("type", "pathway")})
+                      "classes": d.get("type", "pathway") + (" pie" if n in wedges else "")})
     ws = [d.get("weight", 1.0) for _, _, d in net.graph.edges(data=True)]
     wmin, wmax = (min(ws), max(ws)) if ws else (0, 1)
     for i, (u, v, d) in enumerate(net.graph.edges(data=True)):
@@ -218,6 +223,13 @@ if (typeof cytoscape === "undefined") {
   document.getElementById("cy").innerHTML = '<p style="padding:20px">Could not load cytoscape.js (no internet?). Re-export with <code>js_path=</code> pointing at a local cytoscape.min.js to make an offline file.</p>';
 }
 const showLabelsInit = META.node_labels;
+// Pie nodes (compared conditions): one slice per condition, clockwise from 12 o'clock.
+const pieStyle = { "pie-size": "100%", "border-color": "#444", "border-width": 1.2 };
+for (let i = 1; i <= (META.n_conditions || 0); i++) {
+  pieStyle[`pie-${i}-background-color`] = `data(pie${i})`;
+  pieStyle[`pie-${i}-background-size`] = 100 / META.n_conditions;
+  pieStyle[`pie-${i}-background-opacity`] = 1;
+}
 const cy = cytoscape({
   container: document.getElementById("cy"),
   elements: ELEMENTS,
@@ -230,6 +242,7 @@ const cy = cytoscape({
         "text-valign": "bottom", "text-halign": "center", "text-margin-y": 2, "text-wrap": "wrap", "text-max-width": 140,
         "text-outline-color": "#fff", "text-outline-width": 2,
         "font-family": "Arial, Liberation Sans, Helvetica, sans-serif", "font-weight": 400 } },
+    { selector: "node.pie", style: pieStyle },
     { selector: "node.showlabel", style: { "label": "data(label)" } },
     { selector: "node.gene.showlabel", style: { "font-size": 8 } },
     { selector: "node.cluster", style: {
@@ -258,9 +271,15 @@ function nodeInfo(d){
   if (d.type === "pathway") {
     rows.push(["FDR", fmt(d.fdr)], ["p-value", fmt(d.pvalue)], ["Direction", fmt(d.direction)], ["NES", fmt(d.nes)],
               ["Gene-set size", fmt(d.set_size)], ["Genes in list", fmt(d.overlap)]);
+    if (d.highlight === false) rows.push(["Enriched", "no (library context)"]);
   } else {
     rows.push(["log2FC", fmt(d.logfc)], ["# pathways", fmt(d.n_pathways)]);
   }
+  (META.conditions || []).forEach((c, i) => {
+    const f = d["fdr__" + c];
+    if (d.type === "pathway") rows.push([`${i + 1}. ${esc(c)}`, f == null ? "–" : `FDR ${fmt(f)} ${d["direction__" + c] || ""}`]);
+    else rows.push([`${i + 1}. ${esc(c)}`, (d.conditions || "").split(";").includes(c) ? "hit" : "–"]);
+  });
   let h = `<h2>${esc(d.label)}</h2>`;
   if (d.name && d.name !== d.label) h += `<div class="muted">${esc(d.name)}</div>`;
   h += `<div class="kv">${rows.map(r => `<div>${r[0]}</div><div>${r[1]}</div>`).join("")}</div>`;
@@ -324,6 +343,18 @@ def _legend_html(net, leg) -> str:
     if net.kind == "pathway":
         parts.append("Edge width = gene-set overlap.")
     parts.append("</p>")
+    if leg.get("conditions"):
+        from .style import condition_color
+
+        parts.append("<div>Pie slices (clockwise from top):</div>")
+        for i, c in enumerate(leg["conditions"]):
+            sw = condition_color(i) if mode == "condition" else "#D0D0D0"
+            parts.append(f"<div><span class='sw' style='background:{sw}'></span>{i + 1}. {html.escape(c)}</div>")
+        parts.append("<div class='muted'>White slice = not enriched in that condition.</div>")
+        if mode == "condition":
+            parts.append(f"<div class='muted'>Darker slice = more significant (-log10 FDR up to {leg['vmax']:.1f}).</div>")
+    if any(d.get("highlight") is False for _, d in net.graph.nodes(data=True)):
+        parts.append("<div><span class='sw' style='background:#ECECEC'></span>Library pathway, not enriched</div>")
     if mode == "direction":
         parts.append(
             f"<div>Up-regulated</div><div class='grad' style='background:linear-gradient(90deg,#fcbba1,#a50f15)'></div>"
@@ -334,6 +365,8 @@ def _legend_html(net, leg) -> str:
                      f"<div class='muted'>0 → {leg['vmax']:.1f}</div>")
     elif mode == "cluster":
         parts.append("<div class='muted'>Node color = cluster.</div>")
+    elif mode == "condition":
+        pass
     else:
         v = leg["vmax"]
         parts.append(f"<div>{html.escape(leg.get('label', mode))}</div><div class='grad' style='background:linear-gradient(90deg,#2166ac,#f7f7f7,#b2182b)'></div>"
@@ -359,7 +392,8 @@ def write_html(net, path, title: Optional[str] = None, color_by: str = "auto", n
     else:
         script = (f'<script src="{CYTOSCAPE_JS_CDN[0]}"></script>\n'
                   f'<script>window.cytoscape || document.write(\'<script src="{CYTOSCAPE_JS_CDN[1]}"><\\/script>\')</script>')
-    meta = {"node_labels": bool(node_labels), "legend_html": _legend_html(net, leg), "file": Path(path).stem}
+    meta = {"node_labels": bool(node_labels), "legend_html": _legend_html(net, leg), "file": Path(path).stem,
+            "conditions": list(net.conditions), "n_conditions": len(net.conditions) if leg.get("wedges") else 0}
     safe = lambda obj: json.dumps(obj).replace("</", "<\\/")
     doc = (_HTML.replace("__TITLE__", html.escape(title)).replace("__SCRIPT__", script)
            .replace("__ELEMENTS__", safe(el["nodes"] + el["edges"])).replace("__META__", safe(meta)))
@@ -371,7 +405,7 @@ def write_html(net, path, title: Optional[str] = None, color_by: str = "auto", n
 # ---------------------------------------------------------------------------
 
 
-def save_all(net, outdir, prefix: str = "network", formats: Sequence[str] = ("png", "pdf", "html", "cyjs", "graphml", "csv"),
+def save_all(net, outdir, prefix: str = "network", formats: Sequence[str] = ("pdf", "svg", "html", "cyjs", "graphml", "csv"),
              title: Optional[str] = None, color_by: str = "auto", js_path: Optional[str] = None, **plot_kwargs) -> Dict[str, str]:
     """Save a network in several formats; returns ``{format: path}``."""
     import matplotlib.pyplot as plt

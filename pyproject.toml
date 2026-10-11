@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simpnetworkviz"
-version = "0.1.0"
+version = "0.2.0"
 description = "Simple pathway enrichment + EnrichmentMap-style pathway and gene network plots"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -20,7 +20,8 @@ dependencies = [
 
 [project.optional-dependencies]
 gui = ["streamlit>=1.30"]
-test = ["pytest>=7"]
+test = ["pytest>=7", "gseapy>=1.0", "scikit-learn>=1.0"]
+map = ["umap-learn>=0.5", "scikit-learn>=1.0"]
 
 [project.scripts]
 simpnetworkviz = "simpnetworkviz.cli:main"
