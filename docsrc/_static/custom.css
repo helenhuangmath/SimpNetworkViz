@@ -1,0 +1,42 @@
+/* Match the landing page: the same green accent and plain system font. */
+html[data-theme="light"] {
+    --pst-color-primary: #07614f;
+    --pst-color-secondary: #a7590d;
+    --pst-color-link: #07614f;
+    --pst-color-link-hover: #a7590d;
+    --pst-color-inline-code: #07614f;
+    --pst-color-inline-code-links: #07614f;
+}
+html[data-theme="dark"] {
+    --pst-color-primary: #5fd0b4;
+    --pst-color-secondary: #e9a55b;
+    --pst-color-link: #5fd0b4;
+    --pst-color-link-hover: #e9a55b;
+    --pst-color-inline-code: #5fd0b4;
+}
+
+/* Figures: keep them inside the text column. */
+.bd-article img {
+    max-width: 100%;
+    max-height: 680px;
+    width: auto;
+    height: auto;
+}
+
+/* Tutorial cards: show the whole thumbnail on a white ground. */
+.sd-card .sd-card-img-top {
+    height: 11rem;
+    object-fit: contain;
+    padding: 0.5rem;
+    background: #fff;
+    border-bottom: 1px solid var(--pst-color-border);
+}
+.sd-card .sd-card-title {
+    font-size: 1rem;
+}
+
+/* Wide tables scroll instead of overflowing the page. */
+.bd-article table {
+    display: block;
+    overflow-x: auto;
+}

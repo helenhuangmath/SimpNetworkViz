@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comparing conditions in one network &#8212; SimpNetworkViz</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0861c6ff" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/compare';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Single-cell marker genes" href="singlecell.html" />
+    <link rel="prev" title="Starting from other tools&#39; results or a pathway list" href="other_tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://helenhuangmath.github.io/SimpNetworkViz/">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SimpNetworkViz</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../gallery.html">
+    Gallery
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api.html">
+    Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+        <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../gallery.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+          
+          
+            <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Guided tutorial: from a gene list to a pathway network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsea.html">Preranked GSEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_tools.html">Starting from other tools' results or a pathway list</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing conditions in one network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlecell.html">Single-cell marker genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cl13_vs_arm.html">Comparing gene groups of two conditions: Cl13 vs Arm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathway_map.html">The pathway map: one coordinate system for a whole library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grouping.html">Grouping pathways and styling figures</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../documentation.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Get started</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Comparing conditions in one network</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="comparing-conditions-in-one-network">
+<h1>Comparing conditions in one network<a class="headerlink" href="#comparing-conditions-in-one-network" title="Link to this heading">#</a></h1>
+<p>Knock-out versus wild type, several time points, treatments or tissues: each condition has its own gene list, and the question is which pathways they share. This tutorial tests three conditions separately and draws them in one network, where each pathway is a pie chart with one slice per condition.</p>
+<p>It runs offline on the demo data. The three conditions are the up-regulated genes, the down-regulated genes and all genes of the demo list. For a comparison on real data, see <a class="reference internal" href="cl13_vs_arm.html"><span class="std std-doc">Cl13 vs Arm</span></a>.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simpnetworkviz</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">snv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">simpnetworkviz.genesets</span><span class="w"> </span><span class="kn">import</span> <span class="n">demo_path</span>
+
+<span class="n">gene_sets</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">load_gene_sets</span><span class="p">(</span><span class="s2">"demo"</span><span class="p">)</span>
+<span class="n">genes</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_list</span><span class="p">(</span><span class="n">demo_path</span><span class="p">(</span><span class="s2">"demo_genes.tsv"</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="step-1-define-the-conditions">
+<h2>Step 1: Define the conditions<a class="headerlink" href="#step-1-define-the-conditions" title="Link to this heading">#</a></h2>
+<p>A set of conditions is a dictionary from condition name to gene list. The order of the dictionary is the order of the pie slices.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Up genes"</span><span class="p">:</span> <span class="p">{</span><span class="n">g</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">genes</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="s2">"Down genes"</span><span class="p">:</span> <span class="p">{</span><span class="n">g</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">genes</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="s2">"All genes"</span><span class="p">:</span> <span class="n">genes</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">conditions</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{'Up genes': 53, 'Down genes': 35, 'All genes': 88}
+</pre></div>
+</div>
+<p>With your own data, read one file per condition, or one wide table with a column per group:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"KO"</span><span class="p">:</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_list</span><span class="p">(</span><span class="s2">"ko_degs.csv"</span><span class="p">),</span> <span class="s2">"WT"</span><span class="p">:</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_list</span><span class="p">(</span><span class="s2">"wt_degs.csv"</span><span class="p">)}</span>
+<span class="n">conditions</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_groups</span><span class="p">(</span><span class="s2">"gene_modules.csv"</span><span class="p">)</span>      <span class="c1"># header = group name</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-test-each-condition">
+<h2>Step 2: Test each condition<a class="headerlink" href="#step-2-test-each-condition" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">compare_conditions</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">gene_sets</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(40, 11)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[[</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="s2">"condition"</span><span class="p">,</span> <span class="s2">"direction"</span><span class="p">,</span> <span class="s2">"overlap"</span><span class="p">,</span> <span class="s2">"fdr"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                                  pathway condition direction  overlap          fdr
+                  HALLMARK_G2M_CHECKPOINT  Up genes        up       23 1.828495e-17
+                     HALLMARK_E2F_TARGETS  Up genes        up       24 3.200497e-17
+GOBP_MITOTIC_SISTER_CHROMATID_SEGREGATION  Up genes        up       13 1.133200e-06
+            REACTOME_INTERFERON_SIGNALING  Up genes        up       14 1.133200e-06
+                          KEGG_CELL_CYCLE  Up genes        up       14 1.565564e-06
+      REACTOME_MITOTIC_SPINDLE_CHECKPOINT  Up genes        up       11 3.614686e-06
+</pre></div>
+</div>
+<p>Each condition is tested on its own, and the results are stacked into one long table with a <code class="docutils literal notranslate"><span class="pre">condition</span></code> column.</p>
+</section>
+<section id="step-3-compare-the-conditions-as-numbers">
+<h2>Step 3: Compare the conditions as numbers<a class="headerlink" href="#step-3-compare-the-conditions-as-numbers" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">enrichment_matrix</span></code> turns the long table into a pathway × condition matrix of signed −log10 FDR. It is the quickest way to compare conditions, and the input for a heatmap.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">enrichment_matrix</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>condition                                   Up genes  Down genes  All genes
+pathway
+HALLMARK_G2M_CHECKPOINT                         16.7         NaN       16.7
+HALLMARK_E2F_TARGETS                            16.5         NaN       16.5
+HALLMARK_OXIDATIVE_PHOSPHORYLATION               NaN       -14.3      -14.3
+HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION       NaN       -11.6      -11.6
+REACTOME_EXTRACELLULAR_MATRIX_ORGANIZATION       NaN       -11.6      -11.6
+REACTOME_RESPIRATORY_ELECTRON_TRANSPORT          NaN        -7.2       -7.2
+GOBP_MITOTIC_SISTER_CHROMATID_SEGREGATION        5.9         NaN        5.9
+REACTOME_INTERFERON_SIGNALING                    5.9         NaN        5.9
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A positive value means the pathway is enriched among up-regulated genes, a negative value among down-regulated genes.</p></li>
+<li><p>A blank (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) means the pathway was not tested in that condition, because it has no overlap with that gene list.</p></li>
+<li><p>A value of 0 means it was tested and has FDR 1.</p></li>
+</ul>
+<p>To pick out the pathways specific to one condition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">up_only</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">sig</span><span class="p">[</span><span class="s2">"Up genes"</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">sig</span><span class="p">[</span><span class="s2">"Down genes"</span><span class="p">]]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-draw-the-comparison-network">
+<h2>Step 4: Draw the comparison network<a class="headerlink" href="#step-4-draw-the-comparison-network" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pnet</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">build_pathway_network</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">gene_sets</span><span class="p">,</span> <span class="n">similarity_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">pnet</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span> <span class="n">pnet</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(17, 16)
+</pre></div>
+</div>
+<p>A pathway enters the network when it passes the FDR cutoff in at least one condition.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pnet</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"compare_pathways.pdf"</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">"condition"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/7b66a79a971be71b9240256bd4bc4fb9/compare_condition.png"><span class="xref download myst"><img alt="Comparison network colored by condition" src="../_images/compare_condition.png" /></span></a></p>
+<p>How to read a pie-chart node:</p>
+<ul class="simple">
+<li><p><strong>Slices:</strong> one per condition. Slice 1 starts at 12 o'clock, and the rest follow clockwise in the order you gave. The legend shows the order.</p></li>
+<li><p><strong>Colored slice:</strong> the pathway is enriched in that condition. A darker slice is more significant.</p></li>
+<li><p><strong>White slice:</strong> not enriched in that condition.</p></li>
+</ul>
+<p>Here the mitotic and interferon clusters have slices 1 and 3 filled (up genes, all genes), and the matrix and oxidative phosphorylation clusters have slices 2 and 3 filled (down genes, all genes).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The shade of a slice is significance, not effect size. Fold enrichment is in the <code class="docutils literal notranslate"><span class="pre">fold_enrichment</span></code> column of the table.</p>
+</div>
+<section id="color-the-slices-by-direction">
+<h3>Color the slices by direction<a class="headerlink" href="#color-the-slices-by-direction" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pnet</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"compare_direction.pdf"</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">"direction"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/5e8a9f1acef120da7e720d052e5858d9/compare_direction.png"><span class="xref download myst"><img alt="Comparison network colored by direction" src="../_images/compare_direction1.png" /></span></a></p>
+<p>Now a slice is red when the pathway is enriched among the up-regulated genes of that condition and blue among the down-regulated genes. Use this when the conditions are contrasts with fold changes.</p>
+</section>
+</section>
+<section id="step-5-look-at-the-per-condition-columns">
+<h2>Step 5: Look at the per-condition columns<a class="headerlink" href="#step-5-look-at-the-per-condition-columns" title="Link to this heading">#</a></h2>
+<p>The node table has one set of columns per condition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pnet</span><span class="o">.</span><span class="n">node_table</span><span class="p">()[[</span><span class="s2">"label"</span><span class="p">,</span> <span class="s2">"conditions"</span><span class="p">,</span> <span class="s2">"fdr__Up genes"</span><span class="p">,</span> <span class="s2">"fdr__Down genes"</span><span class="p">,</span> <span class="s2">"fdr__All genes"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                            label           conditions  fdr__Up genes  fdr__Down genes  fdr__All genes
+Epithelial mesenchymal transition Down genes;All genes            NaN     2.281712e-12    2.281712e-12
+         ECM receptor interaction Down genes;All genes            NaN     3.875610e-04    3.875610e-04
+                   Focal adhesion Down genes;All genes            NaN     4.684335e-03    4.684335e-03
+               Collagen formation Down genes;All genes            NaN     2.143199e-04    2.143199e-04
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">conditions</span></code> lists where the pathway is enriched. There are also <code class="docutils literal notranslate"><span class="pre">direction__&lt;condition&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">genes__&lt;condition&gt;</span></code> columns, the hit genes in that condition.</p>
+</section>
+<section id="step-6-show-the-whole-library">
+<h2>Step 6: Show the whole library<a class="headerlink" href="#step-6-show-the-whole-library" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">build_library_network</span></code> draws every pathway of the library, clusters the library itself, and highlights the enriched pathways. The rest are grey.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">build_library_network</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">gene_sets</span><span class="p">,</span> <span class="n">similarity_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span> <span class="n">lib</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(32, 21)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"library_highlighted.pdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/ccc0ff97c83163f90c667ab471b52696/compare_library.png"><span class="xref download myst"><img alt="Whole library with enriched pathways highlighted" src="../_images/compare_library1.png" /></span></a></p>
+<p>All 32 demo gene sets are drawn, in eight clusters. Three clusters have a grey outline: glycolysis, cytokine receptor interaction and translation initiation are in the library, but none of the three gene lists hits them. Because the layout describes the library and not the hits, figures from different experiments can be compared directly.</p>
+<p>Libraries with more than 400 gene sets are trimmed for this view. For large libraries, use the <a class="reference internal" href="pathway_map.html"><span class="std std-doc">pathway map</span></a>.</p>
+</section>
+<section id="the-same-analysis-on-the-command-line">
+<h2>The same analysis on the command line<a class="headerlink" href="#the-same-analysis-on-the-command-line" title="Link to this heading">#</a></h2>
+<p>One file per condition:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>compare<span class="w"> </span><span class="nv">KO</span><span class="o">=</span>ko_degs.csv<span class="w"> </span><span class="nv">WT</span><span class="o">=</span>wt_degs.csv<span class="w"> </span><span class="nv">Day7</span><span class="o">=</span>day7_degs.csv<span class="w"> </span>--library<span class="w"> </span>Reactome_2022<span class="w"> </span>-o<span class="w"> </span>results
+</pre></div>
+</div>
+<p>One wide table with a column per group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>compare<span class="w"> </span>--groups<span class="w"> </span>gene_modules.csv<span class="w"> </span>--library<span class="w"> </span>MSigDB_Hallmark_2020<span class="w"> </span>--whole-library<span class="w"> </span>-o<span class="w"> </span>results
+</pre></div>
+</div>
+<p>The output folder holds the same files as <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">run</span></code>, plus <code class="docutils literal notranslate"><span class="pre">enrichment_matrix.csv</span></code>. To try it on the demo data, run <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">demo</span> <span class="pre">--compare</span></code>, which writes this tutorial's comparison to <code class="docutils literal notranslate"><span class="pre">demo_output/compare/</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Pathway network: 32 pathways, 21 edges, 8 clusters, 17 enriched (highlighted)
+Conditions (pie slices): Up genes, Down genes, All genes
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--method</span> <span class="pre">gsea</span></code> works here too when every file is a full ranked table.</p>
+</section>
+<section id="next">
+<h2>Next<a class="headerlink" href="#next" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="cl13_vs_arm.html"><span class="std std-doc">Cl13 vs Arm</span></a>: the same analysis on real data, with six gene groups per condition.</p></li>
+<li><p><a class="reference internal" href="singlecell.html"><span class="std std-doc">Single-cell marker genes</span></a>: one pie slice per cell cluster.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="other_tools.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Starting from other tools' results or a pathway list</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="singlecell.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Single-cell marker genes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-the-conditions">Step 1: Define the conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-test-each-condition">Step 2: Test each condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-compare-the-conditions-as-numbers">Step 3: Compare the conditions as numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-draw-the-comparison-network">Step 4: Draw the comparison network</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-the-slices-by-direction">Color the slices by direction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-look-at-the-per-condition-columns">Step 5: Look at the per-condition columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-show-the-whole-library">Step 6: Show the whole library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-same-analysis-on-the-command-line">The same analysis on the command line</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next">Next</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Hua Huang.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

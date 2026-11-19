@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simpnetworkviz.export &#8212; SimpNetworkViz</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0861c6ff" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/simpnetworkviz/export';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://helenhuangmath.github.io/SimpNetworkViz/">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SimpNetworkViz</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery.html">
+    Gallery
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../api.html">
+    Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+        <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+          
+          
+            <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../documentation.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">simpnetworkviz.export</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for simpnetworkviz.export</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Export networks to Cytoscape (.cyjs + style), GraphML, CSV and interactive HTML."""</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">darken</span><span class="p">,</span> <span class="n">hull_colors</span><span class="p">,</span> <span class="n">node_colors</span><span class="p">,</span> <span class="n">resolve_color_by</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.layout</span><span class="w"> </span><span class="kn">import</span> <span class="n">FONT_SCALE</span>
+
+<span class="c1"># With enlarged fonts a cluster name at the canvas edge can reach past it: save the whole drawing.</span>
+<span class="n">_SAVE_KW</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"bbox_inches"</span><span class="p">:</span> <span class="s2">"tight"</span><span class="p">,</span> <span class="s2">"pad_inches"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}</span> <span class="k">if</span> <span class="n">FONT_SCALE</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">{}</span>
+
+<span class="n">PX_PER_UNIT</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="n">CYTOSCAPE_JS_CDN</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"</span><span class="p">,</span>
+    <span class="s2">"https://unpkg.com/cytoscape@3.30.2/dist/cytoscape.min.js"</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_clean</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">,)):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cytoscape_elements</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="n">compound</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Cytoscape.js-style element dicts (positions in pixels, y pointing down)."""</span>
+    <span class="n">colors</span><span class="p">,</span> <span class="n">leg</span> <span class="o">=</span> <span class="n">node_colors</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">)</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">resolve_color_by</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">)</span>
+    <span class="n">hcols</span> <span class="o">=</span> <span class="n">hull_colors</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="n">wedges</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"wedges"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">compound</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">gid</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">group_labels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">g</span> <span class="o">==</span> <span class="n">gid</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+                <span class="k">continue</span>
+            <span class="n">fill</span><span class="p">,</span> <span class="n">edge</span> <span class="o">=</span> <span class="n">hcols</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="p">(</span><span class="s2">"#F2F2F2"</span><span class="p">,</span> <span class="s2">"#BBBBBB"</span><span class="p">))</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"cluster_</span><span class="si">{</span><span class="n">gid</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"label"</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span> <span class="s2">"is_cluster"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"cluster"</span><span class="p">:</span> <span class="n">gid</span><span class="p">,</span>
+                                   <span class="s2">"fill"</span><span class="p">:</span> <span class="n">fill</span><span class="p">,</span> <span class="s2">"border"</span><span class="p">:</span> <span class="n">edge</span><span class="p">,</span> <span class="s2">"text_color"</span><span class="p">:</span> <span class="n">darken</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">)},</span>
+                          <span class="s2">"classes"</span><span class="p">:</span> <span class="s2">"cluster"</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">_clean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">))}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">border_color</span><span class="o">=</span><span class="n">darken</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="mf">0.35</span><span class="p">),</span>
+                    <span class="n">size_px</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">net</span><span class="o">.</span><span class="n">radius</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">PX_PER_UNIT</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">cluster</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                    <span class="n">cluster_label</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">group_labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">""</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">wedges</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">"pie_n"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wedges</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wedges</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">"pie</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span> <span class="ow">or</span> <span class="s2">"#FFFFFF"</span>
+        <span class="n">gid</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">compound</span> <span class="ow">and</span> <span class="n">gid</span> <span class="ow">and</span> <span class="n">net</span><span class="o">.</span><span class="n">layout_style</span> <span class="o">==</span> <span class="s2">"clustered"</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">"parent"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"cluster_</span><span class="si">{</span><span class="n">gid</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="s2">"position"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">PX_PER_UNIT</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="n">y</span> <span class="o">*</span> <span class="n">PX_PER_UNIT</span><span class="p">,</span> <span class="mi">2</span><span class="p">)},</span>
+                      <span class="s2">"classes"</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"type"</span><span class="p">,</span> <span class="s2">"pathway"</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="s2">" pie"</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">wedges</span> <span class="k">else</span> <span class="s2">""</span><span class="p">)})</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"weight"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+    <span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ws</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ws</span><span class="p">))</span> <span class="k">if</span> <span class="n">ws</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"weight"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">wmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">wmax</span> <span class="o">-</span> <span class="n">wmin</span><span class="p">)</span> <span class="k">if</span> <span class="n">wmax</span> <span class="o">&gt;</span> <span class="n">wmin</span> <span class="k">else</span> <span class="mf">0.5</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">_clean</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">"#9A9A9A"</span>
+        <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">"gene-pathway"</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">u</span> <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"type"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"pathway"</span> <span class="k">else</span> <span class="n">v</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="sa">f</span><span class="s2">"e</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">width_px</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">t</span> <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">"pathway"</span> <span class="k">else</span> <span class="mf">0.6</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"nodes"</span><span class="p">:</span> <span class="n">nodes</span><span class="p">,</span> <span class="s2">"edges"</span><span class="p">:</span> <span class="n">edges</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="write_cyjs">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.write_cyjs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_cyjs</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">color_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="n">style_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Write a Cytoscape desktop JSON (File ▸ Import ▸ Network from File) plus a style file.</span>
+
+<span class="sd">    Cluster ids are stored in the ``cluster`` column, so in Cytoscape you can run</span>
+<span class="sd">    AutoAnnotate with "Use existing column: cluster" to draw the cluster outlines.</span>
+<span class="sd">    """</span>
+    <span class="n">el</span> <span class="o">=</span> <span class="n">cytoscape_elements</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">,</span> <span class="n">compound</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"format_version"</span><span class="p">:</span> <span class="s2">"1.0"</span><span class="p">,</span>
+        <span class="s2">"generated_by"</span><span class="p">:</span> <span class="s2">"simpnetworkviz"</span><span class="p">,</span>
+        <span class="s2">"target_cytoscapejs_version"</span><span class="p">:</span> <span class="s2">"~2.1"</span><span class="p">,</span>
+        <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> <span class="s2">"shared_name"</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">},</span>
+        <span class="s2">"elements"</span><span class="p">:</span> <span class="n">el</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">style_path</span> <span class="o">=</span> <span class="n">style_path</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">""</span><span class="p">))</span> <span class="o">+</span> <span class="s2">"_style.xml"</span>
+    <span class="n">write_cytoscape_style</span><span class="p">(</span><span class="n">style_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">write_cytoscape_style</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"SimpNetworkViz"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Cytoscape visual style using passthrough mappings of exported columns."""</span>
+    <span class="n">xml</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="s2">&lt;vizmap id="VizMap-simpnetworkviz" documentVersion="3.1"&gt;</span>
+<span class="s2">  &lt;visualStyle name="</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"&gt;</span>
+<span class="s2">    &lt;network&gt;</span>
+<span class="s2">      &lt;visualProperty name="NETWORK_BACKGROUND_PAINT" default="#FFFFFF"/&gt;</span>
+<span class="s2">    &lt;/network&gt;</span>
+<span class="s2">    &lt;node&gt;</span>
+<span class="s2">      &lt;dependency name="nodeSizeLocked" value="true"/&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_SHAPE" default="ELLIPSE"/&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_FILL_COLOR" default="#BDBDBD"&gt;</span>
+<span class="s2">        &lt;passthroughMapping attributeName="color" attributeType="string"/&gt;</span>
+<span class="s2">      &lt;/visualProperty&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_BORDER_PAINT" default="#555555"&gt;</span>
+<span class="s2">        &lt;passthroughMapping attributeName="border_color" attributeType="string"/&gt;</span>
+<span class="s2">      &lt;/visualProperty&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_BORDER_WIDTH" default="1.0"/&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_SIZE" default="30.0"&gt;</span>
+<span class="s2">        &lt;passthroughMapping attributeName="size_px" attributeType="float"/&gt;</span>
+<span class="s2">      &lt;/visualProperty&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_LABEL" default=""&gt;</span>
+<span class="s2">        &lt;passthroughMapping attributeName="label" attributeType="string"/&gt;</span>
+<span class="s2">      &lt;/visualProperty&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_LABEL_FONT_SIZE" default="9"/&gt;</span>
+<span class="s2">      &lt;visualProperty name="NODE_LABEL_POSITION" default="N,S,c,0.00,3.00"/&gt;</span>
+<span class="s2">    &lt;/node&gt;</span>
+<span class="s2">    &lt;edge&gt;</span>
+<span class="s2">      &lt;dependency name="arrowColorMatchesEdge" value="true"/&gt;</span>
+<span class="s2">      &lt;visualProperty name="EDGE_WIDTH" default="1.5"&gt;</span>
+<span class="s2">        &lt;passthroughMapping attributeName="width_px" attributeType="float"/&gt;</span>
+<span class="s2">      &lt;/visualProperty&gt;</span>
+<span class="s2">      &lt;visualProperty name="EDGE_STROKE_UNSELECTED_PAINT" default="#9A9A9A"&gt;</span>
+<span class="s2">        &lt;passthroughMapping attributeName="color" attributeType="string"/&gt;</span>
+<span class="s2">      &lt;/visualProperty&gt;</span>
+<span class="s2">      &lt;visualProperty name="EDGE_TRANSPARENCY" default="140"/&gt;</span>
+<span class="s2">    &lt;/edge&gt;</span>
+<span class="s2">  &lt;/visualStyle&gt;</span>
+<span class="s2">&lt;/vizmap&gt;</span>
+<span class="s2">"""</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+
+
+<div class="viewcode-block" id="write_graphml">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.write_graphml">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_graphml</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">color_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">colors</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">node_colors</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">_clean</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">))}</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">PX_PER_UNIT</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">y</span> <span class="o">*</span> <span class="n">PX_PER_UNIT</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">n</span><span class="p">],</span>
+                     <span class="n">cluster</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">cluster_label</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">group_labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">""</span><span class="p">))</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="o">**</span><span class="n">attrs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">_clean</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">_clean</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">})</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">write_graphml</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Interactive HTML</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<span class="n">_HTML</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"""&lt;!doctype html&gt;</span>
+<span class="s2">&lt;html lang="en"&gt;&lt;head&gt;</span>
+<span class="s2">&lt;meta charset="utf-8"&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span>
+<span class="s2">&lt;title&gt;__TITLE__&lt;/title&gt;</span>
+<span class="s2">&lt;style&gt;</span>
+<span class="s2">:root { --bg:#ffffff; --panel:#f7f7f8; --text:#1f2328; --muted:#667085; --line:#e4e4e7; --accent:#3C5488; }</span>
+<span class="s2">* { box-sizing:border-box; }</span>
+<span class="s2">html,body { margin:0; height:100%; background:var(--bg); color:var(--text);</span>
+<span class="s2">  font-family: Arial, "Liberation Sans", Helvetica, sans-serif; }</span>
+<span class="s2">#app { display:flex; height:100vh; }</span>
+<span class="s2">#main { flex:1; display:flex; flex-direction:column; min-width:0; }</span>
+<span class="s2">header { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--line); }</span>
+<span class="s2">header h1 { font-size:16px; margin:0 12px 0 0; font-weight:400; }</span>
+<span class="s2">header input { padding:6px 10px; border:1px solid var(--line); border-radius:6px; min-width:180px; font-size:13px; }</span>
+<span class="s2">button { padding:6px 10px; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; font-size:13px; }</span>
+<span class="s2">button:hover { border-color:var(--accent); }</span>
+<span class="s2">#cy { flex:1; min-height:300px; }</span>
+<span class="s2">aside { width:340px; border-left:1px solid var(--line); background:var(--panel); overflow:auto; padding:14px; font-size:13px; }</span>
+<span class="s2">aside h2 { font-size:14px; margin:0 0 8px; }</span>
+<span class="s2">aside .muted { color:var(--muted); }</span>
+<span class="s2">.kv { display:grid; grid-template-columns: 110px 1fr; gap:4px 8px; margin:8px 0; }</span>
+<span class="s2">.kv div:nth-child(odd) { color:var(--muted); }</span>
+<span class="s2">.genes { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }</span>
+<span class="s2">.genes span { background:#fff; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-family:ui-monospace,monospace; font-size:12px; }</span>
+<span class="s2">ul.members { padding-left:18px; margin:6px 0; }</span>
+<span class="s2">ul.members li { cursor:pointer; margin:2px 0; }</span>
+<span class="s2">ul.members li:hover { color:var(--accent); }</span>
+<span class="s2">.legend .sw { display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:middle; margin-right:6px; border:1px solid #0002; }</span>
+<span class="s2">.grad { height:10px; border-radius:3px; margin:4px 0 2px; }</span>
+<span class="s2">@media (max-width: 800px) { #app { flex-direction:column; } aside { width:auto; height:40vh; border-left:none; border-top:1px solid var(--line); } }</span>
+<span class="s2">&lt;/style&gt;</span>
+<span class="s2">__SCRIPT__</span>
+<span class="s2">&lt;/head&gt;&lt;body&gt;</span>
+<span class="s2">&lt;div id="app"&gt;</span>
+<span class="s2">  &lt;div id="main"&gt;</span>
+<span class="s2">    &lt;header&gt;</span>
+<span class="s2">      &lt;h1&gt;__TITLE__&lt;/h1&gt;</span>
+<span class="s2">      &lt;input id="search" placeholder="Search pathway or gene…" autocomplete="off"&gt;</span>
+<span class="s2">      &lt;button id="fit"&gt;Fit&lt;/button&gt;</span>
+<span class="s2">      &lt;button id="labels"&gt;Node labels&lt;/button&gt;</span>
+<span class="s2">      &lt;button id="png"&gt;Download PNG&lt;/button&gt;</span>
+<span class="s2">    &lt;/header&gt;</span>
+<span class="s2">    &lt;div id="cy"&gt;&lt;/div&gt;</span>
+<span class="s2">  &lt;/div&gt;</span>
+<span class="s2">  &lt;aside&gt;</span>
+<span class="s2">    &lt;div id="info"&gt;&lt;h2&gt;Details&lt;/h2&gt;&lt;p class="muted"&gt;Click a node or cluster to see its details. Drag nodes or whole clusters to rearrange; scroll to zoom.&lt;/p&gt;&lt;/div&gt;</span>
+<span class="s2">    &lt;hr style="border:none;border-top:1px solid var(--line);margin:14px 0"&gt;</span>
+<span class="s2">    &lt;div class="legend" id="legend"&gt;&lt;/div&gt;</span>
+<span class="s2">    &lt;hr style="border:none;border-top:1px solid var(--line);margin:14px 0"&gt;</span>
+<span class="s2">    &lt;h2&gt;Clusters&lt;/h2&gt;</span>
+<span class="s2">    &lt;ul class="members" id="clusters"&gt;&lt;/ul&gt;</span>
+<span class="s2">  &lt;/aside&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">&lt;script&gt;</span>
+<span class="s2">const ELEMENTS = __ELEMENTS__;</span>
+<span class="s2">const META = __META__;</span>
+<span class="s2">function esc(s){ return String(s ?? "").replace(/[&amp;&lt;&gt;"]/g, c =&gt; ({"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;"}[c])); }</span>
+<span class="s2">function fmt(v){ if (v === null || v === undefined || v === "") return "–"; if (typeof v === "number") return (Math.abs(v) &lt; 1e-3 &amp;&amp; v !== 0) ? v.toExponential(2) : (+v.toFixed(3)).toString(); return esc(v); }</span>
+<span class="s2">if (typeof cytoscape === "undefined") {</span>
+<span class="s2">  document.getElementById("cy").innerHTML = '&lt;p style="padding:20px"&gt;Could not load cytoscape.js (no internet?). Re-export with &lt;code&gt;js_path=&lt;/code&gt; pointing at a local cytoscape.min.js to make an offline file.&lt;/p&gt;';</span>
+<span class="s2">}</span>
+<span class="s2">const showLabelsInit = META.node_labels;</span>
+<span class="s2">// Pie nodes (compared conditions): one slice per condition, clockwise from 12 o'clock.</span>
+<span class="s2">const pieStyle = { "pie-size": "100%", "border-color": "#444", "border-width": 1.2 };</span>
+<span class="s2">for (let i = 1; i &lt;= (META.n_conditions || 0); i++) {</span>
+<span class="s2">  pieStyle[`pie-$</span><span class="si">{i}</span><span class="s2">-background-color`] = `data(pie$</span><span class="si">{i}</span><span class="s2">)`;</span>
+<span class="s2">  pieStyle[`pie-$</span><span class="si">{i}</span><span class="s2">-background-size`] = 100 / META.n_conditions;</span>
+<span class="s2">  pieStyle[`pie-$</span><span class="si">{i}</span><span class="s2">-background-opacity`] = 1;</span>
+<span class="s2">}</span>
+<span class="s2">const cy = cytoscape({</span>
+<span class="s2">  container: document.getElementById("cy"),</span>
+<span class="s2">  elements: ELEMENTS,</span>
+<span class="s2">  layout: { name: "preset", fit: true, padding: 30 },</span>
+<span class="s2">  wheelSensitivity: 0.25,</span>
+<span class="s2">  style: [</span>
+<span class="s2">    { selector: "node", style: {</span>
+<span class="s2">        "background-color": "data(color)", "border-color": "data(border_color)", "border-width": 1.2,</span>
+<span class="s2">        "width": "data(size_px)", "height": "data(size_px)", "label": "", "font-size": 9, "color": "#222",</span>
+<span class="s2">        "text-valign": "bottom", "text-halign": "center", "text-margin-y": 2, "text-wrap": "wrap", "text-max-width": 140,</span>
+<span class="s2">        "text-outline-color": "#fff", "text-outline-width": 2,</span>
+<span class="s2">        "font-family": "Arial, Liberation Sans, Helvetica, sans-serif", "font-weight": 400 } },</span>
+<span class="s2">    { selector: "node.pie", style: pieStyle },</span>
+<span class="s2">    { selector: "node.showlabel", style: { "label": "data(label)" } },</span>
+<span class="s2">    { selector: "node.gene.showlabel", style: { "font-size": 8 } },</span>
+<span class="s2">    { selector: "node.cluster", style: {</span>
+<span class="s2">        "background-color": "data(fill)", "background-opacity": 0.85, "border-color": "data(border)", "border-width": 1.5,</span>
+<span class="s2">        "shape": "round-rectangle", "corner-radius": 18, "padding": 14, "label": "data(label)", "text-valign": "top", "text-halign": "center",</span>
+<span class="s2">        "font-size": 14, "font-weight": 400, "color": "data(text_color)", "text-margin-y": -4, "text-wrap": "wrap", "text-max-width": 260,</span>
+<span class="s2">        "text-outline-width": 0 } },</span>
+<span class="s2">    { selector: "edge", style: { "width": "data(width_px)", "line-color": "data(color)", "opacity": 0.5, "curve-style": "haystack" } },</span>
+<span class="s2">    { selector: ".faded", style: { "opacity": 0.12 } },</span>
+<span class="s2">    { selector: "node.hit", style: { "border-width": 4, "border-color": "#111", "label": "data(label)", "z-index": 99 } },</span>
+<span class="s2">    { selector: "node:selected", style: { "border-width": 4, "border-color": "#111" } },</span>
+<span class="s2">  ],</span>
+<span class="s2">});</span>
+<span class="s2">let labelsOn = showLabelsInit;</span>
+<span class="s2">function applyLabels(){ cy.nodes().not(".cluster").toggleClass("showlabel", labelsOn); }</span>
+<span class="s2">applyLabels();</span>
+<span class="s2">document.getElementById("labels").onclick = () =&gt; { labelsOn = !labelsOn; applyLabels(); };</span>
+<span class="s2">document.getElementById("fit").onclick = () =&gt; cy.animate({ fit: { padding: 30 } }, { duration: 300 });</span>
+<span class="s2">document.getElementById("png").onclick = () =&gt; {</span>
+<span class="s2">  const a = document.createElement("a"); a.href = cy.png({ full: true, scale: 3, bg: "#ffffff" });</span>
+<span class="s2">  a.download = (META.file || "network") + ".png"; a.click();</span>
+<span class="s2">};</span>
+<span class="s2">function nodeInfo(d){</span>
+<span class="s2">  const genes = (d.genes || "").split(";").filter(Boolean);</span>
+<span class="s2">  const rows = [["Cluster", d.cluster_label || (d.cluster ? "Cluster " + d.cluster : "–")]];</span>
+<span class="s2">  if (d.type === "pathway") {</span>
+<span class="s2">    rows.push(["FDR", fmt(d.fdr)], ["p-value", fmt(d.pvalue)], ["Direction", fmt(d.direction)], ["NES", fmt(d.nes)],</span>
+<span class="s2">              ["Gene-set size", fmt(d.set_size)], ["Genes in list", fmt(d.overlap)]);</span>
+<span class="s2">    if (d.highlight === false) rows.push(["Enriched", "no (library context)"]);</span>
+<span class="s2">  } else {</span>
+<span class="s2">    rows.push(["log2FC", fmt(d.logfc)], ["# pathways", fmt(d.n_pathways)]);</span>
+<span class="s2">  }</span>
+<span class="s2">  (META.conditions || []).forEach((c, i) =&gt; {</span>
+<span class="s2">    const f = d["fdr__" + c];</span>
+<span class="s2">    if (d.type === "pathway") rows.push([`${i + 1}. ${esc(c)}`, f == null ? "–" : `FDR ${fmt(f)} ${d["direction__" + c] || ""}`]);</span>
+<span class="s2">    else rows.push([`${i + 1}. ${esc(c)}`, (d.conditions || "").split(";").includes(c) ? "hit" : "–"]);</span>
+<span class="s2">  });</span>
+<span class="s2">  let h = `&lt;h2&gt;${esc(d.label)}&lt;/h2&gt;`;</span>
+<span class="s2">  if (d.name &amp;&amp; d.name !== d.label) h += `&lt;div class="muted"&gt;${esc(d.name)}&lt;/div&gt;`;</span>
+<span class="s2">  h += `&lt;div class="kv"&gt;${rows.map(r =&gt; `&lt;div&gt;$</span><span class="si">{r[0]}</span><span class="s2">&lt;/div&gt;&lt;div&gt;$</span><span class="si">{r[1]}</span><span class="s2">&lt;/div&gt;`).join("")}&lt;/div&gt;`;</span>
+<span class="s2">  if (genes.length) h += `&lt;div class="muted"&gt;Genes ($</span><span class="si">{genes.length}</span><span class="s2">)&lt;/div&gt;&lt;div class="genes"&gt;${genes.map(g =&gt; `&lt;span&gt;${esc(g)}&lt;/span&gt;`).join("")}&lt;/div&gt;`;</span>
+<span class="s2">  if (d.pathways) h += `&lt;div class="muted" style="margin-top:8px"&gt;Pathways&lt;/div&gt;&lt;div&gt;${esc(d.pathways)}&lt;/div&gt;`;</span>
+<span class="s2">  return h;</span>
+<span class="s2">}</span>
+<span class="s2">function clusterInfo(node){</span>
+<span class="s2">  const kids = node.children().sort((a,b) =&gt; (a.data("fdr") ?? 1) - (b.data("fdr") ?? 1));</span>
+<span class="s2">  return `&lt;h2&gt;${esc(node.data("label"))}&lt;/h2&gt;&lt;div class="muted"&gt;$</span><span class="si">{kids.length}</span><span class="s2"> nodes&lt;/div&gt;&lt;ul class="members"&gt;` +</span>
+<span class="s2">    kids.map(k =&gt; `&lt;li data-id="${esc(k.id())}"&gt;${esc(k.data("label"))}${k.data("fdr") != null ? ` &lt;span class="muted"&gt;(${fmt(k.data("fdr"))})&lt;/span&gt;` : ""}&lt;/li&gt;`).join("") + "&lt;/ul&gt;";</span>
+<span class="s2">}</span>
+<span class="s2">function bindMemberClicks(root){</span>
+<span class="s2">  root.querySelectorAll("li[data-id]").forEach(li =&gt; li.onclick = () =&gt; {</span>
+<span class="s2">    const n = cy.getElementById(li.dataset.id); focus(n.isParent() ? n : n); });</span>
+<span class="s2">}</span>
+<span class="s2">const info = document.getElementById("info");</span>
+<span class="s2">function focus(n){</span>
+<span class="s2">  cy.elements().removeClass("faded");</span>
+<span class="s2">  if (n.isParent()) {</span>
+<span class="s2">    const keep = n.union(n.descendants());</span>
+<span class="s2">    cy.elements().not(keep).not(keep.connectedEdges()).addClass("faded");</span>
+<span class="s2">    info.innerHTML = clusterInfo(n); bindMemberClicks(info);</span>
+<span class="s2">  } else {</span>
+<span class="s2">    const keep = n.closedNeighborhood().union(n.ancestors());</span>
+<span class="s2">    cy.elements().not(keep).addClass("faded");</span>
+<span class="s2">    info.innerHTML = nodeInfo(n.data());</span>
+<span class="s2">  }</span>
+<span class="s2">  cy.animate({ fit: { eles: n.isParent() ? n : n.closedNeighborhood(), padding: 60 } }, { duration: 300 });</span>
+<span class="s2">}</span>
+<span class="s2">cy.on("tap", "node", e =&gt; focus(e.target));</span>
+<span class="s2">cy.on("tap", e =&gt; { if (e.target === cy) cy.elements().removeClass("faded"); });</span>
+<span class="s2">document.getElementById("search").addEventListener("input", e =&gt; {</span>
+<span class="s2">  const q = e.target.value.trim().toUpperCase();</span>
+<span class="s2">  cy.nodes().removeClass("hit"); cy.elements().removeClass("faded");</span>
+<span class="s2">  if (q.length &lt; 2) return;</span>
+<span class="s2">  const hits = cy.nodes().not(".cluster").filter(n =&gt;</span>
+<span class="s2">    String(n.data("label")).toUpperCase().includes(q) || String(n.data("name") || "").toUpperCase().includes(q) ||</span>
+<span class="s2">    (n.data("genes") || "").toUpperCase().split(";").includes(q));</span>
+<span class="s2">  hits.addClass("hit");</span>
+<span class="s2">  if (hits.length) { cy.elements().not(hits).not(hits.ancestors()).addClass("faded"); cy.animate({ fit: { eles: hits, padding: 80 } }, { duration: 300 }); }</span>
+<span class="s2">});</span>
+<span class="s2">// legend + cluster list</span>
+<span class="s2">const lg = document.getElementById("legend");</span>
+<span class="s2">lg.innerHTML = `&lt;h2&gt;Legend&lt;/h2&gt;` + META.legend_html;</span>
+<span class="s2">const cl = document.getElementById("clusters");</span>
+<span class="s2">cl.innerHTML = cy.nodes(".cluster").sort((a,b) =&gt; a.data("cluster") - b.data("cluster")).map(c =&gt;</span>
+<span class="s2">  `&lt;li data-id="${esc(c.id())}"&gt;&lt;span class="sw" style="background:${c.data("fill")};border-color:${c.data("border")};border-radius:3px;display:inline-block;width:12px;height:12px;vertical-align:middle;margin-right:6px"&gt;&lt;/span&gt;${esc(c.data("label"))} &lt;span class="muted"&gt;(${c.children().length})&lt;/span&gt;&lt;/li&gt;`).join("") ||</span>
+<span class="s2">  '&lt;li class="muted"&gt;No clusters&lt;/li&gt;';</span>
+<span class="s2">bindMemberClicks(cl);</span>
+<span class="s2">&lt;/script&gt;</span>
+<span class="s2">&lt;/body&gt;&lt;/html&gt;</span>
+<span class="s2">"""</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_legend_html</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">leg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">leg</span><span class="p">[</span><span class="s2">"mode"</span><span class="p">]</span>
+    <span class="n">size_title</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"pathway"</span><span class="p">:</span> <span class="s2">"Node size = gene-set size"</span><span class="p">,</span> <span class="s2">"gene"</span><span class="p">:</span> <span class="s2">"Node size = number of pathways"</span><span class="p">,</span>
+                  <span class="s2">"gene-pathway"</span><span class="p">:</span> <span class="s2">"Pathway size = genes shown"</span><span class="p">}[</span><span class="n">net</span><span class="o">.</span><span class="n">kind</span><span class="p">]</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"&lt;p class='muted'&gt;</span><span class="si">{</span><span class="n">size_title</span><span class="si">}</span><span class="s2">. "</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">"pathway"</span><span class="p">:</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Edge width = gene-set overlap."</span><span class="p">)</span>
+    <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&lt;/p&gt;"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">leg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"conditions"</span><span class="p">):</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">condition_color</span>
+
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&lt;div&gt;Pie slices (clockwise from top):&lt;/div&gt;"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leg</span><span class="p">[</span><span class="s2">"conditions"</span><span class="p">]):</span>
+            <span class="n">sw</span> <span class="o">=</span> <span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"condition"</span> <span class="k">else</span> <span class="s2">"#D0D0D0"</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;div&gt;&lt;span class='sw' style='background:</span><span class="si">{</span><span class="n">sw</span><span class="si">}</span><span class="s2">'&gt;&lt;/span&gt;</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/div&gt;"</span><span class="p">)</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&lt;div class='muted'&gt;White slice = not enriched in that condition.&lt;/div&gt;"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"condition"</span><span class="p">:</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;div class='muted'&gt;Darker slice = more significant (-log10 FDR up to </span><span class="si">{</span><span class="n">leg</span><span class="p">[</span><span class="s1">'vmax'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">).&lt;/div&gt;"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"highlight"</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&lt;div&gt;&lt;span class='sw' style='background:#ECECEC'&gt;&lt;/span&gt;Library pathway, not enriched&lt;/div&gt;"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"direction"</span><span class="p">:</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"&lt;div&gt;Up-regulated&lt;/div&gt;&lt;div class='grad' style='background:linear-gradient(90deg,#fcbba1,#a50f15)'&gt;&lt;/div&gt;"</span>
+            <span class="sa">f</span><span class="s2">"&lt;div&gt;Down-regulated&lt;/div&gt;&lt;div class='grad' style='background:linear-gradient(90deg,#c6dbef,#08306b)'&gt;&lt;/div&gt;"</span>
+            <span class="sa">f</span><span class="s2">"&lt;div class='muted'&gt;Shade: -log10 FDR 0 → </span><span class="si">{</span><span class="n">leg</span><span class="p">[</span><span class="s1">'vmax'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&lt;/div&gt;"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"significance"</span><span class="p">:</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;div&gt;-log10 FDR&lt;/div&gt;&lt;div class='grad' style='background:linear-gradient(90deg,#fed976,#bd0026)'&gt;&lt;/div&gt;"</span>
+                     <span class="sa">f</span><span class="s2">"&lt;div class='muted'&gt;0 → </span><span class="si">{</span><span class="n">leg</span><span class="p">[</span><span class="s1">'vmax'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&lt;/div&gt;"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"cluster"</span><span class="p">:</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&lt;div class='muted'&gt;Node color = cluster.&lt;/div&gt;"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"condition"</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">leg</span><span class="p">[</span><span class="s2">"vmax"</span><span class="p">]</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;div&gt;</span><span class="si">{</span><span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">leg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'label'</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="p">))</span><span class="si">}</span><span class="s2">&lt;/div&gt;&lt;div class='grad' style='background:linear-gradient(90deg,#2166ac,#f7f7f7,#b2182b)'&gt;&lt;/div&gt;"</span>
+                     <span class="sa">f</span><span class="s2">"&lt;div class='muted'&gt;</span><span class="si">{</span><span class="o">-</span><span class="n">v</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> → 0 → </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&lt;/div&gt;"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="write_html">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.write_html">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_html</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="n">node_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+               <span class="n">js_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Write a standalone interactive network viewer (Cytoscape.js).</span>
+
+<span class="sd">    ``js_path``: path to a local ``cytoscape.min.js`` to embed, making the file</span>
+<span class="sd">    work offline. By default the library is loaded from a CDN.</span>
+<span class="sd">    """</span>
+    <span class="n">el</span> <span class="o">=</span> <span class="n">cytoscape_elements</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">leg</span> <span class="o">=</span> <span class="n">node_colors</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">color_by</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">node_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">node_labels</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">label_nodes</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="p">{</span><span class="s2">"pathway"</span><span class="p">:</span> <span class="s2">"Pathway network"</span><span class="p">,</span> <span class="s2">"gene"</span><span class="p">:</span> <span class="s2">"Gene network"</span><span class="p">,</span> <span class="s2">"gene-pathway"</span><span class="p">:</span> <span class="s2">"Gene–pathway network"</span><span class="p">}[</span><span class="n">net</span><span class="o">.</span><span class="n">kind</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">js_path</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">js_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">script</span> <span class="o">=</span> <span class="s2">"&lt;script&gt;"</span> <span class="o">+</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"&lt;/script"</span><span class="p">,</span> <span class="s2">"&lt;</span><span class="se">\\</span><span class="s2">/script"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"&lt;/script&gt;"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;script src="</span><span class="si">{</span><span class="n">CYTOSCAPE_JS_CDN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">"&gt;&lt;/script&gt;</span><span class="se">\n</span><span class="s1">'</span>
+                  <span class="sa">f</span><span class="s1">'&lt;script&gt;window.cytoscape || document.write(</span><span class="se">\'</span><span class="s1">&lt;script src="</span><span class="si">{</span><span class="n">CYTOSCAPE_JS_CDN</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">"&gt;&lt;</span><span class="se">\\</span><span class="s1">/script&gt;</span><span class="se">\'</span><span class="s1">)&lt;/script&gt;'</span><span class="p">)</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"node_labels"</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">node_labels</span><span class="p">),</span> <span class="s2">"legend_html"</span><span class="p">:</span> <span class="n">_legend_html</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">leg</span><span class="p">),</span> <span class="s2">"file"</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span>
+            <span class="s2">"conditions"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conditions</span><span class="p">),</span> <span class="s2">"n_conditions"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conditions</span><span class="p">)</span> <span class="k">if</span> <span class="n">leg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"wedges"</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="n">safe</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"&lt;/"</span><span class="p">,</span> <span class="s2">"&lt;</span><span class="se">\\</span><span class="s2">/"</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="p">(</span><span class="n">_HTML</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__TITLE__"</span><span class="p">,</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">title</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__SCRIPT__"</span><span class="p">,</span> <span class="n">script</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__ELEMENTS__"</span><span class="p">,</span> <span class="n">safe</span><span class="p">(</span><span class="n">el</span><span class="p">[</span><span class="s2">"nodes"</span><span class="p">]</span> <span class="o">+</span> <span class="n">el</span><span class="p">[</span><span class="s2">"edges"</span><span class="p">]))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__META__"</span><span class="p">,</span> <span class="n">safe</span><span class="p">(</span><span class="n">meta</span><span class="p">)))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="save_all">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.save_all">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_all</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">outdir</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"network"</span><span class="p">,</span> <span class="n">formats</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"pdf"</span><span class="p">,</span> <span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"html"</span><span class="p">,</span> <span class="s2">"cyjs"</span><span class="p">,</span> <span class="s2">"graphml"</span><span class="p">,</span> <span class="s2">"csv"</span><span class="p">),</span>
+             <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="n">js_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Save a network in several formats; returns ``{format: path}``."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">formats</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"png"</span><span class="p">,</span> <span class="s2">"pdf"</span><span class="p">,</span> <span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"jpg"</span><span class="p">,</span> <span class="s2">"tif"</span><span class="p">,</span> <span class="s2">"tiff"</span><span class="p">,</span> <span class="s2">"eps"</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">img</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="n">color_by</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">img</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">"</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">plot_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"dpi"</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="o">**</span><span class="n">_SAVE_KW</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">"html"</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">"html"</span><span class="p">]</span> <span class="o">=</span> <span class="n">write_html</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.html"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="n">color_by</span><span class="p">,</span> <span class="n">js_path</span><span class="o">=</span><span class="n">js_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">"cyjs"</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">"cyjs"</span><span class="p">]</span> <span class="o">=</span> <span class="n">write_cyjs</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.cyjs"</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="n">color_by</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">"cytoscape_style"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_style.xml"</span>
+    <span class="k">if</span> <span class="s2">"graphml"</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">"graphml"</span><span class="p">]</span> <span class="o">=</span> <span class="n">write_graphml</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.graphml"</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="n">color_by</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">"csv"</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">:</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">node_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_nodes.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">edge_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_edges.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">"nodes"</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s2">"edges"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_nodes.csv"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_edges.csv"</span>
+        <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">"pathway"</span><span class="p">:</span>
+            <span class="n">net</span><span class="o">.</span><span class="n">cluster_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_clusters.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">"clusters"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">_clusters.csv"</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Hua Huang.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

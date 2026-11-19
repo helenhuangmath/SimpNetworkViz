@@ -44,7 +44,7 @@ copybutton_prompt_is_regexp = True
 html_theme = "sphinx_rtd_theme"
 html_title = f"SimpNetworkViz {release} documentation"
 html_static_path = ["_static"]
-html_css_files = ["custom.css"]
+html_css_files = ["readthedocs.css"]
 html_theme_options = {
     "navigation_depth": 3,
     "collapse_navigation": False,

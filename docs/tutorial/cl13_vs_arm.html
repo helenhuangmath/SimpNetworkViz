@@ -1,0 +1,1320 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comparing gene groups of two conditions: Cl13 vs Arm &#8212; SimpNetworkViz</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0861c6ff" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/cl13_vs_arm';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The pathway map: one coordinate system for a whole library" href="pathway_map.html" />
+    <link rel="prev" title="Single-cell marker genes" href="singlecell.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://helenhuangmath.github.io/SimpNetworkViz/">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SimpNetworkViz</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../gallery.html">
+    Gallery
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api.html">
+    Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+        <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../gallery.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+          
+          
+            <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Guided tutorial: from a gene list to a pathway network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsea.html">Preranked GSEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_tools.html">Starting from other tools' results or a pathway list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compare.html">Comparing conditions in one network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlecell.html">Single-cell marker genes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing gene groups of two conditions: Cl13 vs Arm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathway_map.html">The pathway map: one coordinate system for a whole library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grouping.html">Grouping pathways and styling figures</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../documentation.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Get started</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Comparing gene groups of two conditions: Cl13 vs Arm</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="comparing-gene-groups-of-two-conditions-cl13-vs-arm">
+<h1>Comparing gene groups of two conditions: Cl13 vs Arm<a class="headerlink" href="#comparing-gene-groups-of-two-conditions-cl13-vs-arm" title="Link to this heading">#</a></h1>
+<p>This tutorial walks through a real comparison with SimpNetworkViz: six gene subgroups from exhausted CD8 T cells (chronic LCMV clone 13 infection, <code class="docutils literal notranslate"><span class="pre">TEX_G1</span></code>–<code class="docutils literal notranslate"><span class="pre">TEX_G6</span></code>) against six subgroups from memory CD8 T cells (acute LCMV Armstrong infection, <code class="docutils literal notranslate"><span class="pre">TMEM_G1</span></code>–<code class="docutils literal notranslate"><span class="pre">TMEM_G6</span></code>). It shows how to load gene groups from a wide table, which comparisons to run, how to read the pie-chart networks, and what the result tables contain. Every figure is a PDF with editable text.</p>
+<p>The data, scripts and figures of this tutorial are in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/tree/main/examples/Cl13_vs_Arm"><code class="docutils literal notranslate"><span class="pre">examples/Cl13_vs_Arm</span></code></a> in the repository. Click a figure to see it at full size; the link above each figure opens the PDF.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To explore the result before reading, open the <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/cl13-vs-arm.html">interactive Cl13 vs Arm map</a>.</p>
+</div>
+<section id="step-1-get-the-data-and-the-gene-sets">
+<h2>Step 1: Get the data and the gene sets<a class="headerlink" href="#step-1-get-the-data-and-the-gene-sets" title="Link to this heading">#</a></h2>
+<p><strong>Gene groups.</strong> Two CSV files in <code class="docutils literal notranslate"><span class="pre">data/</span></code>, one per condition, with one column per subgroup (header = group name, mouse symbols, columns of different length):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Groups</p></th>
+<th class="head"><p>Genes per group</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data/Cl13_groups.csv</span></code></p></td>
+<td><p>TEX_G1 … TEX_G6</p></td>
+<td><p>308, 146, 114, 78, 65, 46</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data/Arm_groups.csv</span></code></p></td>
+<td><p>TMEM_G1 … TMEM_G6</p></td>
+<td><p>225, 102, 71, 33, 33, 19</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TEX_G1</span><span class="p">,</span><span class="n">TEX_G2</span><span class="p">,</span><span class="n">TEX_G3</span><span class="p">,</span><span class="n">TEX_G4</span><span class="p">,</span><span class="n">TEX_G5</span><span class="p">,</span><span class="n">TEX_G6</span>
+<span class="n">Ccl5</span><span class="p">,</span><span class="n">Rnf213</span><span class="p">,</span><span class="n">Adam19</span><span class="p">,</span><span class="n">Plek</span><span class="p">,</span><span class="n">Chsy1</span><span class="p">,</span><span class="n">Tox</span>
+<span class="n">Prex1</span><span class="p">,</span><span class="n">Arl6ip1</span><span class="p">,</span><span class="n">Bcl2</span><span class="p">,</span><span class="n">Sh2d2a</span><span class="p">,</span><span class="n">Nsmaf</span><span class="p">,</span><span class="n">Tnfaip3</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>This wide layout is read by <code class="docutils literal notranslate"><span class="pre">snv.read_gene_groups()</span></code> or <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">compare</span> <span class="pre">--groups</span> <span class="pre">FILE</span></code>.</p>
+<p><strong>Gene sets.</strong> Because the symbols are mouse, mouse gene-set collections from MSigDB are used rather than the human Enrichr libraries:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">genesets/mh.all.v2025.1.Mm.symbols.gmt</span></code>: the 50 mouse Hallmark sets (bundled here).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m5.go.bp.v2025.1.Mm.symbols.gmt</span></code>: 7,855 GO Biological Process sets, restricted to sets of 10–500 genes. <code class="docutils literal notranslate"><span class="pre">run_comparison.py</span></code> fetches it once with <code class="docutils literal notranslate"><span class="pre">snv.fetch_msigdb(&quot;GO_BP&quot;,</span> <span class="pre">species=&quot;mouse&quot;)</span></code> (cached under <code class="docutils literal notranslate"><span class="pre">~/.cache/simpnetworkviz/msigdb</span></code>); on the command line the equivalent is <code class="docutils literal notranslate"><span class="pre">--msigdb</span> <span class="pre">GO_BP</span> <span class="pre">--species</span> <span class="pre">mouse</span></code>. A local copy can be passed with <code class="docutils literal notranslate"><span class="pre">--gobp</span></code>.</p></li>
+</ul>
+<p>Hallmark gives a compact overview that can be drawn as a whole library; GO BP gives the detailed network.</p>
+<p><strong>Background.</strong> No list of measured genes was available, so the universe of each test is the set of genes in the library. With your own data, pass the measured genes (<code class="docutils literal notranslate"><span class="pre">background=</span></code> / <code class="docutils literal notranslate"><span class="pre">--background</span></code>) so the statistics are not inflated.</p>
+</section>
+<section id="step-2-run-the-comparison">
+<h2>Step 2: Run the comparison<a class="headerlink" href="#step-2-run-the-comparison" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w">                                   </span><span class="c1"># from the repository root</span>
+python<span class="w"> </span>examples/Cl13_vs_Arm/run_comparison.py<span class="w">            </span><span class="c1"># --species mouse is the default; downloads mouse GO BP once</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">run_comparison.py</span></code> performs three sets of analyses and writes them under <code class="docutils literal notranslate"><span class="pre">results/</span></code> (not kept in git; the key PDFs are copied to <code class="docutils literal notranslate"><span class="pre">figures/</span></code>):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Folder</p></th>
+<th class="head"><p>Comparison</p></th>
+<th class="head"><p>Why</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1_Cl13_vs_Arm_pooled/&lt;library&gt;/</span></code></p></td>
+<td><p>all Cl13 genes vs all Arm genes (2 slices)</p></td>
+<td><p>the overall difference between the conditions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2_matched_groups/G&lt;n&gt;/&lt;library&gt;/</span></code></p></td>
+<td><p>TEX_Gn vs TMEM_Gn (2 slices)</p></td>
+<td><p>whether subgroup <em>n</em> means the same thing in both conditions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3_within_Cl13/</span></code>, <code class="docutils literal notranslate"><span class="pre">3_within_Arm/</span></code></p></td>
+<td><p>the six subgroups of one condition (6 slices)</p></td>
+<td><p>which subgroups share a program and which are specific</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">4_pathway_map/</span></code></p></td>
+<td><p>the hits of 1 and 3 drawn on the fixed GO BP map</p></td>
+<td><p>where in the whole pathway landscape each condition and subgroup falls</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each folder holds <code class="docutils literal notranslate"><span class="pre">pathway_network.pdf</span></code> (+ <code class="docutils literal notranslate"><span class="pre">.html</span></code>), <code class="docutils literal notranslate"><span class="pre">gene_network.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">gene_pathway_network.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">cluster_barplot.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">enrichment.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">enrichment_matrix.csv</span></code>, the node/edge/cluster CSVs and <code class="docutils literal notranslate"><span class="pre">run_params.json</span></code>. <code class="docutils literal notranslate"><span class="pre">results/summary.csv</span></code> lists every analysis with its number of enriched pathways and clusters. Figures referenced below are copies in <code class="docutils literal notranslate"><span class="pre">figures/</span></code>.</p>
+<p>The script is short; the core of each analysis is one call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simpnetworkviz</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">snv</span>
+
+<span class="n">cl13</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_groups</span><span class="p">(</span><span class="s2">"data/Cl13_groups.csv"</span><span class="p">)</span>        <span class="c1"># {"TEX_G1": {gene: None}, ...}</span>
+<span class="n">arm</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_groups</span><span class="p">(</span><span class="s2">"data/Arm_groups.csv"</span><span class="p">)</span>
+<span class="n">hallmark</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">load_gene_sets</span><span class="p">(</span><span class="s2">"genesets/mh.all.v2025.1.Mm.symbols.gmt"</span><span class="p">)</span>
+
+<span class="n">pooled</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Cl13 (TEX)"</span><span class="p">:</span> <span class="p">{</span><span class="n">g</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">cl13</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">},</span>
+          <span class="s2">"Arm (TMEM)"</span><span class="p">:</span> <span class="p">{</span><span class="n">g</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">arm</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">}}</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">run_pipeline</span><span class="p">(</span><span class="n">conditions</span><span class="o">=</span><span class="n">pooled</span><span class="p">,</span> <span class="n">gene_sets</span><span class="o">=</span><span class="n">hallmark</span><span class="p">,</span> <span class="n">outdir</span><span class="o">=</span><span class="s2">"results/pooled_hallmark"</span><span class="p">,</span>
+                 <span class="n">library_network</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="p">(</span><span class="s2">"pdf"</span><span class="p">,</span> <span class="s2">"html"</span><span class="p">,</span> <span class="s2">"csv"</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The same from the command line, with the two conditions as separate files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>compare<span class="w"> </span><span class="s2">"Cl13=cl13_all.txt"</span><span class="w"> </span><span class="s2">"Arm=arm_all.txt"</span><span class="w"> </span>--gmt<span class="w"> </span>genesets/mh.all.v2025.1.Mm.symbols.gmt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--whole-library<span class="w"> </span>--formats<span class="w"> </span>pdf,html,csv<span class="w"> </span>-o<span class="w"> </span>results/pooled_hallmark
+</pre></div>
+</div>
+</section>
+<section id="step-3-compare-cl13-and-arm-all-genes-pooled">
+<h2>Step 3: Compare Cl13 and Arm, all genes pooled<a class="headerlink" href="#step-3-compare-cl13-and-arm-all-genes-pooled" title="Link to this heading">#</a></h2>
+<p><strong>Hallmark, whole library</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/pooled_Hallmark_library.pdf"><code class="docutils literal notranslate"><span class="pre">figures/pooled_Hallmark_library.pdf</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6a4680b61ca5f3771f480448c640a912/pooled_Hallmark_library.png"><span class="xref download myst"><img alt="Hallmark, whole library, Cl13 vs Arm" src="../_images/pooled_Hallmark_library.png" /></span></a></p>
+<p>All 50 Hallmark sets are drawn; enriched ones carry a pie with two slices (slice 1, green = Cl13; slice 2, orange = Arm), the rest are grey. Nine sets are enriched, every one of them in Cl13 only:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pathway</p></th>
+<th class="head"><p>Cl13 −log10 FDR</p></th>
+<th class="head"><p>Arm −log10 FDR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IL2–STAT5 signaling</p></td>
+<td><p>13.1</p></td>
+<td><p>1.0 (not significant)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interferon gamma response</p></td>
+<td><p>11.6</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Interferon alpha response</p></td>
+<td><p>5.8</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mitotic spindle</p></td>
+<td><p>4.8</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Complement</p></td>
+<td><p>4.7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>G2M checkpoint</p></td>
+<td><p>4.7</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-even"><td><p>TNFα signaling via NF-κB</p></td>
+<td><p>3.8</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>E2F targets</p></td>
+<td><p>3.7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>KRAS signaling up</p></td>
+<td><p>1.6</p></td>
+<td><p>0.3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hallmark sets share few genes, so at the default similarity cutoff only two pairs are connected (the two interferon responses; the two estrogen-response sets, which are not enriched and therefore drawn with a grey outline). The figure's value here is the library context: the exhausted program occupies the inflammatory and proliferative corner of the Hallmark landscape, and the memory genes occupy none of it.</p>
+<p><strong>GO Biological Process</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/pooled_GOBP.pdf"><code class="docutils literal notranslate"><span class="pre">figures/pooled_GOBP.pdf</span></code></a>, gene network <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/pooled_GOBP_genes.pdf"><code class="docutils literal notranslate"><span class="pre">figures/pooled_GOBP_genes.pdf</span></code></a>, bar plot <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/pooled_GOBP_barplot.pdf"><code class="docutils literal notranslate"><span class="pre">figures/pooled_GOBP_barplot.pdf</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/919a819b7aaf736b63e0010196e9ab99/pooled_GOBP.png"><span class="xref download myst"><img alt="GO BP network, Cl13 vs Arm" src="../_images/pooled_GOBP.png" /></span></a></p>
+<p>259 GO BP terms are enriched in Cl13 and 3 in Arm; the 80 most significant are drawn and fall into 12 clusters:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Cluster</p></th>
+<th class="head"><p>Terms</p></th>
+<th class="head"><p>Best FDR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Leukocyte proliferation / activation</p></td>
+<td><p>12</p></td>
+<td><p>1e-5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Mitotic chromosome segregation</p></td>
+<td><p>11</p></td>
+<td><p>1e-5</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Myeloid leukocyte differentiation</p></td>
+<td><p>11</p></td>
+<td><p>3e-5</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Production of immune mediators</p></td>
+<td><p>10</p></td>
+<td><p>5e-5</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Mitotic cell-cycle phase transition</p></td>
+<td><p>10</p></td>
+<td><p>3e-4</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Neuroinflammatory response</p></td>
+<td><p>4</p></td>
+<td><p>3e-5</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Negative regulation of protein modification</p></td>
+<td><p>4</p></td>
+<td><p>5e-4</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Activation involved in immune response</p></td>
+<td><p>3</p></td>
+<td><p>1e-4</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Response to virus</p></td>
+<td><p>2</p></td>
+<td><p>1e-5</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>B cell activation</p></td>
+<td><p>2</p></td>
+<td><p>8e-5</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Immune-receptor signaling</p></td>
+<td><p>2</p></td>
+<td><p>3e-4</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Leukocyte chemotaxis</p></td>
+<td><p>2</p></td>
+<td><p>8e-4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Reading the pies: almost every node has only the Cl13 slice filled. The two nodes in the &quot;Production of immune mediators&quot; cluster with both slices filled are <em>regulation of immune effector process</em> and <em>positive regulation of immune effector process</em>, the only terms shared by the two conditions. The third Arm term, <em>positive regulation of natural killer cell mediated immunity</em> (driven by Klrk1, Klrd1, Klrc2, Klrb1c in TMEM_G1), is not significant in Cl13 and sits in the unclustered row.</p>
+<p>The two themes of the exhausted program are visible as two halves of the figure: proliferation and chromosome segregation (clusters 2 and 5, from TEX_G2, see Step 5) and immune activation / interferon response (clusters 1, 4, 6, 8, 9). The gene network groups the Cl13 genes by these themes, so the proliferation module (Top2a, Mki67, Cdk1, Plk1, Kif11, Bub1b, …) and the interferon module (Ifit1, Ifit3, Irf9, Stat1, Rsad2, Mx1, Usp18, …) are drawn apart.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Gene network</p></th>
+<th class="head"><p>Cluster bar plot</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/419990d51cc52715f09aa96c295089e8/pooled_GOBP_genes.png"><span class="xref download myst"><img alt="" src="../_images/pooled_GOBP_genes.png" /></span></a></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/fd5633ae6e28cf8309d704cf22e6db40/pooled_GOBP_barplot.png"><span class="xref download myst"><img alt="" src="../_images/pooled_GOBP_barplot.png" /></span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="step-4-compare-matched-subgroups-tex-gn-versus-tmem-gn">
+<h2>Step 4: Compare matched subgroups, TEX_Gn versus TMEM_Gn<a class="headerlink" href="#step-4-compare-matched-subgroups-tex-gn-versus-tmem-gn" title="Link to this heading">#</a></h2>
+<p>Group numbers are not comparable across conditions by construction, so this analysis asks whether they nonetheless describe the same biology. Each pair gets a two-slice network; <code class="docutils literal notranslate"><span class="pre">results/summary.csv</span></code> shows how much each pair yields:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pair</p></th>
+<th class="head"><p>Hallmark (enriched)</p></th>
+<th class="head"><p>GO BP (enriched, clusters)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>G1: 308 vs 225 genes</p></td>
+<td><p>7</p></td>
+<td><p>35, 5 clusters</p></td>
+</tr>
+<tr class="row-odd"><td><p>G2: 146 vs 102</p></td>
+<td><p>4</p></td>
+<td><p>40, 5 clusters</p></td>
+</tr>
+<tr class="row-even"><td><p>G3: 114 vs 71</p></td>
+<td><p>2</p></td>
+<td><p>none</p></td>
+</tr>
+<tr class="row-odd"><td><p>G4: 78 vs 33</p></td>
+<td><p>0</p></td>
+<td><p>5, 2 clusters</p></td>
+</tr>
+<tr class="row-even"><td><p>G5: 65 vs 33</p></td>
+<td><p>0</p></td>
+<td><p>9, 2 clusters</p></td>
+</tr>
+<tr class="row-odd"><td><p>G6: 46 vs 19</p></td>
+<td><p>1</p></td>
+<td><p>none</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>G1</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/G1_TEX_vs_TMEM_GOBP.pdf"><code class="docutils literal notranslate"><span class="pre">figures/G1_TEX_vs_TMEM_GOBP.pdf</span></code></a>. TEX_G1 is enriched for <em>natural immune response</em> (interferon and antiviral terms), <em>sister chromosome segregation</em>, <em>production of immune mediators</em>, <em>leukocyte proliferation</em> and <em>neuroinflammatory response</em>; on Hallmark it carries interferon-γ response, mitotic spindle, G2M checkpoint, complement, E2F targets, IL2–STAT5 and TNFα/NF-κB. TMEM_G1 contributes two small nodes in the natural-immune cluster (the NK-receptor terms above). The two G1 groups therefore share an &quot;innate-like cytotoxic&quot; fringe but are otherwise different programs.</p>
+<p><a class="reference download internal" download="" href="../_downloads/613ebb140dc3348f12c90b8c6ab76ef7/G1_TEX_vs_TMEM_GOBP.png"><span class="xref download myst"><img alt="TEX_G1 vs TMEM_G1, GO BP" src="../_images/G1_TEX_vs_TMEM_GOBP.png" /></span></a></p>
+<p><strong>G2</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/G2_TEX_vs_TMEM_GOBP.pdf"><code class="docutils literal notranslate"><span class="pre">figures/G2_TEX_vs_TMEM_GOBP.pdf</span></code></a>. TEX_G2 is a pure cell-cycle group: <em>cell-cycle phase transition</em> (16 terms), <em>mitotic chromosome segregation</em> (12), <em>spindle localization</em>, <em>telomere maintenance</em>, <em>double-strand break repair</em>; on Hallmark E2F targets, G2M checkpoint and both interferon responses. TMEM_G2 has no enriched term at all.</p>
+<p><a class="reference download internal" download="" href="../_downloads/ef0c6abcd5f86a240b9540ea62a09081/G2_TEX_vs_TMEM_GOBP.png"><span class="xref download myst"><img alt="TEX_G2 vs TMEM_G2, GO BP" src="../_images/G2_TEX_vs_TMEM_GOBP.png" /></span></a></p>
+<p><strong>G3–G6.</strong> With 19–114 genes per group, few terms reach FDR ≤ 0.05, and those that do in G4 and G5 (<em>regulation of hemopoiesis</em>, <em>neuron apoptotic process</em>, <em>alpha-beta T cell activation</em>, several developmental terms with the same three or four genes) are borderline (−log10 FDR ≈ 1.3–1.4) and should be read as hints, not results. For small groups, consider <code class="docutils literal notranslate"><span class="pre">--fdr</span> <span class="pre">0.1</span></code> and look at <code class="docutils literal notranslate"><span class="pre">enrichment.csv</span></code> rather than the network.</p>
+</section>
+<section id="step-5-compare-the-six-subgroups-within-one-condition">
+<h2>Step 5: Compare the six subgroups within one condition<a class="headerlink" href="#step-5-compare-the-six-subgroups-within-one-condition" title="Link to this heading">#</a></h2>
+<p><strong>Cl13, GO BP</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/within_Cl13_GOBP.pdf"><code class="docutils literal notranslate"><span class="pre">figures/within_Cl13_GOBP.pdf</span></code></a>; <strong>Hallmark, whole library</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/within_Cl13_Hallmark_library.pdf"><code class="docutils literal notranslate"><span class="pre">figures/within_Cl13_Hallmark_library.pdf</span></code></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Six Cl13 subgroups, GO BP</p></th>
+<th class="head"><p>Six Cl13 subgroups, Hallmark whole library</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/640f4e881699dd46b01926b1b762e5b2/within_Cl13_GOBP.png"><span class="xref download myst"><img alt="" src="../_images/within_Cl13_GOBP.png" /></span></a></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/5b4547b313eeb3d5c32e9290ded36864/within_Cl13_Hallmark_library.png"><span class="xref download myst"><img alt="" src="../_images/within_Cl13_Hallmark_library.png" /></span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Six slices per node (1 = TEX_G1 green, 2 = TEX_G2 orange, 3 = TEX_G3 purple, 4 = TEX_G4 pink, 5 = TEX_G5 light green, 6 = TEX_G6 yellow; clockwise from 12 o'clock). Thirteen clusters; the pies separate the subgroups cleanly:</p>
+<ul class="simple">
+<li><p><strong>TEX_G2 (orange)</strong> owns the proliferation clusters: <em>cycle phase transition</em>, <em>spindle localization</em>, <em>telomere maintenance</em>, <em>double-strand break repair</em>, and shares <em>mitotic chromosome segregation</em> with TEX_G1.</p></li>
+<li><p><strong>TEX_G1 (green)</strong> owns <em>leukocyte proliferation / activation</em>, <em>natural killer immune</em>, <em>production of immune mediators</em>, <em>response to biotic stimulus</em> and <em>neuroinflammatory response</em>: the activated / interferon-responsive program.</p></li>
+<li><p><strong>TEX_G4 (pink)</strong> appears in <em>regulation of hemopoiesis</em> and <em>regulation of neuron apoptotic process</em>; <strong>TEX_G5</strong> in the small <em>eye photoreceptor development</em> cluster (three or four genes), which is the kind of GO term to disregard.</p></li>
+<li><p>TEX_G3 and TEX_G6 have no GO BP cluster of their own at this cutoff.</p></li>
+</ul>
+<p>The Hallmark matrix (<code class="docutils literal notranslate"><span class="pre">3_within_Cl13/Hallmark/enrichment_matrix.csv</span></code>) says the same more compactly: IL2–STAT5 signaling is strongest in TEX_G3 (−log10 FDR 6.4) and present in G1 and G6; interferon-α/γ responses, E2F targets and G2M checkpoint belong to TEX_G2 (with interferon-γ also in G1 and G3); mitotic spindle, complement and TNFα/NF-κB to TEX_G1.</p>
+<p><strong>Arm.</strong> Only two GO BP terms are enriched across the six TMEM groups (both in TMEM_G1: <em>positive regulation of NK cell mediated immunity</em>, <em>response to lectin</em>) and no Hallmark set. The memory subgroups are small and many of their genes are unannotated (<code class="docutils literal notranslate"><span class="pre">Gm…</span></code>, <code class="docutils literal notranslate"><span class="pre">…Rik</span></code>), so they carry little pathway signal with these libraries; a background of measured genes, a larger marker list, or cell-type-specific gene sets (e.g. ImmuneSigDB, <code class="docutils literal notranslate"><span class="pre">m7</span></code> in MSigDB) would be the next step.</p>
+</section>
+<section id="step-6-place-every-analysis-on-the-pathway-map">
+<h2>Step 6: Place every analysis on the pathway map<a class="headerlink" href="#step-6-place-every-analysis-on-the-pathway-map" title="Link to this heading">#</a></h2>
+<p>The networks above are laid out afresh for each analysis, so two figures cannot be compared position by position, and GO BP is too large to draw whole. The <strong>pathway map</strong> solves both: all 5,489 GO BP terms (10–500 genes) are embedded once in two dimensions from their gene-set similarity, the map is divided into 35 labelled regions, and every analysis is drawn on that fixed background.</p>
+<p>Build it once per library (about 15 s for GO BP with t-SNE; UMAP is used when <code class="docutils literal notranslate"><span class="pre">umap-learn</span></code> is installed):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>map<span class="w"> </span>--gmt<span class="w"> </span>m5.go.bp.v2025.1.Mm.symbols.gmt<span class="w"> </span>-o<span class="w"> </span>genesets/gobp_map.csv
+</pre></div>
+</div>
+<p>The map used here is included: <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/genesets/gobp_map.csv"><code class="docutils literal notranslate"><span class="pre">genesets/gobp_map.csv</span></code></a>, drawn without hits in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_GOBP.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_GOBP.pdf</span></code></a>. Immune regions (<em>antigen response immunity</em>, <em>alpha activation differentiation</em>, <em>leukocyte migration chemotaxis</em>) sit in the upper left, cell-cycle and DNA regions top centre, metabolism lower left, development and tissue morphogenesis lower right.</p>
+<p><a class="reference download internal" download="" href="../_downloads/8617e086e22c2933c97d1e45f464f637/map_GOBP.png"><span class="xref download myst"><img alt="The GO BP map without hits" src="../_images/map_GOBP.png" /></span></a></p>
+<p>Overlay any analysis with <code class="docutils literal notranslate"><span class="pre">--map</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>compare<span class="w"> </span><span class="s2">"Cl13=cl13_all.txt"</span><span class="w"> </span><span class="s2">"Arm=arm_all.txt"</span><span class="w"> </span>--gmt<span class="w"> </span>m5.go.bp.v2025.1.Mm.symbols.gmt<span class="w"> </span>--map<span class="w"> </span>genesets/gobp_map.csv<span class="w"> </span>-o<span class="w"> </span>results/pooled_map
+</pre></div>
+</div>
+<p><strong>Cl13 vs Arm</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_pooled_Cl13_vs_Arm.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_pooled_Cl13_vs_Arm.pdf</span></code></a>. Every enriched term is a small pie on the grey map (slice 1 = Cl13, slice 2 = Arm; size = significance; the eight most significant are named). The Cl13 hits form three clumps: immune activation and interferon response (upper left), mitosis and DNA (top centre), and leukocyte migration (right). Arm's three hits sit in the <em>antigen response immunity</em> region. The region table (<code class="docutils literal notranslate"><span class="pre">figures/map_pooled_regions.csv</span></code>) quantifies this:</p>
+<p><a class="reference download internal" download="" href="../_downloads/756cb2f53a0789ca2662128788af342f/map_pooled_Cl13_vs_Arm.png"><span class="xref download myst"><img alt="Cl13 vs Arm on the GO BP map" src="../_images/map_pooled_Cl13_vs_Arm.png" /></span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Region</p></th>
+<th class="head"><p>Terms in region</p></th>
+<th class="head"><p>Cl13 hits</p></th>
+<th class="head"><p>Arm hits</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Alpha activation differentiation (T-cell activation)</p></td>
+<td><p>346</p></td>
+<td><p>76 (22 %)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Response signaling production (cytokine production)</p></td>
+<td><p>350</p></td>
+<td><p>59 (17 %)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Mitotic spindle cycle</p></td>
+<td><p>168</p></td>
+<td><p>53 (32 %)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Endothelial growth factor</p></td>
+<td><p>311</p></td>
+<td><p>22 (7 %)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Leukocyte migration chemotaxis</p></td>
+<td><p>102</p></td>
+<td><p>16 (16 %)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Antigen response immunity</p></td>
+<td><p>79</p></td>
+<td><p>8 (10 %)</p></td>
+<td><p>3 (4 %)</p></td>
+</tr>
+<tr class="row-even"><td><p>Response mitochondrial apoptotic</p></td>
+<td><p>253</p></td>
+<td><p>9 (4 %)</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The six Cl13 subgroups</strong> — <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_within_Cl13.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_within_Cl13.pdf</span></code></a>, region counts in <code class="docutils literal notranslate"><span class="pre">figures/map_within_Cl13_regions.csv</span></code>. The same map, six slices per pie. TEX_G2's 31 hits in <em>mitotic spindle cycle</em> and 6 in <em>DNA transcription repair</em> are its whole program; TEX_G1's hits spread over <em>response signaling production</em> (13), <em>mitotic spindle cycle</em> (8), <em>alpha activation differentiation</em> (5) and <em>antigen response immunity</em> (5); TEX_G4 lands in <em>response mitochondrial apoptotic</em> (3) and <em>alpha activation differentiation</em> (2); TEX_G5 in <em>sensory camera eye</em> (3), <em>epithelial morphogenesis development</em> (2) and <em>alpha activation differentiation</em> (2). Because the coordinates never change, these maps can be placed next to the maps of any future experiment analysed with the same library.</p>
+<p><a class="reference download internal" download="" href="../_downloads/57b3bfe06e65adaa2dd50e691e51bdee/map_within_Cl13.png"><span class="xref download myst"><img alt="Six Cl13 subgroups on the GO BP map" src="../_images/map_within_Cl13.png" /></span></a></p>
+<p><strong>The same map with UMAP</strong> — the bundled map was built with t-SNE. With <code class="docutils literal notranslate"><span class="pre">umap-learn</span></code> installed, <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">map</span> <span class="pre">--method</span> <span class="pre">umap</span></code> (or <code class="docutils literal notranslate"><span class="pre">run_comparison.py</span> <span class="pre">--map-method</span> <span class="pre">umap</span></code>) embeds the same TF-IDF/SVD vectors with UMAP instead; this version is included too: <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/genesets/gobp_map_umap.csv"><code class="docutils literal notranslate"><span class="pre">genesets/gobp_map_umap.csv</span></code></a>, drawn in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_GOBP_umap.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_GOBP_umap.pdf</span></code></a>, with the overlays <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_pooled_Cl13_vs_Arm_umap.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_pooled_Cl13_vs_Arm_umap.pdf</span></code></a> and <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_within_Cl13_umap.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_within_Cl13_umap.pdf</span></code></a> and their region tables. The 35 regions and their labels are identical, because regions are clustered in the similarity space, not in the picture; only the layout changes. UMAP places the immune regions (<em>alpha activation differentiation</em>, <em>antigen response immunity</em>, <em>response signaling production</em>) together at the bottom, the cell-cycle and DNA regions on the left and metabolism at the top, with more white space between groups than t-SNE. Pick one and keep it: the point of the map is that every later analysis uses the same coordinates.</p>
+<p><a class="reference download internal" download="" href="../_downloads/c0361544c0b19250dbb88b0f5b85093e/map_pooled_Cl13_vs_Arm_umap.png"><span class="xref download myst"><img alt="Cl13 vs Arm on the UMAP map" src="../_images/map_pooled_Cl13_vs_Arm_umap.png" /></span></a></p>
+<p><strong>The same analyses on MSigDB C7 ImmuneSigDB</strong> — the immunologic signature collection (4,854 sets of the human v7.4 <code class="docutils literal notranslate"><span class="pre">c7.all</span></code> file; mouse symbols are matched case-insensitively). Its maps are in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/tree/main/examples/msigdb_maps/c7.all"><code class="docutils literal notranslate"><span class="pre">../msigdb_maps/c7.all</span></code></a> (built with <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">map</span> <span class="pre">--gmt</span> <span class="pre">c7.all.v7.4.symbols.gmt</span> <span class="pre">--by-category</span> <span class="pre">--method</span> <span class="pre">both</span></code>). The pooled comparison network is <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/pooled_C7.pdf"><code class="docutils literal notranslate"><span class="pre">figures/pooled_C7.pdf</span></code></a>: ImmuneSigDB sets are 200-gene up/down halves of single GEO comparisons and rarely overlap, so the 80 most significant sets form only 19 edges and 12 small clusters (Treg vs Tconv, effector vs memory CD8, stimulated DC). The maps make up for that by placing every hit in a region: <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_pooled_Cl13_vs_Arm_C7_tsne.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_pooled_Cl13_vs_Arm_C7_tsne.pdf</span></code></a> / <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_pooled_Cl13_vs_Arm_C7_umap.pdf"><code class="docutils literal notranslate"><span class="pre">_umap.pdf</span></code></a> and <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_within_Cl13_C7_tsne.pdf"><code class="docutils literal notranslate"><span class="pre">figures/map_within_Cl13_C7_tsne.pdf</span></code></a> / <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/figures/map_within_Cl13_C7_umap.pdf"><code class="docutils literal notranslate"><span class="pre">_umap.pdf</span></code></a>, with region tables <code class="docutils literal notranslate"><span class="pre">figures/map_*_C7_*_regions.csv</span></code>. Pooled T-cell gene lists are enriched in almost half of this collection at FDR 0.05 (2,262 sets), so these overlays use FDR ≤ 1e-8 (300 sets).</p>
+<p><a class="reference download internal" download="" href="../_downloads/51ba4887dcc0e4ef6f84d1f255fdf33b/pooled_C7.png"><span class="xref download myst"><img alt="Cl13 vs Arm network on C7 ImmuneSigDB" src="../_images/pooled_C7.png" /></span></a></p>
+<p><strong>Every MSigDB collection at once, mouse collections</strong> — the genes are mouse symbols, so the right libraries are MSigDB's native mouse collections (release 2025.1), which the package downloads once per species (<code class="docutils literal notranslate"><span class="pre">snv.fetch_msigdb(name,</span> <span class="pre">species=&quot;mouse&quot;)</span></code>, <code class="docutils literal notranslate"><span class="pre">--msigdb</span> <span class="pre">NAME</span> <span class="pre">--species</span> <span class="pre">mouse</span></code>). Their maps are in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/tree/main/examples/msigdb_maps/mouse"><code class="docutils literal notranslate"><span class="pre">../msigdb_maps/mouse</span></code></a>. <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/run_msigdb_all.py"><code class="docutils literal notranslate"><span class="pre">run_msigdb_all.py</span></code></a> runs the pooled Cl13 vs Arm comparison against each of them, plus the overall mouse GO + Reactome + WikiPathways map and, as the one cross-species exception because MSigDB has no mouse immunologic collection, the human C7 ImmuneSigDB map. Outputs: a network, t-SNE and UMAP overlays, the within-Cl13 overlay and region tables per collection in <code class="docutils literal notranslate"><span class="pre">figures/msigdb_mouse/</span></code>, <code class="docutils literal notranslate"><span class="pre">figures/msigdb_mouse/summary.csv</span></code>, and the overview panels <a class="reference download internal" download="" href="../_downloads/4715ec4f4302618b79f1e7b43983ffa5/msigdb_all_mouse_tsne.png"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">../../docs/images/msigdb_all_mouse_tsne.png</span></code></span></a> / <a class="reference download internal" download="" href="../_downloads/195ffcdabcd0465be8fdd52186d35798/msigdb_all_mouse_umap.png"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">msigdb_all_mouse_umap.png</span></code></span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/Cl13_vs_Arm/run_msigdb_all.py<span class="w"> </span>--species<span class="w"> </span>mouse<span class="w"> </span>--map-fdr<span class="w"> </span><span class="s2">"ImmuneSigDB (human C7)=1e-8"</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Collection (mouse 2025.1)</p></th>
+<th class="head"><p>Sets (on map)</p></th>
+<th class="head"><p>Hits Cl13 / Arm (FDR ≤ 0.05)</p></th>
+<th class="head"><p>Network: sets, edges, clusters</p></th>
+<th class="head"><p>Top Cl13 region (hits / region size)</p></th>
+<th class="head"><p>Top Arm region</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Hallmark</p></td>
+<td><p>50 (50)</p></td>
+<td><p>9 / 0</p></td>
+<td><p>9, 1, 1</p></td>
+<td><p>Interferon signaling response (6/13)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>GO biological process</p></td>
+<td><p>7855 (5489)</p></td>
+<td><p>364 / 22</p></td>
+<td><p>80, 337, 8</p></td>
+<td><p>Alpha activation differentiation (85/346)</p></td>
+<td><p>Antigen response immunity (7/79)</p></td>
+</tr>
+<tr class="row-even"><td><p>GO cellular component</p></td>
+<td><p>1040 (679)</p></td>
+<td><p>22 / 2</p></td>
+<td><p>22, 27, 6</p></td>
+<td><p>Mitotic spindle microtubule (9/21)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>GO molecular function</p></td>
+<td><p>1885 (1181)</p></td>
+<td><p>23 / 1</p></td>
+<td><p>24, 31, 3</p></td>
+<td><p>Structural microtubule binding (7/74)</p></td>
+<td><p>Protein receptor binding (1/96)</p></td>
+</tr>
+<tr class="row-even"><td><p>Reactome</p></td>
+<td><p>1309 (1017)</p></td>
+<td><p>10 / 0</p></td>
+<td><p>10, 14, 2</p></td>
+<td><p>Mitotic mitochondrial biogenesis (4/49)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>WikiPathways</p></td>
+<td><p>192 (169)</p></td>
+<td><p>6 / 0</p></td>
+<td><p>6, 0, 0</p></td>
+<td><p>Apoptosis signaling disease (4/17)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>BioCarta</p></td>
+<td><p>252 (184)</p></td>
+<td><p>0 / 0</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Cell-type signatures (M8)</p></td>
+<td><p>233 (195)</p></td>
+<td><p>25 / 1</p></td>
+<td><p>25, 1, 1</p></td>
+<td><p>Spleen alpha beta (13/20)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>GTRD TF targets (M3)</p></td>
+<td><p>279 (140)</p></td>
+<td><p>6 / 4</p></td>
+<td><p>9, 0, 0</p></td>
+<td><p>Uniprot target unreviewed (2/62)</p></td>
+<td><p>Target genes (1/29)</p></td>
+</tr>
+<tr class="row-odd"><td><p>GO + Reactome + WP (overall)</p></td>
+<td><p>12281 (8535)</p></td>
+<td><p>523 / 33</p></td>
+<td><p>80, 264, 10</p></td>
+<td><p>Alpha production differentiation (90/338)</p></td>
+<td><p>Antigen MHC immunity (10/90)</p></td>
+</tr>
+<tr class="row-even"><td><p>ImmuneSigDB (human C7)</p></td>
+<td><p>4872 (4854)</p></td>
+<td><p>1797 / 964</p></td>
+<td><p>80, 22, 12</p></td>
+<td><p>Foxp3 treg tconv (76/182, FDR ≤ 1e-8)</p></td>
+<td><p>Treg CD8 thymocyte (64/247)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Compared with the human v7.4 run below, the mouse sets recover more of both lists (Cl13 625 instead of 588 genes matched, Arm 330 instead of 317) and give more hits: GO BP 364 / 22 instead of 290 / 18, and the overall map 523 / 33 instead of 478 / 18. The Arm hits now include the antigen-presentation and MHC regions, which is where a memory signature is expected to show in GO. The cell-type collection places the Cl13 genes in the spleen αβ T-cell signatures. Mouse Reactome and WikiPathways are smaller than their human counterparts (1309 and 192 sets vs 1604 and 615), so they give fewer hits than in the human run.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>t-SNE maps, mouse collections</p></th>
+<th class="head"><p>UMAP maps, mouse collections</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/4715ec4f4302618b79f1e7b43983ffa5/msigdb_all_mouse_tsne.png"><span class="xref download myst"><img alt="" src="../_images/msigdb_all_mouse_tsne.png" /></span></a></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/195ffcdabcd0465be8fdd52186d35798/msigdb_all_mouse_umap.png"><span class="xref download myst"><img alt="" src="../_images/msigdb_all_mouse_umap.png" /></span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The same with the human v7.4 collections</strong> — for comparison, and because KEGG, PID, HPO, C6 and C7 exist only for human: <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/blob/main/examples/Cl13_vs_Arm/run_msigdb_all.py"><code class="docutils literal notranslate"><span class="pre">run_msigdb_all.py</span> <span class="pre">--species</span> <span class="pre">human</span></code></a> runs the comparison against each human collection map in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/tree/main/examples/msigdb_maps"><code class="docutils literal notranslate"><span class="pre">../msigdb_maps</span></code></a> (mouse symbols are matched case-insensitively, losing 22 % of the Cl13 and 34 % of the Arm genes) and writes a network, t-SNE and UMAP overlays, the within-Cl13 overlay and region tables per collection to <code class="docutils literal notranslate"><span class="pre">figures/msigdb_human/</span></code>, plus <code class="docutils literal notranslate"><span class="pre">figures/msigdb_human/summary.csv</span></code> and the overview panels <a class="reference download internal" download="" href="../_downloads/a611bc7c509de4ef160f366f03a12f40/msigdb_all_human_tsne.png"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">../../docs/images/msigdb_all_human_tsne.png</span></code></span></a> / <a class="reference download internal" download="" href="../_downloads/dbf9bba090df4e638e64512d52d754e8/msigdb_all_human_umap.png"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">msigdb_all_umap.png</span></code></span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/Cl13_vs_Arm/run_msigdb_all.py<span class="w"> </span>--species<span class="w"> </span>human<span class="w"> </span>--msigdb-dir<span class="w"> </span>/path/to/v7.4_gmts<span class="w"> </span>--map-fdr<span class="w"> </span><span class="s2">"ImmuneSigDB=1e-8,c7.all=1e-4"</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Collection</p></th>
+<th class="head"><p>Sets (on map)</p></th>
+<th class="head"><p>Hits Cl13 / Arm (FDR ≤ 0.05)</p></th>
+<th class="head"><p>Network: sets, edges, clusters</p></th>
+<th class="head"><p>Top Cl13 region (hits / region size)</p></th>
+<th class="head"><p>Top Arm region</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Hallmark</p></td>
+<td><p>50 (50)</p></td>
+<td><p>9 / 0</p></td>
+<td><p>9, 1, 1</p></td>
+<td><p>Interferon signaling response (6/14)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>GO biological process</p></td>
+<td><p>7481 (5161)</p></td>
+<td><p>290 / 18</p></td>
+<td><p>80, 384, 8</p></td>
+<td><p>Immune response activation (58/281)</p></td>
+<td><p>Immune response activation (10/281)</p></td>
+</tr>
+<tr class="row-even"><td><p>GO cellular component</p></td>
+<td><p>996 (643)</p></td>
+<td><p>28 / 0</p></td>
+<td><p>28, 42, 6</p></td>
+<td><p>Mitotic spindle microtubule (9/23)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>GO molecular function</p></td>
+<td><p>1708 (1064)</p></td>
+<td><p>19 / 0</p></td>
+<td><p>19, 22, 4</p></td>
+<td><p>Protein regulator binding (5/89)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Human phenotype</p></td>
+<td><p>4813 (3468)</p></td>
+<td><p>0 / 0</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Reactome</p></td>
+<td><p>1604 (1260)</p></td>
+<td><p>35 / 0</p></td>
+<td><p>35, 84, 4</p></td>
+<td><p>TGF transcription genes (8/39)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>WikiPathways</p></td>
+<td><p>615 (537)</p></td>
+<td><p>7 / 0</p></td>
+<td><p>7, 3, 2</p></td>
+<td><p>DNA network repair (3/41)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>KEGG</p></td>
+<td><p>186 (186)</p></td>
+<td><p>2 / 0</p></td>
+<td><p>2, 0, 0</p></td>
+<td><p>Signaling cancer (2/40)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>PID</p></td>
+<td><p>196 (196)</p></td>
+<td><p>2 / 0</p></td>
+<td><p>2, 0, 0</p></td>
+<td><p>P53 downstream pathway (1/53)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>BioCarta</p></td>
+<td><p>292 (226)</p></td>
+<td><p>0 / 0</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>C3 TF targets, GTRD</p></td>
+<td><p>523 (272)</p></td>
+<td><p>19 / 5</p></td>
+<td><p>23, 0, 0</p></td>
+<td><p>Target genes (4/55)</p></td>
+<td><p>Target genes (1/55)</p></td>
+</tr>
+<tr class="row-odd"><td><p>C3 TF targets, legacy motifs</p></td>
+<td><p>610 (571)</p></td>
+<td><p>5 / 1</p></td>
+<td><p>6, 2, 2</p></td>
+<td><p>Irf1 srf irf (3/17)</p></td>
+<td><p>Foxo4 foxo1 hfh4 (1/20)</p></td>
+</tr>
+<tr class="row-even"><td><p>C6 oncogenic</p></td>
+<td><p>189 (189)</p></td>
+<td><p>17 / 3</p></td>
+<td><p>19, 3, 3</p></td>
+<td><p>Dn.v1 up.v1 (4/31)</p></td>
+<td><p>Prc2 stk33 up.v1 (3/26)</p></td>
+</tr>
+<tr class="row-odd"><td><p>C7 ImmuneSigDB</p></td>
+<td><p>4854 (4854)</p></td>
+<td><p>1784 / 961</p></td>
+<td><p>80, 19, 12</p></td>
+<td><p>Foxp3 treg tconv (76/182, FDR ≤ 1e-8)</p></td>
+<td><p>Treg CD8 thymocyte (55/247)</p></td>
+</tr>
+<tr class="row-even"><td><p>C7 vaccine response</p></td>
+<td><p>365 (274)</p></td>
+<td><p>76 / 16</p></td>
+<td><p>80, 143, 8</p></td>
+<td><p>Howard inact 1dy (24/50, FDR ≤ 1e-4)</p></td>
+<td><p>Eff CD8 tcell (10/28)</p></td>
+</tr>
+<tr class="row-odd"><td><p>GO + KEGG + Reactome + WP (overall)</p></td>
+<td><p>12590 (8851)</p></td>
+<td><p>478 / 18</p></td>
+<td><p>80, 228, 12</p></td>
+<td><p>Immune production differentiation (67/410)</p></td>
+<td><p>Immune production differentiation (10/410)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Reading the table: the Cl13 (exhausted) genes are enriched everywhere a database describes immune activation, interferon response, proliferation and DNA replication (GO BP, GO CC, Reactome, Hallmark, C7); the Arm (memory) genes give few or no hits outside C7 and GO BP, because the memory signature is small (483 genes, 342 matched to human symbols) and quiescence-related terms are rare in pathway databases. KEGG, PID and BioCarta are small, disease- and signalling-centred collections and contribute almost nothing here; HPO (disease phenotypes) and BioCarta give no hit at all. The overall map places the GO, Reactome and KEGG hits in one coordinate system, and its region table (<code class="docutils literal notranslate"><span class="pre">figures/msigdb_human/go_kegg_reactome_wp_map_tsne_regions.csv</span></code>) is the most compact summary of the comparison.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>t-SNE maps, human collections</p></th>
+<th class="head"><p>UMAP maps, human collections</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/a611bc7c509de4ef160f366f03a12f40/msigdb_all_human_tsne.png"><span class="xref download myst"><img alt="" src="../_images/msigdb_all_human_tsne.png" /></span></a></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/dbf9bba090df4e638e64512d52d754e8/msigdb_all_human_umap.png"><span class="xref download myst"><img alt="" src="../_images/msigdb_all_human_umap.png" /></span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Interactive maps</strong> — the same four maps as HTML, hosted on this site: <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/cl13-vs-arm.html">Cl13 vs Arm, t-SNE</a>, <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/cl13-vs-arm-umap.html">Cl13 vs Arm, UMAP</a>, <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/within-cl13.html">six Cl13 subgroups, t-SNE</a> and <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/within-cl13-umap.html">six Cl13 subgroups, UMAP</a>. Hover a pie for the term, condition, FDR and genes, hover an outline for the region name, and lasso any group of terms to list their regions and names in the side panel. Every <code class="docutils literal notranslate"><span class="pre">--map</span></code> run writes <code class="docutils literal notranslate"><span class="pre">pathway_map.html</span></code> like these.</p>
+<p><a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/cl13-vs-arm.html"><img alt="Screenshot of the interactive pathway map" src="../_images/pathway_map_html.png" /></a></p>
+<p>In Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pmap</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">load_map</span><span class="p">(</span><span class="s2">"genesets/gobp_map.csv"</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">compare_conditions</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">gobp</span><span class="p">)</span>
+<span class="n">hits</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">map_hits</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>               <span class="c1"># enriched terms with x, y, region</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">region_summary</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">hits</span><span class="p">)</span>                 <span class="c1"># hits per region per condition</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">plot_pathway_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s2">"map.pdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="step-7-read-the-tables">
+<h2>Step 7: Read the tables<a class="headerlink" href="#step-7-read-the-tables" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">enrichment_matrix.csv</span></code> (pathway × condition, signed −log10 FDR) is the quickest way to compare conditions numerically. A blank means the pathway was not tested in that condition (no overlap with the group); 0 means tested but FDR = 1. In Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"results/1_Cl13_vs_Arm_pooled/GO_BP/enrichment_matrix.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">cl13_only</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">sig</span><span class="p">[</span><span class="s2">"Cl13 (TEX)"</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">sig</span><span class="p">[</span><span class="s2">"Arm (TMEM)"</span><span class="p">]]</span>
+<span class="n">shared</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">sig</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pathway_network_nodes.csv</span></code> adds, per pathway, <code class="docutils literal notranslate"><span class="pre">fdr__&lt;condition&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">direction__&lt;condition&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">genes__&lt;condition&gt;</span></code> (the hit genes in that condition), <code class="docutils literal notranslate"><span class="pre">conditions</span></code> (where it is enriched) and <code class="docutils literal notranslate"><span class="pre">cluster</span></code> / <code class="docutils literal notranslate"><span class="pre">cluster_label</span></code>. <code class="docutils literal notranslate"><span class="pre">pathway_network_clusters.csv</span></code> lists each cluster's label, size, best FDR and members. <code class="docutils literal notranslate"><span class="pre">enrichment.csv</span></code> is the full long table with a <code class="docutils literal notranslate"><span class="pre">condition</span></code> column.</p>
+</section>
+<section id="doing-the-same-with-your-own-groups">
+<h2>Doing the same with your own groups<a class="headerlink" href="#doing-the-same-with-your-own-groups" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Put each condition's groups in a wide CSV (one column per group, header = group name), or one gene list per group in separate files.</p></li>
+<li><p>Choose gene sets for the right species: <code class="docutils literal notranslate"><span class="pre">--msigdb</span> <span class="pre">Hallmark</span> <span class="pre">--species</span> <span class="pre">mouse</span></code> (or <code class="docutils literal notranslate"><span class="pre">human</span></code>) fetches the MSigDB collection for that species; Enrichr libraries (<code class="docutils literal notranslate"><span class="pre">--library</span> <span class="pre">MSigDB_Hallmark_2020</span></code>) are mostly human; local GMT files work with <code class="docutils literal notranslate"><span class="pre">--gmt</span></code>.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">compare</span> <span class="pre">--groups</span> <span class="pre">groups.csv</span> <span class="pre">--gmt</span> <span class="pre">sets.gmt</span> <span class="pre">--whole-library</span> <span class="pre">-o</span> <span class="pre">results</span></code> for the overview and the same without <code class="docutils literal notranslate"><span class="pre">--whole-library</span></code> for the detailed network; add <code class="docutils literal notranslate"><span class="pre">--background</span> <span class="pre">measured.txt</span></code>.
+For a large library, build its map once (<code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">map</span> <span class="pre">--gmt</span> <span class="pre">sets.gmt</span> <span class="pre">-o</span> <span class="pre">sets_map.csv</span></code>) and add <code class="docutils literal notranslate"><span class="pre">--map</span> <span class="pre">sets_map.csv</span></code> to every run.
+For the full MSigDB file, <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">map</span> <span class="pre">--gmt</span> <span class="pre">msigdb.v2025.1.Mm.symbols.gmt</span> <span class="pre">--by-category</span> <span class="pre">-o</span> <span class="pre">maps</span></code> builds a t-SNE and a UMAP map per collection (Hallmark, GO BP, GO CC, GO MF, KEGG, Reactome, WikiPathways ...).</p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">enrichment_matrix.csv</span></code>, then the PDF, then rename clusters if needed in Python (<code class="docutils literal notranslate"><span class="pre">net.group_labels[i]</span> <span class="pre">=</span> <span class="pre">&quot;...&quot;</span></code>).</p></li>
+</ol>
+<p>To adapt <code class="docutils literal notranslate"><span class="pre">run_comparison.py</span></code>, change the two file names at the top and the names of the groups to pair in section 2.</p>
+</section>
+<section id="notes-on-interpretation">
+<h2>Notes on interpretation<a class="headerlink" href="#notes-on-interpretation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Group size drives power.</strong> TEX_G1 (308 genes) finds 35 GO terms against TMEM_G1 (225) with two; the 19-gene TMEM_G6 cannot reach significance for anything. Compare slices by presence/absence and FDR, not by the number of terms alone.</p></li>
+<li><p><strong>Pie shade is significance, not effect size.</strong> Fold enrichment is in <code class="docutils literal notranslate"><span class="pre">enrichment.csv</span></code>.</p></li>
+<li><p><strong>Small, odd GO terms</strong> (photoreceptor development, kidney development) appear when three or four broadly expressed genes coincide. The cluster size and <code class="docutils literal notranslate"><span class="pre">best_fdr</span></code> columns make them easy to filter; <code class="docutils literal notranslate"><span class="pre">--min-size</span> <span class="pre">20</span></code> removes most of them.</p></li>
+<li><p><strong>Labels are automatic.</strong> &quot;Production immune response&quot; stands for <em>production of molecular mediator of immune response</em>; &quot;Protein&quot; for a cluster of negative-regulation-of-protein-modification terms. Rename them before publication.</p></li>
+<li><p><strong>No background was used here.</strong> With all measured genes as background the FDRs would be less extreme; the ranking of pathways rarely changes.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="singlecell.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Single-cell marker genes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pathway_map.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The pathway map: one coordinate system for a whole library</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-data-and-the-gene-sets">Step 1: Get the data and the gene sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-run-the-comparison">Step 2: Run the comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-compare-cl13-and-arm-all-genes-pooled">Step 3: Compare Cl13 and Arm, all genes pooled</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-compare-matched-subgroups-tex-gn-versus-tmem-gn">Step 4: Compare matched subgroups, TEX_Gn versus TMEM_Gn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-the-six-subgroups-within-one-condition">Step 5: Compare the six subgroups within one condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-place-every-analysis-on-the-pathway-map">Step 6: Place every analysis on the pathway map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-read-the-tables">Step 7: Read the tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-the-same-with-your-own-groups">Doing the same with your own groups</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-interpretation">Notes on interpretation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Hua Huang.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

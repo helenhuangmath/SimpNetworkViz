@@ -1,7 +1,6 @@
 # SimpNetworkViz: pathway enrichment and network figures in Python
 
 [![Docs](https://img.shields.io/badge/docs-user%20guide-blue)](docs/index.md)
-[![tests](https://github.com/helenhuangmath/SimpNetworkViz/actions/workflows/tests.yml/badge.svg)](https://github.com/helenhuangmath/SimpNetworkViz/actions/workflows/tests.yml)
 ![Python ≥ 3.9](https://img.shields.io/badge/python-%E2%89%A5%203.9-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 

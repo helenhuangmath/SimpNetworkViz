@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simpnetworkviz.maphtml &#8212; SimpNetworkViz</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0861c6ff" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/simpnetworkviz/maphtml';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://helenhuangmath.github.io/SimpNetworkViz/">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SimpNetworkViz</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery.html">
+    Gallery
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../api.html">
+    Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+        <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+          
+          
+            <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../documentation.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">simpnetworkviz.maphtml</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for simpnetworkviz.maphtml</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Interactive HTML version of the pathway map (plotly.js).</span>
+
+<span class="sd">Hover a point for the pathway, its region, set size and, for enriched</span>
+<span class="sd">pathways, condition, FDR and overlapping genes. Region outlines (convex hulls)</span>
+<span class="sd">show the group name on hover. Lasso or box-select ("circle") any pathways and</span>
+<span class="sd">the side panel lists the regions they belong to, with counts, and the pathway</span>
+<span class="sd">names themselves. The file is self-contained apart from plotly.js, which is</span>
+<span class="sd">loaded from a CDN unless ``js_path`` embeds a local copy.</span>
+<span class="sd">"""</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.network</span><span class="w"> </span><span class="kn">import</span> <span class="n">clean_pathway_name</span>
+
+<span class="n">PLOTLY_JS_CDN</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"https://cdn.plot.ly/plotly-2.35.2.min.js"</span><span class="p">,</span>
+    <span class="s2">"https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_hull</span><span class="p">(</span><span class="n">xy</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">core</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Closed outline of the dense core of a region: the convex hull of the ``core``</span>
+<span class="sd">    fraction of points closest to the region's median (regions are compact in</span>
+<span class="sd">    similarity space, so a plain hull would span half the map). Small groups get a padded box."""</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="ow">and</span> <span class="n">core</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xy</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="n">d</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">core</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">xy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">xy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">pad</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+        <span class="k">return</span> <span class="n">_chaikin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">x0</span> <span class="o">-</span> <span class="n">pad</span><span class="p">,</span> <span class="n">y0</span> <span class="o">-</span> <span class="n">pad</span><span class="p">],</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">pad</span><span class="p">,</span> <span class="n">y0</span> <span class="o">-</span> <span class="n">pad</span><span class="p">],</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">pad</span><span class="p">,</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">pad</span><span class="p">],</span> <span class="p">[</span><span class="n">x0</span> <span class="o">-</span> <span class="n">pad</span><span class="p">,</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">pad</span><span class="p">]]),</span> <span class="n">passes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConvexHull</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">ConvexHull</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">vertices</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># collinear points</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">xy</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pts</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="p">(</span><span class="n">pts</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.08</span>  <span class="c1"># padding, so the rounded curve still encloses the points</span>
+    <span class="k">return</span> <span class="n">_chaikin</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">passes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_chaikin</span><span class="p">(</span><span class="n">pts</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">passes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Chaikin corner cutting of a closed polygon -&gt; smooth closed curve (list of [x, y], closed)."""</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">passes</span><span class="p">):</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">P</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">Q</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">P</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">Q</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]])),</span>
+                             <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">P</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">Q</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">P</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">Q</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]))])</span>
+    <span class="n">ring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">ring</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ring</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ring</span>
+
+
+<div class="viewcode-block" id="write_map_html">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.write_map_html">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_map_html</span><span class="p">(</span><span class="n">pmap</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fdr_cutoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
+                   <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">js_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">max_genes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+                   <span class="n">categories</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Write the interactive map; returns ``path``.</span>
+
+<span class="sd">    Library points are colored by region (switchable to source collection, for</span>
+<span class="sd">    a map built from several databases, or to plain grey). ``table`` is an</span>
+<span class="sd">    enrichment or comparison table whose enriched pathways are drawn as larger</span>
+<span class="sd">    points on top, one color per condition. Without it the bare library is drawn.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.pathmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">map_hits</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">condition_color</span>
+
+    <span class="n">pm</span> <span class="o">=</span> <span class="n">pmap</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="n">map_hits</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">fdr_cutoff</span><span class="p">)</span> <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">pm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pvals</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">full_genes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s2">"condition"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">t</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="s2">"pvalue"</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"pvalue"</span><span class="p">)):</span>
+                <span class="n">pvals</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"pvalue"</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="s2">"genes"</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"genes"</span><span class="p">),</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">full_genes</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s2">"genes"</span><span class="p">])</span>
+    <span class="n">conds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">hits</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"conditions"</span><span class="p">,</span> <span class="p">[</span><span class="s2">""</span><span class="p">]))</span> <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">clean_pathway_name</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]}</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">):</span>
+        <span class="n">hits</span> <span class="o">=</span> <span class="n">hits</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pm</span><span class="p">[[</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="s2">"set_size"</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+    <span class="n">region_label</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">)[</span><span class="s2">"cluster_label"</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="n">region_size</span> <span class="o">=</span> <span class="n">pm</span><span class="p">[</span><span class="n">pm</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+    <span class="c1"># library points</span>
+    <span class="n">lib</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"x"</span><span class="p">:</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">"label"</span><span class="p">:</span> <span class="p">[</span><span class="n">label</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]],</span>
+        <span class="s2">"size"</span><span class="p">:</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"set_size"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">"region"</span><span class="p">:</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+    <span class="p">}</span>
+    <span class="c1"># regions: hull + centre</span>
+    <span class="n">regions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">pm</span><span class="p">[</span><span class="n">pm</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">region_label</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">grp</span><span class="p">[[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">regions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"id"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="s2">"label"</span><span class="p">:</span> <span class="n">region_label</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="s2">"n"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grp</span><span class="p">)),</span> <span class="s2">"hull"</span><span class="p">:</span> <span class="n">_hull</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span>
+                        <span class="s2">"cx"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])),</span> <span class="s2">"cy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))})</span>
+    <span class="c1"># hits per condition</span>
+    <span class="n">hit_traces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">):</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">hits</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mf">1e-300</span><span class="p">))</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">sig</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cond</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">conds</span><span class="p">):</span>
+            <span class="n">sub</span> <span class="o">=</span> <span class="n">hits</span><span class="p">[</span><span class="n">hits</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">cond</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="n">sub</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">keys</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">str</span><span class="p">(</span><span class="n">pth</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">cond</span><span class="p">))</span> <span class="k">for</span> <span class="n">pth</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]]</span>
+            <span class="n">genes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">full_genes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">short</span> <span class="o">=</span> <span class="p">[</span><span class="s2">";"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">";"</span><span class="p">)[:</span><span class="n">max_genes</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="s2">" …"</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">";"</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">max_genes</span> <span class="k">else</span> <span class="s2">""</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">]</span>
+            <span class="n">hit_traces</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">"condition"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"enriched"</span><span class="p">,</span> <span class="s2">"color"</span><span class="p">:</span> <span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                <span class="s2">"x"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">"name"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">"label"</span><span class="p">:</span> <span class="p">[</span><span class="n">label</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">clean_pathway_name</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]],</span>
+                <span class="s2">"fdr"</span><span class="p">:</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">]],</span> <span class="s2">"region"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">"direction"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"direction"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">"direction"</span> <span class="ow">in</span> <span class="n">sub</span> <span class="k">else</span> <span class="p">[</span><span class="s2">""</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">),</span>
+                <span class="s2">"overlap"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"overlap"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">"overlap"</span> <span class="ow">in</span> <span class="n">sub</span> <span class="k">else</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">),</span>
+                <span class="s2">"genes"</span><span class="p">:</span> <span class="n">short</span><span class="p">,</span> <span class="s2">"allGenes"</span><span class="p">:</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">";"</span><span class="p">,</span> <span class="s2">", "</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">],</span>
+                <span class="s2">"pvalue"</span><span class="p">:</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">pvals</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">pvals</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">],</span>
+                <span class="s2">"setSize"</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"set_size"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">"set_size"</span> <span class="ow">in</span> <span class="n">sub</span> <span class="k">else</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">),</span>
+                <span class="s2">"msize"</span><span class="p">:</span> <span class="p">(</span><span class="mi">7</span> <span class="o">+</span> <span class="mi">13</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mf">1e-300</span><span class="p">))</span> <span class="o">/</span> <span class="n">vmax</span><span class="p">))</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="p">})</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">lighten</span>
+
+    <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="n">lighten</span><span class="p">(</span><span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mf">0.15</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">lighten</span><span class="p">(</span><span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mf">0.45</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]</span>
+    <span class="n">region_color</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]):</span> <span class="n">palette</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">palette</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">regions</span><span class="p">)}</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="n">region_color</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"id"</span><span class="p">])]</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.network</span><span class="w"> </span><span class="kn">import</span> <span class="n">pathway_category</span>
+
+    <span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="n">pathway_category</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">categories</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pm</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]]</span>
+    <span class="n">cat_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cats</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">lib</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cats</span>
+    <span class="n">cat_color</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cat_order</span><span class="p">)}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"library"</span><span class="p">:</span> <span class="n">lib</span><span class="p">,</span> <span class="s2">"regions"</span><span class="p">:</span> <span class="n">regions</span><span class="p">,</span> <span class="s2">"hits"</span><span class="p">:</span> <span class="n">hit_traces</span><span class="p">,</span> <span class="s2">"regionLabel"</span><span class="p">:</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">region_label</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="s2">"regionColor"</span><span class="p">:</span> <span class="n">region_color</span><span class="p">,</span> <span class="s2">"catColor"</span><span class="p">:</span> <span class="n">cat_color</span><span class="p">,</span> <span class="s2">"multiCategory"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">cat_order</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">"regionSize"</span><span class="p">:</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">region_size</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="s2">"method"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"method"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s2">"n"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pm</span><span class="p">)),</span> <span class="s2">"fdr"</span><span class="p">:</span> <span class="n">fdr_cutoff</span><span class="p">}</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"Pathway map, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pm</span><span class="p">)</span><span class="si">}</span><span class="s2"> gene sets"</span> <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">" (</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'method'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span> <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">""</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">js_path</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">js_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">script</span> <span class="o">=</span> <span class="s2">"&lt;script&gt;"</span> <span class="o">+</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"&lt;/script"</span><span class="p">,</span> <span class="s2">"&lt;</span><span class="se">\\</span><span class="s2">/script"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"&lt;/script&gt;"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;script src="</span><span class="si">{</span><span class="n">PLOTLY_JS_CDN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">"&gt;&lt;/script&gt;</span><span class="se">\n</span><span class="s1">'</span>
+                  <span class="sa">f</span><span class="s1">'&lt;script&gt;window.Plotly || document.write(</span><span class="se">\'</span><span class="s1">&lt;script src="</span><span class="si">{</span><span class="n">PLOTLY_JS_CDN</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">"&gt;&lt;</span><span class="se">\\</span><span class="s1">/script&gt;</span><span class="se">\'</span><span class="s1">)&lt;/script&gt;'</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="p">(</span><span class="n">_HTML</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__TITLE__"</span><span class="p">,</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">title</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__SCRIPT__"</span><span class="p">,</span> <span class="n">script</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"__DATA__"</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"&lt;/"</span><span class="p">,</span> <span class="s2">"&lt;</span><span class="se">\\</span><span class="s2">/"</span><span class="p">)))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+
+
+<span class="n">_HTML</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"""&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;__TITLE__&lt;/title&gt;</span>
+<span class="s2">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span>
+<span class="s2">__SCRIPT__</span>
+<span class="s2">&lt;style&gt;</span>
+<span class="s2">  :root{--bg:#fff;--line:#e3e3e3;--muted:#6b6b6b;--accent:#1B6AC9}</span>
+<span class="s2">  *{box-sizing:border-box}</span>
+<span class="s2">  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#222;background:var(--bg);font-size:13px}</span>
+<span class="s2">  #top{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;border-bottom:1px solid var(--line);background:#fafafa}</span>
+<span class="s2">  #top h1{font-size:15px;font-weight:600;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}</span>
+<span class="s2">  #top .stat{color:var(--muted)}</span>
+<span class="s2">  #top button{font-size:12px;padding:3px 10px;border:1px solid #c9c9c9;border-radius:4px;background:#fff;cursor:pointer}</span>
+<span class="s2">  #top button:hover{background:#f0f0f0}</span>
+<span class="s2">  #wrap{display:flex;height:calc(100vh - 44px)}</span>
+<span class="s2">  #left{width:270px;border-right:1px solid var(--line);overflow:auto;background:#fcfcfc}</span>
+<span class="s2">  #map{flex:1;min-width:0}</span>
+<span class="s2">  #right{width:330px;border-left:1px solid var(--line);overflow:auto;padding:10px 12px}</span>
+<span class="s2">  .panel{border-bottom:1px solid var(--line)}</span>
+<span class="s2">  .panel &gt; .hd{display:flex;align-items:center;gap:6px;padding:8px 10px;cursor:pointer;user-select:none;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#444}</span>
+<span class="s2">  .panel &gt; .hd .tri{display:inline-block;width:0;height:0;border-left:5px solid #888;border-top:4px solid transparent;border-bottom:4px solid transparent;transition:transform .15s}</span>
+<span class="s2">  .panel.open &gt; .hd .tri{transform:rotate(90deg)}</span>
+<span class="s2">  .panel &gt; .bd{display:none;padding:2px 6px 8px 10px}</span>
+<span class="s2">  .panel.open &gt; .bd{display:block}</span>
+<span class="s2">  .row{display:flex;align-items:center;gap:6px;padding:2px 4px;border-radius:3px;cursor:pointer;line-height:1.3}</span>
+<span class="s2">  .row:hover{background:#eef3fb}</span>
+<span class="s2">  .row.active{background:#dfe9f8}</span>
+<span class="s2">  .row .sw{width:10px;height:10px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.25)}</span>
+<span class="s2">  .row .lbl{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}</span>
+<span class="s2">  .row .n{color:var(--muted);font-variant-numeric:tabular-nums;flex:none}</span>
+<span class="s2">  .row input[type=checkbox]{margin:0;flex:none}</span>
+<span class="s2">  .bd label.opt{display:flex;align-items:center;gap:6px;padding:2px 4px;cursor:pointer}</span>
+<span class="s2">  .bd input[type=search],.bd select{width:100%;font-size:12px;padding:4px 6px;border:1px solid #ccc;border-radius:4px;margin:3px 0}</span>
+<span class="s2">  #right h2{font-size:12px;margin:10px 0 4px;color:#555;font-weight:600;text-transform:uppercase;letter-spacing:.04em}</span>
+<span class="s2">  #right h3{font-size:14px;margin:0 0 4px;font-weight:600}</span>
+<span class="s2">  #right .hint{color:var(--muted)}</span>
+<span class="s2">  #right .stat{color:var(--muted);font-size:12px}</span>
+<span class="s2">  #right table{border-collapse:collapse;width:100%}</span>
+<span class="s2">  #right td{padding:2px 4px;vertical-align:top;border-bottom:1px solid #f0f0f0}</span>
+<span class="s2">  #right td.n{text-align:right;white-space:nowrap;color:var(--muted)}</span>
+<span class="s2">  #right ul{margin:4px 0 0 16px;padding:0}</span>
+<span class="s2">  #right li{margin:1px 0}</span>
+<span class="s2">  #right details{margin:3px 0 6px}</span>
+<span class="s2">  #right summary{cursor:pointer}</span>
+<span class="s2">  #right .genes{color:#444;font-size:12px;word-break:break-word;margin:3px 0 0 0;line-height:1.4}</span>
+<span class="s2">  #right button{font-size:11px;padding:1px 8px;margin-left:6px;border:1px solid #c9c9c9;border-radius:4px;background:#fff;cursor:pointer}</span>
+<span class="s2">  #right a{color:var(--accent);text-decoration:none}</span>
+<span class="s2">  .chip{display:inline-block;padding:0 6px;border-radius:9px;background:#eee;font-size:11px;color:#444;margin-left:4px}</span>
+<span class="s2">&lt;/style&gt;&lt;/head&gt;</span>
+<span class="s2">&lt;body&gt;</span>
+<span class="s2">&lt;div id="top"&gt;&lt;h1&gt;__TITLE__&lt;/h1&gt;</span>
+<span class="s2">  &lt;span class="stat" id="counts"&gt;&lt;/span&gt;</span>
+<span class="s2">  &lt;button id="btnReset" title="clear selection, highlights, search and zoom"&gt;reset&lt;/button&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">&lt;div id="wrap"&gt;</span>
+<span class="s2">  &lt;div id="left"&gt;</span>
+<span class="s2">    &lt;div class="panel open"&gt;&lt;div class="hd"&gt;&lt;span class="tri"&gt;&lt;/span&gt;Display&lt;/div&gt;&lt;div class="bd"&gt;</span>
+<span class="s2">      &lt;label class="opt"&gt;&lt;input type="checkbox" id="cbLib"&gt; all library points &lt;span class="stat" style="color:#888"&gt;(off = significant only)&lt;/span&gt;&lt;/label&gt;</span>
+<span class="s2">      &lt;label class="opt"&gt;&lt;input type="checkbox" id="cbRegions" checked&gt; region outlines&lt;/label&gt;</span>
+<span class="s2">      &lt;label class="opt"&gt;&lt;input type="checkbox" id="cbLabels" checked&gt; region names&lt;/label&gt;</span>
+<span class="s2">      &lt;div style="margin-top:6px;color:#555"&gt;Color points by&lt;/div&gt;</span>
+<span class="s2">      &lt;label class="opt"&gt;&lt;input type="radio" name="col" value="none" checked&gt; none (grey)&lt;/label&gt;</span>
+<span class="s2">      &lt;label class="opt"&gt;&lt;input type="radio" name="col" value="region"&gt; region&lt;/label&gt;</span>
+<span class="s2">      &lt;label class="opt" id="optCat"&gt;&lt;input type="radio" name="col" value="category"&gt; collection&lt;/label&gt;</span>
+<span class="s2">    &lt;/div&gt;&lt;/div&gt;</span>
+<span class="s2">    &lt;div class="panel open"&gt;&lt;div class="hd"&gt;&lt;span class="tri"&gt;&lt;/span&gt;Find pathway&lt;/div&gt;&lt;div class="bd"&gt;</span>
+<span class="s2">      &lt;select id="selGroup" title="narrow the list to a region, collection or condition"&gt;&lt;option value=""&gt;all groups&lt;/option&gt;&lt;/select&gt;</span>
+<span class="s2">      &lt;select id="selPathway" title="pick a pathway"&gt;&lt;option value=""&gt;pathway…&lt;/option&gt;&lt;/select&gt;</span>
+<span class="s2">      &lt;input type="search" id="find" list="pathwayList" placeholder="or type part of a name"&gt;&lt;datalist id="pathwayList"&gt;&lt;/datalist&gt;</span>
+<span class="s2">    &lt;/div&gt;&lt;/div&gt;</span>
+<span class="s2">    &lt;div class="panel open" id="pnlCond"&gt;&lt;div class="hd"&gt;&lt;span class="tri"&gt;&lt;/span&gt;Conditions &lt;span class="chip" id="nCond"&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="bd" id="condRows"&gt;&lt;/div&gt;&lt;/div&gt;</span>
+<span class="s2">    &lt;div class="panel" id="pnlCat"&gt;&lt;div class="hd"&gt;&lt;span class="tri"&gt;&lt;/span&gt;Collections &lt;span class="chip" id="nCat"&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="bd" id="catRows"&gt;&lt;/div&gt;&lt;/div&gt;</span>
+<span class="s2">    &lt;div class="panel open"&gt;&lt;div class="hd"&gt;&lt;span class="tri"&gt;&lt;/span&gt;Regions &lt;span class="chip" id="nReg"&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="bd" id="regRows"&gt;&lt;/div&gt;&lt;/div&gt;</span>
+<span class="s2">  &lt;/div&gt;</span>
+<span class="s2">  &lt;div id="map"&gt;&lt;/div&gt;</span>
+<span class="s2">  &lt;div id="right"&gt;&lt;div id="sel"&gt;&lt;/div&gt;&lt;/div&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">&lt;script&gt;</span>
+<span class="s2">const D = __DATA__;</span>
+<span class="s2">const RL = D.regionLabel, RS = D.regionSize, L = D.library;</span>
+<span class="s2">const $ = id =&gt; document.getElementById(id);</span>
+<span class="s2">function esc(s){return String(s).replace(/&amp;/g,'&amp;amp;').replace(/&lt;/g,'&amp;lt;');}</span>
+<span class="s2">function regionName(r){return r&gt;0 &amp;&amp; RL[String(r)] ? RL[String(r)] : 'no region';}</span>
+<span class="s2">function hexa(h, a){const n=parseInt(h.slice(1),16); return `rgba(${n&gt;&gt;16},${(n&gt;&gt;8)&amp;255},${n&amp;255},$</span><span class="si">{a}</span><span class="s2">)`;}</span>
+<span class="s2">const GREY = '#C4C4C4';</span>
+<span class="s2">function libColors(mode){</span>
+<span class="s2">  if(mode==='region') return L.region.map(r =&gt; D.regionColor[String(r)] || GREY);</span>
+<span class="s2">  if(mode==='category') return L.category.map(c =&gt; D.catColor[c] || GREY);</span>
+<span class="s2">  return L.region.map(() =&gt; GREY);</span>
+<span class="s2">}</span>
+<span class="s2">const HINT = '&lt;span class="hint"&gt;The map shows the significant pathways; tick "all library points" to see every gene set. Click a dot for its pathway. Hover an outline for the region name. Choose lasso or box in the map toolbar and circle pathways to list their regions, the significant ones in this data with genes and p-values, and all selected pathways here. Click a region or condition on the left to highlight it.&lt;/span&gt;';</span>
+<span class="s2">const traces = [];</span>
+<span class="s2">D.regions.forEach(r =&gt; {</span>
+<span class="s2">  traces.push({type:'scatter', mode:'lines', x:r.hull.map(p=&gt;p[0]), y:r.hull.map(p=&gt;p[1]), fill:'toself',</span>
+<span class="s2">    fillcolor:hexa(r.color, 0.10), line:{color:hexa(r.color, 0.7), width:1.2}, hoveron:'fills',</span>
+<span class="s2">    hoverinfo:'text', text:`&lt;b&gt;${esc(r.label)}&lt;/b&gt;&lt;br&gt;$</span><span class="si">{r.n}</span><span class="s2"> gene sets`, name:r.label, showlegend:false, legendgroup:'regions',</span>
+<span class="s2">    meta:{kind:'region', id:r.id}});</span>
+<span class="s2">});</span>
+<span class="s2">const nRegionTraces = traces.length;</span>
+<span class="s2">const showLib = D.hits.length === 0;  // with results, the main view shows only the significant pathways</span>
+<span class="s2">traces.push({type:'scatter', mode:'markers', x:L.x, y:L.y, name:'library', showlegend:false, visible: showLib,</span>
+<span class="s2">  marker:{size:6, color:libColors('none'), opacity:0.85, line:</span><span class="si">{width:0}</span><span class="s2">},</span>
+<span class="s2">  customdata:L.name.map((n,i)=&gt;[n, L.label[i], L.size[i], L.region[i], L.category[i]]),</span>
+<span class="s2">  hovertemplate:'&lt;b&gt;%</span><span class="si">{customdata[1]}</span><span class="s2">&lt;/b&gt;&lt;br&gt;%</span><span class="si">{customdata[0]}</span><span class="s2">&lt;br&gt;%</span><span class="si">{customdata[2]}</span><span class="s2"> genes · region: '+'%</span><span class="si">{text}</span><span class="s2">'+(D.multiCategory?'&lt;br&gt;%</span><span class="si">{customdata[4]}</span><span class="s2">':'')+'&lt;extra&gt;&lt;/extra&gt;',</span>
+<span class="s2">  text:L.region.map(regionName), meta:{kind:'library'}});</span>
+<span class="s2">const LIB = nRegionTraces;</span>
+<span class="s2">D.hits.forEach((h, k) =&gt; {</span>
+<span class="s2">  traces.push({type:'scatter', mode:'markers', x:h.x, y:h.y, name:h.condition, legendgroup:h.condition, showlegend:false,</span>
+<span class="s2">    marker:{size:h.msize, color:h.color, line:{color:'#222', width:1.2}, opacity:0.95},</span>
+<span class="s2">    customdata:h.name.map((n,i)=&gt;[n, h.label[i], h.fdr[i], regionName(h.region[i]), h.direction[i], h.overlap[i], h.genes[i], h.region[i]]),</span>
+<span class="s2">    hovertemplate:'&lt;b&gt;%</span><span class="si">{customdata[1]}</span><span class="s2">&lt;/b&gt;&lt;br&gt;%</span><span class="si">{customdata[0]}</span><span class="s2">&lt;br&gt;'+esc(h.condition)+(h.direction.some(d=&gt;d)?' %</span><span class="si">{customdata[4]}</span><span class="s2">':'')+</span>
+<span class="s2">      ' · FDR %</span><span class="si">{customdata[2]}</span><span class="s2"> · %</span><span class="si">{customdata[5]}</span><span class="s2"> genes&lt;br&gt;region: %</span><span class="si">{customdata[3]}</span><span class="s2">&lt;br&gt;&lt;span style="color:#666"&gt;%</span><span class="si">{customdata[6]}</span><span class="s2">&lt;/span&gt;&lt;extra&gt;&lt;/extra&gt;',</span>
+<span class="s2">    meta:{kind:'hit', k}});</span>
+<span class="s2">});</span>
+<span class="s2">function wrap(s, w){const out=[]; let line=''; s.split(' ').forEach(t=&gt;{ if((line+' '+t).trim().length&gt;w){out.push(line.trim()); line=t;} else line+=' '+t; }); if(line.trim()) out.push(line.trim()); return out.join('&lt;br&gt;');}</span>
+<span class="s2">const ann = D.regions.map(r =&gt; ({x:r.cx, y:r.cy, text:wrap(r.label, 18), showarrow:false, font:{size:10, color:'#444'}, bgcolor:'rgba(255,255,255,0.7)', borderpad:2}));</span>
+<span class="s2">const layout = {margin:{l:10,r:10,t:10,b:10}, hovermode:'closest', dragmode:'pan', showlegend:false, annotations:ann,</span>
+<span class="s2">  xaxis:{visible:false, scaleanchor:'y'}, yaxis:{visible:false}, plot_bgcolor:'#fff', paper_bgcolor:'#fff'};</span>
+<span class="s2">const cfg = {responsive:true, displaylogo:false, modeBarButtonsToRemove:['autoScale2d'], scrollZoom:true,</span>
+<span class="s2">  toImageButtonOptions:{format:'png', filename:'pathway_map', scale:2}};</span>
+<span class="s2">const el = $('map');</span>
+<span class="s2">function repelAnnotations(){</span>
+<span class="s2">  const fl = el._fullLayout; if(!fl || !fl.xaxis || !$('cbLabels').checked) return;</span>
+<span class="s2">  const xa = fl.xaxis, ya = fl.yaxis, W = fl.width, H = fl.height;</span>
+<span class="s2">  const boxes = ann.map(a =&gt; { const lines = a.text.split('&lt;br&gt;'); const w = Math.max(...lines.map(l=&gt;l.length))*5.6+6, h = lines.length*12+4;</span>
+<span class="s2">    return {a, x: xa.l2p(a.x)+fl._size.l, y: fl._size.t + ya.l2p(a.y), w, h}; });</span>
+<span class="s2">  for(let it=0; it&lt;200; it++){ let moved=false;</span>
+<span class="s2">    for(let i=0;i&lt;boxes.length;i++) for(let j=i+1;j&lt;boxes.length;j++){ const A=boxes[i], B=boxes[j];</span>
+<span class="s2">      const dx=(A.w+B.w)/2 - Math.abs(A.x-B.x), dy=(A.h+B.h)/2 - Math.abs(A.y-B.y); if(dx&lt;=0 || dy&lt;=0) continue; moved=true;</span>
+<span class="s2">      if(dy*1.5&lt;=dx){ const s=(A.y&gt;=B.y?1:-1)*dy/2*0.7; A.y+=s; B.y-=s; } else { const s=(A.x&gt;=B.x?1:-1)*dx/2*0.7; A.x+=s; B.x-=s; } }</span>
+<span class="s2">    if(!moved) break; }</span>
+<span class="s2">  const out = boxes.map(b =&gt; Object.assign(</span><span class="si">{}</span><span class="s2">, b.a, {x: xa.p2l(Math.min(Math.max(b.x-fl._size.l, b.w/2), W-b.w/2)), y: ya.p2l(Math.min(Math.max(b.y-fl._size.t, b.h/2), H-b.h/2))}));</span>
+<span class="s2">  Plotly.relayout(el, {annotations: out});</span>
+<span class="s2">}</span>
+<span class="s2">let relayoutBusy = false;</span>
+<span class="s2">Plotly.newPlot(el, traces, layout, cfg).then(() =&gt; {</span>
+<span class="s2">  el.on('plotly_selected', ev =&gt; showSelection(ev));</span>
+<span class="s2">  el.on('plotly_deselect', () =&gt; resetSel());</span>
+<span class="s2">  el.on('plotly_click', ev =&gt; { const p = ev.points &amp;&amp; ev.points[0]; if(!p || !p.data.meta) return;</span>
+<span class="s2">    if(p.data.meta.kind === 'library') highlight([p.pointIndex], false, true);</span>
+<span class="s2">    else if(p.data.meta.kind === 'hit'){ const i = L.name.indexOf(p.customdata[0]); if(i &gt;= 0) highlight([i], false, true); }</span>
+<span class="s2">    else if(p.data.meta.kind === 'region') showRegion(p.data.meta.id); });</span>
+<span class="s2">  el.on('plotly_relayout', ev =&gt; { if(relayoutBusy || !ev || !Object.keys(ev).some(k=&gt;k.startsWith('xaxis')||k.startsWith('yaxis')||k==='autosize')) return;</span>
+<span class="s2">    relayoutBusy = true; Plotly.relayout(el, {annotations: ann}).then(() =&gt; { repelAnnotations(); relayoutBusy = false; }); });</span>
+<span class="s2">  relayoutBusy = true; repelAnnotations(); relayoutBusy = false;</span>
+<span class="s2">});</span>
+<span class="s2">function resetSel(){ $('sel').innerHTML = HINT; setCounts(0); }</span>
+<span class="s2">function setCounts(nSel){ const nSig = new Set(D.hits.flatMap(h=&gt;h.name)).size;</span>
+<span class="s2">  $('counts').textContent = `$</span><span class="si">{D.n}</span><span class="s2"> gene sets${D.method?' · '+D.method:''}${D.hits.length?' · '+nSig+' significant':''}${nSel?' · '+nSel+' selected':''}`; }</span>
+<span class="s2">function resetAll(){</span>
+<span class="s2">  highlight([]); clearActive();</span>
+<span class="s2">  $('find').value = ''; $('selGroup').value = ''; fillPathways();</span>
+<span class="s2">  Plotly.restyle(el, {selectedpoints: [null]});</span>
+<span class="s2">  relayoutBusy = true;</span>
+<span class="s2">  Plotly.relayout(el, {'xaxis.autorange': true, 'yaxis.autorange': true, selections: [], dragmode: 'pan', annotations: $('cbLabels').checked ? ann : []})</span>
+<span class="s2">    .then(() =&gt; { repelAnnotations(); relayoutBusy = false; });</span>
+<span class="s2">  resetSel();</span>
+<span class="s2">}</span>
+<span class="s2">function sigRows(sig){</span>
+<span class="s2">  return sig.map(h =&gt; `&lt;details&gt;&lt;summary&gt;&lt;b&gt;${esc(h.label)}&lt;/b&gt; &lt;span class="stat"&gt;${esc(h.cond)}${h.dir?' '+esc(h.dir):''} · FDR $</span><span class="si">{h.fdr}</span><span class="s2">${h.p!==null&amp;&amp;h.p!==undefined?' · p '+h.p:''} · $</span><span class="si">{h.overlap}</span><span class="s2">/$</span><span class="si">{h.size}</span><span class="s2"> genes&lt;/span&gt;&lt;/summary&gt;</span>
+<span class="s2">      &lt;div class="stat"&gt;${esc(h.name)} · region: ${esc(h.region)}&lt;/div&gt;&lt;div class="genes"&gt;${esc(h.genes||'(gene list not available)')}&lt;/div&gt;&lt;/details&gt;`).join('');</span>
+<span class="s2">}</span>
+<span class="s2">function hitRecord(h, i){ return {name:h.name[i], label:h.label[i], cond:h.condition, fdr:h.fdr[i], p:h.pvalue[i], overlap:h.overlap[i], size:h.setSize[i], dir:h.direction[i], genes:h.allGenes[i], region:regionName(h.region[i])}; }</span>
+<span class="s2">function showSelection(ev){</span>
+<span class="s2">  if(!ev || !ev.points || !ev.points.length){resetSel(); return;}</span>
+<span class="s2">  const perRegion = </span><span class="si">{}</span><span class="s2">, names = new Map(), sig = [];</span>
+<span class="s2">  ev.points.forEach(p =&gt; {</span>
+<span class="s2">    const kind = p.data.meta &amp;&amp; p.data.meta.kind; if(kind==='region' || kind==='found') return;</span>
+<span class="s2">    const cd = p.customdata; const reg = kind==='hit' ? cd[7] : cd[3];</span>
+<span class="s2">    if(!names.has(cd[0])) perRegion[String(reg)] = (perRegion[String(reg)]||0)+1;</span>
+<span class="s2">    names.set(cd[0], names.get(cd[0]) || {label:cd[1]});</span>
+<span class="s2">    if(kind==='hit') sig.push(hitRecord(D.hits[p.data.meta.k], p.pointIndex));</span>
+<span class="s2">  });</span>
+<span class="s2">  sig.sort((a,b)=&gt;a.fdr-b.fdr);</span>
+<span class="s2">  const rows = Object.entries(perRegion).sort((a,b)=&gt;b[1]-a[1]).map(([k,n]) =&gt;</span>
+<span class="s2">    `&lt;tr&gt;&lt;td&gt;&lt;a href="#" onclick="showRegion(${+k});return false;"&gt;${esc(regionName(+k))}&lt;/a&gt;&lt;/td&gt;&lt;td class="n"&gt;$</span><span class="si">{n}</span><span class="s2">${RS[k]?' / '+RS[k]:''}&lt;/td&gt;&lt;/tr&gt;`).join('');</span>
+<span class="s2">  const sigNames = new Set(sig.map(h=&gt;h.name));</span>
+<span class="s2">  const others = [...names.entries()].filter(([n])=&gt;!sigNames.has(n)).slice(0,400).map(([n,v]) =&gt; `&lt;li&gt;&lt;a href="#" onclick="highlight([${L.name.indexOf(n)}],false,true);return false;"&gt;${esc(v.label)}&lt;/a&gt;&lt;/li&gt;`).join('');</span>
+<span class="s2">  window._selTSV = ['pathway\tcondition\tdirection\tFDR\tp\toverlap\tset_size\tregion\tgenes'].concat(sig.map(h=&gt;[h.name,h.cond,h.dir,h.fdr,h.p,h.overlap,h.size,h.region,h.genes].join('\t'))).join('\n');</span>
+<span class="s2">  setCounts(names.size);</span>
+<span class="s2">  $('sel').innerHTML =</span>
+<span class="s2">    `&lt;h3&gt;$</span><span class="si">{names.size}</span><span class="s2"> pathways selected &lt;span class="stat"&gt;in ${Object.keys(perRegion).length} regions&lt;/span&gt;&lt;button onclick="resetAll()"&gt;reset&lt;/button&gt;&lt;/h3&gt;</span>
+<span class="s2">     &lt;h2&gt;Regions (selected / in region)&lt;/h2&gt;&lt;table&gt;$</span><span class="si">{rows}</span><span class="s2">&lt;/table&gt;</span>
+<span class="s2">     &lt;h2&gt;Significant in this data ($</span><span class="si">{sig.length}</span><span class="s2">)${sig.length?'&lt;button onclick="copySel()"&gt;copy table&lt;/button&gt;':''}&lt;/h2&gt;${sig.length ? sigRows(sig) : '&lt;span class="hint"&gt;none of the selected pathways is significant in this data&lt;/span&gt;'}</span>
+<span class="s2">     &lt;details&gt;&lt;summary&gt;&lt;b&gt;Other selected pathways (${names.size - sigNames.size})&lt;/b&gt; &lt;span class="stat"&gt;not significant in this data&lt;/span&gt;&lt;/summary&gt;&lt;ul&gt;$</span><span class="si">{others}</span><span class="s2">&lt;/ul&gt;${names.size - sigNames.size&gt;400?'&lt;div class="hint"&gt;(first 400 shown)&lt;/div&gt;':''}&lt;/details&gt;`;</span>
+<span class="s2">}</span>
+<span class="s2">function copySel(){ navigator.clipboard &amp;&amp; navigator.clipboard.writeText(window._selTSV||'').then(()=&gt;</span><span class="si">{}</span><span class="s2">, ()=&gt;</span><span class="si">{}</span><span class="s2">); }</span>
+<span class="s2">// ---- left sidebar panels</span>
+<span class="s2">document.querySelectorAll('.panel &gt; .hd').forEach(h =&gt; h.onclick = () =&gt; h.parentElement.classList.toggle('open'));</span>
+<span class="s2">let activeRow = null;</span>
+<span class="s2">function clearActive(){ if(activeRow){ activeRow.classList.remove('active'); activeRow = null; } }</span>
+<span class="s2">function rowEl(color, label, n, onClick, withCheck){</span>
+<span class="s2">  const d = document.createElement('div'); d.className = 'row';</span>
+<span class="s2">  d.innerHTML = (withCheck ? '&lt;input type="checkbox" checked&gt;' : '') + `&lt;span class="sw" style="background:$</span><span class="si">{color}</span><span class="s2">"&gt;&lt;/span&gt;&lt;span class="lbl" title="${esc(label)}"&gt;${esc(label)}&lt;/span&gt;&lt;span class="n"&gt;$</span><span class="si">{n}</span><span class="s2">&lt;/span&gt;`;</span>
+<span class="s2">  d.querySelector('.lbl').onclick = () =&gt; { if(activeRow === d){ clearActive(); highlight([]); resetSel(); return; } clearActive(); activeRow = d; d.classList.add('active'); onClick(); };</span>
+<span class="s2">  return d;</span>
+<span class="s2">}</span>
+<span class="s2">(function buildPanels(){</span>
+<span class="s2">  // conditions</span>
+<span class="s2">  if(D.hits.length){ $('nCond').textContent = D.hits.length;</span>
+<span class="s2">    D.hits.forEach((h, k) =&gt; { const r = rowEl(h.color, h.condition, h.name.length, () =&gt; showCondition(k), true);</span>
+<span class="s2">      r.querySelector('input').onchange = e =&gt; Plotly.restyle(el, {visible: e.target.checked}, [LIB + 1 + k]); $('condRows').appendChild(r); });</span>
+<span class="s2">  } else $('pnlCond').style.display = 'none';</span>
+<span class="s2">  // collections</span>
+<span class="s2">  if(D.multiCategory){ const counts = </span><span class="si">{}</span><span class="s2">; L.category.forEach(c =&gt; counts[c] = (counts[c]||0)+1); $('nCat').textContent = Object.keys(counts).length;</span>
+<span class="s2">    Object.entries(counts).sort((a,b)=&gt;b[1]-a[1]).forEach(([c,n]) =&gt; $('catRows').appendChild(rowEl(D.catColor[c]||GREY, c, n, () =&gt; showCategory(c), false)));</span>
+<span class="s2">  } else { $('pnlCat').style.display = 'none'; $('optCat').style.display = 'none'; }</span>
+<span class="s2">  // regions, largest first</span>
+<span class="s2">  $('nReg').textContent = D.regions.length;</span>
+<span class="s2">  [...D.regions].sort((a,b)=&gt;b.n-a.n).forEach(r =&gt; $('regRows').appendChild(rowEl(r.color, r.label, r.n, () =&gt; showRegion(r.id), false)));</span>
+<span class="s2">})();</span>
+<span class="s2">function sigIn(pred){ const out = []; D.hits.forEach(h =&gt; h.name.forEach((n,i) =&gt; { if(pred(n, h, i)) out.push(hitRecord(h, i)); })); return out.sort((a,b)=&gt;a.fdr-b.fdr); }</span>
+<span class="s2">function showRegion(id){</span>
+<span class="s2">  const r = D.regions.find(x =&gt; x.id === id); if(!r) return;</span>
+<span class="s2">  const idx = [...L.name.keys()].filter(i =&gt; L.region[i] === id);</span>
+<span class="s2">  const sig = sigIn((n, h, i) =&gt; h.region[i] === id); const sigSet = new Set(sig.map(x=&gt;x.name));</span>
+<span class="s2">  ringPoints(idx, r.color);</span>
+<span class="s2">  relayoutBusy = true; zoomTo(idx);</span>
+<span class="s2">  $('sel').innerHTML = `&lt;h3&gt;${esc(r.label)} &lt;span class="stat"&gt;region&lt;/span&gt;&lt;button onclick="resetAll()"&gt;reset&lt;/button&gt;&lt;/h3&gt;</span>
+<span class="s2">    &lt;div class="stat"&gt;$</span><span class="si">{r.n}</span><span class="s2"> gene sets${D.hits.length ? ' · ' + new Set(sig.map(s=&gt;s.name)).size + ' significant in this data' : ''}&lt;/div&gt;</span>
+<span class="s2">    ${D.hits.length ? '&lt;h2&gt;Significant in this region ('+sig.length+')&lt;/h2&gt;' + (sig.length ? sigRows(sig) : '&lt;span class="hint"&gt;none&lt;/span&gt;') : ''}</span>
+<span class="s2">    &lt;details${D.hits.length?'':' open'}&gt;&lt;summary&gt;&lt;b&gt;${D.hits.length ? 'Other pathways in region' : 'Pathways in region'} (${idx.length - new Set(sig.map(x=&gt;x.name)).size})&lt;/b&gt;&lt;/summary&gt;&lt;ul&gt;${idx.filter(i =&gt; !sigSet.has(L.name[i])).sort((a,b)=&gt;L.label[a].localeCompare(L.label[b])).map(i =&gt; `&lt;li&gt;&lt;a href="#" onclick="highlight([$</span><span class="si">{i}</span><span class="s2">],false,true);return false;"&gt;${esc(L.label[i])}&lt;/a&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;&lt;/details&gt;`;</span>
+<span class="s2">  setCounts(idx.length);</span>
+<span class="s2">}</span>
+<span class="s2">function showCondition(k){</span>
+<span class="s2">  const h = D.hits[k]; const sig = h.name.map((n,i) =&gt; hitRecord(h, i)).sort((a,b)=&gt;a.fdr-b.fdr);</span>
+<span class="s2">  const perRegion = </span><span class="si">{}</span><span class="s2">; h.region.forEach(r =&gt; perRegion[String(r)] = (perRegion[String(r)]||0)+1);</span>
+<span class="s2">  highlight([]); ringPoints(h.name.map(n =&gt; L.name.indexOf(n)).filter(i=&gt;i&gt;=0), h.color);</span>
+<span class="s2">  const rows = Object.entries(perRegion).sort((a,b)=&gt;b[1]-a[1]).map(([r,n]) =&gt; `&lt;tr&gt;&lt;td&gt;&lt;a href="#" onclick="showRegion(${+r});return false;"&gt;${esc(regionName(+r))}&lt;/a&gt;&lt;/td&gt;&lt;td class="n"&gt;$</span><span class="si">{n}</span><span class="s2">${RS[r]?' / '+RS[r]:''}&lt;/td&gt;&lt;/tr&gt;`).join('');</span>
+<span class="s2">  window._selTSV = ['pathway\tcondition\tdirection\tFDR\tp\toverlap\tset_size\tregion\tgenes'].concat(sig.map(s=&gt;[s.name,s.cond,s.dir,s.fdr,s.p,s.overlap,s.size,s.region,s.genes].join('\t'))).join('\n');</span>
+<span class="s2">  $('sel').innerHTML = `&lt;h3&gt;${esc(h.condition)} &lt;span class="stat"&gt;condition&lt;/span&gt;&lt;button onclick="resetAll()"&gt;reset&lt;/button&gt;&lt;/h3&gt;</span>
+<span class="s2">    &lt;div class="stat"&gt;$</span><span class="si">{sig.length}</span><span class="s2"> significant pathways (FDR ≤ $</span><span class="si">{D.fdr}</span><span class="s2">)&lt;/div&gt;&lt;h2&gt;By region&lt;/h2&gt;&lt;table&gt;$</span><span class="si">{rows}</span><span class="s2">&lt;/table&gt;</span>
+<span class="s2">    &lt;h2&gt;Pathways&lt;button onclick="copySel()"&gt;copy table&lt;/button&gt;&lt;/h2&gt;${sigRows(sig)}`;</span>
+<span class="s2">  setCounts(sig.length);</span>
+<span class="s2">}</span>
+<span class="s2">function showCategory(c){</span>
+<span class="s2">  const idx = [...L.name.keys()].filter(i =&gt; L.category[i] === c); const sig = sigIn((n, h, i) =&gt; L.category[L.name.indexOf(n)] === c);</span>
+<span class="s2">  ringPoints(idx, D.catColor[c] || GREY);</span>
+<span class="s2">  const sigSet = new Set(sig.map(x=&gt;x.name));</span>
+<span class="s2">  $('sel').innerHTML = `&lt;h3&gt;${esc(c)} &lt;span class="stat"&gt;collection&lt;/span&gt;&lt;button onclick="resetAll()"&gt;reset&lt;/button&gt;&lt;/h3&gt;&lt;div class="stat"&gt;$</span><span class="si">{idx.length}</span><span class="s2"> gene sets on the map${D.hits.length?' · '+sigSet.size+' significant':''}&lt;/div&gt;</span>
+<span class="s2">    ${D.hits.length ? '&lt;h2&gt;Significant in this data ('+sig.length+')&lt;/h2&gt;' + (sig.length ? sigRows(sig) : '&lt;span class="hint"&gt;none&lt;/span&gt;') : ''}</span>
+<span class="s2">    &lt;details&gt;&lt;summary&gt;&lt;b&gt;Other pathways in collection (${idx.length - sigSet.size})&lt;/b&gt;&lt;/summary&gt;&lt;ul&gt;${idx.filter(i =&gt; !sigSet.has(L.name[i])).sort((a,b)=&gt;L.label[a].localeCompare(L.label[b])).slice(0,2000).map(i =&gt; `&lt;li&gt;&lt;a href="#" onclick="highlight([$</span><span class="si">{i}</span><span class="s2">],false,true);return false;"&gt;${esc(L.label[i])}&lt;/a&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;&lt;/details&gt;`;</span>
+<span class="s2">  setCounts(idx.length);</span>
+<span class="s2">}</span>
+<span class="s2">// ---- find</span>
+<span class="s2">const selGroup = $('selGroup'), selPathway = $('selPathway'), findBox = $('find'), dl = $('pathwayList');</span>
+<span class="s2">(function fillGroups(){</span>
+<span class="s2">  const regs = D.regions.map(r =&gt; ({v:'r:'+r.id, t:`region: $</span><span class="si">{r.label}</span><span class="s2"> ($</span><span class="si">{r.n}</span><span class="s2">)`}));</span>
+<span class="s2">  const cats = D.multiCategory ? Object.keys(D.catColor).map(c =&gt; ({v:'c:'+c, t:`collection: $</span><span class="si">{c}</span><span class="s2">`})) : [];</span>
+<span class="s2">  const conds = D.hits.map(h =&gt; ({v:'h:'+h.condition, t:`significant in $</span><span class="si">{h.condition}</span><span class="s2"> ($</span><span class="si">{h.name.length}</span><span class="s2">)`}));</span>
+<span class="s2">  [...conds, ...cats, ...regs].forEach(o =&gt; { const e=document.createElement('option'); e.value=o.v; e.textContent=o.t; selGroup.appendChild(e); });</span>
+<span class="s2">})();</span>
+<span class="s2">function pathwaysInGroup(g){</span>
+<span class="s2">  let idx = [...L.name.keys()];</span>
+<span class="s2">  if(g.startsWith('r:')) idx = idx.filter(i =&gt; String(L.region[i]) === g.slice(2));</span>
+<span class="s2">  else if(g.startsWith('c:')) idx = idx.filter(i =&gt; L.category[i] === g.slice(2));</span>
+<span class="s2">  else if(g.startsWith('h:')){ const h = D.hits.find(t =&gt; t.condition === g.slice(2)); const set = new Set(h ? h.name : []); idx = idx.filter(i =&gt; set.has(L.name[i])); }</span>
+<span class="s2">  return idx.sort((a,b) =&gt; L.label[a].localeCompare(L.label[b]));</span>
+<span class="s2">}</span>
+<span class="s2">function fillPathways(){</span>
+<span class="s2">  const idx = pathwaysInGroup(selGroup.value);</span>
+<span class="s2">  selPathway.innerHTML = '&lt;option value=""&gt;pathway… (' + idx.length + ')&lt;/option&gt;' + idx.map(i =&gt; `&lt;option value="${esc(L.name[i])}"&gt;${esc(L.label[i])}&lt;/option&gt;`).join('');</span>
+<span class="s2">  dl.innerHTML = idx.slice(0, 3000).map(i =&gt; `&lt;option value="${esc(L.label[i])}"&gt;&lt;/option&gt;`).join('');</span>
+<span class="s2">}</span>
+<span class="s2">fillPathways();</span>
+<span class="s2">selGroup.onchange = () =&gt; { fillPathways(); findBox.value=''; highlight([]); };</span>
+<span class="s2">selPathway.onchange = () =&gt; { findBox.value = ''; const i = L.name.indexOf(selPathway.value); highlight(i &gt;= 0 ? [i] : [], true, true); };</span>
+<span class="s2">let findTimer;</span>
+<span class="s2">findBox.oninput = () =&gt; { clearTimeout(findTimer); findTimer = setTimeout(() =&gt; {</span>
+<span class="s2">  const q = findBox.value.trim().toLowerCase(); selPathway.value = '';</span>
+<span class="s2">  if(!q){ highlight([]); return; }</span>
+<span class="s2">  highlight(pathwaysInGroup(selGroup.value).filter(i =&gt; L.name[i].toLowerCase().includes(q) || L.label[i].toLowerCase().includes(q)), false, true);</span>
+<span class="s2">}, 250); };</span>
+<span class="s2">// ---- highlight / details</span>
+<span class="s2">let ringOn = false;</span>
+<span class="s2">function ringPoints(idx, color, withText){</span>
+<span class="s2">  if(ringOn){ Plotly.deleteTraces(el, el.data.length-1); ringOn = false; }</span>
+<span class="s2">  if(!idx.length) return;</span>
+<span class="s2">  Plotly.addTraces(el, {type:'scatter', mode: withText ? 'markers+text' : 'markers', x:idx.map(i=&gt;L.x[i]), y:idx.map(i=&gt;L.y[i]), text:idx.map(i=&gt;L.label[i]),</span>
+<span class="s2">    textposition:'top center', textfont:{size:10, color:'#B00'}, marker:{size: idx.length &gt; 50 ? 9 : 14, color:'rgba(0,0,0,0)', line:{color: color || '#E41A1C', width:2}},</span>
+<span class="s2">    name:'highlight', hoverinfo:'skip', meta:{kind:'found'}});</span>
+<span class="s2">  ringOn = true;</span>
+<span class="s2">}</span>
+<span class="s2">function zoomTo(idx){</span>
+<span class="s2">  if(!idx.length){ relayoutBusy = false; return; }</span>
+<span class="s2">  const xs = idx.map(i=&gt;L.x[i]), ys = idx.map(i=&gt;L.y[i]);</span>
+<span class="s2">  const span = Math.max(Math.max(...xs)-Math.min(...xs), Math.max(...ys)-Math.min(...ys), 1) * 0.6 + 2;</span>
+<span class="s2">  const cx = (Math.max(...xs)+Math.min(...xs))/2, cy = (Math.max(...ys)+Math.min(...ys))/2;</span>
+<span class="s2">  Plotly.relayout(el, {'xaxis.range':[cx-span, cx+span], 'yaxis.range':[cy-span, cy+span]}).then(() =&gt; { repelAnnotations(); relayoutBusy = false; });</span>
+<span class="s2">}</span>
+<span class="s2">function highlight(idx, zoom, details){</span>
+<span class="s2">  ringPoints(idx, '#E41A1C', idx.length &lt;= 50);</span>
+<span class="s2">  if(!idx.length) return;</span>
+<span class="s2">  if(idx.length === 1){ showPathwayDetails(idx[0]); if(zoom){ relayoutBusy = true; zoomTo(idx); } }</span>
+<span class="s2">  else if(details) showList(idx);</span>
+<span class="s2">}</span>
+<span class="s2">function showPathwayDetails(i){</span>
+<span class="s2">  const n = L.name[i]; const found = sigIn((hn) =&gt; hn === n);</span>
+<span class="s2">  const stats = found.length ? found.map(f =&gt; `&lt;div&gt;&lt;b&gt;${esc(f.cond)}&lt;/b&gt;${f.dir?' '+esc(f.dir):''}: FDR $</span><span class="si">{f.fdr}</span><span class="s2">${f.p!==null&amp;&amp;f.p!==undefined?' · p '+f.p:''} · $</span><span class="si">{f.overlap}</span><span class="s2">/$</span><span class="si">{f.size}</span><span class="s2"> genes&lt;div class="genes"&gt;${esc(f.genes||'')}&lt;/div&gt;&lt;/div&gt;`).join('')</span>
+<span class="s2">    : '&lt;span class="hint"&gt;not significant in this data&lt;/span&gt;';</span>
+<span class="s2">  $('sel').innerHTML = `&lt;h3&gt;${esc(L.label[i])}&lt;button onclick="resetAll()"&gt;reset&lt;/button&gt;&lt;/h3&gt;&lt;div class="stat"&gt;${esc(n)}&lt;/div&gt;</span>
+<span class="s2">    &lt;table&gt;&lt;tr&gt;&lt;td&gt;Gene-set size&lt;/td&gt;&lt;td class="n"&gt;$</span><span class="si">{L.size[i]}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Region&lt;/td&gt;&lt;td class="n"&gt;&lt;a href="#" onclick="showRegion($</span><span class="si">{L.region[i]}</span><span class="s2">);return false;"&gt;${esc(regionName(L.region[i]))}&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;${D.multiCategory?`&lt;tr&gt;&lt;td&gt;Collection&lt;/td&gt;&lt;td class="n"&gt;${esc(L.category[i])}&lt;/td&gt;&lt;/tr&gt;`:''}&lt;/table&gt;</span>
+<span class="s2">    &lt;h2&gt;In this data&lt;/h2&gt;$</span><span class="si">{stats}</span><span class="s2">`;</span>
+<span class="s2">  setCounts(1);</span>
+<span class="s2">}</span>
+<span class="s2">function showList(idx){</span>
+<span class="s2">  const sigSet = new Set(D.hits.flatMap(h=&gt;h.name));</span>
+<span class="s2">  const li = i =&gt; `&lt;li&gt;&lt;a href="#" onclick="highlight([$</span><span class="si">{i}</span><span class="s2">],true,true);return false;"&gt;${esc(L.label[i])}&lt;/a&gt;&lt;/li&gt;`;</span>
+<span class="s2">  const sigIdx = idx.filter(i =&gt; sigSet.has(L.name[i])), rest = idx.filter(i =&gt; !sigSet.has(L.name[i]));</span>
+<span class="s2">  $('sel').innerHTML = `&lt;h3&gt;$</span><span class="si">{idx.length}</span><span class="s2"> matching pathways&lt;button onclick="resetAll()"&gt;reset&lt;/button&gt;&lt;/h3&gt;` +</span>
+<span class="s2">    (D.hits.length ? `&lt;h2&gt;Significant in this data ($</span><span class="si">{sigIdx.length}</span><span class="s2">)&lt;/h2&gt;` + (sigIdx.length ? '&lt;ul&gt;'+sigIdx.map(li).join('')+'&lt;/ul&gt;' : '&lt;span class="hint"&gt;none&lt;/span&gt;') +</span>
+<span class="s2">      `&lt;details&gt;&lt;summary&gt;&lt;b&gt;Other matches ($</span><span class="si">{rest.length}</span><span class="s2">)&lt;/b&gt;&lt;/summary&gt;&lt;ul&gt;${rest.map(li).join('')}&lt;/ul&gt;&lt;/details&gt;` : '&lt;ul&gt;'+idx.map(li).join('')+'&lt;/ul&gt;');</span>
+<span class="s2">  setCounts(idx.length);</span>
+<span class="s2">}</span>
+<span class="s2">// ---- display controls</span>
+<span class="s2">$('btnReset').onclick = resetAll;</span>
+<span class="s2">$('cbLib').checked = showLib;</span>
+<span class="s2">$('cbRegions').onchange = e =&gt; Plotly.restyle(el, {visible: e.target.checked}, [...Array(nRegionTraces).keys()]);</span>
+<span class="s2">$('cbLabels').onchange = e =&gt; { relayoutBusy = true; Plotly.relayout(el, {annotations: e.target.checked ? ann : []}).then(() =&gt; { if(e.target.checked) repelAnnotations(); relayoutBusy = false; }); };</span>
+<span class="s2">$('cbLib').onchange = e =&gt; Plotly.restyle(el, {visible: e.target.checked}, [LIB]);</span>
+<span class="s2">document.querySelectorAll('input[name=col]').forEach(r =&gt; r.onchange = e =&gt; Plotly.restyle(el, {'marker.color': [libColors(e.target.value)]}, [LIB]));</span>
+<span class="s2">resetSel();</span>
+<span class="s2">&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</span>
+<span class="s2">"""</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Hua Huang.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

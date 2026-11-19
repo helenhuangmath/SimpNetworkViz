@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The pathway map: one coordinate system for a whole library &#8212; SimpNetworkViz</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0861c6ff" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/pathway_map';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Grouping pathways and styling figures" href="grouping.html" />
+    <link rel="prev" title="Comparing gene groups of two conditions: Cl13 vs Arm" href="cl13_vs_arm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://helenhuangmath.github.io/SimpNetworkViz/">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SimpNetworkViz</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../gallery.html">
+    Gallery
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api.html">
+    Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+        <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../gallery.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+          
+          
+            <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Guided tutorial: from a gene list to a pathway network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsea.html">Preranked GSEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_tools.html">Starting from other tools' results or a pathway list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compare.html">Comparing conditions in one network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlecell.html">Single-cell marker genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cl13_vs_arm.html">Comparing gene groups of two conditions: Cl13 vs Arm</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The pathway map: one coordinate system for a whole library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grouping.html">Grouping pathways and styling figures</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../documentation.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Get started</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">The pathway map: one coordinate system for a whole library</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="the-pathway-map-one-coordinate-system-for-a-whole-library">
+<h1>The pathway map: one coordinate system for a whole library<a class="headerlink" href="#the-pathway-map-one-coordinate-system-for-a-whole-library" title="Link to this heading">#</a></h1>
+<p>A pathway network is laid out afresh for each analysis, so two figures cannot be compared position by position, and a large library such as GO is too big to draw whole. The <strong>pathway map</strong> solves both. Every gene set of a library is placed once in two dimensions from gene-set similarity, the map is divided into labeled regions, and every later analysis is drawn on that same background.</p>
+<p>This tutorial builds a small map and draws an analysis on it. It uses files from the repository, so it runs offline:</p>
+<ul class="simple">
+<li><p>the 50 mouse Hallmark gene sets, <code class="docutils literal notranslate"><span class="pre">examples/Cl13_vs_Arm/genesets/mh.all.v2025.1.Mm.symbols.gmt</span></code></p></li>
+<li><p>six gene groups from exhausted CD8 T cells, <code class="docutils literal notranslate"><span class="pre">examples/Cl13_vs_Arm/data/Cl13_groups.csv</span></code></p></li>
+</ul>
+<p>The maps need the <code class="docutils literal notranslate"><span class="pre">map</span></code> extra:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[map]"</span>
+</pre></div>
+</div>
+<p>Run the commands from the repository root.</p>
+<section id="step-1-build-the-map">
+<h2>Step 1: Build the map<a class="headerlink" href="#step-1-build-the-map" title="Link to this heading">#</a></h2>
+<p>Build a map once per library. The result is a CSV that you keep and reuse.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>map<span class="w"> </span>--gmt<span class="w"> </span>examples/Cl13_vs_Arm/genesets/mh.all.v2025.1.Mm.symbols.gmt<span class="w"> </span>--method<span class="w"> </span>tsne<span class="w"> </span>-o<span class="w"> </span>hallmark_map.csv
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>50 gene sets; building the map (tsne) ...
+50 pathways placed with TSNE, 4 labelled regions -&gt; hallmark_map.csv, hallmark_map.pdf, hallmark_map.html (interactive)
+  [ 1] Interferon signaling response  (13 pathways)
+  [ 2] MYC protein targets  (13 pathways)
+  [ 3] Apical signaling  (11 pathways)
+  [ 4] Acid metabolism  (10 pathways)
+Use it with:  snv run genes.txt --library ... --map hallmark_map.csv
+</pre></div>
+</div>
+<p>Three files are written:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Contents</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hallmark_map.csv</span></code></p></td>
+<td><p>The map: one row per gene set, with its coordinates and region</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hallmark_map.pdf</span></code></p></td>
+<td><p>The map drawn without hits</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hallmark_map.html</span></code></p></td>
+<td><p>The interactive map</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>method,pathway,x,y,set_size,cluster,cluster_label
+tsne,HALLMARK_ADIPOGENESIS,62.22,-50.28,200,4,Acid metabolism
+tsne,HALLMARK_ALLOGRAFT_REJECTION,24.07,25.69,192,1,Interferon signaling response
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/3758e8a1cbef9158ac2ee464d8fe967c/map_hallmark_library.png"><span class="xref download myst"><img alt="The Hallmark map without hits" src="../_images/map_hallmark_library.png" /></span></a></p>
+<p>Each point is a gene set. Gene sets that share genes are close together, and each region is named from the words its gene sets share. Open the <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/hallmark-map.html">interactive Hallmark map</a> to hover over the points.</p>
+<p>How the map is made:</p>
+<ol class="arabic simple">
+<li><p>Every gene set becomes a vector of its genes, weighted so that rare genes count more (TF-IDF).</p></li>
+<li><p>The vectors are reduced to 50 dimensions (SVD).</p></li>
+<li><p>The 50-dimensional vectors are embedded in two dimensions with t-SNE or UMAP.</p></li>
+<li><p>Regions are Louvain communities in the 50-dimensional space, so they do not depend on the 2-D layout.</p></li>
+</ol>
+<p>Options that change the map:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--method</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">auto</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">umap</span></code>, <code class="docutils literal notranslate"><span class="pre">tsne</span></code>, or <code class="docutils literal notranslate"><span class="pre">auto</span></code> (UMAP if installed, else t-SNE)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--min-size</span></code>, <code class="docutils literal notranslate"><span class="pre">--max-size</span></code></p></td>
+<td><p>10, 500</p></td>
+<td><p>Only gene sets of this size are placed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--neighbors</span></code></p></td>
+<td><p>15</p></td>
+<td><p>Neighbours used for the embedding and the regions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--resolution</span></code></p></td>
+<td><p>1.0</p></td>
+<td><p>Higher gives more, smaller regions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--seed</span></code></p></td>
+<td><p>0</p></td>
+<td><p>Random seed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pick one map per library and keep it. The point of the map is that every later analysis uses the same coordinates.</p>
+</div>
+</section>
+<section id="step-2-draw-an-analysis-on-the-map">
+<h2>Step 2: Draw an analysis on the map<a class="headerlink" href="#step-2-draw-an-analysis-on-the-map" title="Link to this heading">#</a></h2>
+<p>Add <code class="docutils literal notranslate"><span class="pre">--map</span></code> to any <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">compare</span></code> or <code class="docutils literal notranslate"><span class="pre">snv</span> <span class="pre">markers</span></code> command. Here the six gene groups are compared against Hallmark and drawn on the map from Step 1:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>compare<span class="w"> </span>--groups<span class="w"> </span>examples/Cl13_vs_Arm/data/Cl13_groups.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gmt<span class="w"> </span>examples/Cl13_vs_Arm/genesets/mh.all.v2025.1.Mm.symbols.gmt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--map<span class="w"> </span>hallmark_map.csv<span class="w"> </span>-o<span class="w"> </span>results
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>6 groups: TEX_G1 (308 genes), TEX_G2 (146 genes), TEX_G3 (114 genes), TEX_G4 (78 genes), TEX_G5 (65 genes), TEX_G6 (46 genes)
+Pathway network: 8 pathways, 1 edges, 1 clusters
+Conditions (pie slices): TEX_G1, TEX_G2, TEX_G3, TEX_G4, TEX_G5, TEX_G6
+  [ 1] Interferon alpha response  (2 pathways)
+Gene network: 150 genes, 3185 edges
+</pre></div>
+</div>
+<p>Eight Hallmark sets are enriched in at least one group. Hallmark sets share few genes, so the network has a single edge and says little. The map is more useful here.</p>
+<p>Besides the usual files, the run writes four map files:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Contents</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pathway_map.pdf</span></code></p></td>
+<td><p>The enriched pathways drawn on the map</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pathway_map.html</span></code></p></td>
+<td><p>The interactive version</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pathway_map_hits.csv</span></code></p></td>
+<td><p>Every enriched pathway with its coordinates and region</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pathway_map_regions.csv</span></code></p></td>
+<td><p>The number of hits in each region, per condition</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/92f2b1e5c490407ef29ce5dcfcc4fcae/map_hallmark_cl13.png"><span class="xref download myst"><img alt="Six gene groups on the Hallmark map" src="../_images/map_hallmark_cl13.png" /></span></a></p>
+<p>How to read it:</p>
+<ul class="simple">
+<li><p><strong>Grey points:</strong> the gene sets of the library that are not enriched.</p></li>
+<li><p><strong>Pies:</strong> the enriched gene sets, with one slice per condition, as in a <a class="reference internal" href="compare.html"><span class="std std-doc">comparison network</span></a>. A larger pie is more significant.</p></li>
+<li><p><strong>Boxed labels:</strong> the most significant hits.</p></li>
+<li><p><strong>Plain labels:</strong> the region names.</p></li>
+</ul>
+<p>The hits fall in two of the four regions. The interferon and IL2–STAT5 sets, TNFα signaling and complement are in <em>Interferon signaling response</em>; G2M checkpoint, E2F targets and mitotic spindle are in <em>MYC protein targets</em>. Nothing lands in the other two regions.</p>
+<p>Explore the same result in the <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/hallmark-cl13-subgroups.html">interactive map of the six groups</a>.</p>
+</section>
+<section id="step-3-count-the-hits-per-region">
+<h2>Step 3: Count the hits per region<a class="headerlink" href="#step-3-count-the-hits-per-region" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pathway_map_regions.csv</span></code> turns the picture into a table:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Region</p></th>
+<th class="head"><p>Sets in region</p></th>
+<th class="head"><p>TEX_G1</p></th>
+<th class="head"><p>TEX_G2</p></th>
+<th class="head"><p>TEX_G3</p></th>
+<th class="head"><p>TEX_G4</p></th>
+<th class="head"><p>TEX_G5</p></th>
+<th class="head"><p>TEX_G6</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Interferon signaling response</p></td>
+<td><p>13</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>MYC protein targets</p></td>
+<td><p>13</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Apical signaling</p></td>
+<td><p>11</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Acid metabolism</p></td>
+<td><p>10</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>TEX_G1 and TEX_G2 hit both active regions; TEX_G3 and TEX_G6 hit only the interferon region; TEX_G4 and TEX_G5 have no Hallmark hit. The file also has a <code class="docutils literal notranslate"><span class="pre">fraction_&lt;condition&gt;</span></code> column for each condition, the share of the region's gene sets that are hits.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pathway_map_hits.csv</span></code> lists each hit with its region and genes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pathway,condition,fdr,direction,x,y,cluster,cluster_label,overlap,genes
+HALLMARK_IL2_STAT5_SIGNALING,TEX_G3,4.37e-07,,48.54,13.11,1,Interferon signaling response,14,ADAM19;BCL2;CTLA4;FGL2;...
+HALLMARK_INTERFERON_ALPHA_RESPONSE,TEX_G2,1.72e-05,,42.48,35.56,1,Interferon signaling response,10,CASP1;CCRL2;DHX58;...
+</pre></div>
+</div>
+</section>
+<section id="the-same-in-python">
+<h2>The same in Python<a class="headerlink" href="#the-same-in-python" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simpnetworkviz</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">snv</span>
+
+<span class="n">gene_sets</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">load_gene_sets</span><span class="p">(</span><span class="s2">"examples/Cl13_vs_Arm/genesets/mh.all.v2025.1.Mm.symbols.gmt"</span><span class="p">)</span>
+<span class="n">pmap</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">build_pathway_map</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"tsne"</span><span class="p">)</span>       <span class="c1"># or snv.load_map("hallmark_map.csv")</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">save_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="s2">"hallmark_map.csv"</span><span class="p">)</span>
+
+<span class="n">groups</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">read_gene_groups</span><span class="p">(</span><span class="s2">"examples/Cl13_vs_Arm/data/Cl13_groups.csv"</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">compare_conditions</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">gene_sets</span><span class="p">)</span>
+
+<span class="n">hits</span> <span class="o">=</span> <span class="n">snv</span><span class="o">.</span><span class="n">map_hits</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>                 <span class="c1"># enriched pathways with x, y, region</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">region_summary</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">hits</span><span class="p">)</span>                   <span class="c1"># hits per region per condition</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">plot_pathway_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s2">"pathway_map.pdf"</span><span class="p">)</span>
+<span class="n">snv</span><span class="o">.</span><span class="n">write_map_html</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="s2">"pathway_map.html"</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="a-large-library-go-biological-process">
+<h2>A large library: GO biological process<a class="headerlink" href="#a-large-library-go-biological-process" title="Link to this heading">#</a></h2>
+<p>The map matters most for libraries that cannot be drawn as a network. The <a class="reference internal" href="cl13_vs_arm.html#step-6-place-every-analysis-on-the-pathway-map"><span class="std std-ref">Cl13 vs Arm tutorial</span></a> uses a map of all 5,489 mouse GO biological process terms, in 35 regions:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>The library</p></th>
+<th class="head"><p>With the Cl13 vs Arm hits</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/97a8857c40460054da1ab4952ebbdeac/pathway_map_umap_library.png"><span class="xref download myst"><img alt="" src="../_images/pathway_map_umap_library.png" /></span></a></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/0b59bc1aa19a8dfd12c609c46333f3ea/pathway_map_umap.png"><span class="xref download myst"><img alt="" src="../_images/pathway_map_umap.png" /></span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To build it, let the package download the collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>map<span class="w"> </span>--msigdb<span class="w"> </span>GO_BP<span class="w"> </span>--species<span class="w"> </span>mouse<span class="w"> </span>-o<span class="w"> </span>gobp_map.csv
+snv<span class="w"> </span>run<span class="w"> </span>degs.csv<span class="w"> </span>--msigdb<span class="w"> </span>GO_BP<span class="w"> </span>--species<span class="w"> </span>mouse<span class="w"> </span>--map<span class="w"> </span>gobp_map.csv
+</pre></div>
+</div>
+<p>Explore it in the <a class="reference external" href="https://helenhuangmath.github.io/SimpNetworkViz/examples/cl13-vs-arm.html">interactive Cl13 vs Arm map</a>: search for a pathway, select a group with the lasso, and read the enrichment statistics and overlapping genes in the side panel.</p>
+</section>
+<section id="one-map-per-msigdb-collection">
+<h2>One map per MSigDB collection<a class="headerlink" href="#one-map-per-msigdb-collection" title="Link to this heading">#</a></h2>
+<p>MSigDB bundles its collections in one file and prefixes every set with its collection (<code class="docutils literal notranslate"><span class="pre">HALLMARK_</span></code>, <code class="docutils literal notranslate"><span class="pre">GOBP_</span></code>, <code class="docutils literal notranslate"><span class="pre">REACTOME_</span></code>, …). <code class="docutils literal notranslate"><span class="pre">--by-category</span></code> splits a library by these prefixes and builds a t-SNE and a UMAP map for each collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snv<span class="w"> </span>map<span class="w"> </span>--gmt<span class="w"> </span>msigdb.v2025.1.Mm.symbols.gmt<span class="w"> </span>--by-category<span class="w"> </span>-o<span class="w"> </span>msigdb_maps
+snv<span class="w"> </span>run<span class="w"> </span>genes.txt<span class="w"> </span>--gmt<span class="w"> </span>msigdb.v2025.1.Mm.symbols.gmt<span class="w"> </span>--map<span class="w"> </span>msigdb_maps/go_biological_process_map_umap.csv
+</pre></div>
+</div>
+<p>Ready-made maps of the MSigDB collections are in <a class="reference external" href="https://github.com/helenhuangmath/SimpNetworkViz/tree/main/examples/msigdb_maps"><code class="docutils literal notranslate"><span class="pre">examples/msigdb_maps</span></code></a> in the repository, so you can skip Step 1 for those libraries.</p>
+</section>
+<section id="t-sne-or-umap">
+<h2>t-SNE or UMAP?<a class="headerlink" href="#t-sne-or-umap" title="Link to this heading">#</a></h2>
+<p>Both maps of a library have the same regions and labels, because regions are found in similarity space and not in the picture. Only the layout differs: UMAP keeps related regions closer together and leaves more white space, and t-SNE spreads the regions more evenly.</p>
+<p>More detail is in <a class="reference internal" href="../guide/library_map.html"><span class="std std-doc">The whole-library view and the pathway map</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cl13_vs_arm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Comparing gene groups of two conditions: Cl13 vs Arm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="grouping.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Grouping pathways and styling figures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-build-the-map">Step 1: Build the map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-draw-an-analysis-on-the-map">Step 2: Draw an analysis on the map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-count-the-hits-per-region">Step 3: Count the hits per region</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-same-in-python">The same in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-large-library-go-biological-process">A large library: GO biological process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-map-per-msigdb-collection">One map per MSigDB collection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-sne-or-umap">t-SNE or UMAP?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Hua Huang.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

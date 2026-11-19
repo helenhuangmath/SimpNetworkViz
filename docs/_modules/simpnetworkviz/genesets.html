@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simpnetworkviz.genesets &#8212; SimpNetworkViz</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0861c6ff" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/simpnetworkviz/genesets';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://helenhuangmath.github.io/SimpNetworkViz/">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SimpNetworkViz</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery.html">
+    Gallery
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../api.html">
+    Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+        <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/index.html">
+    Get started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../commands/index.html">
+    Subcommands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workflow.html">
+    Standard workflow
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../fileformats.html">
+    File formats
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../theory.html">
+    Theory behind SimpNetworkViz
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../qa.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+          
+          
+            <div class="navbar-item">
+<nav aria-label="Related packages">
+  <ul class="bd-navbar-elements navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-external" href="https://github.com/helenhuangmath/PathwayAgent">PathwayAgent</a>
+    </li>
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/helenhuangmath/SimpNetworkViz" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../documentation.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">simpnetworkviz.genesets</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for simpnetworkviz.genesets</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Loading gene-set libraries (GMT files, Enrichr libraries, bundled demo)."""</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">resources</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">GeneSets</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+
+<span class="n">ENRICHR_URL</span> <span class="o">=</span> <span class="s2">"https://maayanlab.cloud/Enrichr/geneSetLibrary?mode=text&amp;libraryName=</span><span class="si">{name}</span><span class="s2">"</span>
+
+<span class="c1">#: A curated selection of widely used Enrichr libraries. Any Enrichr library</span>
+<span class="c1">#: name works; see https://maayanlab.cloud/Enrichr/#libraries for the full list.</span>
+<span class="n">POPULAR_LIBRARIES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"MSigDB_Hallmark_2020"</span><span class="p">:</span> <span class="s2">"MSigDB Hallmark gene sets (50 broad processes)"</span><span class="p">,</span>
+    <span class="s2">"KEGG_2021_Human"</span><span class="p">:</span> <span class="s2">"KEGG pathways (human)"</span><span class="p">,</span>
+    <span class="s2">"Reactome_2022"</span><span class="p">:</span> <span class="s2">"Reactome pathways (human)"</span><span class="p">,</span>
+    <span class="s2">"WikiPathways_2023_Human"</span><span class="p">:</span> <span class="s2">"WikiPathways (human)"</span><span class="p">,</span>
+    <span class="s2">"GO_Biological_Process_2023"</span><span class="p">:</span> <span class="s2">"Gene Ontology biological process"</span><span class="p">,</span>
+    <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">:</span> <span class="s2">"Gene Ontology molecular function"</span><span class="p">,</span>
+    <span class="s2">"GO_Cellular_Component_2023"</span><span class="p">:</span> <span class="s2">"Gene Ontology cellular component"</span><span class="p">,</span>
+    <span class="s2">"KEGG_2019_Mouse"</span><span class="p">:</span> <span class="s2">"KEGG pathways (mouse)"</span><span class="p">,</span>
+    <span class="s2">"WikiPathways_2019_Mouse"</span><span class="p">:</span> <span class="s2">"WikiPathways (mouse)"</span><span class="p">,</span>
+    <span class="s2">"BioPlanet_2019"</span><span class="p">:</span> <span class="s2">"NCATS BioPlanet pathways"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">DEMO</span> <span class="o">=</span> <span class="s2">"demo"</span>
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Species and MSigDB collections</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<span class="c1">#: Supported species: MSigDB code, NCBI taxon (for STRING), Enrichr naming hint.</span>
+<span class="n">SPECIES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"human"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"msigdb"</span><span class="p">:</span> <span class="s2">"Hs"</span><span class="p">,</span> <span class="s2">"taxon"</span><span class="p">:</span> <span class="mi">9606</span><span class="p">,</span> <span class="s2">"aliases"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"human"</span><span class="p">,</span> <span class="s2">"hs"</span><span class="p">,</span> <span class="s2">"homo sapiens"</span><span class="p">,</span> <span class="s2">"9606"</span><span class="p">)},</span>
+    <span class="s2">"mouse"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"msigdb"</span><span class="p">:</span> <span class="s2">"Mm"</span><span class="p">,</span> <span class="s2">"taxon"</span><span class="p">:</span> <span class="mi">10090</span><span class="p">,</span> <span class="s2">"aliases"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"mouse"</span><span class="p">,</span> <span class="s2">"mm"</span><span class="p">,</span> <span class="s2">"mus musculus"</span><span class="p">,</span> <span class="s2">"10090"</span><span class="p">)},</span>
+<span class="p">}</span>
+
+<span class="n">MSIGDB_RELEASE</span> <span class="o">=</span> <span class="s2">"2025.1"</span>
+<span class="n">MSIGDB_URL</span> <span class="o">=</span> <span class="s2">"https://data.broadinstitute.org/gsea-msigdb/msigdb/release/</span><span class="si">{release}</span><span class="s2">.</span><span class="si">{code}</span><span class="s2">/</span><span class="si">{file}</span><span class="s2">.v</span><span class="si">{release}</span><span class="s2">.</span><span class="si">{code}</span><span class="s2">.symbols.gmt"</span>
+
+<span class="c1">#: MSigDB collections by name: (human file stem, mouse file stem); ``None`` = not available for that species.</span>
+<span class="n">MSIGDB_COLLECTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Hallmark"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"h.all"</span><span class="p">,</span> <span class="s2">"mh.all"</span><span class="p">),</span>
+    <span class="s2">"GO"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c5.go"</span><span class="p">,</span> <span class="s2">"m5.go"</span><span class="p">),</span>
+    <span class="s2">"GO_BP"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c5.go.bp"</span><span class="p">,</span> <span class="s2">"m5.go.bp"</span><span class="p">),</span>
+    <span class="s2">"GO_CC"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c5.go.cc"</span><span class="p">,</span> <span class="s2">"m5.go.cc"</span><span class="p">),</span>
+    <span class="s2">"GO_MF"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c5.go.mf"</span><span class="p">,</span> <span class="s2">"m5.go.mf"</span><span class="p">),</span>
+    <span class="s2">"Reactome"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp.reactome"</span><span class="p">,</span> <span class="s2">"m2.cp.reactome"</span><span class="p">),</span>
+    <span class="s2">"WikiPathways"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp.wikipathways"</span><span class="p">,</span> <span class="s2">"m2.cp.wikipathways"</span><span class="p">),</span>
+    <span class="s2">"BioCarta"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp.biocarta"</span><span class="p">,</span> <span class="s2">"m2.cp.biocarta"</span><span class="p">),</span>
+    <span class="s2">"KEGG"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp.kegg_medicus"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"KEGG_legacy"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp.kegg_legacy"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"PID"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp.pid"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"CP"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cp"</span><span class="p">,</span> <span class="s2">"m2.cp"</span><span class="p">),</span>
+    <span class="s2">"CGP"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c2.cgp"</span><span class="p">,</span> <span class="s2">"m2.cgp"</span><span class="p">),</span>
+    <span class="s2">"TFT"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c3.tft"</span><span class="p">,</span> <span class="s2">"m3.gtrd"</span><span class="p">),</span>
+    <span class="s2">"miRNA"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c3.mir"</span><span class="p">,</span> <span class="s2">"m3.mirdb"</span><span class="p">),</span>
+    <span class="s2">"HPO"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c5.hpo"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"TumorPhenotype"</span><span class="p">:</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">"m5.mpt"</span><span class="p">),</span>
+    <span class="s2">"Oncogenic"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c6.all"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"ImmuneSigDB"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c7.immunesigdb"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"Vaccine"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c7.vax"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s2">"CellType"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c8.all"</span><span class="p">,</span> <span class="s2">"m8.all"</span><span class="p">),</span>
+    <span class="s2">"Positional"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"c1.all"</span><span class="p">,</span> <span class="s2">"m1.all"</span><span class="p">),</span>
+    <span class="s2">"All"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"msigdb"</span><span class="p">,</span> <span class="s2">"msigdb"</span><span class="p">),</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="normalize_species">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.normalize_species">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize_species</span><span class="p">(</span><span class="n">species</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""``"human"`` or ``"mouse"`` from a name, MSigDB code or NCBI taxon id."""</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">SPECIES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s2">"aliases"</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">name</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown species </span><span class="si">{</span><span class="n">species</span><span class="si">!r}</span><span class="s2">: use 'human' or 'mouse' (or the taxon id 9606 / 10090)"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="species_taxon">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.species_taxon">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">species_taxon</span><span class="p">(</span><span class="n">species</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""NCBI taxon id of a species name (for STRING)."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>  <span class="c1"># already a taxon id</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SPECIES</span><span class="p">[</span><span class="n">normalize_species</span><span class="p">(</span><span class="n">species</span><span class="p">)][</span><span class="s2">"taxon"</span><span class="p">]</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">msigdb_file</span><span class="p">(</span><span class="n">collection</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">species</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"human"</span><span class="p">,</span> <span class="n">release</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">MSIGDB_RELEASE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""File stem of an MSigDB collection for a species, e.g. ``GO_BP`` + mouse -&gt; ``m5.go.bp.v2025.1.Mm.symbols``."""</span>
+    <span class="n">sp</span> <span class="o">=</span> <span class="n">normalize_species</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">MSIGDB_COLLECTIONS</span><span class="p">}</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown MSigDB collection </span><span class="si">{</span><span class="n">collection</span><span class="si">!r}</span><span class="s2">. Choose from: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MSIGDB_COLLECTIONS</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">stem</span> <span class="o">=</span> <span class="n">MSIGDB_COLLECTIONS</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span> <span class="k">if</span> <span class="n">sp</span> <span class="o">==</span> <span class="s2">"human"</span> <span class="k">else</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">stem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">avail</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">MSIGDB_COLLECTIONS</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">sp</span> <span class="o">==</span> <span class="s2">"human"</span> <span class="k">else</span> <span class="mi">1</span><span class="p">]]</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MSigDB has no </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> collection for </span><span class="si">{</span><span class="n">sp</span><span class="si">}</span><span class="s2">. Available for </span><span class="si">{</span><span class="n">sp</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">avail</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">SPECIES</span><span class="p">[</span><span class="n">sp</span><span class="p">][</span><span class="s2">"msigdb"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">stem</span><span class="si">}</span><span class="s2">.v</span><span class="si">{</span><span class="n">release</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">.symbols"</span>
+
+
+<div class="viewcode-block" id="fetch_msigdb">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.fetch_msigdb">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_msigdb</span><span class="p">(</span><span class="n">collection</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">species</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"human"</span><span class="p">,</span> <span class="n">release</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">MSIGDB_RELEASE</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">120</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeneSets</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Download an MSigDB collection (gene symbols) for ``species`` from the Broad release server.</span>
+
+<span class="sd">    ``collection`` is a key of :data:`MSIGDB_COLLECTIONS` (``Hallmark``, ``GO_BP``,</span>
+<span class="sd">    ``Reactome``, ``KEGG`` ...); mouse collections are MSigDB's native mouse</span>
+<span class="sd">    sets (``mh``, ``m2``, ``m5`` ...), not orthology-mapped human ones. Files are</span>
+<span class="sd">    cached under ``~/.cache/simpnetworkviz/msigdb``.</span>
+<span class="sd">    """</span>
+    <span class="n">stem</span> <span class="o">=</span> <span class="n">msigdb_file</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="n">release</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">_cache_dir</span><span class="p">()</span> <span class="o">/</span> <span class="s2">"msigdb"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">stem</span><span class="si">}</span><span class="s2">.gmt"</span>
+    <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">read_gmt</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span>
+    <span class="n">sp</span> <span class="o">=</span> <span class="n">normalize_species</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">MSIGDB_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">release</span><span class="o">=</span><span class="n">release</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">SPECIES</span><span class="p">[</span><span class="n">sp</span><span class="p">][</span><span class="s2">"msigdb"</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">".v"</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MSigDB download failed (</span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">) for </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">. Check the release (</span><span class="si">{</span><span class="n">release</span><span class="si">}</span><span class="s2">) "</span>
+                         <span class="s2">"or download the GMT from https://www.gsea-msigdb.org/gsea/msigdb and pass it with --gmt."</span><span class="p">)</span>
+    <span class="n">gene_sets</span> <span class="o">=</span> <span class="n">parse_gmt_lines</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">gene_sets</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No gene sets in </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">cache</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">write_gmt</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">,</span> <span class="n">cache</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">"MSigDB </span><span class="si">{</span><span class="n">collection</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">sp</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">release</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gene_sets</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_cache_dir</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SIMPNETWORKVIZ_CACHE"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"XDG_CACHE_HOME"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/.cache"</span><span class="p">)),</span> <span class="s2">"simpnetworkviz"</span>
+    <span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize_gene</span><span class="p">(</span><span class="n">gene</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Canonical form used for matching: stripped, upper case, weights removed."""</span>
+    <span class="k">return</span> <span class="n">gene</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_gmt_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">GeneSets</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Parse GMT-formatted lines: ``name&lt;TAB&gt;description&lt;TAB&gt;gene1&lt;TAB&gt;gene2...``.</span>
+
+<span class="sd">    Also accepts Enrichr's text format where genes may carry a ``,weight`` suffix.</span>
+<span class="sd">    """</span>
+    <span class="n">gene_sets</span><span class="p">:</span> <span class="n">GeneSets</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"#"</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">genes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">normalize_gene</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">g</span> <span class="ow">and</span> <span class="n">g</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+                <span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">genes</span><span class="p">:</span>
+            <span class="n">gene_sets</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">genes</span>
+    <span class="k">return</span> <span class="n">gene_sets</span>
+
+
+<div class="viewcode-block" id="read_gmt">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.read_gmt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_gmt</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeneSets</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">parse_gmt_lines</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="write_gmt">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.write_gmt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_gmt</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">:</span> <span class="n">GeneSets</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">genes</span> <span class="ow">in</span> <span class="n">gene_sets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">genes</span><span class="p">))</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fetch_enrichr_library">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.fetch_enrichr_library">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_enrichr_library</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeneSets</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Download an Enrichr gene-set library (cached under ``~/.cache/simpnetworkviz``)."""</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">_cache_dir</span><span class="p">()</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.gmt"</span>
+    <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">read_gmt</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ENRICHR_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+    <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">gene_sets</span> <span class="o">=</span> <span class="n">parse_gmt_lines</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">gene_sets</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Enrichr returned no gene sets for library </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">. "</span>
+            <span class="s2">"Check the name at https://maayanlab.cloud/Enrichr/#libraries"</span>
+        <span class="p">)</span>
+    <span class="n">write_gmt</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">,</span> <span class="n">cache</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gene_sets</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">demo_path</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">"simpnetworkviz"</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="load_gene_sets">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.load_gene_sets">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_gene_sets</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">min_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">species</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"human"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeneSets</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Load gene sets from a GMT path, an Enrichr library name, an MSigDB collection, ``"demo"`` or a dict.</span>
+
+<span class="sd">    ``"msigdb:GO_BP"`` (or ``"msigdb:Hallmark,msigdb:Reactome"``) downloads the</span>
+<span class="sd">    MSigDB collection for ``species`` (``"human"`` or ``"mouse"``; see</span>
+<span class="sd">    :data:`MSIGDB_COLLECTIONS` and :func:`fetch_msigdb`). Several sources may be</span>
+<span class="sd">    combined by passing a list or a comma separated string, e.g.</span>
+<span class="sd">    ``"KEGG_2021_Human,Reactome_2022"``. Pathway names are prefixed with the</span>
+<span class="sd">    library name only when names collide.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">gene_sets</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">[</span><span class="n">normalize_gene</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">source</span><span class="p">]</span>
+        <span class="n">gene_sets</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">src</span> <span class="o">==</span> <span class="n">DEMO</span><span class="p">:</span>
+                <span class="n">loaded</span> <span class="o">=</span> <span class="n">read_gmt</span><span class="p">(</span><span class="n">demo_path</span><span class="p">(</span><span class="s2">"demo_genesets.gmt"</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">src</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"msigdb:"</span><span class="p">):</span>
+                <span class="n">loaded</span> <span class="o">=</span> <span class="n">fetch_msigdb</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">species</span><span class="o">=</span><span class="n">species</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
+                <span class="n">loaded</span> <span class="o">=</span> <span class="n">read_gmt</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">loaded</span> <span class="o">=</span> <span class="n">fetch_enrichr_library</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">loaded</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">k</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">gene_sets</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">src</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">gene_sets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gene_sets</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_size</span> <span class="ow">and</span> <span class="p">(</span><span class="n">max_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_size</span><span class="p">)</span>
+    <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="read_gene_list">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.read_gene_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_gene_list</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""Read genes from a text/CSV/TSV file.</span>
+
+<span class="sd">    Accepts one gene per line, or a table whose first column is the gene and an</span>
+<span class="sd">    optional numeric column (e.g. log2 fold change). Returns ``{gene: value}``.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"#"</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+    <span class="n">sep</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">"</span> <span class="k">if</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">"</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="p">(</span><span class="s2">","</span> <span class="k">if</span> <span class="s2">","</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sep</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">genes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">";"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="n">genes</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">normalize_gene</span><span class="p">(</span><span class="n">tok</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">genes</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">sep</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">"#"</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">has_header</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">_HEADER_WORDS</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_is_number</span><span class="p">(</span><span class="n">first</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">_is_number</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">has_header</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">first</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">converted</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">converted</span>
+    <span class="k">return</span> <span class="n">gene_values_from_frame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
+
+
+
+<span class="n">_HEADER_WORDS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"gene"</span><span class="p">,</span> <span class="s2">"genes"</span><span class="p">,</span> <span class="s2">"symbol"</span><span class="p">,</span> <span class="s2">"gene_symbol"</span><span class="p">,</span> <span class="s2">"gene_name"</span><span class="p">,</span> <span class="s2">"genesymbol"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"gene_id"</span><span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_number</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">gene_values_from_frame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+    <span class="n">gene_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">value_col</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">preferred</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"log2fc"</span><span class="p">,</span> <span class="s2">"logfc"</span><span class="p">,</span> <span class="s2">"log2foldchange"</span><span class="p">,</span> <span class="s2">"log2_fold_change"</span><span class="p">,</span> <span class="s2">"avg_log2fc"</span><span class="p">,</span> <span class="s2">"fc"</span><span class="p">,</span> <span class="s2">"score"</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">,</span> <span class="s2">"t"</span><span class="p">,</span> <span class="s2">"stat"</span><span class="p">]</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">preferred</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">lower</span><span class="p">:</span>
+            <span class="n">value_col</span> <span class="o">=</span> <span class="n">lower</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">value_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]):</span>
+                <span class="n">value_col</span> <span class="o">=</span> <span class="n">c</span>
+                <span class="k">break</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">gene_col</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">value_col</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">value_col</span><span class="p">])</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">value_col</span><span class="p">])</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">normalize_gene</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="p">)),</span> <span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Hua Huang.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
