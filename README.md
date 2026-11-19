@@ -5,7 +5,7 @@
 ![Python ≥ 3.9](https://img.shields.io/badge/python-%E2%89%A5%203.9-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**[Project website](https://helenhuangmath.github.io/SimpNetworkViz/) · [Documentation and tutorials](docs/index.md)**
+**[Software website](https://helenhuangmath.github.io/SimpNetworkViz/) · [Documentation and tutorials](docs/index.md)**
 
 ## Introduction
 
@@ -125,7 +125,7 @@ Or start the web app with `snv gui`.
 
 ## Documentation
 
-Start with the [documentation index](docs/index.md) or the [detailed user guide](docs/user-guide.md). The [project website](https://helenhuangmath.github.io/SimpNetworkViz/) includes a live example.
+Start with the [documentation index](docs/index.md) or the [detailed user guide](docs/user-guide.md). The [software website](https://helenhuangmath.github.io/SimpNetworkViz/) includes a live example.
 
 * **Tutorials:** [demo walkthrough](docs/tutorial/demo.md), [analyze your own data](docs/tutorial/your_data.md), [step-by-step in Python](docs/tutorial/python.md), [publication figures and Cytoscape](docs/tutorial/figures.md)
 * **Reference:** [subcommands](docs/commands/index.md), [file formats](docs/fileformats.md), [how the network is built](docs/method.md), [API](docs/api.md)
