@@ -11,5 +11,6 @@ htmlcov/
 .ruff_cache/
 snv_output/
 demo_output/
+docs/_build/
 examples/*/results/
 example_output/

@@ -761,12 +761,14 @@ def build_gene_network(
 ) -> Network:
     """Build a gene-level network from (a subset of) a pathway network.
 
-    mode
-        ``"shared"``  genes are linked when they belong to the same pathway(s);
-                      edge weight = number of shared pathways (offline).
-        ``"string"``  protein-protein interactions from STRING (needs internet).
-        ``"cnet"``    bipartite gene-pathway "concept network" (like
-                      clusterProfiler's cnetplot).
+    The ``mode`` argument controls the type of network:
+
+    * ``"shared"`` links genes by their shared pathways. Edge weight is the
+      number of shared pathways.
+    * ``"string"`` uses protein-protein interactions from STRING and needs
+      internet access.
+    * ``"cnet"`` creates a bipartite gene-pathway network like
+      clusterProfiler's cnetplot.
 
     Genes are grouped by the pathway cluster they mostly belong to, so the gene
     modules carry the same annotation as the pathway network. Genes come from
