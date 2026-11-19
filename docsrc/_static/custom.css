@@ -1,0 +1,17 @@
+/* Let the text column use more of a wide screen, and let wide tables wrap. */
+.wy-nav-content {
+    max-width: 1000px;
+}
+
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+    white-space: normal;
+}
+
+/* Figures: keep them inside the text column. */
+.rst-content img {
+    max-width: 100%;
+    max-height: 680px;
+    width: auto;
+    height: auto;
+}

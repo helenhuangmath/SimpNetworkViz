@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>simpnetworkviz.pathmap &mdash; SimpNetworkViz 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b209f710" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SimpNetworkViz
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Install SimpNetworkViz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#check-the-install">Check the install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#optional-extras">Optional extras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#downloaded-files">Downloaded files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../workflow.html">Standard workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../workflow.html#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workflow.html#how-to-get-help">How to get help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workflow.html#input-data">Input data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workflow.html#running-the-analysis">Running the analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workflow.html#exploring-and-exporting-results">Exploring and exporting results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">Subcommands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/run.html">run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/run.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/run.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/run.html#enrichment-test-ora-or-gsea">Enrichment test: ORA or GSEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/run.html#the-settings-you-will-adjust-most-often">The settings you will adjust most often</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/run.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/run.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/compare.html">compare</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/compare.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/compare.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/compare.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/markers.html">markers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/markers.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/markers.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/markers.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/map.html">map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/map.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/map.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/map.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/map.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/enrich.html">enrich</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/enrich.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/enrich.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/enrich.html#command-line-options">Command-line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/demo.html">demo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/demo.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/demo.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/demo.html#command-line-options">Command-line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/libraries.html">libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/libraries.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/libraries.html#using-a-library">Using a library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/gui.html">gui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/gui.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/index.html#options-shared-by-run-compare-and-markers">Options shared by <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">compare</span></code> and <code class="docutils literal notranslate"><span class="pre">markers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../fileformats.html">File formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fileformats.html#input-formats">Input formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fileformats.html#output-files">Output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fileformats.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/demo.html">Demo walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-1-run-the-demo">Step 1: Run the demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-2-look-at-the-enrichment-table">Step 2: Look at the enrichment table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-3-read-the-pathway-network">Step 3: Read the pathway network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-4-read-the-gene-networks">Step 4: Read the gene networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-5-explore-the-interactive-viewer">Step 5: Explore the interactive viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-6-compare-conditions">Step 6: Compare conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#step-7-know-the-other-files">Step 7: Know the other files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/demo.html#next">Next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html">Comparing gene groups of two conditions: Cl13 vs Arm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-1-get-the-data-and-the-gene-sets">Step 1: Get the data and the gene sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-2-run-the-comparison">Step 2: Run the comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-3-compare-cl13-and-arm-all-genes-pooled">Step 3: Compare Cl13 and Arm, all genes pooled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-4-compare-matched-subgroups-tex-gn-versus-tmem-gn">Step 4: Compare matched subgroups, TEX_Gn versus TMEM_Gn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-5-compare-the-six-subgroups-within-one-condition">Step 5: Compare the six subgroups within one condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-6-place-every-analysis-on-the-pathway-map">Step 6: Place every analysis on the pathway map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#step-7-read-the-tables">Step 7: Read the tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#doing-the-same-with-your-own-groups">Doing the same with your own groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/cl13_vs_arm.html#notes-on-interpretation">Notes on interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/index.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/library_map.html">The whole-library view and the pathway map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/library_map.html#the-whole-library-view">The whole-library view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/library_map.html#the-pathway-map-a-fixed-coordinate-system-for-a-whole-library">The pathway map: a fixed coordinate system for a whole library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/library_map.html#one-map-per-msigdb-collection">One map per MSigDB collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/library_map.html#the-interactive-map">The interactive map</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/grouping.html">Grouping pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/figures.html">Customizing the figures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/figures.html#fine-tuning-in-cytoscape">Fine-tuning in Cytoscape</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/python.html">Using the Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery.html">Gallery of outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory.html">Theory behind SimpNetworkViz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../theory.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../qa.html">Common Q &amp; A</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../qa.html#installing-and-running">Installing and running</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#the-shell-says-snv-command-not-found">The shell says <code class="docutils literal notranslate"><span class="pre">snv:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#which-steps-need-the-internet">Which steps need the internet?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#how-do-i-make-the-network-viewer-work-offline">How do I make the network viewer work offline?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../qa.html#input">Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#which-gene-set-library-should-i-use">Which gene-set library should I use?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#my-genes-are-mouse-symbols-what-should-i-use">My genes are mouse symbols. What should I use?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#what-should-the-background-be">What should the background be?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#should-i-use-ora-or-gsea">Should I use ORA or GSEA?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#can-i-use-enrichment-results-from-another-tool">Can I use enrichment results from another tool?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../qa.html#results">Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#no-pathway-passes-the-cutoff">No pathway passes the cutoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#the-figure-has-too-many-pathways-or-the-clusters-are-too-large">The figure has too many pathways, or the clusters are too large</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#a-cluster-label-is-awkward">A cluster label is awkward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#small-odd-go-terms-appear">Small, odd GO terms appear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#how-do-i-read-a-pie-chart-node">How do I read a pie-chart node?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#go-is-too-large-to-draw-as-a-whole-library">GO is too large to draw as a whole library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../qa.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#how-do-i-get-png-figures">How do I get PNG figures?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#the-font-in-my-pdf-is-not-arial">The font in my PDF is not Arial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qa.html#how-do-i-cite-simpnetworkviz">How do I cite SimpNetworkViz?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.run_pipeline"><code class="docutils literal notranslate"><span class="pre">run_pipeline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.analyze_genes"><code class="docutils literal notranslate"><span class="pre">analyze_genes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#gene-sets-and-gene-lists">Gene sets and gene lists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.load_gene_sets"><code class="docutils literal notranslate"><span class="pre">load_gene_sets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.fetch_msigdb"><code class="docutils literal notranslate"><span class="pre">fetch_msigdb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.fetch_enrichr_library"><code class="docutils literal notranslate"><span class="pre">fetch_enrichr_library()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_gene_list"><code class="docutils literal notranslate"><span class="pre">read_gene_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_gene_groups"><code class="docutils literal notranslate"><span class="pre">read_gene_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_gmt"><code class="docutils literal notranslate"><span class="pre">read_gmt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.write_gmt"><code class="docutils literal notranslate"><span class="pre">write_gmt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.normalize_species"><code class="docutils literal notranslate"><span class="pre">normalize_species()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.species_taxon"><code class="docutils literal notranslate"><span class="pre">species_taxon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#enrichment">Enrichment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.enrich"><code class="docutils literal notranslate"><span class="pre">enrich()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.enrich_updown"><code class="docutils literal notranslate"><span class="pre">enrich_updown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.gsea_prerank"><code class="docutils literal notranslate"><span class="pre">gsea_prerank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_ranking"><code class="docutils literal notranslate"><span class="pre">read_ranking()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.bh_fdr"><code class="docutils literal notranslate"><span class="pre">bh_fdr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_enrichment"><code class="docutils literal notranslate"><span class="pre">read_enrichment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_pathway_list"><code class="docutils literal notranslate"><span class="pre">read_pathway_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.table_from_pathways"><code class="docutils literal notranslate"><span class="pre">table_from_pathways()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#comparing-conditions-and-single-cell-markers">Comparing conditions and single-cell markers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.compare_conditions"><code class="docutils literal notranslate"><span class="pre">compare_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.merge_conditions"><code class="docutils literal notranslate"><span class="pre">merge_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.enrichment_matrix"><code class="docutils literal notranslate"><span class="pre">enrichment_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.markers_to_conditions"><code class="docutils literal notranslate"><span class="pre">markers_to_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.read_marker_table"><code class="docutils literal notranslate"><span class="pre">read_marker_table()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#networks">Networks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.build_pathway_network"><code class="docutils literal notranslate"><span class="pre">build_pathway_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.build_library_network"><code class="docutils literal notranslate"><span class="pre">build_library_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.build_gene_network"><code class="docutils literal notranslate"><span class="pre">build_gene_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.Network"><code class="docutils literal notranslate"><span class="pre">Network</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.annotate_cluster"><code class="docutils literal notranslate"><span class="pre">annotate_cluster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.clean_pathway_name"><code class="docutils literal notranslate"><span class="pre">clean_pathway_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.group_by_category"><code class="docutils literal notranslate"><span class="pre">group_by_category()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.group_by_keywords"><code class="docutils literal notranslate"><span class="pre">group_by_keywords()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.pathway_category"><code class="docutils literal notranslate"><span class="pre">pathway_category()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#pathway-maps">Pathway maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.build_pathway_map"><code class="docutils literal notranslate"><span class="pre">build_pathway_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.save_map"><code class="docutils literal notranslate"><span class="pre">save_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.load_map"><code class="docutils literal notranslate"><span class="pre">load_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.plot_pathway_map"><code class="docutils literal notranslate"><span class="pre">plot_pathway_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.map_hits"><code class="docutils literal notranslate"><span class="pre">map_hits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.region_summary"><code class="docutils literal notranslate"><span class="pre">region_summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.write_map_html"><code class="docutils literal notranslate"><span class="pre">write_map_html()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.split_by_category"><code class="docutils literal notranslate"><span class="pre">split_by_category()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.build_category_maps"><code class="docutils literal notranslate"><span class="pre">build_category_maps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.save_category_maps"><code class="docutils literal notranslate"><span class="pre">save_category_maps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.plot_category_maps"><code class="docutils literal notranslate"><span class="pre">plot_category_maps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#plotting">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.plot_network"><code class="docutils literal notranslate"><span class="pre">plot_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.plot_pathway_gene_network"><code class="docutils literal notranslate"><span class="pre">plot_pathway_gene_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.plot_cluster_barplot"><code class="docutils literal notranslate"><span class="pre">plot_cluster_barplot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#export">Export</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.save_all"><code class="docutils literal notranslate"><span class="pre">save_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.write_html"><code class="docutils literal notranslate"><span class="pre">write_html()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.write_cyjs"><code class="docutils literal notranslate"><span class="pre">write_cyjs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#simpnetworkviz.write_graphml"><code class="docutils literal notranslate"><span class="pre">write_graphml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SimpNetworkViz</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">simpnetworkviz.pathmap</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for simpnetworkviz.pathmap</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""A fixed 2-D map of a whole gene-set library, with enrichment results overlaid.</span>
+
+<span class="sd">The map is computed once per library from gene-set similarity (UMAP when the</span>
+<span class="sd">``umap-learn`` package is installed, otherwise t-SNE from scikit-learn),</span>
+<span class="sd">clustered into regions with automatic labels, and saved as a CSV. Every later</span>
+<span class="sd">analysis is drawn on the same coordinates, so results from different</span>
+<span class="sd">experiments, conditions or cell clusters are directly comparable: the question</span>
+<span class="sd">"where in the pathway landscape do my hits fall?" has the same answer space</span>
+<span class="sd">every time.</span>
+<span class="sd">"""</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sparse</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.genesets</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeneSets</span><span class="p">,</span> <span class="n">normalize_gene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.network</span><span class="w"> </span><span class="kn">import</span> <span class="n">clean_pathway_name</span>
+
+<span class="n">MAP_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="s2">"set_size"</span><span class="p">,</span> <span class="s2">"cluster"</span><span class="p">,</span> <span class="s2">"cluster_label"</span><span class="p">]</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Building the map</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_tfidf_matrix</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">:</span> <span class="n">GeneSets</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">)</span>
+    <span class="n">genes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">g</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gene_sets</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">v</span><span class="p">})</span>
+    <span class="n">gi</span> <span class="o">=</span> <span class="p">{</span><span class="n">g</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">genes</span><span class="p">)}</span>
+    <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">[</span><span class="n">name</span><span class="p">]):</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gi</span><span class="p">[</span><span class="n">g</span><span class="p">])</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">genes</span><span class="p">)))</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">idf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df</span><span class="p">))</span> <span class="o">+</span> <span class="mf">1.0</span>  <span class="c1"># genes in few sets weigh more</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">idf</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">))</span> <span class="o">@</span> <span class="n">M</span>
+    <span class="k">return</span> <span class="n">names</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_svd</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">svds</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">svds</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">v0</span><span class="o">=</span><span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">)))</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="p">[</span><span class="n">order</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="mf">1e-12</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_knn</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""k nearest neighbours by cosine similarity (rows of ``X`` are unit length)."""</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">chunk</span><span class="p">):</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">s</span> <span class="o">+</span> <span class="n">chunk</span><span class="p">]</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">part</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="o">-</span><span class="n">S</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">vals</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">idx</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">s</span> <span class="o">+</span> <span class="n">chunk</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sim</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">s</span> <span class="o">+</span> <span class="n">chunk</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">idx</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_knn_graph</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">sim</span><span class="p">):</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">((</span><span class="n">sim</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">idx</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">W</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_import_umap</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""``import umap`` that survives a broken TensorFlow install.</span>
+
+<span class="sd">    ``umap`` imports TensorFlow at import time for its optional parametric</span>
+<span class="sd">    variant; on some machines TensorFlow is installed but fails to load (for</span>
+<span class="sd">    example an x86 build on Apple silicon), which would otherwise make plain</span>
+<span class="sd">    UMAP unavailable as well. Blocking the TensorFlow import for that one</span>
+<span class="sd">    import is harmless: parametric UMAP is not used here.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">umap</span>
+        <span class="k">return</span> <span class="n">umap</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">"tensorflow"</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span> <span class="ow">or</span> <span class="s2">"umap"</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+            <span class="k">raise</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"tensorflow"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># makes ``import tensorflow`` raise ImportError</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">umap</span>
+            <span class="k">return</span> <span class="n">umap</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"tensorflow"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_embed</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"auto"</span><span class="p">,</span> <span class="s2">"umap"</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">umap</span> <span class="o">=</span> <span class="n">_import_umap</span><span class="p">()</span>
+
+            <span class="n">emb</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="n">min_dist</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"cosine"</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="s2">"umap"</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># not installed, or a broken native build</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"umap"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"UMAP is not available (</span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">). pip install umap-learn, or use method='tsne'/'spectral'."</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"auto"</span><span class="p">,</span> <span class="s2">"tsne"</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSNE</span>
+
+            <span class="n">perp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)))</span>
+            <span class="n">emb</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"cosine"</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">"pca"</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="n">perp</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="s2">"tsne"</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"tsne"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"t-SNE needs scikit-learn (</span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">)."</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"Building a pathway map needs umap-learn (recommended) or scikit-learn (t-SNE): "</span>
+                      <span class="s2">"pip install umap-learn   or   pip install 'simpnetworkviz[map]'"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_map_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+
+    <span class="n">idx</span><span class="p">,</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">_knn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sim</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="n">weight</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="n">comms</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">louvain_communities</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">"weight"</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">comms</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">comms</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">lab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">members</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">comms</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+            <span class="n">lab</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">lab</span>
+
+
+<div class="viewcode-block" id="build_pathway_map">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.build_pathway_map">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_pathway_map</span><span class="p">(</span>
+    <span class="n">gene_sets</span><span class="p">:</span> <span class="n">GeneSets</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span>
+    <span class="n">min_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="n">n_svd</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="n">min_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">cluster_resolution</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">min_cluster_label</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">label_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Embed every gene set of a library in 2-D and group the map into labelled regions.</span>
+
+<span class="sd">    Gene sets become TF-IDF-weighted gene vectors, reduced to ``n_svd`` dimensions</span>
+<span class="sd">    by truncated SVD, then embedded with ``method``: ``"umap"`` (needs</span>
+<span class="sd">    ``umap-learn``), ``"tsne"`` (needs scikit-learn), ``"spectral"`` (no extra</span>
+<span class="sd">    dependency) or ``"auto"`` (the first available in that order). Regions are</span>
+<span class="sd">    Louvain communities of the k-nearest-neighbour graph, labelled like network</span>
+<span class="sd">    clusters. Returns a table with :data:`MAP_COLUMNS`; ``attrs["method"]`` records</span>
+<span class="sd">    the embedding used. Build it once per library and save it with :func:`save_map`.</span>
+<span class="sd">    """</span>
+    <span class="n">gs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gene_sets</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">min_size</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">max_size</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Need at least 5 gene sets within the size limits to build a map."</span><span class="p">)</span>
+    <span class="n">names</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">_tfidf_matrix</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">_svd</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">n_svd</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">emb</span><span class="p">,</span> <span class="n">used</span> <span class="o">=</span> <span class="n">_embed</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">min_dist</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">_map_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">cluster_resolution</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"pathway"</span><span class="p">:</span> <span class="n">names</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="n">emb</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">"y"</span><span class="p">:</span> <span class="n">emb</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                       <span class="s2">"set_size"</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">],</span> <span class="s2">"cluster"</span><span class="p">:</span> <span class="n">clusters</span><span class="p">})</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">region_labels</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_cluster_label</span><span class="p">,</span> <span class="n">label_words</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"cluster_label"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"cluster_label"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"cluster"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span> <span class="o">=</span> <span class="n">used</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">MAP_COLUMNS</span><span class="p">]</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># One map per category (MSigDB collections, several GMT files, custom groups)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<span class="n">MAP_METHODS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"tsne"</span><span class="p">,</span> <span class="s2">"umap"</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="split_by_category">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.split_by_category">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">split_by_category</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">:</span> <span class="n">GeneSets</span><span class="p">,</span> <span class="n">categories</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                      <span class="n">min_sets</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">GeneSets</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Split a library into ``{category: gene_sets}``.</span>
+
+<span class="sd">    ``categories`` (``{pathway: category}``) takes precedence; otherwise the</span>
+<span class="sd">    category is read from the pathway name with</span>
+<span class="sd">    :func:`~simpnetworkviz.network.pathway_category`, which knows the MSigDB</span>
+<span class="sd">    collection prefixes (HALLMARK, GOBP/GOCC/GOMF, KEGG, REACTOME, WP, PID,</span>
+<span class="sd">    BIOCARTA, HP, MIR ...) and the ``"Library: pathway"`` names produced by</span>
+<span class="sd">    :func:`~simpnetworkviz.genesets.load_gene_sets` for several sources.</span>
+<span class="sd">    Categories with fewer than ``min_sets`` sets are dropped. Categories are</span>
+<span class="sd">    returned largest first.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.network</span><span class="w"> </span><span class="kn">import</span> <span class="n">pathway_category</span>
+
+    <span class="n">out</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">GeneSets</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">genes</span> <span class="ow">in</span> <span class="n">gene_sets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">pathway_category</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">categories</span><span class="p">)][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">genes</span>
+    <span class="n">kept</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">gs</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_sets</span><span class="p">}</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">kept</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span></div>
+
+
+
+<div class="viewcode-block" id="build_category_maps">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.build_category_maps">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_category_maps</span><span class="p">(</span>
+    <span class="n">gene_sets</span><span class="p">:</span> <span class="n">GeneSets</span><span class="p">,</span>
+    <span class="n">methods</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAP_METHODS</span><span class="p">,</span>
+    <span class="n">categories</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_sets</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">map_kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""One pathway map per category and embedding method.</span>
+
+<span class="sd">    The library is split with :func:`split_by_category` (MSigDB collections by</span>
+<span class="sd">    default, e.g. a full ``msigdb.v2025.1.Hs.symbols.gmt`` gives Hallmark, GO BP,</span>
+<span class="sd">    GO CC, GO MF, KEGG, Reactome, WikiPathways ... as separate maps) and</span>
+<span class="sd">    :func:`build_pathway_map` is run on each category with every method in</span>
+<span class="sd">    ``methods`` (``"tsne"`` and ``"umap"`` by default). Categories with fewer</span>
+<span class="sd">    than ``min_sets`` sets after the size filter are skipped with a warning,</span>
+<span class="sd">    as is a method whose package is not installed. ``map_kwargs`` are passed</span>
+<span class="sd">    to :func:`build_pathway_map` (``min_size``, ``max_size``, ``n_neighbors``,</span>
+<span class="sd">    ``cluster_resolution``, ``seed`` ...).</span>
+
+<span class="sd">    Returns ``{category: {method: map}}``. Within a category the t-SNE and UMAP</span>
+<span class="sd">    maps share their regions and labels (regions are clustered in similarity</span>
+<span class="sd">    space), so only the coordinates differ.</span>
+<span class="sd">    """</span>
+    <span class="n">min_size</span> <span class="o">=</span> <span class="n">map_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"min_size"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">max_size</span> <span class="o">=</span> <span class="n">map_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"max_size"</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+    <span class="n">min_sets</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">min_sets</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># build_pathway_map needs at least 5 sets</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">split_by_category</span><span class="p">(</span><span class="n">gene_sets</span><span class="p">,</span> <span class="n">categories</span><span class="p">,</span> <span class="n">min_sets</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">maps</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">unavailable</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">n_ok</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gs</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">min_size</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">max_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_ok</span> <span class="o">&lt;</span> <span class="n">min_sets</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Category </span><span class="si">{</span><span class="n">cat</span><span class="si">!r}</span><span class="s2">: </span><span class="si">{</span><span class="n">n_ok</span><span class="si">}</span><span class="s2"> gene sets within </span><span class="si">{</span><span class="n">min_size</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">max_size</span><span class="si">}</span><span class="s2"> genes (&lt; </span><span class="si">{</span><span class="n">min_sets</span><span class="si">}</span><span class="s2">), skipped."</span><span class="p">,</span>
+                          <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">maps</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">unavailable</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pmap</span> <span class="o">=</span> <span class="n">build_pathway_map</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="o">**</span><span class="n">map_kwargs</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">unavailable</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">pmap</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat</span>
+            <span class="n">maps</span><span class="p">[</span><span class="n">cat</span><span class="p">][</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmap</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">maps</span><span class="p">[</span><span class="n">cat</span><span class="p">]:</span>
+            <span class="k">del</span> <span class="n">maps</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">maps</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No category map could be built: check the gene-set names, the size limits and that "</span>
+                         <span class="s2">"umap-learn or scikit-learn is installed."</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">maps</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">category_slug</span><span class="p">(</span><span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""File-name-safe form of a category name (``"GO biological process"`` -&gt; ``"go_biological_process"``)."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[^A-Za-z0-9]+"</span><span class="p">,</span> <span class="s2">"_"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">category</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">slug</span> <span class="ow">or</span> <span class="s2">"category"</span>
+
+
+<div class="viewcode-block" id="save_category_maps">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.save_category_maps">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_category_maps</span><span class="p">(</span><span class="n">maps</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]],</span> <span class="n">outdir</span><span class="p">,</span> <span class="n">plot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                       <span class="n">dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">formats</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"pdf"</span><span class="p">,))</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Write every map of :func:`build_category_maps` to ``outdir``.</span>
+
+<span class="sd">    Files are ``&lt;category&gt;_map_&lt;method&gt;.csv`` (reuse with ``--map``) and, with</span>
+<span class="sd">    ``plot=True``, ``&lt;category&gt;_map_&lt;method&gt;.&lt;format&gt;``. An index table</span>
+<span class="sd">    ``category_maps.csv`` (category, method, n_sets, n_regions, csv, figure) is</span>
+<span class="sd">    written too and returned.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">per_method</span> <span class="ow">in</span> <span class="n">maps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">pmap</span> <span class="ow">in</span> <span class="n">per_method</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">stem</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">category_slug</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span><span class="si">}</span><span class="s2">_map_</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">save_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">stem</span> <span class="o">+</span> <span class="s2">".csv"</span><span class="p">)</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.maphtml</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_map_html</span>
+
+            <span class="n">write_map_html</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">stem</span> <span class="o">+</span> <span class="s2">".html"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+            <span class="n">fig_path</span> <span class="o">=</span> <span class="s2">""</span>
+            <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+                <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+                <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pathway_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">:</span>
+                    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">stem</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">)</span>
+                    <span class="n">fig_path</span> <span class="o">=</span> <span class="n">fig_path</span> <span class="ow">or</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">stem</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"category"</span><span class="p">:</span> <span class="n">cat</span><span class="p">,</span> <span class="s2">"method"</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="s2">"n_sets"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">pmap</span><span class="p">),</span>
+                         <span class="s2">"n_regions"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">pmap</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"cluster"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()),</span>
+                         <span class="s2">"csv"</span><span class="p">:</span> <span class="n">stem</span> <span class="o">+</span> <span class="s2">".csv"</span><span class="p">,</span> <span class="s2">"figure"</span><span class="p">:</span> <span class="n">fig_path</span><span class="p">})</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"category"</span><span class="p">,</span> <span class="s2">"method"</span><span class="p">,</span> <span class="s2">"n_sets"</span><span class="p">,</span> <span class="s2">"n_regions"</span><span class="p">,</span> <span class="s2">"csv"</span><span class="p">,</span> <span class="s2">"figure"</span><span class="p">])</span>
+    <span class="n">index</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">"category_maps.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">index</span></div>
+
+
+
+<div class="viewcode-block" id="plot_category_maps">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.plot_category_maps">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_category_maps</span><span class="p">(</span><span class="n">maps</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]],</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                       <span class="n">fdr_cutoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">panel</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""One figure with a panel per category (rows) and embedding method (columns).</span>
+
+<span class="sd">    ``table`` (an enrichment or comparison table) highlights the enriched</span>
+<span class="sd">    pathways on each panel, as :func:`plot_pathway_map` does on a single map;</span>
+<span class="sd">    ``label_top`` names the most significant hits per panel.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+    <span class="n">cats</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+    <span class="n">methods</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">m</span> <span class="k">for</span> <span class="n">per</span> <span class="ow">in</span> <span class="n">maps</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">per</span><span class="p">},</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="s2">"tsne"</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
+    <span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cats</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">panel</span> <span class="o">*</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">panel</span> <span class="o">*</span> <span class="n">nrow</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">),</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cats</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">method</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">methods</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">pmap</span> <span class="o">=</span> <span class="n">maps</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">plot_pathway_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fdr_cutoff</span><span class="o">=</span><span class="n">fdr_cutoff</span><span class="p">,</span> <span class="n">label_top</span><span class="o">=</span><span class="n">label_top</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span>
+                             <span class="n">width</span><span class="o">=</span><span class="n">panel</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>  <span class="c1"># one legend per figure is enough</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_repel_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">texts</span><span class="p">,</span> <span class="n">iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">pad_px</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">damping</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Nudge overlapping text boxes apart (display space), keeping them inside the axes.</span>
+
+<span class="sd">    A small, dependency-free version of what ``adjustText`` does: on every pass</span>
+<span class="sd">    each pair of overlapping boxes is pushed apart along the axis with the</span>
+<span class="sd">    smaller overlap (vertical moves preferred, so labels stay near their</span>
+<span class="sd">    region). Annotations keep their arrow anchored to the original point; only</span>
+<span class="sd">    the text box is measured, not the arrow.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">Text</span>
+
+    <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texts</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">get_visible</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>  <span class="c1"># finalize autoscaling and aspect so display coordinates are the real ones</span>
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">get_renderer</span><span class="p">()</span>
+    <span class="n">ax_box</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
+    <span class="n">inv</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
+    <span class="n">pt</span> <span class="o">=</span> <span class="mf">72.0</span> <span class="o">/</span> <span class="n">fig</span><span class="o">.</span><span class="n">dpi</span>  <span class="c1"># pixels -&gt; points, for annotation offsets</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bbox</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Text</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">renderer</span><span class="p">)</span><span class="o">.</span><span class="n">padded</span><span class="p">(</span><span class="n">pad_px</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bbox</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
+        <span class="n">shifts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">moved</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)):</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">a</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="n">dx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">x1</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">x1</span> <span class="o">-</span> <span class="n">a</span><span class="o">.</span><span class="n">x0</span><span class="p">)</span>
+                <span class="n">dy</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">y1</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">y1</span> <span class="o">-</span> <span class="n">a</span><span class="o">.</span><span class="n">y0</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">dy</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">&lt;=</span> <span class="n">dx</span><span class="p">:</span>
+                    <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">y0</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">y1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">y0</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="n">y1</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="n">shifts</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">shifts</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">x0</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">x1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">x0</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="n">x1</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="n">shifts</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">shifts</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">moved</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">moved</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">sx</span><span class="p">,</span> <span class="n">sy</span><span class="p">),</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">shifts</span> <span class="o">*</span> <span class="n">damping</span><span class="p">,</span> <span class="n">boxes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">sx</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sy</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">sx</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ax_box</span><span class="o">.</span><span class="n">x1</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">sx</span><span class="p">))</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ax_box</span><span class="o">.</span><span class="n">x0</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">x0</span> <span class="o">+</span> <span class="n">sx</span><span class="p">))</span>
+            <span class="n">sy</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ax_box</span><span class="o">.</span><span class="n">y1</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">y1</span> <span class="o">+</span> <span class="n">sy</span><span class="p">))</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ax_box</span><span class="o">.</span><span class="n">y0</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">y0</span> <span class="o">+</span> <span class="n">sy</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">"xyann"</span><span class="p">):</span>
+                <span class="n">t</span><span class="o">.</span><span class="n">xyann</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">xyann</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">sx</span> <span class="o">*</span> <span class="n">pt</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">xyann</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">sy</span> <span class="o">*</span> <span class="n">pt</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">get_position</span><span class="p">())</span>
+                <span class="n">t</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">inv</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">X</span> <span class="o">+</span> <span class="n">sx</span><span class="p">,</span> <span class="n">Y</span> <span class="o">+</span> <span class="n">sy</span><span class="p">)))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_words</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""``{word: relative position in the name}`` for the informative words of a pathway name."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.network</span><span class="w"> </span><span class="kn">import</span> <span class="n">STOPWORDS</span><span class="p">,</span> <span class="n">_KEEP_UPPER</span>
+
+    <span class="n">toks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[\s,/()\[\]:;]+"</span><span class="p">,</span> <span class="n">clean_pathway_name</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="k">if</span> <span class="n">t</span><span class="p">]</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">toks</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">STOPWORDS</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">t</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">_KEEP_UPPER</span> <span class="k">else</span> <span class="n">key</span><span class="p">,</span> <span class="n">i</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">toks</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">region_labels</span><span class="p">(</span><span class="n">pmap</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">min_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Label map regions with words that are frequent inside the region and rare outside.</span>
+
+<span class="sd">    Plain word frequency (as used for small network clusters) picks generic GO</span>
+<span class="sd">    words such as "response" or "signaling" for regions of hundreds of terms;</span>
+<span class="sd">    weighting each word by its inverse frequency across the whole library gives</span>
+<span class="sd">    the words that set the region apart.</span>
+<span class="sd">    """</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">_words</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]}</span>
+    <span class="n">df_all</span><span class="p">:</span> <span class="n">Counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ws</span> <span class="ow">in</span> <span class="n">words</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">df_all</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">ws</span><span class="p">})</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">pmap</span><span class="p">[</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">grp</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_size</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">inside</span><span class="p">:</span> <span class="n">Counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+        <span class="n">display</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">rel</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">inside</span><span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">display</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">w</span><span class="p">)</span>
+                <span class="n">pos</span><span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rel</span><span class="p">)</span>
+        <span class="n">need</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.08</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">grp</span><span class="p">))</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">grp</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="n">df_all</span><span class="p">[</span><span class="n">w</span><span class="p">])</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">inside</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">need</span><span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">score</span><span class="p">:</span>  <span class="c1"># nothing shared: name the region after its largest gene set</span>
+            <span class="n">biggest</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"set_size"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s2">"pathway"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">labels</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="n">clean_pathway_name</span><span class="p">(</span><span class="n">biggest</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="o">-</span><span class="n">score</span><span class="p">[</span><span class="n">w</span><span class="p">])[:</span><span class="n">max_words</span><span class="p">]</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="n">w</span><span class="p">]))</span>  <span class="c1"># keep the order words have in the names</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">display</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">top</span><span class="p">)</span>
+        <span class="n">labels</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="n">label</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">labels</span>
+
+
+<div class="viewcode-block" id="save_map">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.save_map">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_map</span><span class="p">(</span><span class="n">pmap</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">pmap</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"method"</span><span class="p">,</span> <span class="n">pmap</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"method"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_map">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.load_map">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_map</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="s2">"method"</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">MAP_COLUMNS</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"cluster_label"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"cluster_label"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Overlaying results</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="map_hits">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.map_hits">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">map_hits</span><span class="p">(</span><span class="n">pmap</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">fdr_cutoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Enriched pathways of an enrichment/comparison table joined to their map position.</span>
+
+<span class="sd">    Returns one row per (pathway, condition) with ``x, y, cluster, cluster_label,</span>
+<span class="sd">    fdr, direction, condition``. Pathways absent from the map (outside its size</span>
+<span class="sd">    limits or not in the library) are dropped.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.compare</span><span class="w"> </span><span class="kn">import</span> <span class="n">condition_names</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">"condition"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="k">if</span> <span class="n">fdr_cutoff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">fdr_cutoff</span><span class="p">)]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"fdr"</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">([</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="s2">"condition"</span><span class="p">])</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pathway"</span><span class="p">,</span> <span class="s2">"condition"</span><span class="p">,</span> <span class="s2">"fdr"</span><span class="p">,</span> <span class="s2">"direction"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="s2">"cluster"</span><span class="p">,</span> <span class="s2">"cluster_label"</span><span class="p">]</span>
+    <span class="n">cols</span> <span class="o">+=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"nes"</span><span class="p">,</span> <span class="s2">"overlap"</span><span class="p">,</span> <span class="s2">"genes"</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">hits</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="n">hits</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hits</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"conditions"</span><span class="p">]</span> <span class="o">=</span> <span class="n">condition_names</span><span class="p">(</span><span class="n">table</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[</span><span class="s2">""</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">hits</span></div>
+
+
+
+<div class="viewcode-block" id="region_summary">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.region_summary">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">region_summary</span><span class="p">(</span><span class="n">pmap</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">hits</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""How many enriched pathways fall into each map region, per condition.</span>
+
+<span class="sd">    Columns: ``cluster, cluster_label, n_pathways_in_region`` and one count column</span>
+<span class="sd">    per condition, plus ``fraction_&lt;condition&gt;`` (hits / region size).</span>
+<span class="sd">    """</span>
+    <span class="n">conds</span> <span class="o">=</span> <span class="n">hits</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"conditions"</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">hits</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">pmap</span><span class="p">[</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">pmap</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">)[</span><span class="s2">"cluster_label"</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">size</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"cluster"</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="s2">"cluster_label"</span><span class="p">:</span> <span class="n">labels</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="s2">"n_pathways_in_region"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">c</span><span class="p">])}</span>
+        <span class="n">sub</span> <span class="o">=</span> <span class="n">hits</span><span class="p">[</span><span class="n">hits</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">cond</span> <span class="ow">in</span> <span class="n">conds</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">sub</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">cond</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">cond</span> <span class="ow">or</span> <span class="s2">"hits"</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s2">"n_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s2">"fraction_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">size</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    <span class="n">count_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"n_"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">!=</span> <span class="s2">"n_pathways_in_region"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">_t</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="n">count_cols</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"_t"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">"_t"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="plot_pathway_map">
+<a class="viewcode-back" href="../../api.html#simpnetworkviz.plot_pathway_map">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_pathway_map</span><span class="p">(</span>
+    <span class="n">pmap</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">table</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fdr_cutoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">label_top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">show_region_labels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">11.0</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">color_by_category</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">categories</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Draw the library map, with the enriched pathways of ``table`` highlighted.</span>
+
+<span class="sd">    Every pathway is a light grey point; region labels sit at region centres.</span>
+<span class="sd">    ``color_by_category=True`` colors the points by source collection instead</span>
+<span class="sd">    (:func:`~simpnetworkviz.network.pathway_category`, or ``categories`` =</span>
+<span class="sd">    ``{pathway: category}``), for a map built from several databases.</span>
+<span class="sd">    Enriched pathways are drawn on top: one condition = filled circles sized by</span>
+<span class="sd">    -log10 FDR; several conditions = small pie charts, one slice per condition,</span>
+<span class="sd">    as in the comparison networks. The ``label_top`` most significant hits are</span>
+<span class="sd">    named.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Wedge</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">LEGEND_TEXT_SIZE</span><span class="p">,</span> <span class="n">LEGEND_TITLE_SIZE</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">SEQ_CMAP</span><span class="p">,</span> <span class="n">condition_color</span><span class="p">,</span> <span class="n">darken</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">colormaps</span>
+
+    <span class="n">hits</span> <span class="o">=</span> <span class="n">map_hits</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">fdr_cutoff</span><span class="p">)</span> <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">pmap</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">conds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">hits</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"conditions"</span><span class="p">,</span> <span class="p">[</span><span class="s2">""</span><span class="p">]))</span> <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">multi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">conds</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+
+    <span class="n">span</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">width</span> <span class="o">*</span> <span class="mf">0.85</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span>
+    <span class="n">small</span> <span class="o">=</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="mi">7</span>  <span class="c1"># panel of a grid: smaller markers and text</span>
+    <span class="n">cat_handles</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">color_by_category</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.network</span><span class="w"> </span><span class="kn">import</span> <span class="n">pathway_category</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">lighten</span>
+
+        <span class="n">cats</span> <span class="o">=</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">pathway_category</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">categories</span><span class="p">))</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cats</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">order</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">cats</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">lighten</span><span class="p">(</span><span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mf">0.35</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"x"</span><span class="p">][</span><span class="n">m</span><span class="p">],</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"y"</span><span class="p">][</span><span class="n">m</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">10</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+            <span class="n">cat_handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
+                                          <span class="n">markeredgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">)"</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">pmap</span><span class="p">[</span><span class="s2">"y"</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">9</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"#D9D9D9"</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">region_texts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">show_region_labels</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">pmap</span><span class="p">[</span><span class="n">pmap</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"cluster"</span><span class="p">):</span>
+            <span class="n">lab</span> <span class="o">=</span> <span class="n">grp</span><span class="p">[</span><span class="s2">"cluster_label"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">lab</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">grp</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="mi">16</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">20</span><span class="p">),</span>
+                            <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">6.5</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3A"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linespacing</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
+                            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">"round,pad=0.2"</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.72</span><span class="p">))</span>
+                <span class="n">region_texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">):</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">hits</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mf">1e-300</span><span class="p">))</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">sig</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">r0</span> <span class="o">=</span> <span class="n">span</span> <span class="o">*</span> <span class="mf">0.006</span>
+        <span class="n">by_pw</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hits</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">by_pw</span><span class="p">[</span><span class="n">h</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]][</span><span class="nb">str</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="s2">"condition"</span><span class="p">])]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="s2">"fdr"</span><span class="p">],</span> <span class="mf">1e-300</span><span class="p">))))</span>
+        <span class="k">for</span> <span class="n">pw</span><span class="p">,</span> <span class="n">per</span> <span class="ow">in</span> <span class="n">by_pw</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">per</span><span class="o">.</span><span class="n">values</span><span class="p">()))[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">per</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">r0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">1.6</span> <span class="o">*</span> <span class="n">best</span> <span class="o">/</span> <span class="n">vmax</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">multi</span><span class="p">:</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">conds</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">conds</span><span class="p">):</span>
+                    <span class="n">col</span> <span class="o">=</span> <span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">per</span> <span class="k">else</span> <span class="s2">"#FFFFFF"</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Wedge</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="mi">90</span> <span class="o">-</span> <span class="mi">360</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">k</span><span class="p">,</span> <span class="mi">90</span> <span class="o">-</span> <span class="mi">360</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">k</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
+                                       <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#333333"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">colormaps</span><span class="p">[</span><span class="n">SEQ_CMAP</span><span class="p">](</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.65</span> <span class="o">*</span> <span class="n">best</span> <span class="o">/</span> <span class="n">vmax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Circle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">darken</span><span class="p">(</span><span class="s2">"#C94A2A"</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">hits</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"fdr"</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">"pathway"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">label_top</span><span class="p">)</span>
+        <span class="n">hit_texts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+
+        <span class="n">offsets</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">)]</span>  <span class="c1"># spread the starting positions around the points</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()):</span>
+            <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">clean_pathway_name</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="s2">"pathway"</span><span class="p">]),</span> <span class="mi">28</span><span class="p">),</span> <span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">h</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">),</span>
+                            <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span> <span class="k">if</span> <span class="n">dx</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span> <span class="k">if</span> <span class="n">dy</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"top"</span><span class="p">,</span>
+                            <span class="n">fontsize</span><span class="o">=</span><span class="mf">6.5</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1A1A1A"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">linespacing</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
+                            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">"round,pad=0.2"</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">"#BBBBBB"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">),</span>
+                            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#777777"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">hit_texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hit_texts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+    <span class="n">_repel_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">region_texts</span> <span class="o">+</span> <span class="n">hit_texts</span><span class="p">)</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">pmap</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"method"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pmap</span><span class="p">)</span><span class="si">}</span><span class="s2"> gene sets"</span> <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">", </span><span class="si">{</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> on gene-set similarity"</span> <span class="k">if</span> <span class="n">method</span> <span class="k">else</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">14</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">6</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">LEGEND_TEXT_SIZE</span> <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="k">if</span> <span class="n">small</span> <span class="k">else</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#666666"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cat_handles</span><span class="p">:</span>
+        <span class="c1"># A figure legend anchored to the axes: it survives the condition legend below and is</span>
+        <span class="c1"># included in bbox_inches="tight" (an axes legend re-added with add_artist is not).</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">cat_handles</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Collection"</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">,</span> <span class="n">bbox_transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                   <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.55</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">)</span> <span class="ow">and</span> <span class="n">multi</span><span class="p">)</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">),</span>
+                   <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">LEGEND_TEXT_SIZE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="n">LEGEND_TITLE_SIZE</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multi</span><span class="p">:</span>
+            <span class="n">handles</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">condition_color</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                                  <span class="n">markeredgecolor</span><span class="o">=</span><span class="s2">"#333333"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">conds</span><span class="p">)]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">handles</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Enriched in"</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">,</span>
+                      <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">LEGEND_TEXT_SIZE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="n">LEGEND_TITLE_SIZE</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"colored = enriched (FDR ≤ </span><span class="si">{</span><span class="n">fdr_cutoff</span><span class="si">}</span><span class="s2">); size and shade = -log10 FDR (max </span><span class="si">{</span><span class="n">vmax</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
+                    <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">LEGEND_TEXT_SIZE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#666666"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Hua Huang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

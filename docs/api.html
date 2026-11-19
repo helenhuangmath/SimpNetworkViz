@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API reference &mdash; SimpNetworkViz 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b209f710" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Common Q &amp; A" href="qa.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SimpNetworkViz
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install SimpNetworkViz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#check-the-install">Check the install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#optional-extras">Optional extras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#downloaded-files">Downloaded files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Standard workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="workflow.html#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow.html#how-to-get-help">How to get help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow.html#input-data">Input data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow.html#running-the-analysis">Running the analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow.html#exploring-and-exporting-results">Exploring and exporting results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Subcommands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/run.html">run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/run.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/run.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/run.html#enrichment-test-ora-or-gsea">Enrichment test: ORA or GSEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/run.html#the-settings-you-will-adjust-most-often">The settings you will adjust most often</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/run.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/run.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/compare.html">compare</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/compare.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/compare.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/compare.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/markers.html">markers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/markers.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/markers.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/markers.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/map.html">map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/map.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/map.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/map.html#command-line-options">Command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/map.html#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/enrich.html">enrich</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/enrich.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/enrich.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/enrich.html#command-line-options">Command-line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/demo.html">demo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/demo.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/demo.html#examples-of-command-line-usage">Examples of command-line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/demo.html#command-line-options">Command-line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/libraries.html">libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/libraries.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/libraries.html#using-a-library">Using a library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/gui.html">gui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/gui.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#options-shared-by-run-compare-and-markers">Options shared by <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">compare</span></code> and <code class="docutils literal notranslate"><span class="pre">markers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fileformats.html">File formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fileformats.html#input-formats">Input formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformats.html#output-files">Output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformats.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/demo.html">Demo walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-1-run-the-demo">Step 1: Run the demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-2-look-at-the-enrichment-table">Step 2: Look at the enrichment table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-3-read-the-pathway-network">Step 3: Read the pathway network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-4-read-the-gene-networks">Step 4: Read the gene networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-5-explore-the-interactive-viewer">Step 5: Explore the interactive viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-6-compare-conditions">Step 6: Compare conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#step-7-know-the-other-files">Step 7: Know the other files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/demo.html#next">Next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/cl13_vs_arm.html">Comparing gene groups of two conditions: Cl13 vs Arm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-1-get-the-data-and-the-gene-sets">Step 1: Get the data and the gene sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-2-run-the-comparison">Step 2: Run the comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-3-compare-cl13-and-arm-all-genes-pooled">Step 3: Compare Cl13 and Arm, all genes pooled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-4-compare-matched-subgroups-tex-gn-versus-tmem-gn">Step 4: Compare matched subgroups, TEX_Gn versus TMEM_Gn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-5-compare-the-six-subgroups-within-one-condition">Step 5: Compare the six subgroups within one condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-6-place-every-analysis-on-the-pathway-map">Step 6: Place every analysis on the pathway map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#step-7-read-the-tables">Step 7: Read the tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#doing-the-same-with-your-own-groups">Doing the same with your own groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/cl13_vs_arm.html#notes-on-interpretation">Notes on interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/index.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/library_map.html">The whole-library view and the pathway map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guide/library_map.html#the-whole-library-view">The whole-library view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/library_map.html#the-pathway-map-a-fixed-coordinate-system-for-a-whole-library">The pathway map: a fixed coordinate system for a whole library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/library_map.html#one-map-per-msigdb-collection">One map per MSigDB collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/library_map.html#the-interactive-map">The interactive map</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guide/grouping.html">Grouping pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/figures.html">Customizing the figures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guide/figures.html#fine-tuning-in-cytoscape">Fine-tuning in Cytoscape</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guide/python.html">Using the Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gallery.html">Gallery of outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory behind SimpNetworkViz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="qa.html">Common Q &amp; A</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qa.html#installing-and-running">Installing and running</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#the-shell-says-snv-command-not-found">The shell says <code class="docutils literal notranslate"><span class="pre">snv:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#which-steps-need-the-internet">Which steps need the internet?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#how-do-i-make-the-network-viewer-work-offline">How do I make the network viewer work offline?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qa.html#input">Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#which-gene-set-library-should-i-use">Which gene-set library should I use?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#my-genes-are-mouse-symbols-what-should-i-use">My genes are mouse symbols. What should I use?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#what-should-the-background-be">What should the background be?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#should-i-use-ora-or-gsea">Should I use ORA or GSEA?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#can-i-use-enrichment-results-from-another-tool">Can I use enrichment results from another tool?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qa.html#results">Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#no-pathway-passes-the-cutoff">No pathway passes the cutoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#the-figure-has-too-many-pathways-or-the-clusters-are-too-large">The figure has too many pathways, or the clusters are too large</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#a-cluster-label-is-awkward">A cluster label is awkward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#small-odd-go-terms-appear">Small, odd GO terms appear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#how-do-i-read-a-pie-chart-node">How do I read a pie-chart node?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#go-is-too-large-to-draw-as-a-whole-library">GO is too large to draw as a whole library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qa.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#how-do-i-get-png-figures">How do I get PNG figures?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#the-font-in-my-pdf-is-not-arial">The font in my PDF is not Arial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qa.html#how-do-i-cite-simpnetworkviz">How do I cite SimpNetworkViz?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.run_pipeline"><code class="docutils literal notranslate"><span class="pre">run_pipeline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.analyze_genes"><code class="docutils literal notranslate"><span class="pre">analyze_genes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gene-sets-and-gene-lists">Gene sets and gene lists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.load_gene_sets"><code class="docutils literal notranslate"><span class="pre">load_gene_sets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.fetch_msigdb"><code class="docutils literal notranslate"><span class="pre">fetch_msigdb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.fetch_enrichr_library"><code class="docutils literal notranslate"><span class="pre">fetch_enrichr_library()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_gene_list"><code class="docutils literal notranslate"><span class="pre">read_gene_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_gene_groups"><code class="docutils literal notranslate"><span class="pre">read_gene_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_gmt"><code class="docutils literal notranslate"><span class="pre">read_gmt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.write_gmt"><code class="docutils literal notranslate"><span class="pre">write_gmt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.normalize_species"><code class="docutils literal notranslate"><span class="pre">normalize_species()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.species_taxon"><code class="docutils literal notranslate"><span class="pre">species_taxon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#enrichment">Enrichment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.enrich"><code class="docutils literal notranslate"><span class="pre">enrich()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.enrich_updown"><code class="docutils literal notranslate"><span class="pre">enrich_updown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.gsea_prerank"><code class="docutils literal notranslate"><span class="pre">gsea_prerank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_ranking"><code class="docutils literal notranslate"><span class="pre">read_ranking()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.bh_fdr"><code class="docutils literal notranslate"><span class="pre">bh_fdr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_enrichment"><code class="docutils literal notranslate"><span class="pre">read_enrichment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_pathway_list"><code class="docutils literal notranslate"><span class="pre">read_pathway_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.table_from_pathways"><code class="docutils literal notranslate"><span class="pre">table_from_pathways()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comparing-conditions-and-single-cell-markers">Comparing conditions and single-cell markers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.compare_conditions"><code class="docutils literal notranslate"><span class="pre">compare_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.merge_conditions"><code class="docutils literal notranslate"><span class="pre">merge_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.enrichment_matrix"><code class="docutils literal notranslate"><span class="pre">enrichment_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.markers_to_conditions"><code class="docutils literal notranslate"><span class="pre">markers_to_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.read_marker_table"><code class="docutils literal notranslate"><span class="pre">read_marker_table()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#networks">Networks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.build_pathway_network"><code class="docutils literal notranslate"><span class="pre">build_pathway_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.build_library_network"><code class="docutils literal notranslate"><span class="pre">build_library_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.build_gene_network"><code class="docutils literal notranslate"><span class="pre">build_gene_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.Network"><code class="docutils literal notranslate"><span class="pre">Network</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.annotate_cluster"><code class="docutils literal notranslate"><span class="pre">annotate_cluster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.clean_pathway_name"><code class="docutils literal notranslate"><span class="pre">clean_pathway_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.group_by_category"><code class="docutils literal notranslate"><span class="pre">group_by_category()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.group_by_keywords"><code class="docutils literal notranslate"><span class="pre">group_by_keywords()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.pathway_category"><code class="docutils literal notranslate"><span class="pre">pathway_category()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pathway-maps">Pathway maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.build_pathway_map"><code class="docutils literal notranslate"><span class="pre">build_pathway_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.save_map"><code class="docutils literal notranslate"><span class="pre">save_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.load_map"><code class="docutils literal notranslate"><span class="pre">load_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.plot_pathway_map"><code class="docutils literal notranslate"><span class="pre">plot_pathway_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.map_hits"><code class="docutils literal notranslate"><span class="pre">map_hits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.region_summary"><code class="docutils literal notranslate"><span class="pre">region_summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.write_map_html"><code class="docutils literal notranslate"><span class="pre">write_map_html()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.split_by_category"><code class="docutils literal notranslate"><span class="pre">split_by_category()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.build_category_maps"><code class="docutils literal notranslate"><span class="pre">build_category_maps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.save_category_maps"><code class="docutils literal notranslate"><span class="pre">save_category_maps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.plot_category_maps"><code class="docutils literal notranslate"><span class="pre">plot_category_maps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.plot_network"><code class="docutils literal notranslate"><span class="pre">plot_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.plot_pathway_gene_network"><code class="docutils literal notranslate"><span class="pre">plot_pathway_gene_network()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.plot_cluster_barplot"><code class="docutils literal notranslate"><span class="pre">plot_cluster_barplot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#export">Export</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.save_all"><code class="docutils literal notranslate"><span class="pre">save_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.write_html"><code class="docutils literal notranslate"><span class="pre">write_html()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.write_cyjs"><code class="docutils literal notranslate"><span class="pre">write_cyjs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpnetworkviz.write_graphml"><code class="docutils literal notranslate"><span class="pre">write_graphml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SimpNetworkViz</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API reference</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/helenhuangmath/SimpNetworkViz/blob/gh-pages/docsrc/api.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>Everything on this page is available from the top-level package:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simpnetworkviz</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">snv</span>
+</pre></div>
+</div>
+<p>For an introduction with examples, see <a class="reference internal" href="guide/python.html"><span class="std std-doc">Using the Python API</span></a>.</p>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.run_pipeline">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">run_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enrichment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'demo'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'snv_output'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ora'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.375</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'combined'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_full_gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mcl'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library_network</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_network_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'shared'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('pdf',</span> <span class="pre">'svg',</span> <span class="pre">'html',</span> <span class="pre">'cyjs',</span> <span class="pre">'graphml',</span> <span class="pre">'csv')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_updown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_network_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enrich_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathway_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pipeline.html#run_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.run_pipeline" title="Link to this definition"></a></dt>
+<dd><p>Gene list / enrichment table / pathway list / conditions -&gt; networks + figures on disk.</p>
+<p>Exactly one of <code class="docutils literal notranslate"><span class="pre">genes</span></code> (list or <code class="docutils literal notranslate"><span class="pre">{gene:</span> <span class="pre">log2FC}</span></code>), <code class="docutils literal notranslate"><span class="pre">enrichment</span></code> (table
+or path), <code class="docutils literal notranslate"><span class="pre">pathways</span></code> (names in <code class="docutils literal notranslate"><span class="pre">gene_sets</span></code>) or <code class="docutils literal notranslate"><span class="pre">conditions</span></code>
+(<code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">genes}</span></code>, see <code class="xref py py-func docutils literal notranslate"><span class="pre">compare_conditions()</span></code>)
+is the starting point; <code class="docutils literal notranslate"><span class="pre">genes</span></code> may also be given with the others to color
+gene nodes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">method</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;ora&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;gsea&quot;</span></code> (<code class="docutils literal notranslate"><span class="pre">genes</span></code>/<code class="docutils literal notranslate"><span class="pre">conditions</span></code> must then carry
+scores for all measured genes). <code class="docutils literal notranslate"><span class="pre">library_network=True</span></code> draws every pathway
+of the library and highlights the enriched ones. <code class="docutils literal notranslate"><span class="pre">cluster_kwargs</span></code> passes
+<code class="docutils literal notranslate"><span class="pre">categories</span></code>, <code class="docutils literal notranslate"><span class="pre">themes</span></code>, <code class="docutils literal notranslate"><span class="pre">louvain_resolution</span></code>, <code class="docutils literal notranslate"><span class="pre">mcl_inflation</span></code> or
+<code class="docutils literal notranslate"><span class="pre">hierarchical_threshold</span></code> to <a class="reference internal" href="#simpnetworkviz.build_pathway_network" title="simpnetworkviz.build_pathway_network"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_pathway_network()</span></code></a>. <code class="docutils literal notranslate"><span class="pre">pathway_map</span></code>
+(a map table or the CSV path from <code class="xref py py-func docutils literal notranslate"><span class="pre">build_pathway_map()</span></code>)
+adds <code class="docutils literal notranslate"><span class="pre">pathway_map.pdf</span></code> with the enriched pathways highlighted on the fixed
+library map, plus <code class="docutils literal notranslate"><span class="pre">pathway_map_hits.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">pathway_map_regions.csv</span></code>.
+<code class="docutils literal notranslate"><span class="pre">species</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;human&quot;</span></code>/<code class="docutils literal notranslate"><span class="pre">&quot;mouse&quot;</span></code>) selects MSigDB collections given as
+<code class="docutils literal notranslate"><span class="pre">&quot;msigdb:NAME&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">gene_sets</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.analyze_genes">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">analyze_genes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'demo'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_updown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ora'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">enrich_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pipeline.html#analyze_genes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.analyze_genes" title="Link to this definition"></a></dt>
+<dd><p>Enrichment for a gene list or <code class="docutils literal notranslate"><span class="pre">{gene:</span> <span class="pre">log2FC}</span></code> dict.</p>
+<p><code class="docutils literal notranslate"><span class="pre">method=&quot;ora&quot;</span></code>: hypergeometric test. With fold changes and
+<code class="docutils literal notranslate"><span class="pre">split_updown=True</span></code>, up- and down-regulated genes are tested separately so
+the network can be colored red/blue.</p>
+<p><code class="docutils literal notranslate"><span class="pre">method=&quot;gsea&quot;</span></code>: preranked GSEA on the <code class="docutils literal notranslate"><span class="pre">{gene:</span> <span class="pre">score}</span></code> values (all
+measured genes with their statistic, not only the significant ones).</p>
+</dd></dl>
+
+</section>
+<section id="gene-sets-and-gene-lists">
+<h2>Gene sets and gene lists<a class="headerlink" href="#gene-sets-and-gene-lists" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.load_gene_sets">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">load_gene_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#load_gene_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.load_gene_sets" title="Link to this definition"></a></dt>
+<dd><p>Load gene sets from a GMT path, an Enrichr library name, an MSigDB collection, <code class="docutils literal notranslate"><span class="pre">&quot;demo&quot;</span></code> or a dict.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;msigdb:GO_BP&quot;</span></code> (or <code class="docutils literal notranslate"><span class="pre">&quot;msigdb:Hallmark,msigdb:Reactome&quot;</span></code>) downloads the
+MSigDB collection for <code class="docutils literal notranslate"><span class="pre">species</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;human&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;mouse&quot;</span></code>; see
+<code class="xref py py-data docutils literal notranslate"><span class="pre">MSIGDB_COLLECTIONS</span></code> and <a class="reference internal" href="#simpnetworkviz.fetch_msigdb" title="simpnetworkviz.fetch_msigdb"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_msigdb()</span></code></a>). Several sources may be
+combined by passing a list or a comma separated string, e.g.
+<code class="docutils literal notranslate"><span class="pre">&quot;KEGG_2021_Human,Reactome_2022&quot;</span></code>. Pathway names are prefixed with the
+library name only when names collide.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.fetch_msigdb">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">fetch_msigdb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2025.1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#fetch_msigdb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.fetch_msigdb" title="Link to this definition"></a></dt>
+<dd><p>Download an MSigDB collection (gene symbols) for <code class="docutils literal notranslate"><span class="pre">species</span></code> from the Broad release server.</p>
+<p><code class="docutils literal notranslate"><span class="pre">collection</span></code> is a key of <code class="xref py py-data docutils literal notranslate"><span class="pre">MSIGDB_COLLECTIONS</span></code> (<code class="docutils literal notranslate"><span class="pre">Hallmark</span></code>, <code class="docutils literal notranslate"><span class="pre">GO_BP</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Reactome</span></code>, <code class="docutils literal notranslate"><span class="pre">KEGG</span></code> ...); mouse collections are MSigDB's native mouse
+sets (<code class="docutils literal notranslate"><span class="pre">mh</span></code>, <code class="docutils literal notranslate"><span class="pre">m2</span></code>, <code class="docutils literal notranslate"><span class="pre">m5</span></code> ...), not orthology-mapped human ones. Files are
+cached under <code class="docutils literal notranslate"><span class="pre">~/.cache/simpnetworkviz/msigdb</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.fetch_enrichr_library">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">fetch_enrichr_library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#fetch_enrichr_library"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.fetch_enrichr_library" title="Link to this definition"></a></dt>
+<dd><p>Download an Enrichr gene-set library (cached under <code class="docutils literal notranslate"><span class="pre">~/.cache/simpnetworkviz</span></code>).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_gene_list">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_gene_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#read_gene_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_gene_list" title="Link to this definition"></a></dt>
+<dd><p>Read genes from a text/CSV/TSV file.</p>
+<p>Accepts one gene per line, or a table whose first column is the gene and an
+optional numeric column (e.g. log2 fold change). Returns <code class="docutils literal notranslate"><span class="pre">{gene:</span> <span class="pre">value}</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_gene_groups">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_gene_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/compare.html#read_gene_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_gene_groups" title="Link to this definition"></a></dt>
+<dd><p>Read a wide table with one gene group per column (header = group name).</p>
+<p>Columns may have different lengths (empty cells are ignored). Returns
+<code class="docutils literal notranslate"><span class="pre">{group:</span> <span class="pre">{gene:</span> <span class="pre">None}}</span></code> ready for <a class="reference internal" href="#simpnetworkviz.compare_conditions" title="simpnetworkviz.compare_conditions"><code class="xref py py-func docutils literal notranslate"><span class="pre">compare_conditions()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_gmt">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_gmt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#read_gmt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_gmt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.write_gmt">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">write_gmt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#write_gmt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.write_gmt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.normalize_species">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">normalize_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#normalize_species"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.normalize_species" title="Link to this definition"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">&quot;human&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;mouse&quot;</span></code> from a name, MSigDB code or NCBI taxon id.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.species_taxon">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">species_taxon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/genesets.html#species_taxon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.species_taxon" title="Link to this definition"></a></dt>
+<dd><p>NCBI taxon id of a species name (for STRING).</p>
+</dd></dl>
+
+</section>
+<section id="enrichment">
+<h2>Enrichment<a class="headerlink" href="#enrichment" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.enrich">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">enrich</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/enrichment.html#enrich"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.enrich" title="Link to this definition"></a></dt>
+<dd><p>Hypergeometric over-representation analysis with BH correction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>genes</strong> (<em>query genes</em><em> (</em><em>e.g. differentially expressed genes</em><em>)</em>)</p></li>
+<li><p><strong>gene_sets</strong> (<code class="docutils literal notranslate"><span class="pre">{pathway:</span> <span class="pre">[genes]}</span></code>, see <a class="reference internal" href="#simpnetworkviz.load_gene_sets" title="simpnetworkviz.load_gene_sets"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_gene_sets()</span></code></a>)</p></li>
+<li><p><strong>background</strong> (universe of genes; defaults to all genes in <code class="docutils literal notranslate"><span class="pre">gene_sets</span></code>.) -- Using the genes actually measured in your experiment is recommended.</p></li>
+<li><p><strong>min_size</strong> (<em>gene-set size limits</em><em> (</em><em>after restricting to background</em><em>)</em>)</p></li>
+<li><p><strong>max_size</strong> (<em>gene-set size limits</em><em> (</em><em>after restricting to background</em><em>)</em>)</p></li>
+<li><p><strong>min_overlap</strong> (<em>pathways with fewer query genes are not reported</em>)</p></li>
+<li><p><strong>direction</strong> (optional label stored in the <code class="docutils literal notranslate"><span class="pre">direction</span></code> column (&quot;up&quot;/&quot;down&quot;))</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.enrich_updown">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">enrich_updown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">up</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">down</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/enrichment.html#enrich_updown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.enrich_updown" title="Link to this definition"></a></dt>
+<dd><p>Run <a class="reference internal" href="#simpnetworkviz.enrich" title="simpnetworkviz.enrich"><code class="xref py py-func docutils literal notranslate"><span class="pre">enrich()</span></code></a> separately for up- and down-regulated genes and stack the results.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.gsea_prerank">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">gsea_prerank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ranking</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_perm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bh'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/gsea.html#gsea_prerank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.gsea_prerank" title="Link to this definition"></a></dt>
+<dd><p>Preranked GSEA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ranking</strong> (<code class="docutils literal notranslate"><span class="pre">{gene:</span> <span class="pre">score}</span></code>, a Series indexed by gene, or a table whose) -- first column is the gene and which has a statistic column (<code class="docutils literal notranslate"><span class="pre">stat</span></code>,
+<code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">log2FoldChange</span></code> ...). Higher scores = up-regulated.</p></li>
+<li><p><strong>gene_sets</strong> (<code class="docutils literal notranslate"><span class="pre">{pathway:</span> <span class="pre">[genes]}</span></code>)</p></li>
+<li><p><strong>min_size</strong> (<em>size limits after restricting a set to ranked genes</em>)</p></li>
+<li><p><strong>max_size</strong> (<em>size limits after restricting a set to ranked genes</em>)</p></li>
+<li><p><strong>n_perm</strong> (<em>gene permutations for the null distribution</em><em> (</em><em>per set size</em><em>)</em>)</p></li>
+<li><p><strong>weight</strong> (<em>exponent on the scores</em><em> (</em><em>1 = classic weighted GSEA</em><em>, </em><em>0 = plain KS</em><em>)</em>)</p></li>
+<li><p><strong>fdr_method</strong> (<code class="docutils literal notranslate"><span class="pre">&quot;bh&quot;</span></code> (Benjamini-Hochberg over the empirical p-values, as) -- <code class="docutils literal notranslate"><span class="pre">fgsea</span></code> reports) or <code class="docutils literal notranslate"><span class="pre">&quot;gsea&quot;</span></code> (the original NES-based FDR q-value)</p></li>
+<li><p><strong>leading-edge</strong> (<em>Returns the standard enrichment table. genes holds the</em>)</p></li>
+<li><p><strong>genes</strong></p></li>
+<li><p><strong>number</strong> (<em>overlap their</em>)</p></li>
+<li><p><strong>NES.</strong> (<em>direction the sign</em><em> of </em><em>the</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_ranking">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_ranking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/gsea.html#read_ranking"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_ranking" title="Link to this definition"></a></dt>
+<dd><p>Read a ranked gene table (gene + statistic) into a sorted Series.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.bh_fdr">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">bh_fdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/enrichment.html#bh_fdr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.bh_fdr" title="Link to this definition"></a></dt>
+<dd><p>Benjamini-Hochberg adjusted p-values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_enrichment">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_enrichment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/enrichment.html#read_enrichment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_enrichment" title="Link to this definition"></a></dt>
+<dd><p>Read an enrichment table and map it to the standard columns.</p>
+<p>Works with tables from this package, Enrichr, clusterProfiler (<code class="docutils literal notranslate"><span class="pre">enrichGO</span></code>,
+<code class="docutils literal notranslate"><span class="pre">enrichKEGG</span></code>, <code class="docutils literal notranslate"><span class="pre">GSEA</span></code>), g:Profiler, GSEA (<code class="docutils literal notranslate"><span class="pre">NES</span></code>/<code class="docutils literal notranslate"><span class="pre">FDR</span> <span class="pre">q-val</span></code>), Metascape-like
+exports and simple two-column <code class="docutils literal notranslate"><span class="pre">pathway,</span> <span class="pre">fdr</span></code> tables. <code class="docutils literal notranslate"><span class="pre">source</span></code> may be a
+path or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_pathway_list">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_pathway_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/enrichment.html#read_pathway_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_pathway_list" title="Link to this definition"></a></dt>
+<dd><p>Read pathway names, one per line.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.table_from_pathways">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">table_from_pathways</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathways</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/enrichment.html#table_from_pathways"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.table_from_pathways" title="Link to this definition"></a></dt>
+<dd><p>Build a minimal enrichment-like table for a user supplied list of pathways.</p>
+<p>Pathway names are matched exactly first, then case-insensitively ignoring
+underscores/punctuation, then by their cleaned name (<code class="docutils literal notranslate"><span class="pre">&quot;G2M</span> <span class="pre">checkpoint&quot;</span></code>
+matches <code class="docutils literal notranslate"><span class="pre">HALLMARK_G2M_CHECKPOINT</span></code>). <code class="docutils literal notranslate"><span class="pre">query</span></code> genes (optional) populate the <code class="docutils literal notranslate"><span class="pre">genes</span></code> column.</p>
+</dd></dl>
+
+</section>
+<section id="comparing-conditions-and-single-cell-markers">
+<h2>Comparing conditions and single-cell markers<a class="headerlink" href="#comparing-conditions-and-single-cell-markers" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.compare_conditions">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">compare_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conditions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'demo'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ora'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_updown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/compare.html#compare_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.compare_conditions" title="Link to this definition"></a></dt>
+<dd><p>Run enrichment for every condition and stack the results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conditions</strong> (<code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">genes}</span></code> where genes is a list, a <code class="docutils literal notranslate"><span class="pre">{gene:</span> <span class="pre">log2FC}</span></code>) -- dict, a ranked Series/dict (<code class="docutils literal notranslate"><span class="pre">method=&quot;gsea&quot;</span></code>), an enrichment table
+(DataFrame or path, used as is) or a path to a gene list.</p></li>
+<li><p><strong>method</strong> (<code class="docutils literal notranslate"><span class="pre">&quot;ora&quot;</span></code> (hypergeometric test) or <code class="docutils literal notranslate"><span class="pre">&quot;gsea&quot;</span></code> (preranked GSEA;) -- every condition then needs scores)</p></li>
+<li><p><strong>kwargs</strong> (passed to <a class="reference internal" href="#simpnetworkviz.enrich" title="simpnetworkviz.enrich"><code class="xref py py-func docutils literal notranslate"><span class="pre">enrich()</span></code></a> or <a class="reference internal" href="#simpnetworkviz.gsea_prerank" title="simpnetworkviz.gsea_prerank"><code class="xref py py-func docutils literal notranslate"><span class="pre">gsea_prerank()</span></code></a>)</p></li>
+<li><p><strong>column.</strong> (<em>Returns the standard enrichment table plus a condition</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.merge_conditions">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">merge_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/compare.html#merge_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.merge_conditions" title="Link to this definition"></a></dt>
+<dd><p>Collapse a comparison table to one row per pathway.</p>
+<p>Adds <code class="docutils literal notranslate"><span class="pre">fdr__&lt;condition&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">direction__&lt;condition&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">nes__&lt;condition&gt;</span></code>
+and <code class="docutils literal notranslate"><span class="pre">genes__&lt;condition&gt;</span></code> columns, <code class="docutils literal notranslate"><span class="pre">conditions</span></code> (names in which the
+pathway passes <code class="docutils literal notranslate"><span class="pre">fdr_cutoff</span></code>) and <code class="docutils literal notranslate"><span class="pre">n_conditions</span></code>. <code class="docutils literal notranslate"><span class="pre">fdr</span></code> is the best FDR,
+<code class="docutils literal notranslate"><span class="pre">genes</span></code> the union of hit genes and <code class="docutils literal notranslate"><span class="pre">direction</span></code> <code class="docutils literal notranslate"><span class="pre">up</span></code>/<code class="docutils literal notranslate"><span class="pre">down</span></code> when all
+conditions agree, else <code class="docutils literal notranslate"><span class="pre">mixed</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.enrichment_matrix">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">enrichment_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fdr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'neglog10'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/compare.html#enrichment_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.enrichment_matrix" title="Link to this definition"></a></dt>
+<dd><p>Wide pathway x condition matrix (for heatmaps or your own plots).</p>
+<p><code class="docutils literal notranslate"><span class="pre">value</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;fdr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nes&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fold_enrichment&quot;</span></code> or any column. With
+<code class="docutils literal notranslate"><span class="pre">transform=&quot;neglog10&quot;</span></code> FDRs become -log10 values, signed by direction when
+a direction is known. Pathways not significant in any condition are dropped
+when <code class="docutils literal notranslate"><span class="pre">fdr_cutoff</span></code> is set.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.markers_to_conditions">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">markers_to_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">markers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padj_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_logfc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'up'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/singlecell.html#markers_to_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.markers_to_conditions" title="Link to this definition"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">{cluster:</span> <span class="pre">{gene:</span> <span class="pre">log2FC}}</span></code> from a marker table (path, DataFrame or AnnData).</p>
+<dl class="simple">
+<dt>direction</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;up&quot;</span></code> keeps positive markers (the usual choice), <code class="docutils literal notranslate"><span class="pre">&quot;down&quot;</span></code> negative
+ones, <code class="docutils literal notranslate"><span class="pre">&quot;both&quot;</span></code> keeps both so up/down are tested separately.</p>
+</dd>
+<dt>top_n</dt><dd><p>keep the strongest <code class="docutils literal notranslate"><span class="pre">top_n</span></code> markers per cluster (ranked by <code class="docutils literal notranslate"><span class="pre">score</span></code> when
+present, else by abs(log2FC)); <code class="docutils literal notranslate"><span class="pre">None</span></code> keeps all that pass the filters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.read_marker_table">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">read_marker_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/singlecell.html#read_marker_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.read_marker_table" title="Link to this definition"></a></dt>
+<dd><p>Read a marker table into columns <code class="docutils literal notranslate"><span class="pre">cluster,</span> <span class="pre">gene,</span> <span class="pre">logfc,</span> <span class="pre">padj,</span> <span class="pre">score</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span></code> is a path (CSV/TSV/XLSX) or a DataFrame. Seurat's <code class="docutils literal notranslate"><span class="pre">FindAllMarkers</span></code>
+output (gene names in the row names or a <code class="docutils literal notranslate"><span class="pre">gene</span></code> column), scanpy's
+<code class="docutils literal notranslate"><span class="pre">sc.get.rank_genes_groups_df(adata,</span> <span class="pre">None)</span></code> and scanpy's wide export
+(<code class="docutils literal notranslate"><span class="pre">&lt;group&gt;_n</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;group&gt;_l</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;group&gt;_p</span></code> columns) are recognized.</p>
+</dd></dl>
+
+</section>
+<section id="networks">
+<h2>Networks<a class="headerlink" href="#networks" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.build_pathway_network">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">build_pathway_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'combined'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.375</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_full_gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mcl'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcl_inflation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_cluster_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clustered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">louvain_resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchical_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">themes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highlight_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#build_pathway_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.build_pathway_network" title="Link to this definition"></a></dt>
+<dd><p>Build an EnrichmentMap-style pathway network.</p>
+<p>Nodes are pathways (size = gene-set size, attributes carry FDR/direction),
+edges connect pathways whose gene sets overlap (similarity &gt;= cutoff), and
+pathways are clustered (MCL by default) and annotated with a short label.</p>
+<p><code class="docutils literal notranslate"><span class="pre">table</span></code> is an enrichment table (DataFrame or path; see
+<a class="reference internal" href="#simpnetworkviz.read_enrichment" title="simpnetworkviz.read_enrichment"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_enrichment()</span></code></a>). A comparison table with a <code class="docutils literal notranslate"><span class="pre">condition</span></code> column
+(<code class="xref py py-func docutils literal notranslate"><span class="pre">compare_conditions()</span></code>) gives one node per
+pathway with per-condition attributes, drawn as pie charts. <code class="docutils literal notranslate"><span class="pre">gene_sets</span></code>
+supplies the full pathway gene lists used for similarity (as EnrichmentMap
+does); <code class="docutils literal notranslate"><span class="pre">use_full_gene_sets=False</span></code> compares only the hit genes instead.</p>
+<p>Grouping: <code class="docutils literal notranslate"><span class="pre">cluster_method</span></code> is one of <code class="xref py py-data docutils literal notranslate"><span class="pre">CLUSTER_METHODS</span></code>.
+<code class="docutils literal notranslate"><span class="pre">category</span></code> groups by pathway source (<code class="docutils literal notranslate"><span class="pre">categories</span></code> = <code class="docutils literal notranslate"><span class="pre">{pathway:</span> <span class="pre">group}</span></code>
+or the name prefix such as HALLMARK/KEGG/REACTOME), <code class="docutils literal notranslate"><span class="pre">keyword</span></code> by your
+<code class="docutils literal notranslate"><span class="pre">themes</span></code> (<code class="docutils literal notranslate"><span class="pre">{&quot;Theme&quot;:</span> <span class="pre">[&quot;keyword&quot;,</span> <span class="pre">...]}</span></code>), <code class="docutils literal notranslate"><span class="pre">hierarchical</span></code> by average
+linkage on gene-set distance (<code class="docutils literal notranslate"><span class="pre">hierarchical_threshold</span></code>, default
+<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">similarity_cutoff</span></code>: clusters whose average similarity is above the
+edge cutoff).</p>
+<p><code class="docutils literal notranslate"><span class="pre">highlight_only</span></code>: keep rows that fail <code class="docutils literal notranslate"><span class="pre">fdr_cutoff</span></code> as grey &quot;context&quot;
+nodes instead of dropping them (used by <a class="reference internal" href="#simpnetworkviz.build_library_network" title="simpnetworkviz.build_library_network"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_library_network()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.build_library_network">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">build_library_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enrichment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#build_library_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.build_library_network" title="Link to this definition"></a></dt>
+<dd><p>Network of a <em>whole</em> gene-set library with the enriched pathways highlighted.</p>
+<p>Every pathway of <code class="docutils literal notranslate"><span class="pre">gene_sets</span></code> becomes a node, so the figure shows the full
+landscape of the library (e.g. all 50 Hallmark sets) and which parts of it
+your genes, or each cell cluster's markers, fall into. Pathways absent from
+<code class="docutils literal notranslate"><span class="pre">enrichment</span></code> (or failing <code class="docutils literal notranslate"><span class="pre">fdr_cutoff</span></code>) are drawn as grey context nodes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">enrichment</span></code> is an enrichment or comparison table (or <code class="docutils literal notranslate"><span class="pre">None</span></code> for the bare
+library). Libraries with more than <code class="docutils literal notranslate"><span class="pre">max_pathways</span></code> sets are trimmed to the
+enriched pathways plus the largest remaining sets; pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to keep all
+(slow for GO-sized libraries: use Hallmark/KEGG/Reactome or a GMT subset).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.build_gene_network">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">build_gene_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathway_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'shared'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pathways</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string_species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9606</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#build_gene_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.build_gene_network" title="Link to this definition"></a></dt>
+<dd><p>Build a gene-level network from (a subset of) a pathway network.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mode</span></code> is one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;shared&quot;</span></code>  genes are linked when they belong to the same pathway(s);
+edge weight = number of shared pathways (offline).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code>  protein-protein interactions from STRING (needs internet).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cnet&quot;</span></code>    bipartite gene-pathway &quot;concept network&quot; (like
+clusterProfiler's cnetplot).</p></li>
+</ul>
+<p>Genes are grouped by the pathway cluster they mostly belong to, so the gene
+modules carry the same annotation as the pathway network. Genes come from
+the pathway &quot;genes&quot; column (your query genes); for pathway lists without
+query genes the full gene sets are used. <code class="docutils literal notranslate"><span class="pre">gene_values</span></code> (e.g. log2FC)
+colors the gene nodes.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simpnetworkviz.Network">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_style='clustered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_nodes=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#Network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.Network" title="Link to this definition"></a></dt>
+<dd><p>A laid-out network ready for plotting/export.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="simpnetworkviz.Network.graph">
+<span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#simpnetworkviz.Network.graph" title="Link to this definition"></a></dt>
+<dd><p>(<code class="docutils literal notranslate"><span class="pre">pathway</span></code>/<code class="docutils literal notranslate"><span class="pre">gene</span></code>), <code class="docutils literal notranslate"><span class="pre">size_value</span></code>, <code class="docutils literal notranslate"><span class="pre">cluster</span></code> and, where
+available, <code class="docutils literal notranslate"><span class="pre">fdr</span></code>, <code class="docutils literal notranslate"><span class="pre">direction</span></code>, <code class="docutils literal notranslate"><span class="pre">nes</span></code>, <code class="docutils literal notranslate"><span class="pre">logfc</span></code>, <code class="docutils literal notranslate"><span class="pre">genes</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>networkx graph; node attributes include <code class="docutils literal notranslate"><span class="pre">label</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="simpnetworkviz.Network.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><a class="headerlink" href="#simpnetworkviz.Network.kind" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">&quot;pathway&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;gene&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;gene-pathway&quot;</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="simpnetworkviz.Network.groups">
+<span class="sig-name descname"><span class="pre">groups</span></span><a class="headerlink" href="#simpnetworkviz.Network.groups" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>node -&gt; cluster id (0 = not in a cluster)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="simpnetworkviz.Network.group_labels">
+<span class="sig-name descname"><span class="pre">group_labels</span></span><a class="headerlink" href="#simpnetworkviz.Network.group_labels" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>cluster id -&gt; annotation text</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="simpnetworkviz.Network.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#simpnetworkviz.Network.pos" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>node -&gt; (x, y) in layout units (≈ inches at scale 1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="simpnetworkviz.Network.conditions">
+<span class="sig-name descname"><span class="pre">conditions</span></span><a class="headerlink" href="#simpnetworkviz.Network.conditions" title="Link to this definition"></a></dt>
+<dd><p>nodes then carry <code class="docutils literal notranslate"><span class="pre">fdr__&lt;condition&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">direction__&lt;condition&gt;</span></code> attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>names of the compared conditions (empty for a single data set);</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.annotate_cluster">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">annotate_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#annotate_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.annotate_cluster" title="Link to this definition"></a></dt>
+<dd><p>Summarize a cluster of pathway names into a short label.</p>
+<p><code class="docutils literal notranslate"><span class="pre">method=&quot;words&quot;</span></code> picks the most frequent informative words (similar to
+Cytoscape AutoAnnotate's WordCloud), ordered as they typically appear in the
+names. <code class="docutils literal notranslate"><span class="pre">&quot;representative&quot;</span></code> returns the most significant pathway name.
+<code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> uses words for clusters of 3+ pathways when they are shared by at
+least two pathways, otherwise the representative name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.clean_pathway_name">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">clean_pathway_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#clean_pathway_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.clean_pathway_name" title="Link to this definition"></a></dt>
+<dd><p>Make database pathway names human readable.</p>
+<p><code class="docutils literal notranslate"><span class="pre">HALLMARK_INTERFERON_GAMMA_RESPONSE</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Interferon</span> <span class="pre">gamma</span> <span class="pre">response</span></code>;
+<code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">cycle</span> <span class="pre">(GO:0007049)</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">cycle</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.group_by_category">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">group_by_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#group_by_category"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.group_by_category" title="Link to this definition"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">{category:</span> <span class="pre">[pathway</span> <span class="pre">names]}</span></code> via <a class="reference internal" href="#simpnetworkviz.pathway_category" title="simpnetworkviz.pathway_category"><code class="xref py py-func docutils literal notranslate"><span class="pre">pathway_category()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.group_by_keywords">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">group_by_keywords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">themes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#group_by_keywords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.group_by_keywords" title="Link to this definition"></a></dt>
+<dd><p>Assign pathways to user-defined themes by keyword.</p>
+<p><code class="docutils literal notranslate"><span class="pre">themes</span></code> is <code class="docutils literal notranslate"><span class="pre">{&quot;Cell</span> <span class="pre">cycle&quot;:</span> <span class="pre">[&quot;cycle&quot;,</span> <span class="pre">&quot;mitotic&quot;,</span> <span class="pre">&quot;E2F&quot;],</span> <span class="pre">&quot;Immune&quot;:</span> <span class="pre">[&quot;interferon&quot;,</span> <span class="pre">...]}</span></code>.
+Matching is case-insensitive on the cleaned pathway name; the first theme
+with a hit wins (so order themes from specific to general). Pathways
+matching nothing go to <code class="docutils literal notranslate"><span class="pre">other</span></code> (a theme name) or stay unclustered when
+<code class="docutils literal notranslate"><span class="pre">other</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.pathway_category">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">pathway_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/network.html#pathway_category"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.pathway_category" title="Link to this definition"></a></dt>
+<dd><p>Source collection of a pathway name (<code class="docutils literal notranslate"><span class="pre">HALLMARK</span></code>, <code class="docutils literal notranslate"><span class="pre">KEGG</span></code>, <code class="docutils literal notranslate"><span class="pre">Reactome</span></code>, <code class="docutils literal notranslate"><span class="pre">GO</span></code> ...).</p>
+<p><code class="docutils literal notranslate"><span class="pre">mapping</span></code> (<code class="docutils literal notranslate"><span class="pre">{pathway:</span> <span class="pre">category}</span></code>, e.g. MSigDB sub-collections or your own
+grouping) takes precedence; unmatched names fall back to the prefix/suffix
+conventions of MSigDB and Enrichr, else <code class="docutils literal notranslate"><span class="pre">&quot;Other&quot;</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="pathway-maps">
+<h2>Pathway maps<a class="headerlink" href="#pathway-maps" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.build_pathway_map">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">build_pathway_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_svd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_cluster_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#build_pathway_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.build_pathway_map" title="Link to this definition"></a></dt>
+<dd><p>Embed every gene set of a library in 2-D and group the map into labelled regions.</p>
+<p>Gene sets become TF-IDF-weighted gene vectors, reduced to <code class="docutils literal notranslate"><span class="pre">n_svd</span></code> dimensions
+by truncated SVD, then embedded with <code class="docutils literal notranslate"><span class="pre">method</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;umap&quot;</span></code> (needs
+<code class="docutils literal notranslate"><span class="pre">umap-learn</span></code>), <code class="docutils literal notranslate"><span class="pre">&quot;tsne&quot;</span></code> (needs scikit-learn), <code class="docutils literal notranslate"><span class="pre">&quot;spectral&quot;</span></code> (no extra
+dependency) or <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> (the first available in that order). Regions are
+Louvain communities of the k-nearest-neighbour graph, labelled like network
+clusters. Returns a table with <code class="xref py py-data docutils literal notranslate"><span class="pre">MAP_COLUMNS</span></code>; <code class="docutils literal notranslate"><span class="pre">attrs[&quot;method&quot;]</span></code> records
+the embedding used. Build it once per library and save it with <a class="reference internal" href="#simpnetworkviz.save_map" title="simpnetworkviz.save_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">save_map()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.save_map">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">save_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#save_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.save_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.load_map">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">load_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#load_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.load_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.plot_pathway_map">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">plot_pathway_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_region_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by_category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#plot_pathway_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.plot_pathway_map" title="Link to this definition"></a></dt>
+<dd><p>Draw the library map, with the enriched pathways of <code class="docutils literal notranslate"><span class="pre">table</span></code> highlighted.</p>
+<p>Every pathway is a light grey point; region labels sit at region centres.
+<code class="docutils literal notranslate"><span class="pre">color_by_category=True</span></code> colors the points by source collection instead
+(<code class="xref py py-func docutils literal notranslate"><span class="pre">pathway_category()</span></code>, or <code class="docutils literal notranslate"><span class="pre">categories</span></code> =
+<code class="docutils literal notranslate"><span class="pre">{pathway:</span> <span class="pre">category}</span></code>), for a map built from several databases.
+Enriched pathways are drawn on top: one condition = filled circles sized by
+-log10 FDR; several conditions = small pie charts, one slice per condition,
+as in the comparison networks. The <code class="docutils literal notranslate"><span class="pre">label_top</span></code> most significant hits are
+named.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.map_hits">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">map_hits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#map_hits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.map_hits" title="Link to this definition"></a></dt>
+<dd><p>Enriched pathways of an enrichment/comparison table joined to their map position.</p>
+<p>Returns one row per (pathway, condition) with <code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">cluster,</span> <span class="pre">cluster_label,</span>
+<span class="pre">fdr,</span> <span class="pre">direction,</span> <span class="pre">condition</span></code>. Pathways absent from the map (outside its size
+limits or not in the library) are dropped.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.region_summary">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">region_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hits</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#region_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.region_summary" title="Link to this definition"></a></dt>
+<dd><p>How many enriched pathways fall into each map region, per condition.</p>
+<p>Columns: <code class="docutils literal notranslate"><span class="pre">cluster,</span> <span class="pre">cluster_label,</span> <span class="pre">n_pathways_in_region</span></code> and one count column
+per condition, plus <code class="docutils literal notranslate"><span class="pre">fraction_&lt;condition&gt;</span></code> (hits / region size).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.write_map_html">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">write_map_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/maphtml.html#write_map_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.write_map_html" title="Link to this definition"></a></dt>
+<dd><p>Write the interactive map; returns <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<p>Library points are colored by region (switchable to source collection, for
+a map built from several databases, or to plain grey). <code class="docutils literal notranslate"><span class="pre">table</span></code> is an
+enrichment or comparison table whose enriched pathways are drawn as larger
+points on top, one color per condition. Without it the bare library is drawn.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.split_by_category">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">split_by_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#split_by_category"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.split_by_category" title="Link to this definition"></a></dt>
+<dd><p>Split a library into <code class="docutils literal notranslate"><span class="pre">{category:</span> <span class="pre">gene_sets}</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">categories</span></code> (<code class="docutils literal notranslate"><span class="pre">{pathway:</span> <span class="pre">category}</span></code>) takes precedence; otherwise the
+category is read from the pathway name with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">pathway_category()</span></code>, which knows the MSigDB
+collection prefixes (HALLMARK, GOBP/GOCC/GOMF, KEGG, REACTOME, WP, PID,
+BIOCARTA, HP, MIR ...) and the <code class="docutils literal notranslate"><span class="pre">&quot;Library:</span> <span class="pre">pathway&quot;</span></code> names produced by
+<code class="xref py py-func docutils literal notranslate"><span class="pre">load_gene_sets()</span></code> for several sources.
+Categories with fewer than <code class="docutils literal notranslate"><span class="pre">min_sets</span></code> sets are dropped. Categories are
+returned largest first.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.build_category_maps">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">build_category_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gene_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">methods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('tsne',</span> <span class="pre">'umap')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">map_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#build_category_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.build_category_maps" title="Link to this definition"></a></dt>
+<dd><p>One pathway map per category and embedding method.</p>
+<p>The library is split with <a class="reference internal" href="#simpnetworkviz.split_by_category" title="simpnetworkviz.split_by_category"><code class="xref py py-func docutils literal notranslate"><span class="pre">split_by_category()</span></code></a> (MSigDB collections by
+default, e.g. a full <code class="docutils literal notranslate"><span class="pre">msigdb.v2025.1.Hs.symbols.gmt</span></code> gives Hallmark, GO BP,
+GO CC, GO MF, KEGG, Reactome, WikiPathways ... as separate maps) and
+<a class="reference internal" href="#simpnetworkviz.build_pathway_map" title="simpnetworkviz.build_pathway_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_pathway_map()</span></code></a> is run on each category with every method in
+<code class="docutils literal notranslate"><span class="pre">methods</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;tsne&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;umap&quot;</span></code> by default). Categories with fewer
+than <code class="docutils literal notranslate"><span class="pre">min_sets</span></code> sets after the size filter are skipped with a warning,
+as is a method whose package is not installed. <code class="docutils literal notranslate"><span class="pre">map_kwargs</span></code> are passed
+to <a class="reference internal" href="#simpnetworkviz.build_pathway_map" title="simpnetworkviz.build_pathway_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_pathway_map()</span></code></a> (<code class="docutils literal notranslate"><span class="pre">min_size</span></code>, <code class="docutils literal notranslate"><span class="pre">max_size</span></code>, <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cluster_resolution</span></code>, <code class="docutils literal notranslate"><span class="pre">seed</span></code> ...).</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">{category:</span> <span class="pre">{method:</span> <span class="pre">map}}</span></code>. Within a category the t-SNE and UMAP
+maps share their regions and labels (regions are clustered in similarity
+space), so only the coordinates differ.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.save_category_maps">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">save_category_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('pdf',)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#save_category_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.save_category_maps" title="Link to this definition"></a></dt>
+<dd><p>Write every map of <a class="reference internal" href="#simpnetworkviz.build_category_maps" title="simpnetworkviz.build_category_maps"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_category_maps()</span></code></a> to <code class="docutils literal notranslate"><span class="pre">outdir</span></code>.</p>
+<p>Files are <code class="docutils literal notranslate"><span class="pre">&lt;category&gt;_map_&lt;method&gt;.csv</span></code> (reuse with <code class="docutils literal notranslate"><span class="pre">--map</span></code>) and, with
+<code class="docutils literal notranslate"><span class="pre">plot=True</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;category&gt;_map_&lt;method&gt;.&lt;format&gt;</span></code>. An index table
+<code class="docutils literal notranslate"><span class="pre">category_maps.csv</span></code> (category, method, n_sets, n_regions, csv, figure) is
+written too and returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.plot_category_maps">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">plot_category_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdr_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/pathmap.html#plot_category_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.plot_category_maps" title="Link to this definition"></a></dt>
+<dd><p>One figure with a panel per category (rows) and embedding method (columns).</p>
+<p><code class="docutils literal notranslate"><span class="pre">table</span></code> (an enrichment or comparison table) highlights the enriched
+pathways on each panel, as <a class="reference internal" href="#simpnetworkviz.plot_pathway_map" title="simpnetworkviz.plot_pathway_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_pathway_map()</span></code></a> does on a single map;
+<code class="docutils literal notranslate"><span class="pre">label_top</span></code> names the most significant hits per panel.</p>
+</dd></dl>
+
+</section>
+<section id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.plot_network">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">plot_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_hulls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_cluster_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hull_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#8F8F8F'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.45</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_label_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/plotting.html#plot_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.plot_network" title="Link to this definition"></a></dt>
+<dd><p>Draw a <a class="reference internal" href="#simpnetworkviz.Network" title="simpnetworkviz.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a> and optionally save it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color_by</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;cluster&quot;</em><em>, </em><em>&quot;direction&quot;</em><em> (</em><em>red up / blue down</em><em>, </em><em>shade = FDR</em><em>)</em><em>,</em>) -- &quot;significance&quot; (-log10 FDR), &quot;nes&quot;, &quot;logfc&quot; or any numeric node attribute</p></li>
+<li><p><strong>node_labels</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;all&quot;</em><em>, </em><em>&quot;none&quot;</em><em>, </em><em>&quot;top&quot;</em><em> (</em><em>best node per cluster</em><em>) or </em><em>a list</em><em> of </em><em>node ids</em>)</p></li>
+<li><p><strong>show_hulls</strong> (<em>draw cluster outlines</em><em> (</em><em>&quot;auto&quot;: on for clustered layouts</em><em>)</em>)</p></li>
+<li><p><strong>hull_style</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;cluster&quot;</em><em> (</em><em>outline in cluster color</em><em>) or </em><em>&quot;neutral&quot;</em><em> (</em><em>grey</em><em>)</em>)</p></li>
+<li><p><strong>path</strong> (<em>output file; the extension decides the format</em><em> (</em><em>png</em><em>, </em><em>pdf</em><em>, </em><em>svg</em><em>, </em><em>...</em><em>)</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.plot_pathway_gene_network">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">plot_pathway_gene_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathway_net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('Pathway</span> <span class="pre">network',</span> <span class="pre">'Gene</span> <span class="pre">network')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('a',</span> <span class="pre">'b')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrangement</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">panel_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/plotting.html#plot_pathway_gene_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.plot_pathway_gene_network" title="Link to this definition"></a></dt>
+<dd><p>Two-panel figure: pathway network (a) and its gene network (b).</p>
+<p>Both panels share cluster ids, so each cluster keeps the same outline color
+and label in both panels, making it easy to see which genes drive which
+pathway theme. <code class="docutils literal notranslate"><span class="pre">arrangement</span></code> is &quot;horizontal&quot;, &quot;vertical&quot; or &quot;auto&quot;
+(whichever gives the more compact figure).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.plot_cluster_barplot">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">plot_cluster_barplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/plotting.html#plot_cluster_barplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.plot_cluster_barplot" title="Link to this definition"></a></dt>
+<dd><p>Bar chart of cluster annotations ranked by best -log10 FDR (companion panel). Long cluster
+names wrap, and the figure widens so that no label is cut.</p>
+</dd></dl>
+
+</section>
+<section id="export">
+<h2>Export<a class="headerlink" href="#export" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.save_all">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">save_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'network'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('pdf',</span> <span class="pre">'svg',</span> <span class="pre">'html',</span> <span class="pre">'cyjs',</span> <span class="pre">'graphml',</span> <span class="pre">'csv')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/export.html#save_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.save_all" title="Link to this definition"></a></dt>
+<dd><p>Save a network in several formats; returns <code class="docutils literal notranslate"><span class="pre">{format:</span> <span class="pre">path}</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.write_html">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">write_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/export.html#write_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.write_html" title="Link to this definition"></a></dt>
+<dd><p>Write a standalone interactive network viewer (Cytoscape.js).</p>
+<p><code class="docutils literal notranslate"><span class="pre">js_path</span></code>: path to a local <code class="docutils literal notranslate"><span class="pre">cytoscape.min.js</span></code> to embed, making the file
+work offline. By default the library is loaded from a CDN.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.write_cyjs">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">write_cyjs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/export.html#write_cyjs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.write_cyjs" title="Link to this definition"></a></dt>
+<dd><p>Write a Cytoscape desktop JSON (File ▸ Import ▸ Network from File) plus a style file.</p>
+<p>Cluster ids are stored in the <code class="docutils literal notranslate"><span class="pre">cluster</span></code> column, so in Cytoscape you can run
+AutoAnnotate with &quot;Use existing column: cluster&quot; to draw the cluster outlines.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpnetworkviz.write_graphml">
+<span class="sig-prename descclassname"><span class="pre">simpnetworkviz.</span></span><span class="sig-name descname"><span class="pre">write_graphml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpnetworkviz/export.html#write_graphml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpnetworkviz.write_graphml" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="qa.html" class="btn btn-neutral float-left" title="Common Q &amp; A" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Hua Huang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
