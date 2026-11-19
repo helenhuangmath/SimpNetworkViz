@@ -36,7 +36,7 @@ source_suffix = {".md": "markdown"}
 # The site root (index.html) is the hand-written landing page in _extra/.
 # The documentation starts at documentation.html.
 root_doc = "documentation"
-exclude_patterns = ["_build", "_extra", "README.md", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["_build", "_extra", "_templates", "README.md", "Thumbs.db", ".DS_Store"]
 
 # MyST (Markdown) options
 myst_enable_extensions = ["colon_fence", "deflist"]
@@ -57,8 +57,12 @@ copybutton_prompt_is_regexp = True
 
 # HTML output
 SITE = "https://helenhuangmath.github.io/SimpNetworkViz/"
+# Companion package shown as a tab in the navigation bar. Change this one address when
+# PathwayAgent gets its own documentation site; the front page link is in _extra/index.html.
+PATHWAYAGENT_URL = "https://github.com/helenhuangmath/PathwayAgent"
 html_theme = "pydata_sphinx_theme"
 html_title = "SimpNetworkViz"
+templates_path = ["_templates"]
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 # Files copied to the site root as they are: the landing page (index.html, styles.css),
@@ -69,6 +73,7 @@ html_theme_options = {
     "logo": {"text": "SimpNetworkViz", "link": SITE},
     "header_links_before_dropdown": 5,
     "navbar_align": "left",
+    "navbar_center": ["navbar-nav", "pathwayagent"],  # _templates/pathwayagent.html
     "navbar_end": ["theme-switcher", "navbar-icon-links"],
     "icon_links": [
         {"name": "GitHub", "url": "https://github.com/helenhuangmath/SimpNetworkViz", "icon": "fa-brands fa-github"},
@@ -79,7 +84,7 @@ html_theme_options = {
     "footer_start": ["copyright"],
     "footer_end": ["sphinx-version"],
 }
-html_context = {"default_mode": "light"}
+html_context = {"default_mode": "light", "pathwayagent_url": PATHWAYAGENT_URL}
 
 
 def _tidy_docstring(app, what, name, obj, options, lines):

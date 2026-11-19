@@ -29,3 +29,7 @@ bash docsrc/build.sh
 | `_extra/examples/` | Interactive example maps, copied to the site as they are |
 
 Most pages started as sections of the top-level `README.md`, and `tutorial/cl13_vs_arm.md` as `examples/Cl13_vs_Arm/TUTORIAL.md`. When you change one of those, change the matching page here too.
+
+## The PathwayAgent tab
+
+The navigation bar has a tab that links to the companion package PathwayAgent. Its address is set in two places: `PATHWAYAGENT_URL` in `conf.py` for the documentation pages, and the `PathwayAgent` link in `_extra/index.html` for the front page. Change both when PathwayAgent gets its own site.
