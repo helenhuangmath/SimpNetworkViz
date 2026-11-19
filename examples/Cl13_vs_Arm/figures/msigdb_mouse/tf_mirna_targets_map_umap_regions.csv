@@ -1,0 +1,6 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+1,Uniprot target unreviewed,62,2,0.032,0,0.0
+2,Target genes,29,0,0.0,1,0.034
+3,Gm6710 gm14391 uniprot,20,0,0.0,0,0.0
+4,Target genes,15,0,0.0,0,0.0
+5,Target genes,14,0,0.0,0,0.0

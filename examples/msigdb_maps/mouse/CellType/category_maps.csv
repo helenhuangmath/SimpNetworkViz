@@ -1,0 +1,3 @@
+category,method,n_sets,n_regions,csv,figure
+CellType,tsne,195,6,examples/msigdb_maps/mouse/CellType/celltype_map_tsne.csv,examples/msigdb_maps/mouse/CellType/celltype_map_tsne.pdf
+CellType,umap,195,6,examples/msigdb_maps/mouse/CellType/celltype_map_umap.csv,examples/msigdb_maps/mouse/CellType/celltype_map_umap.pdf

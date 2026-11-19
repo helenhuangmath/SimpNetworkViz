@@ -1,0 +1,14 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+7,DNA network repair,41,3,0.073,0,0.0
+5,Apoptosis response signaling,58,2,0.034,0,0.0
+6,Interferon immune signaling,42,1,0.024,0,0.0
+9,Receptor signaling,32,1,0.031,0,0.0
+1,Gpcrs metabolism syndrome,64,0,0.0,0,0.0
+2,Acid metabolism synthesis,62,0,0.0,0,0.0
+3,WNT signaling differentiation,62,0,0.0,0,0.0
+4,MAPK signaling cancer,60,0,0.0,0,0.0
+8,Nad cycle senescence,33,0,0.0,0,0.0
+10,Focal hippo signaling,26,0,0.0,0,0.0
+11,Differentiation adipogenesis hypertrophy,25,0,0.0,0,0.0
+12,Methionine metabolism disorders,22,0,0.0,0,0.0
+13,Degradation syndrome,10,0,0.0,0,0.0

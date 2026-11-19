@@ -1,0 +1,37 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+3,Immune production differentiation,410,67,0.163,10,0.024
+19,Mitotic spindle chromosome,227,49,0.216,0,0.0
+6,DNA replication repair,380,42,0.111,0,0.0
+12,Response signaling production,296,29,0.098,0,0.0
+31,Chemokine migration chemotaxis,127,25,0.197,0,0.0
+4,Protein response apoptotic,409,23,0.056,0,0.0
+9,Actin gtpase organization,326,23,0.071,0,0.0
+18,Microtubule cilium transport,257,17,0.066,0,0.0
+5,Receptor signaling kinase,386,15,0.039,1,0.003
+29,Response signaling,141,11,0.078,0,0.0
+26,Vascular smooth endothelial,184,11,0.06,0,0.0
+27,Pyrimidine nucleoside metabolic,169,9,0.053,0,0.0
+1,Response receptor secretion,453,9,0.02,0,0.0
+33,DNA expression,103,5,0.049,0,0.0
+22,Protein phosphatase kinase,204,5,0.025,0,0.0
+20,Neuron differentiation development,219,5,0.023,0,0.0
+14,Golgi vesicle membrane,285,4,0.014,0,0.0
+21,Sulfate metabolic biosynthesis,210,4,0.019,0,0.0
+28,Excision signaling repair,146,3,0.021,0,0.0
+34,Nuclear export nucleus,94,2,0.021,0,0.0
+25,Collagen granule membrane,188,2,0.011,0,0.0
+13,Lipid lipoprotein particle,287,2,0.007,0,0.0
+2,Differentiation morphogenesis development,452,1,0.002,0,0.0
+23,Mitochondrial proton transport,201,1,0.005,0,0.0
+11,Calcium ion channel,297,1,0.003,0,0.0
+10,Histone transcription binding,320,1,0.003,0,0.0
+30,Response reactive oxygen,136,1,0.007,0,0.0
+16,Cardiac muscle development,270,1,0.004,0,0.0
+24,Transmembrane transporter transport,192,0,0.0,0,0.0
+15,Postsynaptic synaptic synapse,277,0,0.0,0,0.0
+8,Acid metabolic metabolism,326,0,0.0,0,0.0
+7,RNA MRNA processing,348,0,0.0,0,0.0
+32,Carbohydrate glucose metabolic,115,0,0.0,0,0.0
+17,Acid metabolic biosynthetic,266,0,0.0,0,0.0
+35,RNA transcription polymerase,87,0,0.0,0,0.0
+36,Signaling fgfr2 fgfr1,63,0,0.0,0,0.0

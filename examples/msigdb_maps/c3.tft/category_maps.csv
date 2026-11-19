@@ -1,0 +1,5 @@
+category,method,n_sets,n_regions,csv,figure
+c3.tft,tsne,571,19,examples/msigdb_maps/c3.tft/c3_tft_map_tsne.csv,examples/msigdb_maps/c3.tft/c3_tft_map_tsne.pdf
+c3.tft,umap,571,19,examples/msigdb_maps/c3.tft/c3_tft_map_umap.csv,examples/msigdb_maps/c3.tft/c3_tft_map_umap.pdf
+TF/miRNA targets,tsne,272,10,examples/msigdb_maps/c3.tft/tf_mirna_targets_map_tsne.csv,examples/msigdb_maps/c3.tft/tf_mirna_targets_map_tsne.pdf
+TF/miRNA targets,umap,272,10,examples/msigdb_maps/c3.tft/tf_mirna_targets_map_umap.csv,examples/msigdb_maps/c3.tft/tf_mirna_targets_map_umap.pdf

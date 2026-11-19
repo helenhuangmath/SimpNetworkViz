@@ -12,7 +12,7 @@ from matplotlib.collections import LineCollection, PatchCollection
 from matplotlib.patches import Circle, Polygon, Wedge
 from scipy.spatial import ConvexHull
 
-from .layout import HULL_PAD, LABEL_FONTSIZE, NODE_LABEL_SIZE, NODE_LABEL_WRAP, label_width_chars, wrap_label
+from .layout import FONT_SCALE, HULL_PAD, LABEL_FONTSIZE, NODE_LABEL_SIZE, NODE_LABEL_WRAP, label_width_chars, wrap_label
 from .style import (DIVERGING_CMAP, DOWN_CMAP, SEQ_CMAP, UP_CMAP, condition_color, darken, group_color, hull_colors,
                     hulls_colored, lighten, node_colors)
 
@@ -29,10 +29,10 @@ plt.rcParams["axes.titleweight"] = "normal"
 plt.rcParams["axes.labelweight"] = "normal"
 
 # Font sizes (pt) for figure text other than cluster/node labels (see layout.py).
-TITLE_SIZE = 18.0
-LEGEND_TITLE_SIZE = 13.0
-LEGEND_TEXT_SIZE = 11.0
-LEGEND_BAND = 1.35  # inches reserved for the legend row
+TITLE_SIZE = 18.0 * FONT_SCALE
+LEGEND_TITLE_SIZE = 13.0 * FONT_SCALE
+LEGEND_TEXT_SIZE = 11.0 * FONT_SCALE
+LEGEND_BAND = 1.35 * max(1.0, FONT_SCALE)  # inches reserved for the legend row
 
 
 def hull_polygon(points: np.ndarray, radii: np.ndarray, pad: float = HULL_PAD, n: int = 24, extra=None) -> np.ndarray:
@@ -268,7 +268,7 @@ def plot_network(
     panel = _Panel(net, color_by, node_labels, show_hulls, show_cluster_labels, hull_style, edge_color, edge_alpha,
                    cluster_label_size, node_label_size)
     W, H = panel.W, panel.H
-    title_band = 0.6 if title else 0.0
+    title_band = 0.6 * max(1.0, FONT_SCALE) if title else 0.0
     legend_band = LEGEND_BAND if legend else 0.0
     total_h = H + title_band + legend_band
     W_fig = W
@@ -287,7 +287,7 @@ def plot_network(
         plt.close(fig)
         W_fig = used
     if path:
-        fig.savefig(path, dpi=dpi, facecolor="white")
+        fig.savefig(path, dpi=dpi, facecolor="white", **_SAVE_KW)
     return fig
 
 
@@ -353,7 +353,7 @@ def plot_pathway_gene_network(
         place(pa, 0.0, Htot, W, titles[0], panel_labels[0])
         place(pb, 0.0, Htot - hA - gap, W, titles[1], panel_labels[1])
     if path:
-        fig.savefig(path, dpi=dpi, facecolor="white")
+        fig.savefig(path, dpi=dpi, facecolor="white", **_SAVE_KW)
     return fig
 
 
@@ -465,22 +465,45 @@ def _draw_legend(fig, net, leg, W, band, rect, f):
     return x + 0.2  # width (inches) the legend row needs
 
 
+# With enlarged fonts (SNV_FONT_SCALE > 1) a cluster name at the edge can reach past the canvas;
+# the saved figure then grows to include it. At the default scale the canvas is saved as laid out.
+_SAVE_KW = {"bbox_inches": "tight", "pad_inches": 0.2} if FONT_SCALE > 1 else {}
+
+
 def plot_cluster_barplot(net, path: Optional[str] = None, max_clusters: int = 20, width: float = 7.0, dpi: int = 300):
-    """Bar chart of cluster annotations ranked by best -log10 FDR (companion panel)."""
+    """Bar chart of cluster annotations ranked by best -log10 FDR (companion panel). Long cluster
+    names wrap, and the figure widens so that no label is cut."""
+    import textwrap
     ct = net.cluster_table()
+    if "best_fdr" not in ct.columns:
+        return None
     ct = ct[ct["best_fdr"].notna()].head(max_clusters)
     if ct.empty:
         return None
     vals = -np.log10(ct["best_fdr"].clip(lower=1e-300)).values
-    fig, ax = plt.subplots(figsize=(width, 0.42 * len(ct) + 1.0))
+    def two_lines(text: str) -> str:
+        """Short names stay on one line; longer ones wrap onto two lines of similar length."""
+        if len(text) <= 42:
+            return text
+        width = max(30, (len(text) + 1) // 2)
+        while len(textwrap.wrap(text, width, break_long_words=False)) > 2:
+            width += 1
+        return textwrap.fill(text, width, break_long_words=False)
+    labels = [two_lines(f"{l} ({n})") for l, n in zip(ct["label"], ct["n_nodes"])]
+    label_size = LEGEND_TEXT_SIZE + 1
+    label_w = max(len(line) for lab in labels for line in lab.split("\n")) * 0.6 * label_size / 72 + 0.4
+    lines = max(lab.count("\n") + 1 for lab in labels)
+    row_h = max(0.42 * max(1.0, FONT_SCALE), lines * 1.3 * label_size / 72 + 0.12)
+    fig_w = max(width, label_w + 4.2)
+    fig, ax = plt.subplots(figsize=(fig_w, row_h * len(ct) + 1.0 * max(1.0, FONT_SCALE)))
     ax.barh(range(len(ct)), vals, color=[group_color(g) for g in ct["cluster"]], height=0.7)
     ax.set_yticks(range(len(ct)))
-    ax.set_yticklabels([f"{l} ({n})" for l, n in zip(ct["label"], ct["n_nodes"])], fontsize=LEGEND_TEXT_SIZE + 1)
+    ax.set_yticklabels(labels, fontsize=label_size)
     ax.invert_yaxis()
     ax.set_xlabel("-log10 FDR (best pathway in cluster)", fontsize=LEGEND_TITLE_SIZE)
     ax.spines[["top", "right"]].set_visible(False)
     ax.tick_params(axis="x", labelsize=LEGEND_TEXT_SIZE)
-    fig.tight_layout()
+    fig.subplots_adjust(left=label_w / fig_w, right=0.97, top=0.97, bottom=min(0.4, 0.75 * max(1.0, FONT_SCALE) / fig.get_figheight()))
     if path:
-        fig.savefig(path, dpi=dpi, facecolor="white")
+        fig.savefig(path, dpi=dpi, facecolor="white", bbox_inches="tight", pad_inches=0.15)
     return fig

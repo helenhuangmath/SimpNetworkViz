@@ -29,6 +29,105 @@ POPULAR_LIBRARIES = {
 
 DEMO = "demo"
 
+# ---------------------------------------------------------------------------
+# Species and MSigDB collections
+# ---------------------------------------------------------------------------
+
+#: Supported species: MSigDB code, NCBI taxon (for STRING), Enrichr naming hint.
+SPECIES = {
+    "human": {"msigdb": "Hs", "taxon": 9606, "aliases": ("human", "hs", "homo sapiens", "9606")},
+    "mouse": {"msigdb": "Mm", "taxon": 10090, "aliases": ("mouse", "mm", "mus musculus", "10090")},
+}
+
+MSIGDB_RELEASE = "2025.1"
+MSIGDB_URL = "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/{release}.{code}/{file}.v{release}.{code}.symbols.gmt"
+
+#: MSigDB collections by name: (human file stem, mouse file stem); ``None`` = not available for that species.
+MSIGDB_COLLECTIONS = {
+    "Hallmark": ("h.all", "mh.all"),
+    "GO": ("c5.go", "m5.go"),
+    "GO_BP": ("c5.go.bp", "m5.go.bp"),
+    "GO_CC": ("c5.go.cc", "m5.go.cc"),
+    "GO_MF": ("c5.go.mf", "m5.go.mf"),
+    "Reactome": ("c2.cp.reactome", "m2.cp.reactome"),
+    "WikiPathways": ("c2.cp.wikipathways", "m2.cp.wikipathways"),
+    "BioCarta": ("c2.cp.biocarta", "m2.cp.biocarta"),
+    "KEGG": ("c2.cp.kegg_medicus", None),
+    "KEGG_legacy": ("c2.cp.kegg_legacy", None),
+    "PID": ("c2.cp.pid", None),
+    "CP": ("c2.cp", "m2.cp"),
+    "CGP": ("c2.cgp", "m2.cgp"),
+    "TFT": ("c3.tft", "m3.gtrd"),
+    "miRNA": ("c3.mir", "m3.mirdb"),
+    "HPO": ("c5.hpo", None),
+    "TumorPhenotype": (None, "m5.mpt"),
+    "Oncogenic": ("c6.all", None),
+    "ImmuneSigDB": ("c7.immunesigdb", None),
+    "Vaccine": ("c7.vax", None),
+    "CellType": ("c8.all", "m8.all"),
+    "Positional": ("c1.all", "m1.all"),
+    "All": ("msigdb", "msigdb"),
+}
+
+
+def normalize_species(species) -> str:
+    """``"human"`` or ``"mouse"`` from a name, MSigDB code or NCBI taxon id."""
+    key = str(species).strip().lower()
+    for name, info in SPECIES.items():
+        if key == name or key in info["aliases"]:
+            return name
+    raise ValueError(f"Unknown species {species!r}: use 'human' or 'mouse' (or the taxon id 9606 / 10090)")
+
+
+def species_taxon(species) -> int:
+    """NCBI taxon id of a species name (for STRING)."""
+    try:
+        return int(species)  # already a taxon id
+    except (TypeError, ValueError):
+        return SPECIES[normalize_species(species)]["taxon"]
+
+
+def msigdb_file(collection: str, species: str = "human", release: str = MSIGDB_RELEASE) -> str:
+    """File stem of an MSigDB collection for a species, e.g. ``GO_BP`` + mouse -> ``m5.go.bp.v2025.1.Mm.symbols``."""
+    sp = normalize_species(species)
+    names = {k.lower(): k for k in MSIGDB_COLLECTIONS}
+    key = names.get(collection.strip().lower())
+    if key is None:
+        raise ValueError(f"Unknown MSigDB collection {collection!r}. Choose from: {', '.join(MSIGDB_COLLECTIONS)}")
+    stem = MSIGDB_COLLECTIONS[key][0 if sp == "human" else 1]
+    if stem is None:
+        avail = [k for k, v in MSIGDB_COLLECTIONS.items() if v[0 if sp == "human" else 1]]
+        raise ValueError(f"MSigDB has no {key} collection for {sp}. Available for {sp}: {', '.join(avail)}")
+    code = SPECIES[sp]["msigdb"]
+    return f"{stem}.v{release}.{code}.symbols"
+
+
+def fetch_msigdb(collection: str, species: str = "human", release: str = MSIGDB_RELEASE, force: bool = False,
+                 timeout: float = 120) -> GeneSets:
+    """Download an MSigDB collection (gene symbols) for ``species`` from the Broad release server.
+
+    ``collection`` is a key of :data:`MSIGDB_COLLECTIONS` (``Hallmark``, ``GO_BP``,
+    ``Reactome``, ``KEGG`` ...); mouse collections are MSigDB's native mouse
+    sets (``mh``, ``m2``, ``m5`` ...), not orthology-mapped human ones. Files are
+    cached under ``~/.cache/simpnetworkviz/msigdb``.
+    """
+    stem = msigdb_file(collection, species, release)
+    cache = _cache_dir() / "msigdb" / f"{stem}.gmt"
+    if cache.exists() and not force:
+        return read_gmt(cache)
+    sp = normalize_species(species)
+    url = MSIGDB_URL.format(release=release, code=SPECIES[sp]["msigdb"], file=stem.split(".v")[0])
+    resp = requests.get(url, timeout=timeout)
+    if resp.status_code != 200:
+        raise ValueError(f"MSigDB download failed ({resp.status_code}) for {url}. Check the release ({release}) "
+                         "or download the GMT from https://www.gsea-msigdb.org/gsea/msigdb and pass it with --gmt.")
+    gene_sets = parse_gmt_lines(resp.text.splitlines())
+    if not gene_sets:
+        raise ValueError(f"No gene sets in {url}")
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    write_gmt(gene_sets, cache, description=f"MSigDB {collection} {sp} {release}")
+    return gene_sets
+
 
 def _cache_dir() -> Path:
     base = os.environ.get("SIMPNETWORKVIZ_CACHE") or os.path.join(
@@ -102,11 +201,14 @@ def demo_path(filename: str) -> str:
     return str(resources.files("simpnetworkviz").joinpath("data", filename))
 
 
-def load_gene_sets(source, min_size: int = 1, max_size: Optional[int] = None) -> GeneSets:
-    """Load gene sets from a GMT path, an Enrichr library name, ``"demo"`` or a dict.
+def load_gene_sets(source, min_size: int = 1, max_size: Optional[int] = None, species: str = "human") -> GeneSets:
+    """Load gene sets from a GMT path, an Enrichr library name, an MSigDB collection, ``"demo"`` or a dict.
 
-    Several sources may be combined by passing a list or a comma separated string,
-    e.g. ``"KEGG_2021_Human,Reactome_2022"``. Pathway names are prefixed with the
+    ``"msigdb:GO_BP"`` (or ``"msigdb:Hallmark,msigdb:Reactome"``) downloads the
+    MSigDB collection for ``species`` (``"human"`` or ``"mouse"``; see
+    :data:`MSIGDB_COLLECTIONS` and :func:`fetch_msigdb`). Several sources may be
+    combined by passing a list or a comma separated string, e.g.
+    ``"KEGG_2021_Human,Reactome_2022"``. Pathway names are prefixed with the
     library name only when names collide.
     """
     if isinstance(source, dict):
@@ -120,6 +222,8 @@ def load_gene_sets(source, min_size: int = 1, max_size: Optional[int] = None) ->
         for src in sources:
             if src == DEMO:
                 loaded = read_gmt(demo_path("demo_genesets.gmt"))
+            elif src.lower().startswith("msigdb:"):
+                loaded = fetch_msigdb(src.split(":", 1)[1], species=species)
             elif os.path.exists(src):
                 loaded = read_gmt(src)
             else:

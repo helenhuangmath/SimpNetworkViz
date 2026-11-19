@@ -1,0 +1,9 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+1,Signaling cancer,40,2,0.05,0,0.0
+2,Acid biosynthesis metabolism,37,0,0.0,0,0.0
+3,Acid receptor signaling,27,0,0.0,0,0.0
+4,Like receptor infection,26,0,0.0,0,0.0
+5,Homologous excision repair,17,0,0.0,0,0.0
+6,Cytochrome metabolism p450,16,0,0.0,0,0.0
+7,Glycosphingolipid glycan biosynthesis,15,0,0.0,0,0.0
+8,Cardiomyopathy disease,8,0,0.0,0,0.0

@@ -1,0 +1,23 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+8,Mitotic mitochondrial biogenesis,49,4,0.082,0,0.0
+4,Tp53 decay MRNA,68,2,0.029,0,0.0
+10,Golgi retrograde transport,47,1,0.021,0,0.0
+11,RHO gtpase cycle,47,1,0.021,0,0.0
+1,Activation signaling,108,0,0.0,0,0.0
+14,Signaling fibrin clot,35,0,0.0,0,0.0
+21,Fceri complement BCR,17,0,0.0,0,0.0
+20,Sumoylation mature proteins,23,0,0.0,0,0.0
+19,Peptide ligand receptors,25,0,0.0,0,0.0
+18,Metabolism assembly remodeling,27,0,0.0,0,0.0
+17,Collagen TCR matrix,29,0,0.0,0,0.0
+16,Bile acids salts,30,0,0.0,0,0.0
+15,Sulfate biosynthesis metabolism,33,0,0.0,0,0.0
+12,Protein signalling secretion,42,0,0.0,0,0.0
+13,Signaling cascade fgfr1,39,0,0.0,0,0.0
+2,Apc degradation,82,0,0.0,0,0.0
+9,Nucleotide purine adme,47,0,0.0,0,0.0
+7,RNA polymerase ner,53,0,0.0,0,0.0
+6,Formation DNA strand,54,0,0.0,0,0.0
+5,Interleukin synthesis signaling,65,0,0.0,0,0.0
+3,Neurotransmitter release transport,82,0,0.0,0,0.0
+22,Events erbb2 signaling,15,0,0.0,0,0.0

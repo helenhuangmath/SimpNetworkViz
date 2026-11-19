@@ -35,7 +35,7 @@ This wide layout is read by `snv.read_gene_groups()` or `snv compare --groups FI
 **Gene sets.** Because the symbols are mouse, mouse gene-set collections from MSigDB are used rather than the human Enrichr libraries:
 
 * `genesets/mh.all.v2025.1.Mm.symbols.gmt`: the 50 mouse Hallmark sets (bundled here).
-* `m5.go.bp.v2025.1.Mm.symbols.gmt`: 7,855 GO Biological Process sets, restricted to sets of 10–500 genes. Download it from the [MSigDB mouse collections](https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp) page and pass its path with `--gobp`.
+* `m5.go.bp.v2025.1.Mm.symbols.gmt`: 7,855 GO Biological Process sets, restricted to sets of 10–500 genes. `run_comparison.py` fetches it once with `snv.fetch_msigdb("GO_BP", species="mouse")` (cached under `~/.cache/simpnetworkviz/msigdb`); on the command line the equivalent is `--msigdb GO_BP --species mouse`. A local copy can be passed with `--gobp`.
 
 Hallmark gives a compact overview that can be drawn as a whole library; GO BP gives the detailed network.
 
@@ -45,7 +45,7 @@ Hallmark gives a compact overview that can be drawn as a whole library; GO BP gi
 
 ```bash
 pip install -e .                                   # from the repository root
-python examples/Cl13_vs_Arm/run_comparison.py --gobp path/to/m5.go.bp.v2025.1.Mm.symbols.gmt
+python examples/Cl13_vs_Arm/run_comparison.py            # --species mouse is the default; downloads mouse GO BP once
 ```
 
 `run_comparison.py` performs three sets of analyses and writes them under `results/` (not kept in git; the key PDFs are copied to `figures/`):
@@ -192,6 +192,59 @@ snv compare "Cl13=cl13_all.txt" "Arm=arm_all.txt" --gmt m5.go.bp.v2025.1.Mm.symb
 
 **The same map with UMAP** — the bundled map was built with t-SNE. With `umap-learn` installed, `snv map --method umap` (or `run_comparison.py --map-method umap`) embeds the same TF-IDF/SVD vectors with UMAP instead; this version is included too: [`genesets/gobp_map_umap.csv`](genesets/gobp_map_umap.csv), drawn in [`figures/map_GOBP_umap.pdf`](figures/map_GOBP_umap.pdf), with the overlays [`figures/map_pooled_Cl13_vs_Arm_umap.pdf`](figures/map_pooled_Cl13_vs_Arm_umap.pdf) and [`figures/map_within_Cl13_umap.pdf`](figures/map_within_Cl13_umap.pdf) and their region tables. The 35 regions and their labels are identical, because regions are clustered in the similarity space, not in the picture; only the layout changes. UMAP places the immune regions (*alpha activation differentiation*, *antigen response immunity*, *response signaling production*) together at the bottom, the cell-cycle and DNA regions on the left and metabolism at the top, with more white space between groups than t-SNE. Pick one and keep it: the point of the map is that every later analysis uses the same coordinates.
 
+**The same analyses on MSigDB C7 ImmuneSigDB** — the immunologic signature collection (4,854 sets of the human v7.4 `c7.all` file; mouse symbols are matched case-insensitively). Its maps are in [`../msigdb_maps/c7.all`](../msigdb_maps/c7.all) (built with `snv map --gmt c7.all.v7.4.symbols.gmt --by-category --method both`). The pooled comparison network is [`figures/pooled_C7.pdf`](figures/pooled_C7.pdf): ImmuneSigDB sets are 200-gene up/down halves of single GEO comparisons and rarely overlap, so the 80 most significant sets form only 19 edges and 12 small clusters (Treg vs Tconv, effector vs memory CD8, stimulated DC). The maps make up for that by placing every hit in a region: [`figures/map_pooled_Cl13_vs_Arm_C7_tsne.pdf`](figures/map_pooled_Cl13_vs_Arm_C7_tsne.pdf) / [`_umap.pdf`](figures/map_pooled_Cl13_vs_Arm_C7_umap.pdf) and [`figures/map_within_Cl13_C7_tsne.pdf`](figures/map_within_Cl13_C7_tsne.pdf) / [`_umap.pdf`](figures/map_within_Cl13_C7_umap.pdf), with region tables `figures/map_*_C7_*_regions.csv`. Pooled T-cell gene lists are enriched in almost half of this collection at FDR 0.05 (2,262 sets), so these overlays use FDR ≤ 1e-8 (300 sets).
+
+**Every MSigDB collection at once, mouse collections** — the genes are mouse symbols, so the right libraries are MSigDB's native mouse collections (release 2025.1), which the package downloads once per species (`snv.fetch_msigdb(name, species="mouse")`, `--msigdb NAME --species mouse`). Their maps are in [`../msigdb_maps/mouse`](../msigdb_maps/mouse). [`run_msigdb_all.py`](run_msigdb_all.py) runs the pooled Cl13 vs Arm comparison against each of them, plus the overall mouse GO + Reactome + WikiPathways map and, as the one cross-species exception because MSigDB has no mouse immunologic collection, the human C7 ImmuneSigDB map. Outputs: a network, t-SNE and UMAP overlays, the within-Cl13 overlay and region tables per collection in `figures/msigdb_mouse/`, `figures/msigdb_mouse/summary.csv`, and the overview panels [`../../docs/images/msigdb_all_mouse_tsne.png`](../../docs/images/msigdb_all_mouse_tsne.png) / [`msigdb_all_mouse_umap.png`](../../docs/images/msigdb_all_mouse_umap.png):
+
+```bash
+python examples/Cl13_vs_Arm/run_msigdb_all.py --species mouse --map-fdr "ImmuneSigDB (human C7)=1e-8"
+```
+
+| Collection (mouse 2025.1) | Sets (on map) | Hits Cl13 / Arm (FDR ≤ 0.05) | Network: sets, edges, clusters | Top Cl13 region (hits / region size) | Top Arm region |
+|---|---|---|---|---|---|
+| Hallmark | 50 (50) | 9 / 0 | 9, 1, 1 | Interferon signaling response (6/13) | |
+| GO biological process | 7855 (5489) | 364 / 22 | 80, 337, 8 | Alpha activation differentiation (85/346) | Antigen response immunity (7/79) |
+| GO cellular component | 1040 (679) | 22 / 2 | 22, 27, 6 | Mitotic spindle microtubule (9/21) | |
+| GO molecular function | 1885 (1181) | 23 / 1 | 24, 31, 3 | Structural microtubule binding (7/74) | Protein receptor binding (1/96) |
+| Reactome | 1309 (1017) | 10 / 0 | 10, 14, 2 | Mitotic mitochondrial biogenesis (4/49) | |
+| WikiPathways | 192 (169) | 6 / 0 | 6, 0, 0 | Apoptosis signaling disease (4/17) | |
+| BioCarta | 252 (184) | 0 / 0 | | | |
+| Cell-type signatures (M8) | 233 (195) | 25 / 1 | 25, 1, 1 | Spleen alpha beta (13/20) | |
+| GTRD TF targets (M3) | 279 (140) | 6 / 4 | 9, 0, 0 | Uniprot target unreviewed (2/62) | Target genes (1/29) |
+| GO + Reactome + WP (overall) | 12281 (8535) | 523 / 33 | 80, 264, 10 | Alpha production differentiation (90/338) | Antigen MHC immunity (10/90) |
+| ImmuneSigDB (human C7) | 4872 (4854) | 1797 / 964 | 80, 22, 12 | Foxp3 treg tconv (76/182, FDR ≤ 1e-8) | Treg CD8 thymocyte (64/247) |
+
+Compared with the human v7.4 run below, the mouse sets recover more of both lists (Cl13 625 instead of 588 genes matched, Arm 330 instead of 317) and give more hits: GO BP 364 / 22 instead of 290 / 18, and the overall map 523 / 33 instead of 478 / 18. The Arm hits now include the antigen-presentation and MHC regions, which is where a memory signature is expected to show in GO. The cell-type collection places the Cl13 genes in the spleen αβ T-cell signatures. Mouse Reactome and WikiPathways are smaller than their human counterparts (1309 and 192 sets vs 1604 and 615), so they give fewer hits than in the human run.
+
+**The same with the human v7.4 collections** — for comparison, and because KEGG, PID, HPO, C6 and C7 exist only for human: [`run_msigdb_all.py --species human`](run_msigdb_all.py) runs the comparison against each human collection map in [`../msigdb_maps`](../msigdb_maps) (mouse symbols are matched case-insensitively, losing 22 % of the Cl13 and 34 % of the Arm genes) and writes a network, t-SNE and UMAP overlays, the within-Cl13 overlay and region tables per collection to `figures/msigdb_human/`, plus `figures/msigdb_human/summary.csv` and the overview panels [`../../docs/images/msigdb_all_human_tsne.png`](../../docs/images/msigdb_all_human_tsne.png) / [`msigdb_all_umap.png`](../../docs/images/msigdb_all_human_umap.png):
+
+```bash
+python examples/Cl13_vs_Arm/run_msigdb_all.py --species human --msigdb-dir /path/to/v7.4_gmts --map-fdr "ImmuneSigDB=1e-8,c7.all=1e-4"
+```
+
+| Collection | Sets (on map) | Hits Cl13 / Arm (FDR ≤ 0.05) | Network: sets, edges, clusters | Top Cl13 region (hits / region size) | Top Arm region |
+|---|---|---|---|---|---|
+| Hallmark | 50 (50) | 9 / 0 | 9, 1, 1 | Interferon signaling response (6/14) | |
+| GO biological process | 7481 (5161) | 290 / 18 | 80, 384, 8 | Immune response activation (58/281) | Immune response activation (10/281) |
+| GO cellular component | 996 (643) | 28 / 0 | 28, 42, 6 | Mitotic spindle microtubule (9/23) | |
+| GO molecular function | 1708 (1064) | 19 / 0 | 19, 22, 4 | Protein regulator binding (5/89) | |
+| Human phenotype | 4813 (3468) | 0 / 0 | | | |
+| Reactome | 1604 (1260) | 35 / 0 | 35, 84, 4 | TGF transcription genes (8/39) | |
+| WikiPathways | 615 (537) | 7 / 0 | 7, 3, 2 | DNA network repair (3/41) | |
+| KEGG | 186 (186) | 2 / 0 | 2, 0, 0 | Signaling cancer (2/40) | |
+| PID | 196 (196) | 2 / 0 | 2, 0, 0 | P53 downstream pathway (1/53) | |
+| BioCarta | 292 (226) | 0 / 0 | | | |
+| C3 TF targets, GTRD | 523 (272) | 19 / 5 | 23, 0, 0 | Target genes (4/55) | Target genes (1/55) |
+| C3 TF targets, legacy motifs | 610 (571) | 5 / 1 | 6, 2, 2 | Irf1 srf irf (3/17) | Foxo4 foxo1 hfh4 (1/20) |
+| C6 oncogenic | 189 (189) | 17 / 3 | 19, 3, 3 | Dn.v1 up.v1 (4/31) | Prc2 stk33 up.v1 (3/26) |
+| C7 ImmuneSigDB | 4854 (4854) | 1784 / 961 | 80, 19, 12 | Foxp3 treg tconv (76/182, FDR ≤ 1e-8) | Treg CD8 thymocyte (55/247) |
+| C7 vaccine response | 365 (274) | 76 / 16 | 80, 143, 8 | Howard inact 1dy (24/50, FDR ≤ 1e-4) | Eff CD8 tcell (10/28) |
+| GO + KEGG + Reactome + WP (overall) | 12590 (8851) | 478 / 18 | 80, 228, 12 | Immune production differentiation (67/410) | Immune production differentiation (10/410) |
+
+Reading the table: the Cl13 (exhausted) genes are enriched everywhere a database describes immune activation, interferon response, proliferation and DNA replication (GO BP, GO CC, Reactome, Hallmark, C7); the Arm (memory) genes give few or no hits outside C7 and GO BP, because the memory signature is small (483 genes, 342 matched to human symbols) and quiescence-related terms are rare in pathway databases. KEGG, PID and BioCarta are small, disease- and signalling-centred collections and contribute almost nothing here; HPO (disease phenotypes) and BioCarta give no hit at all. The overall map places the GO, Reactome and KEGG hits in one coordinate system, and its region table (`figures/msigdb_human/go_kegg_reactome_wp_map_tsne_regions.csv`) is the most compact summary of the comparison.
+
+**Interactive maps** — the same four maps as HTML, [`figures/map_pooled_Cl13_vs_Arm.html`](figures/map_pooled_Cl13_vs_Arm.html), [`figures/map_within_Cl13.html`](figures/map_within_Cl13.html) and their `_umap` versions: hover a pie for the term, condition, FDR and genes, hover an outline for the region name, and lasso any group of terms to list their regions and names in the side panel. Every `--map` run writes `pathway_map.html` like these.
+
 In Python:
 
 ```python
@@ -219,9 +272,10 @@ shared = m[sig.all(axis=1)]
 ## 8 Doing the same with your own groups
 
 1. Put each condition's groups in a wide CSV (one column per group, header = group name), or one gene list per group in separate files.
-2. Choose gene sets for the right species: Enrichr libraries by name for human data (`--library MSigDB_Hallmark_2020`), MSigDB mouse GMT files for mouse (`--gmt mh.all.v2025.1.Mm.symbols.gmt`).
+2. Choose gene sets for the right species: `--msigdb Hallmark --species mouse` (or `human`) fetches the MSigDB collection for that species; Enrichr libraries (`--library MSigDB_Hallmark_2020`) are mostly human; local GMT files work with `--gmt`.
 3. Run `snv compare --groups groups.csv --gmt sets.gmt --whole-library -o results` for the overview and the same without `--whole-library` for the detailed network; add `--background measured.txt`.
    For a large library, build its map once (`snv map --gmt sets.gmt -o sets_map.csv`) and add `--map sets_map.csv` to every run.
+   For the full MSigDB file, `snv map --gmt msigdb.v2025.1.Mm.symbols.gmt --by-category -o maps` builds a t-SNE and a UMAP map per collection (Hallmark, GO BP, GO CC, GO MF, KEGG, Reactome, WikiPathways ...).
 4. Read `enrichment_matrix.csv`, then the PDF, then rename clusters if needed in Python (`net.group_labels[i] = "..."`).
 
 To adapt `run_comparison.py`, change the two file names at the top and the names of the groups to pair in section 2.

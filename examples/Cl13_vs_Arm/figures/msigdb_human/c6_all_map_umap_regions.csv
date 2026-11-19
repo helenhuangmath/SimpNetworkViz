@@ -1,0 +1,11 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+4,Prc2 stk33 up.v1,26,2,0.077,3,0.115
+1,Dn.v1 up.v1,31,4,0.129,0,0.0
+5,AKT prc2 MTOR,23,4,0.174,0,0.0
+7,Stk33 bmi1 mel18,12,4,0.333,0,0.0
+8,Up.v1,11,2,0.182,0,0.0
+2,Dn.v1 up.v1,28,1,0.036,0,0.0
+3,Esc up.v1 dn.v1,28,0,0.0,0,0.0
+6,Atf2 dn.v1 up.v1,17,0,0.0,0,0.0
+9,Esc crx nrl,7,0,0.0,0,0.0
+10,Dn.v1,6,0,0.0,0,0.0

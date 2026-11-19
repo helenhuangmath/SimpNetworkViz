@@ -1,0 +1,20 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+13,Irf1 srf irf,17,3,0.176,0,0.0
+5,Stat5a NFKB,33,2,0.061,0,0.0
+10,Foxo4 foxo1 hfh4,20,0,0.0,1,0.05
+11,Yy1 unknown,19,0,0.0,0,0.0
+18,Rfx1 mif1 unknown,14,0,0.0,0,0.0
+17,Oct1 oct unknown,14,0,0.0,0,0.0
+16,Mef2 rsrfc4,15,0,0.0,0,0.0
+15,Ap1 nfe2 tcf11mafg,16,0,0.0,0,0.0
+14,Stat1 unknown,16,0,0.0,0,0.0
+12,Usf mycmax arnt,18,0,0.0,0,0.0
+1,Unknown,106,0,0.0,0,0.0
+2,Unknown,89,0,0.0,0,0.0
+9,E2F e2f1 e2f1dp2,22,0,0.0,0,0.0
+8,Creb atf atf3,24,0,0.0,0,0.0
+7,Hnf4 dr1,26,0,0.0,0,0.0
+6,Cebp cebpb,28,0,0.0,0,0.0
+4,Nfy unknown,38,0,0.0,0,0.0
+3,Ap4 unknown,46,0,0.0,0,0.0
+19,Gata1 gata,10,0,0.0,0,0.0

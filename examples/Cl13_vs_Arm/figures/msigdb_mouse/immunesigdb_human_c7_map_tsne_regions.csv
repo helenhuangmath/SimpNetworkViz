@@ -1,0 +1,24 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+14,Foxp3 treg tconv,182,76,0.418,9,0.049
+9,Treg CD8 thymocyte,247,9,0.036,64,0.259
+10,Stim CD8 tcell,231,57,0.247,0,0.0
+11,Ctrl lps pbmc,229,35,0.153,0,0.0
+13,Gse17721 cpg bmdc,197,26,0.132,0,0.0
+16,Gse17974 act CD4,130,16,0.123,0,0.0
+20,Naive memory plasma,78,11,0.141,0,0.0
+7,Gse43955 act CD8,284,5,0.018,1,0.004
+17,Lps stim bmdm,128,5,0.039,0,0.0
+2,Stim macrophage tcell,332,3,0.009,0,0.0
+8,Gse27786 gse14308 treated,280,1,0.004,1,0.004
+22,Stim gammadelta pbmc,52,0,0.0,2,0.038
+5,Gse29618 flu vaccine,307,1,0.003,0,0.0
+1,Treated stim tcell,544,1,0.002,0,0.0
+18,Gse360 malayi dose,116,0,0.0,0,0.0
+21,Gse29618 gse22886 bcell,73,0,0.0,0,0.0
+19,Gse17721 ctrl bmdc,99,0,0.0,0,0.0
+12,Naive CD4 tcell,201,0,0.0,0,0.0
+15,Gse17721 polyic bmdc,181,0,0.0,0,0.0
+6,Gse3982 treated neutrophil,298,0,0.0,0,0.0
+4,Monocyte CD4 tcell,322,0,0.0,0,0.0
+3,CD4 stim tcell,328,0,0.0,0,0.0
+23,Gse28726 gse24574 nktcell,15,0,0.0,0,0.0

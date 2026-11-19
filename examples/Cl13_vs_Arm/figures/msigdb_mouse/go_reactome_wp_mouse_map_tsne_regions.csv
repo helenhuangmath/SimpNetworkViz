@@ -1,0 +1,37 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+7,Alpha production differentiation,338,90,0.266,5,0.015
+24,Mitotic spindle cycle,192,75,0.391,0,0.0
+2,Response signaling production,442,71,0.161,1,0.002
+23,Intrinsic response apoptotic,217,24,0.111,0,0.0
+32,Antigen MHC immunity,90,12,0.133,10,0.111
+27,Leukocyte migration chemotaxis,127,21,0.165,1,0.008
+13,Gtpase kinase signaling,270,16,0.059,4,0.015
+14,Microtubule cilium transport,254,19,0.075,0,0.0
+6,Ubiquitin protein kinase,338,16,0.047,0,0.0
+19,Actin assembly organization,243,9,0.037,0,0.0
+1,Morphogenesis differentiation development,663,8,0.012,0,0.0
+33,Proteasome degradation signaling,89,6,0.067,1,0.011
+31,Growth factor signaling,102,7,0.069,0,0.0
+11,Endothelial growth factor,313,7,0.022,0,0.0
+5,Lipid lipoprotein metabolic,347,6,0.017,0,0.0
+30,Signaling,104,5,0.048,0,0.0
+21,Protein mitochondrial membrane,220,4,0.018,0,0.0
+12,Golgi vesicle membrane,279,4,0.014,0,0.0
+18,Neuron differentiation development,243,4,0.016,0,0.0
+17,DNA strand repair,247,4,0.016,0,0.0
+36,Protein activation signalling,71,3,0.042,0,0.0
+26,Pyrimidine nucleoside metabolic,128,2,0.016,0,0.0
+25,Sulfate biosynthetic metabolic,161,1,0.006,0,0.0
+10,Transmembrane transporter transport,323,1,0.003,0,0.0
+16,Steroid metabolic biosynthetic,249,0,0.0,0,0.0
+35,Respiratory electron cluster,75,0,0.0,0,0.0
+34,RNA polymerase transcription,88,0,0.0,0,0.0
+3,Postsynaptic synaptic synapse,372,0,0.0,0,0.0
+15,Amino acid metabolic,253,0,0.0,0,0.0
+9,RNA MRNA translation,333,0,0.0,0,0.0
+29,Carbohydrate glucose metabolic,105,0,0.0,0,0.0
+20,Cardiac muscle development,225,0,0.0,0,0.0
+4,Receptor signaling secretion,362,0,0.0,0,0.0
+8,Calcium ion channel,337,0,0.0,0,0.0
+22,Histone protein DNA,219,0,0.0,0,0.0
+28,Long fatty acid,116,0,0.0,0,0.0

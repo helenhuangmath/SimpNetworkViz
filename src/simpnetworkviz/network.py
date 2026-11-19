@@ -294,12 +294,25 @@ def hierarchical_clusters(G: nx.Graph, sets: Dict[str, set], metric: str = "comb
     return list(out.values())
 
 
-_CATEGORY_PREFIX = re.compile(r"^(HALLMARK|KEGG_MEDICUS|KEGG|REACTOME|GOBP|GOCC|GOMF|WP|BIOCARTA|PID|NABA|WIKIPATHWAYS|BIOPLANET)[_:\s]", re.I)
+_CATEGORY_PREFIX = re.compile(
+    r"^(HALLMARK|KEGG_MEDICUS|KEGG|REACTOME|GOBP|GOCC|GOMF|WP|BIOCARTA|PID|NABA|WIKIPATHWAYS|BIOPLANET|HP|MIR|MODULE|GNF2|MORF)[_:\s]",
+    re.I,
+)
+#: MSigDB collection names for the name prefixes above (others keep the prefix itself).
+_CATEGORY_NAMES = {
+    "HALLMARK": "Hallmark", "GOBP": "GO biological process", "GOCC": "GO cellular component",
+    "GOMF": "GO molecular function", "WP": "WikiPathways", "REACTOME": "Reactome", "KEGG_MEDICUS": "KEGG MEDICUS",
+    "HP": "Human phenotype", "MIR": "miRNA targets", "MODULE": "Cancer modules", "GNF2": "Cancer gene neighborhoods",
+    "MORF": "Cancer gene neighborhoods",
+}
 _CATEGORY_SUFFIX = [
     (re.compile(r"\(GO:\d{7}\)\s*$|\bGO:\d{7}\s*$"), "GO"),
     (re.compile(r"R-(HSA|MMU)-\d+\s*$"), "Reactome"),
     (re.compile(r"\bWP\d+\s*$"), "WikiPathways"),
     (re.compile(r"\b(hsa|mmu)\d{5}\s*$"), "KEGG"),
+    (re.compile(r"^chr(\d+|X|Y)[pq]\d*\s*$", re.I), "Positional"),  # MSigDB C1 cytogenetic bands
+    (re.compile(r"_TARGET_GENES$|^V\$|^LET_7"), "TF/miRNA targets"),  # MSigDB C3 GTRD/legacy TFT, miRNA
+    (re.compile(r"^GSE\d+_"), "ImmuneSigDB"),  # MSigDB C7
 ]
 
 
@@ -321,8 +334,7 @@ def pathway_category(name: str, mapping: Optional[Dict[str, str]] = None) -> str
     m = _CATEGORY_PREFIX.match(name)
     if m:
         p = m.group(1).upper()
-        return {"GOBP": "GO biological process", "GOCC": "GO cellular component", "GOMF": "GO molecular function",
-                "WP": "WikiPathways", "REACTOME": "Reactome", "HALLMARK": "Hallmark"}.get(p, p)
+        return _CATEGORY_NAMES.get(p, p)
     for rx, cat in _CATEGORY_SUFFIX:
         if rx.search(name):
             return cat

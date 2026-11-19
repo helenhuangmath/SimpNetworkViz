@@ -1,0 +1,3 @@
+category,method,n_sets,n_regions,csv,figure
+c6.all,tsne,189,10,examples/msigdb_maps/c6.all/c6_all_map_tsne.csv,examples/msigdb_maps/c6.all/c6_all_map_tsne.pdf
+c6.all,umap,189,10,examples/msigdb_maps/c6.all/c6_all_map_umap.csv,examples/msigdb_maps/c6.all/c6_all_map_umap.pdf

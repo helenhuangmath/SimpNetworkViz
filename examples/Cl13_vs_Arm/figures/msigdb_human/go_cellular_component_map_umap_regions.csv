@@ -1,0 +1,16 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+14,Mitotic spindle microtubule,23,9,0.391,0,0.0
+10,Condensed DNA chromosome,40,7,0.175,0,0.0
+5,Proton transporting endosome,53,3,0.057,0,0.0
+8,Membrane,41,2,0.049,0,0.0
+9,Ciliary photoreceptor cilium,41,1,0.024,0,0.0
+1,Transcription ubiquitin ligase,66,0,0.0,0,0.0
+2,Granule membrane lumen,61,0,0.0,0,0.0
+3,Spliceosomal snrnp,57,0,0.0,0,0.0
+4,Mitochondrial ribosomal membrane,55,0,0.0,0,0.0
+6,Clathrin coated vesicle,51,0,0.0,0,0.0
+7,Myosin actin channel,46,0,0.0,0,0.0
+11,Axon projection junction,34,0,0.0,0,0.0
+12,Postsynaptic component synapse,33,0,0.0,0,0.0
+13,Proteasome nuclear pore,28,0,0.0,0,0.0
+15,Extrinsic component membrane,14,0,0.0,0,0.0
