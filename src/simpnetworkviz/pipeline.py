@@ -95,6 +95,7 @@ def run_pipeline(
     gene_network_kwargs: Optional[dict] = None,
     enrich_kwargs: Optional[dict] = None,
     pathway_map=None,
+    species: str = "human",
 ) -> Dict[str, object]:
     """Gene list / enrichment table / pathway list / conditions -> networks + figures on disk.
 
@@ -112,11 +113,13 @@ def run_pipeline(
     (a map table or the CSV path from :func:`~simpnetworkviz.pathmap.build_pathway_map`)
     adds ``pathway_map.pdf`` with the enriched pathways highlighted on the fixed
     library map, plus ``pathway_map_hits.csv`` and ``pathway_map_regions.csv``.
+    ``species`` (``"human"``/``"mouse"``) selects MSigDB collections given as
+    ``"msigdb:NAME"`` in ``gene_sets``.
     """
     os.makedirs(outdir, exist_ok=True)
     gs: Optional[GeneSets] = None
     if gene_sets is not None:
-        gs = gene_sets if isinstance(gene_sets, dict) else load_gene_sets(gene_sets)
+        gs = gene_sets if isinstance(gene_sets, dict) else load_gene_sets(gene_sets, species=species)
     gene_values = genes if isinstance(genes, dict) else ({g: None for g in genes} if genes else None)
     enrich_kwargs = dict(enrich_kwargs or {})
 
@@ -174,6 +177,11 @@ def run_pipeline(
         region_summary(pmap, hits).to_csv(os.path.join(outdir, "pathway_map_regions.csv"), index=False)
         fig = plot_pathway_map(pmap, table, None, fdr_cutoff=fdr_cutoff, title=title, dpi=dpi)
         files["pathway_map"] = {}
+        if "html" in formats:
+            from .maphtml import write_map_html
+
+            files["pathway_map"]["html"] = write_map_html(pmap, os.path.join(outdir, "pathway_map.html"), table,
+                                                          fdr_cutoff=fdr_cutoff, title=title, js_path=None)
         for f in ("pdf", "svg", "png"):
             if f in formats:
                 p = os.path.join(outdir, f"pathway_map.{f}")

@@ -54,12 +54,18 @@ with st.sidebar:
         gene_text = st.text_area("Optional genes of interest (restricts gene network)", height=100)
 
     st.header("2. Gene sets")
-    lib_choice = st.selectbox("Library", ["demo"] + list(snv.POPULAR_LIBRARIES) + ["Upload GMT", "Other Enrichr library"])
+    species = st.radio("Species of the gene symbols", ["human", "mouse"], horizontal=True,
+                       help="Selects the MSigDB collections below and the STRING taxon. Enrichr libraries are mostly human.")
+    msigdb_opts = [f"MSigDB {k}" for k, v in snv.MSIGDB_COLLECTIONS.items() if v[0 if species == "human" else 1]]
+    lib_choice = st.selectbox("Library", ["demo"] + msigdb_opts + list(snv.POPULAR_LIBRARIES) + ["Upload GMT", "Other Enrichr library"],
+                              help="MSigDB collections are downloaded once for the chosen species (release 2025.1).")
     gmt_upload = other_lib = None
     if lib_choice == "Upload GMT":
         gmt_upload = st.file_uploader("GMT file", type=["gmt", "txt"])
     elif lib_choice == "Other Enrichr library":
         other_lib = st.text_input("Enrichr library name", "WikiPathways_2023_Human")
+    elif lib_choice.startswith("MSigDB "):
+        other_lib = "msigdb:" + lib_choice.split(" ", 1)[1]
     bg_text = st.text_area("Background genes (optional, recommended)", height=80)
 
     st.header("3. Network")
@@ -103,10 +109,10 @@ def parse_genes(text):
 
 
 @st.cache_data(show_spinner="Loading gene sets…")
-def load_sets(choice, other, gmt_bytes):
+def load_sets(choice, other, gmt_bytes, species="human"):
     if gmt_bytes is not None:
         return parse_gmt_lines(gmt_bytes.decode("utf-8", "replace").splitlines())
-    return snv.load_gene_sets(other or choice)
+    return snv.load_gene_sets(other or choice, species=species)
 
 
 def _tmp_upload(upload):
@@ -118,8 +124,8 @@ def _tmp_upload(upload):
 
 if go:
     try:
-        gs = load_sets(lib_choice if lib_choice not in ("Upload GMT", "Other Enrichr library") else None,
-                       other_lib, gmt_upload.getvalue() if gmt_upload else None)
+        gs = load_sets(lib_choice if lib_choice not in ("Upload GMT", "Other Enrichr library") and not lib_choice.startswith("MSigDB ") else None,
+                       other_lib, gmt_upload.getvalue() if gmt_upload else None, species)
         genes = parse_genes(gene_text)
         background = list(parse_genes(bg_text) or {}) or None
         enrichment = pathways = conditions = None
@@ -158,7 +164,7 @@ if go:
                 similarity_metric=metric, use_full_gene_sets=sim_genes.startswith("full"), cluster_method=cluster,
                 cluster_kwargs=cluster_kwargs, library_network=whole_library, gene_network_mode=gmode, color_by=color_by,
                 formats=("png", "pdf", "svg", "html", "cyjs", "graphml", "csv"),
-                gene_network_kwargs={"max_genes": max_genes},
+                gene_network_kwargs={"max_genes": max_genes, "string_species": snv.species_taxon(species)},
             )
         st.session_state["res"] = res
         st.session_state["outdir"] = outdir

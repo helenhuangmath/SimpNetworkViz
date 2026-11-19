@@ -396,3 +396,155 @@ def test_map_cli(pmap, gene_values, tmp_path, capsys):
     assert (out / "pathway_map.pdf").exists() and (out / "pathway_map_regions.csv").exists()
     hits = pd.read_csv(out / "pathway_map_hits.csv")
     assert "HALLMARK_E2F_TARGETS" in set(hits["pathway"])
+
+
+# ---------------------------------------------------------------- maps per category
+
+def test_split_by_category(gene_sets):
+    groups = snv.split_by_category(gene_sets)
+    assert set(groups) == {"Hallmark", "KEGG", "Reactome", "GO biological process"}
+    assert sum(len(g) for g in groups.values()) == len(gene_sets)
+    assert list(groups)[0] == "Hallmark"  # largest first
+    custom = snv.split_by_category(gene_sets, {p: "A" for p in list(gene_sets)[:10]}, min_sets=10)
+    assert set(custom) == {"A"} and len(custom["A"]) == 10  # the other categories fall below min_sets
+
+
+def test_msigdb_collection_prefixes():
+    assert pathway_category("GOCC_NUCLEUS") == "GO cellular component"
+    assert pathway_category("KEGG_MEDICUS_REFERENCE_X") == "KEGG MEDICUS"
+    assert pathway_category("HP_SEIZURE") == "Human phenotype"
+    assert pathway_category("chr1p36") == "Positional"
+    assert pathway_category("GSE1234_A_VS_B_UP") == "ImmuneSigDB"
+    assert pathway_category("FOXO3_TARGET_GENES") == "TF/miRNA targets"
+
+
+def test_category_maps_build_save_plot(gene_sets, gene_values, tmp_path):
+    with pytest.warns(UserWarning, match="skipped"):  # GO BP has only 4 demo sets
+        maps = snv.build_category_maps(gene_sets, methods=("tsne",), min_sets=5, min_size=5, n_neighbors=4,
+                                       min_cluster_label=2)
+    assert set(maps) == {"Hallmark", "KEGG", "Reactome"}
+    for cat, per in maps.items():
+        assert set(per) == {"tsne"}
+        assert per["tsne"].attrs["category"] == cat and per["tsne"].attrs["method"] == "tsne"
+        assert set(per["tsne"]["pathway"]) == {p for p in gene_sets if pathway_category(p) == cat}
+    index = snv.save_category_maps(maps, tmp_path / "maps")
+    assert len(index) == 3 and (tmp_path / "maps" / "category_maps.csv").exists()
+    assert (tmp_path / "maps" / "hallmark_map_tsne.csv").exists() and (tmp_path / "maps" / "hallmark_map_tsne.pdf").stat().st_size > 0
+    back = snv.load_map(tmp_path / "maps" / "kegg_map_tsne.csv")
+    assert len(back) == 8 and back.attrs["method"] == "tsne"
+    table = snv.enrich(list(gene_values), gene_sets)
+    fig = snv.plot_category_maps(maps, tmp_path / "grid.pdf", table=table)
+    assert len(fig.axes) >= 3 and (tmp_path / "grid.pdf").stat().st_size > 0
+    import matplotlib.pyplot as plt
+    plt.close(fig)
+    # a map of one category can be reused by the pipeline like any other map
+    res = snv.run_pipeline(genes=gene_values, gene_sets=gene_sets, outdir=str(tmp_path / "run"), similarity_cutoff=0.3,
+                           pathway_map=str(tmp_path / "maps" / "hallmark_map_tsne.csv"), formats=("csv", "pdf"))
+    hits = res["pathway_map_hits"]
+    assert len(hits) and hits["pathway"].str.startswith("HALLMARK_").all()
+
+
+def test_map_cli_by_category(tmp_path, capsys):
+    out = tmp_path / "cat"
+    main(["map", "--library", "demo", "--by-category", "--method", "tsne", "--min-size", "5", "--neighbors", "4",
+          "--min-sets", "5", "-o", str(out)])
+    text = capsys.readouterr().out
+    assert "4 categories" in text and "3 maps written" in text
+    assert (out / "category_maps.csv").exists() and (out / "category_maps.pdf").exists()
+    index = pd.read_csv(out / "category_maps.csv")
+    assert set(index["category"]) == {"Hallmark", "KEGG", "Reactome"} and (index["method"] == "tsne").all()
+
+
+def test_map_cli_one_category_per_gmt(gene_sets, tmp_path, capsys):
+    a = tmp_path / "setA.v2025.1.Mm.symbols.gmt"
+    b = tmp_path / "setB.gmt"
+    names = list(gene_sets)
+    snv.write_gmt({n: gene_sets[n] for n in names[:16]}, a)
+    snv.write_gmt({n: gene_sets[n] for n in names[16:]}, b)
+    out = tmp_path / "cat"
+    main(["map", "--gmt", str(a), "--gmt", str(b), "--by-category", "--method", "tsne", "--min-size", "5",
+          "--neighbors", "4", "--min-sets", "5", "-o", str(out)])
+    text = capsys.readouterr().out
+    assert "2 categories" in text
+    index = pd.read_csv(out / "category_maps.csv")
+    assert set(index["category"]) == {"setA", "setB"} and set(index["n_sets"]) == {16}
+
+
+def test_plot_map_color_by_category(pmap, gene_sets, gene_values, tmp_path):
+    import matplotlib.pyplot as plt
+    fig = snv.plot_pathway_map(pmap, None, tmp_path / "cat.pdf", color_by_category=True)
+    assert [t.get_text().split(" (")[0] for t in fig.legends[0].texts] == ["Hallmark", "KEGG", "Reactome", "GO biological process"]
+    plt.close(fig)
+    cmp_table = snv.compare_conditions({"a": list(gene_values)[:40], "b": list(gene_values)[20:]}, gene_sets)
+    fig = snv.plot_pathway_map(pmap, cmp_table, None, color_by_category=True, categories={p: "X" for p in gene_sets})
+    assert fig.legends[0].get_title().get_text() == "Collection" and fig.axes[0].get_legend().get_title().get_text() == "Enriched in"
+    assert (tmp_path / "cat.pdf").stat().st_size > 0
+    plt.close(fig)
+
+
+# ---------------------------------------------------------------- species / MSigDB
+
+def test_species_helpers():
+    from simpnetworkviz.genesets import msigdb_file
+    assert snv.normalize_species("Mouse") == "mouse" and snv.normalize_species(9606) == "human" and snv.normalize_species("Mm") == "mouse"
+    assert snv.species_taxon("mouse") == 10090 and snv.species_taxon(9606) == 9606
+    assert msigdb_file("GO_BP", "mouse") == "m5.go.bp.v2025.1.Mm.symbols"
+    assert msigdb_file("hallmark", "human") == "h.all.v2025.1.Hs.symbols"
+    with pytest.raises(ValueError, match="no KEGG collection for mouse"):
+        msigdb_file("KEGG", "mouse")
+    with pytest.raises(ValueError, match="Unknown MSigDB collection"):
+        msigdb_file("Nope", "human")
+    with pytest.raises(ValueError, match="Unknown species"):
+        snv.normalize_species("rat")
+
+
+def test_msigdb_source_uses_fetcher(monkeypatch, gene_sets):
+    calls = []
+
+    def fake(collection, species="human", **kw):
+        calls.append((collection, species))
+        return dict(gene_sets)
+
+    monkeypatch.setattr(snv.genesets, "fetch_msigdb", fake)
+    gs = snv.load_gene_sets("msigdb:Hallmark,msigdb:GO_BP", species="mouse")
+    assert calls == [("Hallmark", "mouse"), ("GO_BP", "mouse")]
+    assert len(gs) == 2 * len(gene_sets)  # identical names from two sources are prefixed, not merged
+
+
+def test_cli_species_and_msigdb(monkeypatch, gene_sets, gene_values, tmp_path, capsys):
+    monkeypatch.setattr(snv.genesets, "fetch_msigdb", lambda collection, species="human", **kw: dict(gene_sets))
+    genes = tmp_path / "genes.txt"
+    genes.write_text("\n".join(gene_values))
+    main(["run", str(genes), "--msigdb", "Hallmark", "--species", "mouse", "-o", str(tmp_path / "out"), "--formats", "csv",
+          "--gene-network", "none", "--cutoff", "0.3"])
+    params = json.load(open(tmp_path / "out" / "run_params.json"))
+    assert params["species"] == "mouse" and params["gene_sets"] == "msigdb:Hallmark"
+    with pytest.raises(SystemExit):
+        main(["run", str(genes), "--msigdb", "Hallmark", "--species", "rat"])
+
+
+# ---------------------------------------------------------------- interactive map
+
+def test_write_map_html(pmap, gene_sets, gene_values, tmp_path):
+    import json, re
+    cmp_table = snv.compare_conditions({"a": list(gene_values)[:40], "b": list(gene_values)[20:]}, gene_sets)
+    out = snv.write_map_html(pmap, tmp_path / "map.html", cmp_table, title="Test map")
+    text = open(out, encoding="utf-8").read()
+    assert "<title>Test map</title>" in text and "plotly" in text.lower()
+    data = json.loads(re.search(r"const D = (\{.*?\});\n", text, re.S).group(1))
+    assert data["n"] == len(pmap) and len(data["library"]["name"]) == len(pmap)
+    assert {h["condition"] for h in data["hits"]} <= {"a", "b"} and data["hits"]
+    assert all(len(r["hull"]) >= 4 and r["label"] and r["color"].startswith("#") for r in data["regions"])
+    assert all(r["hull"][0] == r["hull"][-1] for r in data["regions"])  # closed, smoothed rings
+    h = data["hits"][0]
+    assert len(h["allGenes"]) == len(h["name"]) == len(h["pvalue"]) == len(h["setSize"]) and all(v is None or v > 0 for v in h["pvalue"])
+    assert "selGroup" in text and "pathwayList" in text and "Significant in this data" in text
+    assert 'id="regRows"' in text and 'id="condRows"' in text and "plotly_click" in text  # sidebar panels, click-to-detail
+    assert len(data["regions"]) == pmap.loc[pmap["cluster"] > 0, "cluster"].nunique()
+    # bare library, and the pipeline writes it next to the PDF
+    snv.write_map_html(pmap, tmp_path / "lib.html")
+    assert (tmp_path / "lib.html").stat().st_size > 1000
+    snv.save_map(pmap, tmp_path / "m.csv")
+    res = snv.run_pipeline(genes=gene_values, gene_sets=gene_sets, outdir=str(tmp_path / "run"), similarity_cutoff=0.3,
+                           pathway_map=str(tmp_path / "m.csv"), formats=("csv", "html"), gene_network_mode=None)
+    assert os.path.exists(res["files"]["pathway_map"]["html"])

@@ -1,0 +1,32 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+1,Abnormality abnormal,305,0,0.0,0,0.0
+17,Abnormal abnormality,89,0,0.0,0,0.0
+30,Stenosis,39,0,0.0,0,0.0
+29,Decreased circulating level,42,0,0.0,0,0.0
+28,Abnormal aortic arch,49,0,0.0,0,0.0
+27,Abnormal abnormality,50,0,0.0,0,0.0
+26,Abnormal aplasia thumb,53,0,0.0,0,0.0
+25,Abnormal morphology,56,0,0.0,0,0.0
+24,Abnormal,57,0,0.0,0,0.0
+23,Abnormal labia aplasia,57,0,0.0,0,0.0
+22,Prolonged bleeding hemorrhage,60,0,0.0,0,0.0
+21,Focal seizure,63,0,0.0,0,0.0
+20,Abnormal respiratory sperm,72,0,0.0,0,0.0
+19,Abnormal ventricular,81,0,0.0,0,0.0
+18,Abnormal cholesterol concentration,82,0,0.0,0,0.0
+16,Retinal visual electroretinogram,91,0,0.0,0,0.0
+2,Abnormality abnormal,250,0,0.0,0,0.0
+15,Abnormal amino acid,97,0,0.0,0,0.0
+14,Seizure,100,0,0.0,0,0.0
+13,Abnormal renal concentration,118,0,0.0,0,0.0
+12,Abnormal aortic valve,121,0,0.0,0,0.0
+11,Abnormality abnormal,132,0,0.0,0,0.0
+10,Aplasia hypoplasia finger,134,0,0.0,0,0.0
+9,Abnormal recurrent level,145,0,0.0,0,0.0
+8,Abnormal hypoplasia morphology,148,0,0.0,0,0.0
+7,Abnormality abnormal,150,0,0.0,0,0.0
+6,Abnormality muscle weakness,165,0,0.0,0,0.0
+5,Neoplasm,180,0,0.0,0,0.0
+4,Abnormality hypoplasia morphology,219,0,0.0,0,0.0
+3,Hp dysarthria,225,0,0.0,0,0.0
+31,Abnormality abnormal skin,38,0,0.0,0,0.0

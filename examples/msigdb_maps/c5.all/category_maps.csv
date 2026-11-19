@@ -1,0 +1,9 @@
+category,method,n_sets,n_regions,csv,figure
+GO biological process,tsne,5161,37,examples/msigdb_maps/c5.all/go_biological_process_map_tsne.csv,examples/msigdb_maps/c5.all/go_biological_process_map_tsne.pdf
+GO biological process,umap,5161,37,examples/msigdb_maps/c5.all/go_biological_process_map_umap.csv,examples/msigdb_maps/c5.all/go_biological_process_map_umap.pdf
+Human phenotype,tsne,3468,31,examples/msigdb_maps/c5.all/human_phenotype_map_tsne.csv,examples/msigdb_maps/c5.all/human_phenotype_map_tsne.pdf
+Human phenotype,umap,3468,31,examples/msigdb_maps/c5.all/human_phenotype_map_umap.csv,examples/msigdb_maps/c5.all/human_phenotype_map_umap.pdf
+GO molecular function,tsne,1064,21,examples/msigdb_maps/c5.all/go_molecular_function_map_tsne.csv,examples/msigdb_maps/c5.all/go_molecular_function_map_tsne.pdf
+GO molecular function,umap,1064,21,examples/msigdb_maps/c5.all/go_molecular_function_map_umap.csv,examples/msigdb_maps/c5.all/go_molecular_function_map_umap.pdf
+GO cellular component,tsne,643,15,examples/msigdb_maps/c5.all/go_cellular_component_map_tsne.csv,examples/msigdb_maps/c5.all/go_cellular_component_map_tsne.pdf
+GO cellular component,umap,643,15,examples/msigdb_maps/c5.all/go_cellular_component_map_umap.csv,examples/msigdb_maps/c5.all/go_cellular_component_map_umap.pdf

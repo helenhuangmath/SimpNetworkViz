@@ -1,0 +1,23 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+4,Structural microtubule binding,74,7,0.095,0,0.0
+1,Protein receptor binding,96,1,0.01,1,0.01
+8,Receptor kinase binding,63,2,0.032,0,0.0
+10,Atpase phosphatidylinositol binding,50,2,0.04,0,0.0
+12,Protein serine kinase,49,2,0.041,0,0.0
+6,Acid lyase oxygen,65,0,0.0,0,0.0
+15,ATP DNA polymerase,47,0,0.0,0,0.0
+21,Adenylate cyclase subunit,21,0,0.0,0,0.0
+20,Binding,29,0,0.0,0,0.0
+19,Nuclear signal carrier,30,0,0.0,0,0.0
+18,Phosphatidylinositol threonine phosphatase,35,0,0.0,0,0.0
+17,Cysteine endopeptidase peptidase,43,0,0.0,0,0.0
+16,Gated potassium channel,45,0,0.0,0,0.0
+14,MHC transfer binding,48,0,0.0,0,0.0
+7,Phospholipase hydrolase acetyltransferase,65,0,0.0,0,0.0
+13,Translation MRNA RNA,48,0,0.0,0,0.0
+2,Acid transmembrane transporter,94,0,0.0,0,0.0
+11,Gated receptor channel,49,0,0.0,0,0.0
+3,Transcription protein binding,88,0,0.0,0,0.0
+9,Oxidoreductase dehydrogenase nad,51,0,0.0,0,0.0
+5,Ligase exonuclease methyltransferase,72,0,0.0,0,0.0
+22,Transforming receptor beta,19,0,0.0,0,0.0

@@ -1,0 +1,7 @@
+category,method,n_sets,n_regions,csv,figure
+GO biological process,tsne,5489,35,examples/msigdb_maps/mouse/GO/go_biological_process_map_tsne.csv,examples/msigdb_maps/mouse/GO/go_biological_process_map_tsne.pdf
+GO biological process,umap,5489,35,examples/msigdb_maps/mouse/GO/go_biological_process_map_umap.csv,examples/msigdb_maps/mouse/GO/go_biological_process_map_umap.pdf
+GO molecular function,tsne,1181,22,examples/msigdb_maps/mouse/GO/go_molecular_function_map_tsne.csv,examples/msigdb_maps/mouse/GO/go_molecular_function_map_tsne.pdf
+GO molecular function,umap,1181,22,examples/msigdb_maps/mouse/GO/go_molecular_function_map_umap.csv,examples/msigdb_maps/mouse/GO/go_molecular_function_map_umap.pdf
+GO cellular component,tsne,679,15,examples/msigdb_maps/mouse/GO/go_cellular_component_map_tsne.csv,examples/msigdb_maps/mouse/GO/go_cellular_component_map_tsne.pdf
+GO cellular component,umap,679,15,examples/msigdb_maps/mouse/GO/go_cellular_component_map_umap.csv,examples/msigdb_maps/mouse/GO/go_cellular_component_map_umap.pdf

@@ -1,9 +1,10 @@
 """Cl13 (exhausted, TEX) vs Arm (memory, TMEM) CD8 T-cell gene groups -> pathway networks.
 
 Inputs (data/): one CSV per condition, one column per gene subgroup (mouse symbols).
-Gene sets (genesets/): MSigDB mouse Hallmark (bundled). GO Biological Process is
-optional: download m5.go.bp.v2025.1.Mm.symbols.gmt from
-https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp and pass --gobp PATH.
+Gene sets: the MSigDB *mouse* collections (the genes are mouse symbols): Hallmark
+(mh.all, bundled under genesets/) and GO Biological Process (m5.go.bp), which is
+downloaded once with snv.fetch_msigdb("GO_BP", species="mouse") and cached, or
+read from --gobp PATH if you already have the file.
 
 Outputs (results/), all figures as PDF:
   1_Cl13_vs_Arm_pooled/<library>/   two conditions, all genes of each condition pooled
@@ -13,7 +14,7 @@ Outputs (results/), all figures as PDF:
                                     (t-SNE by default; --map-method umap for the UMAP version)
   summary.csv                       one row per analysis
 
-    python examples/Cl13_vs_Arm/run_comparison.py [--gobp path/to/m5.go.bp.v2025.1.Mm.symbols.gmt] [--map-method umap]
+    python examples/Cl13_vs_Arm/run_comparison.py [--species mouse] [--gobp path/to/m5.go.bp.v2025.1.Mm.symbols.gmt] [--map-method umap]
 """
 import argparse
 import os
@@ -27,7 +28,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FORMATS = ("pdf", "html", "csv")
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--gobp", default=None, help="optional GO Biological Process mouse GMT file")
+ap.add_argument("--species", default="mouse", help="species of the gene symbols (mouse); selects the MSigDB collections")
+ap.add_argument("--gobp", default=None, help="GO Biological Process GMT file (default: MSigDB GO_BP for --species, downloaded once)")
+ap.add_argument("--no-gobp", action="store_true", help="Hallmark only (no download)")
 ap.add_argument("--out", default=os.path.join(HERE, "results"))
 ap.add_argument("--map-method", choices=["tsne", "umap"], default="tsne",
                 help="embedding for the GO BP pathway map (section 4); the bundled map is t-SNE, "
@@ -37,12 +40,21 @@ warnings.simplefilter("ignore", UserWarning)
 
 cl13 = snv.read_gene_groups(os.path.join(HERE, "data", "Cl13_groups.csv"))   # {TEX_G1: {gene: None}, ...}
 arm = snv.read_gene_groups(os.path.join(HERE, "data", "Arm_groups.csv"))     # {TMEM_G1: ..., ...}
-libraries = {"Hallmark": snv.load_gene_sets(os.path.join(HERE, "genesets", "mh.all.v2025.1.Mm.symbols.gmt"))}
-if args.gobp and os.path.exists(args.gobp):
+SPECIES = snv.normalize_species(args.species)
+if SPECIES == "mouse":
+    libraries = {"Hallmark": snv.load_gene_sets(os.path.join(HERE, "genesets", "mh.all.v2025.1.Mm.symbols.gmt"))}
+else:
+    libraries = {"Hallmark": snv.fetch_msigdb("Hallmark", species=SPECIES)}
+if args.no_gobp:
+    print("Running Hallmark only (--no-gobp).")
+elif args.gobp:
+    if not os.path.exists(args.gobp):
+        raise SystemExit(f"GO BP file not found: {args.gobp}")
     libraries["GO_BP"] = snv.load_gene_sets(args.gobp, min_size=10, max_size=500)
 else:
-    msg = f"GO BP file not found ({args.gobp}); " if args.gobp else "No GO BP file given; "
-    print(msg + "running Hallmark only.")
+    gobp = snv.fetch_msigdb("GO_BP", species=SPECIES)  # cached under ~/.cache/simpnetworkviz/msigdb
+    libraries["GO_BP"] = {k: v for k, v in gobp.items() if 10 <= len(set(v)) <= 500}
+    print(f"MSigDB GO_BP ({SPECIES}): {len(gobp)} sets, {len(libraries['GO_BP'])} with 10-500 genes")
 
 rows = []
 

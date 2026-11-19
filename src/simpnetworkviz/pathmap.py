@@ -189,6 +189,224 @@ def build_pathway_map(
     return df[MAP_COLUMNS]
 
 
+# ---------------------------------------------------------------------------
+# One map per category (MSigDB collections, several GMT files, custom groups)
+# ---------------------------------------------------------------------------
+
+MAP_METHODS = ("tsne", "umap")
+
+
+def split_by_category(gene_sets: GeneSets, categories: Optional[Dict[str, str]] = None,
+                      min_sets: int = 1) -> Dict[str, GeneSets]:
+    """Split a library into ``{category: gene_sets}``.
+
+    ``categories`` (``{pathway: category}``) takes precedence; otherwise the
+    category is read from the pathway name with
+    :func:`~simpnetworkviz.network.pathway_category`, which knows the MSigDB
+    collection prefixes (HALLMARK, GOBP/GOCC/GOMF, KEGG, REACTOME, WP, PID,
+    BIOCARTA, HP, MIR ...) and the ``"Library: pathway"`` names produced by
+    :func:`~simpnetworkviz.genesets.load_gene_sets` for several sources.
+    Categories with fewer than ``min_sets`` sets are dropped. Categories are
+    returned largest first.
+    """
+    from .network import pathway_category
+
+    out: Dict[str, GeneSets] = defaultdict(dict)
+    for name, genes in gene_sets.items():
+        out[pathway_category(name, categories)][name] = genes
+    kept = {c: gs for c, gs in out.items() if len(gs) >= min_sets}
+    return dict(sorted(kept.items(), key=lambda kv: -len(kv[1])))
+
+
+def build_category_maps(
+    gene_sets: GeneSets,
+    methods: Sequence[str] = MAP_METHODS,
+    categories: Optional[Dict[str, str]] = None,
+    min_sets: int = 20,
+    **map_kwargs,
+) -> Dict[str, Dict[str, pd.DataFrame]]:
+    """One pathway map per category and embedding method.
+
+    The library is split with :func:`split_by_category` (MSigDB collections by
+    default, e.g. a full ``msigdb.v2025.1.Hs.symbols.gmt`` gives Hallmark, GO BP,
+    GO CC, GO MF, KEGG, Reactome, WikiPathways ... as separate maps) and
+    :func:`build_pathway_map` is run on each category with every method in
+    ``methods`` (``"tsne"`` and ``"umap"`` by default). Categories with fewer
+    than ``min_sets`` sets after the size filter are skipped with a warning,
+    as is a method whose package is not installed. ``map_kwargs`` are passed
+    to :func:`build_pathway_map` (``min_size``, ``max_size``, ``n_neighbors``,
+    ``cluster_resolution``, ``seed`` ...).
+
+    Returns ``{category: {method: map}}``. Within a category the t-SNE and UMAP
+    maps share their regions and labels (regions are clustered in similarity
+    space), so only the coordinates differ.
+    """
+    min_size = map_kwargs.get("min_size", 10)
+    max_size = map_kwargs.get("max_size", 500)
+    min_sets = max(int(min_sets), 5)  # build_pathway_map needs at least 5 sets
+    groups = split_by_category(gene_sets, categories, min_sets=1)
+    maps: Dict[str, Dict[str, pd.DataFrame]] = {}
+    unavailable = set()
+    for cat, gs in groups.items():
+        n_ok = sum(1 for v in gs.values() if min_size <= len(set(v)) <= max_size)
+        if n_ok < min_sets:
+            warnings.warn(f"Category {cat!r}: {n_ok} gene sets within {min_size}-{max_size} genes (< {min_sets}), skipped.",
+                          stacklevel=2)
+            continue
+        maps[cat] = {}
+        for method in methods:
+            if method in unavailable:
+                continue
+            try:
+                pmap = build_pathway_map(gs, method=method, **map_kwargs)
+            except ImportError as exc:
+                warnings.warn(f"{method}: {exc}", stacklevel=2)
+                unavailable.add(method)
+                continue
+            pmap.attrs["category"] = cat
+            maps[cat][method] = pmap
+        if not maps[cat]:
+            del maps[cat]
+    if not maps:
+        raise ValueError("No category map could be built: check the gene-set names, the size limits and that "
+                         "umap-learn or scikit-learn is installed.")
+    return maps
+
+
+def category_slug(category: str) -> str:
+    """File-name-safe form of a category name (``"GO biological process"`` -> ``"go_biological_process"``)."""
+    import re
+
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", str(category)).strip("_").lower()
+    return slug or "category"
+
+
+def save_category_maps(maps: Dict[str, Dict[str, pd.DataFrame]], outdir, plot: bool = True,
+                       dpi: int = 300, formats: Sequence[str] = ("pdf",)) -> pd.DataFrame:
+    """Write every map of :func:`build_category_maps` to ``outdir``.
+
+    Files are ``<category>_map_<method>.csv`` (reuse with ``--map``) and, with
+    ``plot=True``, ``<category>_map_<method>.<format>``. An index table
+    ``category_maps.csv`` (category, method, n_sets, n_regions, csv, figure) is
+    written too and returned.
+    """
+    import os
+
+    os.makedirs(outdir, exist_ok=True)
+    rows = []
+    for cat, per_method in maps.items():
+        for method, pmap in per_method.items():
+            stem = os.path.join(outdir, f"{category_slug(cat)}_map_{method}")
+            save_map(pmap, stem + ".csv")
+            from .maphtml import write_map_html
+
+            write_map_html(pmap, stem + ".html", title=f"{cat} ({method.upper()})")
+            fig_path = ""
+            if plot:
+                import matplotlib.pyplot as plt
+
+                fig = plot_pathway_map(pmap, None, None, title=f"{cat} ({method.upper()})", dpi=dpi)
+                for f in formats:
+                    fig.savefig(f"{stem}.{f}", dpi=dpi, facecolor="white", bbox_inches="tight")
+                    fig_path = fig_path or f"{stem}.{f}"
+                plt.close(fig)
+            rows.append({"category": cat, "method": method, "n_sets": len(pmap),
+                         "n_regions": int(pmap.loc[pmap["cluster"] > 0, "cluster"].nunique()),
+                         "csv": stem + ".csv", "figure": fig_path})
+    index = pd.DataFrame(rows, columns=["category", "method", "n_sets", "n_regions", "csv", "figure"])
+    index.to_csv(os.path.join(outdir, "category_maps.csv"), index=False)
+    return index
+
+
+def plot_category_maps(maps: Dict[str, Dict[str, pd.DataFrame]], path=None, table: Optional[pd.DataFrame] = None,
+                       fdr_cutoff: Optional[float] = 0.05, panel: float = 4.5, dpi: int = 300, label_top: int = 0):
+    """One figure with a panel per category (rows) and embedding method (columns).
+
+    ``table`` (an enrichment or comparison table) highlights the enriched
+    pathways on each panel, as :func:`plot_pathway_map` does on a single map;
+    ``label_top`` names the most significant hits per panel.
+    """
+    import matplotlib.pyplot as plt
+
+    cats = list(maps)
+    methods = sorted({m for per in maps.values() for m in per}, key=lambda m: (m != "tsne", m))
+    nrow, ncol = len(cats), len(methods)
+    fig, axes = plt.subplots(nrow, ncol, figsize=(panel * ncol, panel * nrow * 0.95), squeeze=False, facecolor="white")
+    for i, cat in enumerate(cats):
+        for j, method in enumerate(methods):
+            ax = axes[i][j]
+            pmap = maps[cat].get(method)
+            if pmap is None:
+                ax.axis("off")
+                continue
+            plot_pathway_map(pmap, table, None, fdr_cutoff=fdr_cutoff, label_top=label_top, title=cat,
+                             width=panel, dpi=dpi, ax=ax)
+            if table is not None and len(ax.get_legend_handles_labels()[0]) and (i, j) != (0, ncol - 1):
+                ax.get_legend().remove()  # one legend per figure is enough
+    fig.tight_layout()
+    if path:
+        fig.savefig(path, dpi=dpi, facecolor="white", bbox_inches="tight")
+    return fig
+
+
+def _repel_labels(ax, texts, iterations: int = 300, pad_px: float = 3.0, damping: float = 0.7) -> None:
+    """Nudge overlapping text boxes apart (display space), keeping them inside the axes.
+
+    A small, dependency-free version of what ``adjustText`` does: on every pass
+    each pair of overlapping boxes is pushed apart along the axis with the
+    smaller overlap (vertical moves preferred, so labels stay near their
+    region). Annotations keep their arrow anchored to the original point; only
+    the text box is measured, not the arrow.
+    """
+    from matplotlib.text import Text
+
+    texts = [t for t in texts if t.get_visible()]
+    if len(texts) < 2:
+        return
+    fig = ax.figure
+    fig.canvas.draw()  # finalize autoscaling and aspect so display coordinates are the real ones
+    renderer = fig.canvas.get_renderer()
+    ax_box = ax.get_window_extent(renderer)
+    inv = ax.transData.inverted()
+    pt = 72.0 / fig.dpi  # pixels -> points, for annotation offsets
+
+    def bbox(t):
+        return Text.get_window_extent(t, renderer).padded(pad_px)
+
+    for _ in range(iterations):
+        boxes = [bbox(t) for t in texts]
+        shifts = np.zeros((len(texts), 2))
+        moved = False
+        for i in range(len(texts)):
+            for j in range(i + 1, len(texts)):
+                a, b = boxes[i], boxes[j]
+                if not a.overlaps(b):
+                    continue
+                dx = min(a.x1 - b.x0, b.x1 - a.x0)
+                dy = min(a.y1 - b.y0, b.y1 - a.y0)
+                if dy * 1.5 <= dx:
+                    sign = 1 if (a.y0 + a.y1) >= (b.y0 + b.y1) else -1
+                    shifts[i, 1] += sign * dy / 2
+                    shifts[j, 1] -= sign * dy / 2
+                else:
+                    sign = 1 if (a.x0 + a.x1) >= (b.x0 + b.x1) else -1
+                    shifts[i, 0] += sign * dx / 2
+                    shifts[j, 0] -= sign * dx / 2
+                moved = True
+        if not moved:
+            break
+        for t, (sx, sy), b in zip(texts, shifts * damping, boxes):
+            if sx == 0 and sy == 0:
+                continue
+            sx += min(0.0, ax_box.x1 - (b.x1 + sx)) + max(0.0, ax_box.x0 - (b.x0 + sx))
+            sy += min(0.0, ax_box.y1 - (b.y1 + sy)) + max(0.0, ax_box.y0 - (b.y0 + sy))
+            if hasattr(t, "xyann"):
+                t.xyann = (t.xyann[0] + sx * pt, t.xyann[1] + sy * pt)
+            else:
+                X, Y = ax.transData.transform(t.get_position())
+                t.set_position(inv.transform((X + sx, Y + sy)))
+
+
 def _words(name: str) -> Dict[str, float]:
     """``{word: relative position in the name}`` for the informative words of a pathway name."""
     import re
@@ -319,10 +537,16 @@ def plot_pathway_map(
     title: Optional[str] = None,
     width: float = 11.0,
     dpi: int = 300,
+    ax=None,
+    color_by_category: bool = False,
+    categories: Optional[Dict[str, str]] = None,
 ):
     """Draw the library map, with the enriched pathways of ``table`` highlighted.
 
     Every pathway is a light grey point; region labels sit at region centres.
+    ``color_by_category=True`` colors the points by source collection instead
+    (:func:`~simpnetworkviz.network.pathway_category`, or ``categories`` =
+    ``{pathway: category}``), for a map built from several databases.
     Enriched pathways are drawn on top: one condition = filled circles sized by
     -log10 FDR; several conditions = small pie charts, one slice per condition,
     as in the comparison networks. The ``label_top`` most significant hits are
@@ -341,14 +565,37 @@ def plot_pathway_map(
     multi = len(conds) > 1
 
     span = max(pmap["x"].max() - pmap["x"].min(), pmap["y"].max() - pmap["y"].min())
-    fig, ax = plt.subplots(figsize=(width, width * 0.85), facecolor="white")
-    ax.scatter(pmap["x"], pmap["y"], s=9, c="#D9D9D9", edgecolors="none", zorder=1)
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(width, width * 0.85), facecolor="white")
+    else:
+        fig = ax.figure
+    small = width < 7  # panel of a grid: smaller markers and text
+    cat_handles = []
+    if color_by_category:
+        from .network import pathway_category
+        from .style import lighten
+
+        cats = pmap["pathway"].map(lambda n: pathway_category(n, categories))
+        order = list(cats.value_counts().index)
+        for i, c in enumerate(order):
+            m = (cats == c).values
+            col = lighten(condition_color(i), 0.35)
+            ax.scatter(pmap["x"][m], pmap["y"][m], s=5 if small else 10, c=col, edgecolors="none", zorder=1, alpha=0.9)
+            cat_handles.append(plt.Line2D([], [], marker="o", linestyle="", markersize=6, markerfacecolor=col,
+                                          markeredgecolor="none", label=f"{c} ({int(m.sum())})"))
+    else:
+        ax.scatter(pmap["x"], pmap["y"], s=4 if small else 9, c="#D9D9D9", edgecolors="none", zorder=1)
+    region_texts = []
     if show_region_labels:
+        import textwrap
+
         for c, grp in pmap[pmap["cluster"] > 0].groupby("cluster"):
             lab = grp["cluster_label"].iloc[0]
             if lab:
-                ax.text(grp["x"].median(), grp["y"].median(), lab, ha="center", va="center", fontsize=8.5,
-                        color="#7A7A7A", zorder=2, linespacing=1.0, wrap=True)
+                t = ax.text(grp["x"].median(), grp["y"].median(), textwrap.fill(lab, 16 if small else 20),
+                            ha="center", va="center", fontsize=6.5 if small else 9, color="#3A3A3A", zorder=5, linespacing=1.05,
+                            bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none", alpha=0.72))
+                region_texts.append(t)
     if len(hits):
         sig = -np.log10(hits["fdr"].clip(lower=1e-300))
         vmax = max(float(sig.max()), 1.0)
@@ -370,17 +617,34 @@ def plot_pathway_map(
                 col = colormaps[SEQ_CMAP](0.3 + 0.65 * best / vmax)
                 ax.add_patch(Circle((x, y), r, facecolor=col, edgecolor=darken("#C94A2A", 0.3), linewidth=0.5, zorder=4))
         top = hits.sort_values("fdr").drop_duplicates("pathway").head(label_top)
-        for _, h in top.iterrows():
-            ax.annotate(clean_pathway_name(h["pathway"]), (h["x"], h["y"]), xytext=(4, 4), textcoords="offset points",
-                        fontsize=7.5, color="#1A1A1A", zorder=6,
-                        bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.75))
+        hit_texts = []
+        import textwrap
+
+        offsets = [(10, 10), (-10, 10), (10, -10), (-10, -10)]  # spread the starting positions around the points
+        for i, (_, h) in enumerate(top.iterrows()):
+            dx, dy = offsets[i % 4]
+            a = ax.annotate(textwrap.fill(clean_pathway_name(h["pathway"]), 28), (h["x"], h["y"]), xytext=(dx, dy),
+                            textcoords="offset points", ha="left" if dx > 0 else "right", va="bottom" if dy > 0 else "top",
+                            fontsize=6.5 if small else 8, color="#1A1A1A", zorder=7, linespacing=1.05,
+                            bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#BBBBBB", lw=0.4, alpha=0.9),
+                            arrowprops=dict(arrowstyle="-", color="#777777", lw=0.5, shrinkA=0, shrinkB=2))
+            hit_texts.append(a)
+    else:
+        hit_texts = []
     ax.set_aspect("equal")
     ax.axis("off")
+    _repel_labels(ax, region_texts + hit_texts)
     method = pmap.attrs.get("method", "")
     sub = f"{len(pmap)} gene sets" + (f", {method.upper()} on gene-set similarity" if method else "")
     if title:
-        ax.set_title(title, fontsize=14, pad=12)
-    ax.text(0.0, -0.02, sub, transform=ax.transAxes, fontsize=LEGEND_TEXT_SIZE - 1, color="#666666", va="top")
+        ax.set_title(title, fontsize=9 if small else 14, pad=6 if small else 12)
+    ax.text(0.0, -0.02, sub, transform=ax.transAxes, fontsize=LEGEND_TEXT_SIZE - (3 if small else 1), color="#666666", va="top")
+    if cat_handles:
+        # A figure legend anchored to the axes: it survives the condition legend below and is
+        # included in bbox_inches="tight" (an axes legend re-added with add_artist is not).
+        fig.legend(handles=cat_handles, title="Collection", loc="upper left", bbox_transform=ax.transAxes,
+                   bbox_to_anchor=(1.0, 0.55 if (len(hits) and multi) else 1.0),
+                   frameon=False, fontsize=LEGEND_TEXT_SIZE - 1, title_fontsize=LEGEND_TITLE_SIZE - 2)
     if len(hits):
         if multi:
             handles = [plt.Line2D([], [], marker="o", linestyle="", markersize=7, markerfacecolor=condition_color(i),

@@ -1,0 +1,11 @@
+category,method,n_sets,n_regions,csv,figure
+Reactome,tsne,1260,28,examples/msigdb_maps/c2.cp/reactome_map_tsne.csv,examples/msigdb_maps/c2.cp/reactome_map_tsne.pdf
+Reactome,umap,1260,28,examples/msigdb_maps/c2.cp/reactome_map_umap.csv,examples/msigdb_maps/c2.cp/reactome_map_umap.pdf
+WikiPathways,tsne,537,13,examples/msigdb_maps/c2.cp/wikipathways_map_tsne.csv,examples/msigdb_maps/c2.cp/wikipathways_map_tsne.pdf
+WikiPathways,umap,537,13,examples/msigdb_maps/c2.cp/wikipathways_map_umap.csv,examples/msigdb_maps/c2.cp/wikipathways_map_umap.pdf
+BIOCARTA,tsne,226,9,examples/msigdb_maps/c2.cp/biocarta_map_tsne.csv,examples/msigdb_maps/c2.cp/biocarta_map_tsne.pdf
+BIOCARTA,umap,226,9,examples/msigdb_maps/c2.cp/biocarta_map_umap.csv,examples/msigdb_maps/c2.cp/biocarta_map_umap.pdf
+PID,tsne,196,7,examples/msigdb_maps/c2.cp/pid_map_tsne.csv,examples/msigdb_maps/c2.cp/pid_map_tsne.pdf
+PID,umap,196,7,examples/msigdb_maps/c2.cp/pid_map_umap.csv,examples/msigdb_maps/c2.cp/pid_map_umap.pdf
+KEGG,tsne,186,8,examples/msigdb_maps/c2.cp/kegg_map_tsne.csv,examples/msigdb_maps/c2.cp/kegg_map_tsne.pdf
+KEGG,umap,186,8,examples/msigdb_maps/c2.cp/kegg_map_umap.csv,examples/msigdb_maps/c2.cp/kegg_map_umap.pdf

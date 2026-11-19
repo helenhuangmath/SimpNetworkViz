@@ -1,0 +1,9 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+7,Apoptosis signaling disease,17,4,0.235,0,0.0
+1,Focal receptor signaling,33,2,0.061,0,0.0
+2,Oxidative onecarbon metabolism,27,0,0.0,0,0.0
+3,WNT signaling development,24,0,0.0,0,0.0
+4,Eicosanoid fatty acid,19,0,0.0,0,0.0
+5,Nuclear receptors metabolism,19,0,0.0,0,0.0
+6,Receptor signaling,18,0,0.0,0,0.0
+8,Serotonin gpcrs class,12,0,0.0,0,0.0

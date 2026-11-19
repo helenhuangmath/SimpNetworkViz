@@ -1,0 +1,10 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+1,Integrin pathway,41,0,0.0,0,0.0
+2,Nuclearrs pathway,35,0,0.0,0,0.0
+3,MAPK pathway,34,0,0.0,0,0.0
+4,Inflam pathway,30,0,0.0,0,0.0
+5,IL2RB pathway,26,0,0.0,0,0.0
+6,Ppara pathway,21,0,0.0,0,0.0
+7,Nfat pathway,16,0,0.0,0,0.0
+8,Alk pathway,14,0,0.0,0,0.0
+9,Intrinsic pathway,9,0,0.0,0,0.0

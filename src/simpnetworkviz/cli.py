@@ -7,7 +7,7 @@ import sys
 
 from . import __version__
 from .enrichment import read_enrichment, read_pathway_list
-from .genesets import POPULAR_LIBRARIES, demo_path, load_gene_sets, read_gene_list
+from .genesets import POPULAR_LIBRARIES, demo_path, load_gene_sets, read_gene_list, species_taxon
 from .network import CLUSTER_METHODS, read_category_file, read_theme_file
 from .pipeline import analyze_genes, run_pipeline
 
@@ -54,7 +54,6 @@ def _add_network_args(p):
     p.add_argument("--gene-network", choices=["shared", "string", "cnet", "none"], default="shared",
                    help="gene network type: shared pathways (offline), STRING PPI (internet), cnet, or none")
     p.add_argument("--max-genes", type=int, default=150, help="max genes in gene network (default 150)")
-    p.add_argument("--species", type=int, default=9606, help="NCBI taxon for STRING (9606 human, 10090 mouse)")
     p.add_argument("--formats", default="pdf,svg,html,cyjs,graphml,csv", help="comma separated output formats (add png for raster figures)")
     p.add_argument("--title", default=None, help="figure title")
     p.add_argument("--cytoscape-js", default=None, help="local cytoscape.min.js to embed (offline HTML)")
@@ -62,9 +61,18 @@ def _add_network_args(p):
     p.add_argument("--dpi", type=int, default=300, help="PNG resolution in dots per inch (default 300)")
 
 
+def _add_species_args(p):
+    p.add_argument("--species", default="human",
+                   help="human or mouse (default human): picks the MSigDB collections for --msigdb and the STRING taxon")
+    p.add_argument("--msigdb", action="append", metavar="COLLECTION",
+                   help="MSigDB collection for --species, downloaded once (Hallmark, GO_BP, GO_CC, GO_MF, Reactome, "
+                        "WikiPathways, BioCarta, KEGG, CP, TFT, ImmuneSigDB, CellType, All ...; repeatable; 'snv libraries' lists them)")
+
+
 def _add_enrich_args(p):
     p.add_argument("--library", default=None, help="Enrichr library name(s), comma separated, or 'demo'")
     p.add_argument("--gmt", action="append", help="GMT gene-set file (repeatable)")
+    _add_species_args(p)
     p.add_argument("--background", help="background/universe gene list (recommended: all measured genes)")
     p.add_argument("--method", choices=["ora", "gsea"], default="ora",
                    help="ora = hypergeometric test on a gene list; gsea = preranked GSEA on gene + statistic for all genes")
@@ -75,9 +83,20 @@ def _add_enrich_args(p):
 
 
 def _gene_sets_arg(args):
-    if getattr(args, "gmt", None):
-        return ",".join(args.gmt)
-    return args.library
+    sources = list(getattr(args, "gmt", None) or [])
+    sources += [f"msigdb:{c}" for c in (getattr(args, "msigdb", None) or [])]
+    if args.library:
+        sources.append(args.library)
+    return ",".join(sources) if sources else None
+
+
+def _species(args) -> str:
+    from .genesets import normalize_species
+
+    try:
+        return normalize_species(getattr(args, "species", "human") or "human")
+    except ValueError as exc:
+        sys.exit(f"error: {exc}")
 
 
 def _enrich_kwargs(args):
@@ -106,7 +125,8 @@ def _pipeline_kwargs(args):
         cluster_kwargs=cluster_kwargs, library_network=args.whole_library,
         gene_network_mode=None if args.gene_network == "none" else args.gene_network, color_by=args.color_by,
         formats=[f.strip() for f in args.formats.split(",") if f.strip()], title=args.title, js_path=args.cytoscape_js,
-        seed=args.seed, dpi=args.dpi, gene_network_kwargs={"max_genes": args.max_genes, "string_species": args.species},
+        seed=args.seed, dpi=args.dpi, gene_network_kwargs={"max_genes": args.max_genes, "string_species": species_taxon(_species(args))},
+        species=_species(args),
         pathway_map=args.map,
     )
 
@@ -114,7 +134,7 @@ def _pipeline_kwargs(args):
 def _require_gene_sets(args, needed=True):
     gene_sets = _gene_sets_arg(args)
     if gene_sets is None and needed:
-        sys.exit("error: choose gene sets with --library NAME or --gmt FILE (or 'snv libraries' to list)")
+        sys.exit("error: choose gene sets with --library NAME, --gmt FILE or --msigdb COLLECTION (or 'snv libraries' to list)")
     return gene_sets
 
 
@@ -227,18 +247,25 @@ def cmd_demo(args):
 def cmd_map(args):
     from .pathmap import build_pathway_map, plot_pathway_map, save_map
 
-    gs = load_gene_sets(_require_gene_sets(args))
+    if args.by_category:
+        return _cmd_map_by_category(args)
+    if args.method == "both":
+        sys.exit("error: --method both needs --by-category (one map per category and method); choose tsne or umap otherwise")
+    gs = load_gene_sets(_require_gene_sets(args), species=_species(args))
     print(f"{len(gs)} gene sets; building the map ({args.method}) ...")
     pmap = build_pathway_map(gs, method=args.method, min_size=args.min_size, max_size=args.max_size,
                              n_neighbors=args.neighbors, cluster_resolution=args.resolution, seed=args.seed)
     save_map(pmap, args.output)
     stem = os.path.splitext(args.output)[0]
     fig = plot_pathway_map(pmap, None, f"{stem}.pdf", dpi=args.dpi)
+    from .maphtml import write_map_html
+
+    write_map_html(pmap, f"{stem}.html")
     import matplotlib.pyplot as plt
 
     plt.close(fig)
     regions = pmap[pmap["cluster"] > 0].groupby("cluster").agg(n=("pathway", "size"), label=("cluster_label", "first"))
-    print(f"{len(pmap)} pathways placed with {pmap.attrs['method'].upper()}, {len(regions)} labelled regions -> {args.output}, {stem}.pdf")
+    print(f"{len(pmap)} pathways placed with {pmap.attrs['method'].upper()}, {len(regions)} labelled regions -> {args.output}, {stem}.pdf, {stem}.html (interactive)")
     for c, r in regions.head(20).iterrows():
         print(f"  [{c:>2}] {r['label']}  ({r['n']} pathways)")
     if len(regions) > 20:
@@ -246,12 +273,90 @@ def cmd_map(args):
     print("Use it with:  snv run genes.txt --library ... --map " + args.output)
 
 
+def _gmt_label(path: str) -> str:
+    """Category label for a GMT file: ``m5.go.bp.v2025.1.Mm.symbols.gmt`` -> ``m5.go.bp``."""
+    import re
+
+    label = os.path.basename(path)
+    label = re.sub(r"\.gmt$", "", label, flags=re.I)
+    label = re.sub(r"\.v\d+(\.\d+)*(?=\.|$)", "", label)  # MSigDB release tag
+    label = re.sub(r"\.(Hs|Mm|symbols|entrez|ensembl)(?=\.|$)", "", label)
+    return label or os.path.basename(path)
+
+
+def _cmd_map_by_category(args):
+    """``snv map --by-category``: one t-SNE and/or UMAP map per MSigDB collection (or GMT file, or category file)."""
+    import warnings
+
+    from .network import read_category_file
+    from .pathmap import build_category_maps, plot_category_maps, save_category_maps, split_by_category
+
+    species = _species(args)
+    sources = list(args.gmt or []) + [f"msigdb:{c}" for c in (args.msigdb or [])] + ([args.library] if args.library else [])
+    if not sources:
+        sys.exit("error: choose gene sets with --library NAME, --gmt FILE or --msigdb COLLECTION (repeatable: one category per file)")
+    categories = read_category_file(args.categories) if args.categories else None
+    if len(sources) > 1 and categories is None:
+        # Several files: each file is a category, named after the file (e.g. m5.go.bp.v2025.1.Mm.symbols -> m5.go.bp).
+        gs, categories = {}, {}
+        for src in sources:
+            label = src.split(":", 1)[1] if src.lower().startswith("msigdb:") else _gmt_label(src)
+            loaded = load_gene_sets(src, species=species)
+            for k, v in loaded.items():
+                key = k if k not in gs else f"{label}: {k}"
+                gs[key] = v
+                categories[key] = label
+    else:
+        gs = load_gene_sets(",".join(sources), species=species)
+        if categories is None and len(sources) == 1 and (os.path.exists(sources[0]) or sources[0].lower().startswith("msigdb:")):
+            # Sets without a recognised prefix (e.g. MSigDB C6/C7) take the file's name rather than "Other".
+            from .network import pathway_category
+
+            label = sources[0].split(":", 1)[1] if sources[0].lower().startswith("msigdb:") else _gmt_label(sources[0])
+            categories = {k: label for k in gs if pathway_category(k) == "Other"}
+            if not categories:
+                categories = None
+    methods = ("tsne", "umap") if args.method in ("both", "auto") else (args.method,)
+    groups = split_by_category(gs, categories)
+    print(f"{len(gs)} gene sets in {len(groups)} categories:")
+    for cat, sub in groups.items():
+        print(f"  {cat:<32} {len(sub):>6} sets")
+    print(f"Building {' + '.join(m.upper() for m in methods)} maps per category (>= {args.min_sets} sets of {args.min_size}-{args.max_size} genes) ...")
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        maps = build_category_maps(gs, methods=methods, categories=categories, min_sets=args.min_sets,
+                                   min_size=args.min_size, max_size=args.max_size, n_neighbors=args.neighbors,
+                                   cluster_resolution=args.resolution, seed=args.seed)
+    for w in caught:
+        if "n_jobs" not in str(w.message):  # umap-learn's seed/parallelism notice is noise here
+            print(f"  note: {w.message}")
+    outdir = args.output
+    if outdir.lower().endswith(".csv"):
+        outdir = os.path.splitext(outdir)[0]
+    index = save_category_maps(maps, outdir, dpi=args.dpi)
+    import matplotlib.pyplot as plt
+
+    fig = plot_category_maps(maps, os.path.join(outdir, "category_maps.pdf"), dpi=args.dpi)
+    plt.close(fig)
+    print(f"\n{len(index)} maps written to {outdir}/ (index: category_maps.csv, overview: category_maps.pdf)")
+    for _, r in index.iterrows():
+        print(f"  {r['category']:<32} {r['method']:<5} {r['n_sets']:>6} sets  {r['n_regions']:>3} regions  {os.path.basename(r['csv'])}")
+    print("Use one with:  snv run genes.txt --gmt ... --map " + index["csv"].iloc[0])
+
+
 def cmd_libraries(args):
-    print("Popular Enrichr libraries (any Enrichr library name works with --library):\n")
+    from .genesets import MSIGDB_COLLECTIONS, MSIGDB_RELEASE
+
+    print(f"MSigDB {MSIGDB_RELEASE} collections (--msigdb NAME --species human|mouse; downloaded once):\n")
+    print(f"  {'collection':<16} {'human':<22} mouse")
+    for k, (hs, mm) in MSIGDB_COLLECTIONS.items():
+        print(f"  {k:<16} {hs or '-':<22} {mm or '-'}")
+    print("  (mouse collections are MSigDB's native mouse sets; KEGG, PID, HPO, C6, C7 exist for human only)")
+    print("\nPopular Enrichr libraries (any Enrichr library name works with --library):\n")
     for k, v in POPULAR_LIBRARIES.items():
         print(f"  {k:<30} {v}")
     print("\nFull list: https://maayanlab.cloud/Enrichr/#libraries")
-    print("MSigDB GMT files: https://www.gsea-msigdb.org/gsea/downloads.jsp (use --gmt FILE)")
+    print("Local GMT files: --gmt FILE (repeatable)")
     print("Offline test set: --library demo")
 
 
@@ -305,8 +410,16 @@ def build_parser():
     p = sub.add_parser("map", help="build a fixed 2-D map of a whole gene-set library (reuse it with --map)")
     p.add_argument("--library", default=None, help="Enrichr library name")
     p.add_argument("--gmt", action="append", help="GMT gene-set file (repeatable)")
-    p.add_argument("-o", "--output", default="pathway_map.csv", help="map table (a PDF with the same stem is written too)")
-    p.add_argument("--method", choices=["auto", "umap", "tsne"], default="auto", help="embedding (auto = UMAP if installed, else t-SNE)")
+    _add_species_args(p)
+    p.add_argument("-o", "--output", default="pathway_map.csv",
+                   help="map table (a PDF with the same stem is written too); with --by-category: an output folder")
+    p.add_argument("--method", choices=["auto", "umap", "tsne", "both"], default="auto",
+                   help="embedding (auto = UMAP if installed, else t-SNE; with --by-category auto/both = t-SNE and UMAP)")
+    p.add_argument("--by-category", action="store_true",
+                   help="one map per category: MSigDB collection prefixes (HALLMARK, GOBP, KEGG, REACTOME ...), "
+                        "or one per --gmt file when several are given, or --categories FILE")
+    p.add_argument("--categories", default=None, help="pathway<TAB>category file for --by-category")
+    p.add_argument("--min-sets", type=int, default=20, help="--by-category: skip categories with fewer sets (default 20)")
     p.add_argument("--min-size", type=int, default=10)
     p.add_argument("--max-size", type=int, default=500)
     p.add_argument("--neighbors", type=int, default=15, help="neighbours for the embedding and the regions (default 15)")

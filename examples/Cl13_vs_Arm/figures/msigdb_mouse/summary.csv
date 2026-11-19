@@ -1,0 +1,12 @@
+collection,sets,hits_Cl13,hits_Arm,network_sets,edges,clusters,top_clusters,map_fdr,on_map,hits_on_map,top_region_Cl13,top_region_Arm
+Hallmark,50,9,0,9,1,1,Interferon gamma response,0.05,50,9,Interferon signaling response (6/13),
+GO biological process,7855,364,22,80,337,8,Leukocyte activation differentiation; Mitotic cycle segregation; Immune response defense,0.05,5489,295,Alpha activation differentiation (85/346),Antigen response immunity (7/79)
+GO molecular function,1885,23,1,24,31,3,Microtubule motor binding; Protein serine kinase; Gtpase activator,0.05,1181,15,Structural microtubule binding (7/74),Protein receptor binding (1/96)
+GO cellular component,1040,22,2,22,27,6,Mitotic spindle pole; Chromosome centromeric region; Microtubule,0.05,679,18,Mitotic spindle microtubule (9/21),
+Reactome,1309,10,0,10,14,2,Cycle; Programmed cell death,0.05,1017,8,Mitotic mitochondrial biogenesis (4/49),
+BIOCARTA,252,0,0,0,0,0,No pathways left to plot. Relax the FDR cutoff (e.g. --fdr 0,0.05,184,0,,
+WikiPathways,192,6,0,6,0,0,,0.05,169,6,Apoptosis signaling disease (4/17),
+CellType,233,25,1,25,1,1,Tabula muris senis spleen t cell ageing,0.05,195,22,Spleen alpha beta (13/20),
+TF/miRNA targets,279,6,4,9,0,0,,0.05,140,3,Uniprot target unreviewed (2/62),Target genes (1/29)
+GO + Reactome + WP (mouse),12281,523,33,80,264,10,Leukocyte activation differentiation; Mitotic cycle segregation; Immune response defense,0.05,8535,425,Alpha production differentiation (90/338),Antigen MHC immunity (10/90)
+ImmuneSigDB (human C7),4872,1797,964,80,22,12,GSE15330 vs megakaryocyte; Vs CD8 tcell; GSE7219 vs dc,1e-08,4854,318,Foxp3 treg tconv (76/182),Treg CD8 thymocyte (64/247)

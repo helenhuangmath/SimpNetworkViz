@@ -1,0 +1,3 @@
+category,method,n_sets,n_regions,csv,figure
+TF/miRNA targets,tsne,140,5,examples/msigdb_maps/mouse/TFT/tf_mirna_targets_map_tsne.csv,examples/msigdb_maps/mouse/TFT/tf_mirna_targets_map_tsne.pdf
+TF/miRNA targets,umap,140,5,examples/msigdb_maps/mouse/TFT/tf_mirna_targets_map_umap.csv,examples/msigdb_maps/mouse/TFT/tf_mirna_targets_map_umap.pdf

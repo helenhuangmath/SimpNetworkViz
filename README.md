@@ -1,7 +1,7 @@
 # SimpNetworkViz: pathway enrichment and EnrichmentMap-style network figures from a gene list
 
 **Author:** Hua Huang
-**Package version:** 0.2.0
+**Package version:** 1.0.0
 **Last updated:** 2026-10 
 
 ## Abstract
@@ -97,6 +97,12 @@ With fold changes, up- and down-regulated genes are tested separately and the fi
 
 Any [Enrichr library name](https://maayanlab.cloud/Enrichr/#libraries) works; it is downloaded once and cached in `~/.cache/simpnetworkviz`. Local `.gmt` files, e.g. from [MSigDB](https://www.gsea-msigdb.org/gsea/downloads.jsp), work with `--gmt file.gmt`.
 
+**Species.** Enrichr libraries are mostly human. For mouse data, or to use MSigDB directly, choose an MSigDB collection with `--msigdb NAME --species mouse|human` (downloaded once from the Broad release server, release 2025.1): `Hallmark`, `GO_BP`, `GO_CC`, `GO_MF`, `Reactome`, `WikiPathways`, `BioCarta`, `TFT`, `CellType`, `All` exist for both species; `KEGG`, `PID`, `HPO`, `Oncogenic`, `ImmuneSigDB` and `Vaccine` for human only (`snv libraries` prints the table). Mouse collections are MSigDB's native mouse sets, not orthology-mapped human ones. `--species` also sets the STRING taxon for `--gene-network string`.
+
+```bash
+snv run degs.csv --msigdb Hallmark --msigdb GO_BP --species mouse --background measured.txt -o results
+```
+
 The other starting points, a ranked table for GSEA, an enrichment table from another tool, a pathway list, and marker tables from single-cell data, are described in section 2.2.
 
 ### 1.4 Running the analysis
@@ -137,6 +143,7 @@ The output folder contains:
 |---|---|
 | `pathway_network.pdf` / `.svg` | The figure, as vector graphics with editable text. Add `--formats png,pdf,svg,...` if you also want a PNG. |
 | `pathway_network.html` | Interactive viewer: open in a browser |
+| `pathway_map.html` | Interactive map (with `--map`): hover pathways and regions, lasso-select groups |
 | `gene_network.*`, `gene_pathway_network.*` | Gene-level figures |
 | `cluster_barplot.pdf` / `.svg` | Cluster themes ranked by significance (a companion panel) |
 | `enrichment.csv` | Enrichment table: pathway, overlap, set size, fold enrichment, p-value, FDR, direction, genes |
@@ -206,6 +213,36 @@ The same two maps without hits (the output of `snv map`), and with the six Cl13 
 |---|---|---|
 | Library only | [![](docs/images/pathway_map_tsne_library.png)](docs/images/pathway_map_tsne_library.png) | [![](docs/images/pathway_map_umap_library.png)](docs/images/pathway_map_umap_library.png) |
 | Six Cl13 subgroups | [![](docs/images/pathway_map_tsne_within_Cl13.png)](docs/images/pathway_map_tsne_within_Cl13.png) | [![](docs/images/pathway_map_umap_within_Cl13.png)](docs/images/pathway_map_umap_within_Cl13.png) |
+
+The same test gene sets against the **MSigDB C7 ImmuneSigDB** collection (4,854 immunologic signatures, human v7.4 symbols; the maps are from `examples/msigdb_maps/c7.all`). ImmuneSigDB sets are up/down pairs of 200 genes from different GEO comparisons and rarely share genes, so the comparison network stays sparse (80 most significant sets, 19 edges) while the map shows where the hits fall among the T-cell, Treg, macrophage and dendritic-cell signature regions. Because T-cell gene lists hit almost half of this collection at FDR 0.05, the map overlays use FDR ≤ 1e-8 (300 sets).
+
+| Cl13 vs Arm network, C7 | Cl13 vs Arm, t-SNE map, C7 | UMAP |
+|---|---|---|
+| [![](docs/images/pathway_network_c7.png)](docs/images/pathway_network_c7.png) | [![](docs/images/pathway_map_tsne_c7.png)](docs/images/pathway_map_tsne_c7.png) | [![](docs/images/pathway_map_umap_c7.png)](docs/images/pathway_map_umap_c7.png) |
+
+| | t-SNE | UMAP |
+|---|---|---|
+| C7 library only | [![](docs/images/pathway_map_tsne_c7_library.png)](docs/images/pathway_map_tsne_c7_library.png) | [![](docs/images/pathway_map_umap_c7_library.png)](docs/images/pathway_map_umap_c7_library.png) |
+| Six Cl13 subgroups on C7 | [![](docs/images/pathway_map_tsne_c7_within_Cl13.png)](docs/images/pathway_map_tsne_c7_within_Cl13.png) | [![](docs/images/pathway_map_umap_c7_within_Cl13.png)](docs/images/pathway_map_umap_c7_within_Cl13.png) |
+
+**GO, KEGG, Reactome and WikiPathways** (MSigDB C5 and C2 collections). Per-database maps are in `examples/msigdb_maps/c5.all` and `c2.cp`; the overall map below embeds all six databases together (8,851 sets, 36 regions, `examples/msigdb_maps/overall`), points colored by database, with the Cl13 vs Arm hits on top (FDR ≤ 0.05):
+
+| | t-SNE | UMAP |
+|---|---|---|
+| Overall library, by database | [![](docs/images/pathway_map_tsne_overall_library.png)](docs/images/pathway_map_tsne_overall_library.png) | [![](docs/images/pathway_map_umap_overall_library.png)](docs/images/pathway_map_umap_overall_library.png) |
+| Cl13 vs Arm on the overall map | [![](docs/images/pathway_map_tsne_overall.png)](docs/images/pathway_map_tsne_overall.png) | [![](docs/images/pathway_map_umap_overall.png)](docs/images/pathway_map_umap_overall.png) |
+
+**Every collection at once, human v7.4 collections.** `examples/Cl13_vs_Arm/run_msigdb_all.py --species human` reruns the same comparison against all sixteen human collection maps (summary table in the example tutorial, section 6). Each panel is one collection's map with the Cl13 vs Arm hits as pies. The mouse version, which is the right one for these mouse genes, follows below.
+
+| t-SNE maps | UMAP maps |
+|---|---|
+| [![](docs/images/msigdb_all_human_tsne.png)](docs/images/msigdb_all_human_tsne.png) | [![](docs/images/msigdb_all_human_umap.png)](docs/images/msigdb_all_human_umap.png) |
+
+**The same with the mouse collections**, which are the right ones for these mouse genes: `run_msigdb_all.py --species mouse` downloads MSigDB's native mouse collections (Hallmark, GO, Reactome, WikiPathways, BioCarta, cell types, TF targets; release 2025.1) through the package, uses their maps in `examples/msigdb_maps/mouse`, and adds the human C7 ImmuneSigDB map as the one cross-species exception. Mouse sets recover more genes and give more hits (GO BP 364 Cl13 and 22 Arm sets instead of 290 and 18; the full table is in the tutorial):
+
+| t-SNE maps, mouse | UMAP maps, mouse |
+|---|---|
+| [![](docs/images/msigdb_all_mouse_tsne.png)](docs/images/msigdb_all_mouse_tsne.png) | [![](docs/images/msigdb_all_mouse_umap.png)](docs/images/msigdb_all_mouse_umap.png) |
 
 ---
 
@@ -321,7 +358,22 @@ snv run genes.txt --gmt m5.go.bp.v2025.1.Mm.symbols.gmt --map gobp_map.csv
 snv compare KO=ko.csv WT=wt.csv --gmt m5.go.bp.v2025.1.Mm.symbols.gmt --map gobp_map.csv
 ```
 
-Each run adds `pathway_map.pdf`, `pathway_map_hits.csv` (every enriched pathway with its coordinates and region) and `pathway_map_regions.csv` (hits per region and condition). The map is built once and reused; keep the CSV with the library it was built from. `--method tsne|umap`, `--neighbors` and `--resolution` (more or fewer regions) tune the map. The regions do not depend on the embedding (they are Louvain communities in the 50-dimensional similarity space), so t-SNE and UMAP maps of the same library share their region labels and counts; UMAP keeps related regions closer together and leaves more white space, t-SNE spreads the regions more evenly (compare the two in the gallery, section 1.6). Both maps of the example are included under `examples/Cl13_vs_Arm`. In Python: `build_pathway_map`, `save_map`, `load_map`, `plot_pathway_map`, `map_hits`, `region_summary`.
+Each run adds `pathway_map.pdf`, `pathway_map.html` (interactive, see below), `pathway_map_hits.csv` (every enriched pathway with its coordinates and region) and `pathway_map_regions.csv` (hits per region and condition). The map is built once and reused; keep the CSV with the library it was built from. `--method tsne|umap`, `--neighbors` and `--resolution` (more or fewer regions) tune the map. Region names are drawn on a translucent white backing, wrapped to two or three lines, and nudged apart when they would overlap; the `label_top` most significant hits get a boxed label with a thin leader line to their point (`label_top=0` turns these off). The regions do not depend on the embedding (they are Louvain communities in the 50-dimensional similarity space), so t-SNE and UMAP maps of the same library share their region labels and counts; UMAP keeps related regions closer together and leaves more white space, t-SNE spreads the regions more evenly (compare the two in the gallery, section 1.6). Both maps of the example are included under `examples/Cl13_vs_Arm`. In Python: `build_pathway_map`, `save_map`, `load_map`, `plot_pathway_map`, `map_hits`, `region_summary`.
+
+**One map per MSigDB collection.** MSigDB bundles its collections in one file (`msigdb.v2025.1.Hs.symbols.gmt`, or the mouse `msigdb.v2025.1.Mm.symbols.gmt`) and prefixes every set with its collection (`HALLMARK_`, `GOBP_`, `GOCC_`, `GOMF_`, `KEGG_`, `REACTOME_`, `WP_`, `PID_`, `BIOCARTA_`, `HP_` ...). `snv map --by-category` splits a library by these prefixes and builds a separate t-SNE **and** UMAP map for every collection, so Hallmark, GO BP, GO CC, GO MF, KEGG, Reactome and WikiPathways each get their own coordinate system instead of being mixed into one picture:
+
+```bash
+snv map --gmt msigdb.v2025.1.Mm.symbols.gmt --by-category -o msigdb_maps          # t-SNE + UMAP per collection
+snv map --gmt msigdb.v2025.1.Mm.symbols.gmt --by-category --method umap -o msigdb_maps
+snv map --gmt mh.all.v2025.1.Mm.symbols.gmt --gmt m5.go.bp.v2025.1.Mm.symbols.gmt --by-category -o maps   # one category per file
+snv run genes.txt --gmt msigdb.v2025.1.Mm.symbols.gmt --map msigdb_maps/go_biological_process_map_umap.csv
+```
+
+The output folder holds `<collection>_map_tsne.csv` / `_umap.csv` (each reusable with `--map`), a PDF of each, an index `category_maps.csv` (collection, method, number of sets and regions) and an overview `category_maps.pdf` with one panel per collection and method. When several `--gmt` files are given, each file is a category named after the file (`m5.go.bp.v2025.1.Mm.symbols.gmt` → `m5.go.bp`); `--categories FILE` (pathway, category per line) defines any other grouping. Collections with fewer than `--min-sets` (20) sets inside the size limits are skipped, and the t-SNE and UMAP maps of one collection share their regions and labels. In Python: `split_by_category`, `build_category_maps`, `save_category_maps`, `plot_category_maps`. For a map built from several databases at once, `plot_pathway_map(pmap, table, color_by_category=True)` colors the points by database. Ready-made maps of the MSigDB collections (Hallmark, GO, KEGG, Reactome, WikiPathways, C7 ...) and an overall GO + KEGG + Reactome + WikiPathways map are in `examples/msigdb_maps`.
+
+**Interactive map.** `pathway_map.html` (also written by `snv map` next to the CSV, and by `write_map_html` in Python) opens in any browser as a three-pane explorer in the style of cellxgene: a left sidebar with collapsible panels (display options, pathway search, conditions, collections, regions, each row with its color, count and a show/hide or highlight control), the map in the middle, and a detail panel on the right. Clicking a dot shows that pathway's set size, region, collection and, when it is significant in this data, the condition, FDR, p-value, overlap and genes; clicking a region or condition in the sidebar or on the map rings its members, zooms to them and lists their statistics. With results loaded the map shows only the significant pathways over the region outlines; the "all library points" box adds every gene set as a grey dot, and a menu colors those dots by region, or by source database for a map built from several collections. In every detail view the significant pathways come first and the non-significant ones sit in a collapsed, expandable list. Region outlines are colored, and the enriched pathways are larger points colored by condition. Dragging pans and scrolling zooms; the toolbar's lasso and box tools select. Hovering a point shows the pathway name, its region, set size and, for enriched pathways, the condition, FDR and overlapping genes; hovering a region outline shows the region's name and size. Drag to lasso (or box-select from the toolbar) any group of pathways, "circling" them, and the side panel lists the regions they belong to with counts, then every selected pathway that is significant in this data with its condition, FDR, p-value, overlap and the overlapping genes (expandable; a button copies the table as TSV), then the other selected pathways. To find a pathway, pick a group (a region, a collection, or the pathways significant in one condition) and a pathway from the two dropdowns, or type part of a name in the box, which autocompletes and also accepts free text; a single match shows its statistics and genes in the panel, several matches are listed and ringed on the map. Check boxes toggle region outlines, region names and the library points; the camera button saves a PNG; a reset button (top bar and panel) clears the selection, highlights, search and zoom. The outlines are smooth curves (Chaikin-rounded convex hulls) around the dense core of each region, since regions are defined in similarity space and a few members sit elsewhere on the map. Only plotly.js is loaded from a CDN; everything else is in the file.
+
+[![](docs/images/pathway_map_html.png)](docs/images/pathway_map_html.png)
 
 ### 2.7 Grouping pathways
 
@@ -452,7 +504,7 @@ snv.build_pathway_network(table, gene_sets, cluster_method="keyword",
 | `snv run FILE` | gene list / ranked table / `--enrichment` / `--pathways` → networks |
 | `snv compare NAME=FILE ...` / `--groups TABLE` | several conditions → one network with pie nodes |
 | `snv markers FILE` | single-cell marker table → one slice per cluster |
-| `snv map` | build a fixed 2-D map of a whole library, to reuse with `--map` |
+| `snv map` | build a fixed 2-D map of a whole library, to reuse with `--map`; `--by-category` builds t-SNE and UMAP maps per MSigDB collection |
 | `snv enrich FILE` | enrichment table only, no figures |
 | `snv demo [--compare]` | the bundled example |
 | `snv libraries` | list common libraries |
@@ -481,7 +533,8 @@ snv.build_pathway_network(table, gene_sets, cluster_method="keyword",
 | `--color-by` | auto | cluster, direction, significance, nes, condition |
 | `--gene-network shared\|string\|cnet\|none` | shared | gene network type |
 | `--max-genes` | 150 | genes in the gene network |
-| `--species` | 9606 | NCBI taxon for STRING (10090 = mouse) |
+| `--msigdb NAME` | | MSigDB collection for `--species`, downloaded once (repeatable; `snv libraries` lists them) |
+| `--species` | human | human or mouse: MSigDB collections for `--msigdb` and the STRING taxon |
 | `--formats` | pdf,svg,html,cyjs,graphml,csv | outputs to write (add `png` for raster figures) |
 | `--title`, `--dpi`, `--seed`, `-o` | | title, PNG resolution if requested (300), layout seed (0), output folder |
 | `snv markers` only: `--padj`, `--min-logfc`, `--top-genes`, `--direction`, `--clusters` | 0.05 / 0.25 / 200 / up / all | marker filters |

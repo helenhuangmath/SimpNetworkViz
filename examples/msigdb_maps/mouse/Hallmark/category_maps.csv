@@ -1,0 +1,3 @@
+category,method,n_sets,n_regions,csv,figure
+Hallmark,tsne,50,4,examples/msigdb_maps/mouse/Hallmark/hallmark_map_tsne.csv,examples/msigdb_maps/mouse/Hallmark/hallmark_map_tsne.pdf
+Hallmark,umap,50,4,examples/msigdb_maps/mouse/Hallmark/hallmark_map_umap.csv,examples/msigdb_maps/mouse/Hallmark/hallmark_map_umap.pdf

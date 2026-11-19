@@ -1,0 +1,17 @@
+collection,sets,hits_Cl13,hits_Arm,network_sets,edges,clusters,top_clusters,map_fdr,on_map,hits_on_map,top_region_Cl13,top_region_Arm
+Hallmark,50,9,0,9,1,1,Interferon gamma response,0.05,50,9,Interferon signaling response (6/14),
+GO biological process,7481,290,18,80,384,8,Leukocyte activation adhesion; Chromosome segregation division; Cycle phase transition,0.05,5161,225,Immune response activation (58/281),Immune response activation (10/281)
+Human phenotype,4813,0,0,0,0,0,No pathways left to plot. Relax the FDR cutoff (e.g. --fdr 0,0.05,3468,0,,
+GO molecular function,1708,19,0,19,22,4,Microtubule motor binding; Protein kinase; Phosphatidylinositol binding,0.05,1064,10,Protein regulator binding (5/89),
+GO cellular component,996,28,0,28,42,6,Condensed chromosome region; Mitotic spindle pole; Microtubule,0.05,643,22,Mitotic spindle microtubule (9/23),
+Reactome,1604,35,0,35,84,4,Mitotic G1 cycle; Apoptotic apoptosis cleavage; Interferon signaling,0.05,1260,29,TGF transcription genes (8/39),
+WikiPathways,615,7,0,7,3,2,Cycle; Apoptosis,0.05,537,7,DNA network repair (3/41),
+BIOCARTA,292,0,0,0,0,0,No pathways left to plot. Relax the FDR cutoff (e.g. --fdr 0,0.05,226,0,,
+PID,196,2,0,2,0,0,,0.05,196,2,P53 downstream pathway (1/53),
+KEGG,186,2,0,2,0,0,,0.05,186,2,Signaling cancer (2/40),
+c3.tft,610,5,1,6,2,2,Isre 01; STAT5A 01,0.05,571,6,Irf1 srf irf (3/17),Foxo4 foxo1 hfh4 (1/20)
+TF/miRNA targets,523,19,5,23,0,0,,0.05,272,7,Target genes (4/55),Target genes (1/55)
+c6.all,189,17,3,19,3,3,ERBB2 UP.V1 dn; IL15 UP.V1 up; Kras.lung.breast UP.V1 up,0.05,189,19,Dn.v1 up.v1 (4/31),Prc2 stk33 up.v1 (3/26)
+ImmuneSigDB,4854,1784,961,80,19,12,GSE15330 vs megakaryocyte; GSE7219 vs dc; GSE15750 DAY6 vs DAY10 TRAF6KO eff CD8 tcell up,1e-08,4854,300,Foxp3 treg tconv (76/182),Treg CD8 thymocyte (55/247)
+c7.all,365,76,16,80,143,8,Pbmc age up; Van den up; Naive vs CD8,0.0001,274,45,Howard inact 1dy (24/50),Eff CD8 tcell (10/28)
+GO + KEGG + Reactome + WP,12590,478,18,80,228,12,Leukocyte activation adhesion; Mitotic cycle region; Interferon response signaling,0.05,8851,372,Immune production differentiation (67/410),Immune production differentiation (10/410)

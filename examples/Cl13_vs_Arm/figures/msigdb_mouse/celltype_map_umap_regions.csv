@@ -1,0 +1,7 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+5,Spleen alpha beta,20,13,0.65,0,0.0
+6,Mammary gland muscle,19,4,0.211,0,0.0
+3,Marrow macrophage monocyte,32,2,0.062,0,0.0
+4,Kidney aorta epithelial,24,2,0.083,0,0.0
+1,Adipose tissue endothelial,55,1,0.018,0,0.0
+2,Descartes organogenesis neurons,45,0,0.0,0,0.0

@@ -1,0 +1,22 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+2,Protein regulator binding,89,5,0.056,0,0.0
+9,Phosphatidylinositol transporter binding,54,3,0.056,0,0.0
+7,Growth receptor binding,69,2,0.029,0,0.0
+1,Transmembrane channel transporter,124,0,0.0,0,0.0
+13,Gated receptor channel,36,0,0.0,0,0.0
+20,Endopeptidase inhibitor apoptotic,18,0,0.0,0,0.0
+19,Nuclear hormone receptor,20,0,0.0,0,0.0
+18,Udp transferring groups,21,0,0.0,0,0.0
+17,Phosphatidylinositol protein phosphatase,23,0,0.0,0,0.0
+16,Translation initiation factor,23,0,0.0,0,0.0
+15,Chemokine receptor binding,29,0,0.0,0,0.0
+14,Phospholipase acetyltransferase acyltransferase,36,0,0.0,0,0.0
+11,Carbon acid lyase,43,0,0.0,0,0.0
+12,TRNA ligase methyltransferase,43,0,0.0,0,0.0
+10,Ubiquitin like protein,46,0,0.0,0,0.0
+8,Oxidoreductase acting donors,67,0,0.0,0,0.0
+6,Stranded DNA binding,72,0,0.0,0,0.0
+5,Polymerase transcription binding,77,0,0.0,0,0.0
+4,Oxidoreductase receptor binding,77,0,0.0,0,0.0
+3,Protein kinase adaptor,82,0,0.0,0,0.0
+21,Serine hydrolase exopeptidase,15,0,0.0,0,0.0

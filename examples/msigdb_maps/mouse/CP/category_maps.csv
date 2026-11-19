@@ -1,0 +1,7 @@
+category,method,n_sets,n_regions,csv,figure
+Reactome,tsne,1017,22,examples/msigdb_maps/mouse/CP/reactome_map_tsne.csv,examples/msigdb_maps/mouse/CP/reactome_map_tsne.pdf
+Reactome,umap,1017,22,examples/msigdb_maps/mouse/CP/reactome_map_umap.csv,examples/msigdb_maps/mouse/CP/reactome_map_umap.pdf
+BIOCARTA,tsne,184,8,examples/msigdb_maps/mouse/CP/biocarta_map_tsne.csv,examples/msigdb_maps/mouse/CP/biocarta_map_tsne.pdf
+BIOCARTA,umap,184,8,examples/msigdb_maps/mouse/CP/biocarta_map_umap.csv,examples/msigdb_maps/mouse/CP/biocarta_map_umap.pdf
+WikiPathways,tsne,169,8,examples/msigdb_maps/mouse/CP/wikipathways_map_tsne.csv,examples/msigdb_maps/mouse/CP/wikipathways_map_tsne.pdf
+WikiPathways,umap,169,8,examples/msigdb_maps/mouse/CP/wikipathways_map_umap.csv,examples/msigdb_maps/mouse/CP/wikipathways_map_umap.pdf

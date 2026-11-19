@@ -1,0 +1,12 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+1,Howard inact 1dy,50,24,0.48,0,0.0
+4,Eff CD8 tcell,28,13,0.464,10,0.357
+5,Hoek tiv adult,22,1,0.045,0,0.0
+2,Zostavax vzv 6hr,39,0,0.0,0,0.0
+3,Scherer apsv wetvax,33,0,0.0,0,0.0
+6,Blood vaccine 45yo,22,0,0.0,0,0.0
+7,Nakaya 50yo 7dy,19,0,0.0,0,0.0
+8,Fuller tularensis lvs,18,0,0.0,0,0.0
+9,Qiu heptatitis surface,18,0,0.0,0,0.0
+10,45yo correlation profile,15,0,0.0,0,0.0
+11,Haralambieva hoek 74yo,10,0,0.0,0,0.0

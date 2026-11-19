@@ -1,0 +1,16 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+12,Mitotic spindle microtubule,21,9,0.429,0,0.0
+3,Nuclear DNA chromosome,73,5,0.068,0,0.0
+6,Actin cytoskeleton membrane,52,2,0.038,0,0.0
+9,Mitochondrial ribosomal subunit,44,1,0.023,0,0.0
+10,Sperm axonemal granule,42,1,0.024,0,0.0
+1,Receptor membrane synapse,75,0,0.0,0,0.0
+2,Reticulum channel membrane,74,0,0.0,0,0.0
+4,Golgi protein endosome,61,0,0.0,0,0.0
+5,RNA transcription polymerase,61,0,0.0,0,0.0
+7,Body membrane site,48,0,0.0,0,0.0
+8,Clathrin coated vesicle,45,0,0.0,0,0.0
+11,Exosome rnase cytoplasm,35,0,0.0,0,0.0
+13,Collagen extracellular matrix,17,0,0.0,0,0.0
+14,Ciliary photoreceptor segment,16,0,0.0,0,0.0
+15,Ring ubiquitin ligase,15,0,0.0,0,0.0

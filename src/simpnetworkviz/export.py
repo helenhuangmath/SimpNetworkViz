@@ -12,6 +12,10 @@ import numpy as np
 import pandas as pd
 
 from .style import darken, hull_colors, node_colors, resolve_color_by
+from .layout import FONT_SCALE
+
+# With enlarged fonts a cluster name at the canvas edge can reach past it: save the whole drawing.
+_SAVE_KW = {"bbox_inches": "tight", "pad_inches": 0.2} if FONT_SCALE > 1 else {}
 
 PX_PER_UNIT = 100.0
 CYTOSCAPE_JS_CDN = [
@@ -418,7 +422,7 @@ def save_all(net, outdir, prefix: str = "network", formats: Sequence[str] = ("pd
         fig = net.plot(None, color_by=color_by, title=title, **plot_kwargs)
         for f in img:
             p = f"{base}.{f}"
-            fig.savefig(p, dpi=plot_kwargs.get("dpi", 300), facecolor="white")
+            fig.savefig(p, dpi=plot_kwargs.get("dpi", 300), facecolor="white", **_SAVE_KW)
             out[f] = p
         plt.close(fig)
     if "html" in formats:

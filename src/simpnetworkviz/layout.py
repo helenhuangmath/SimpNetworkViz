@@ -1,6 +1,7 @@
 """Cluster-aware layouts in physical units (1 unit ≈ 1 inch at scale 1)."""
 from __future__ import annotations
 
+import os
 import textwrap
 from collections import defaultdict
 from typing import Dict, List, Tuple
@@ -11,10 +12,15 @@ import numpy as np
 # Geometry constants shared with plotting (inches / points).
 HULL_PAD = 0.12          # gap between node edge and cluster outline
 BLOCK_GAP = 0.35         # gap between packed clusters
-LABEL_FONTSIZE = 14.0    # cluster label font size (pt)
+# SNV_FONT_SCALE (environment) scales every font of the static figures; the layout makes room for it.
+try:
+    FONT_SCALE = min(3.0, max(0.5, float(os.environ.get("SNV_FONT_SCALE") or 1.0)))
+except ValueError:
+    FONT_SCALE = 1.0
+LABEL_FONTSIZE = 14.0 * FONT_SCALE    # cluster label font size (pt)
 LABEL_LINE = 1.25 * LABEL_FONTSIZE / 72
 LABEL_CHAR = 0.56 * LABEL_FONTSIZE / 72
-NODE_LABEL_SIZE = 9.0    # node label font size (pt)
+NODE_LABEL_SIZE = 9.0 * FONT_SCALE    # node label font size (pt)
 NODE_LABEL_WRAP = 16     # characters per line for pathway node labels
 
 

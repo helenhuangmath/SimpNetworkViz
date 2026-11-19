@@ -1,0 +1,6 @@
+cluster,cluster_label,n_pathways_in_region,n_Cl13 (TEX),fraction_Cl13 (TEX),n_Arm (TMEM),fraction_Arm (TMEM)
+1,Interferon signaling response,14,6,0.429,0,0.0
+5,MYC targets,7,3,0.429,0,0.0
+2,Estrogen protein response,11,0,0.0,0,0.0
+3,Acid metabolism,10,0,0.0,0,0.0
+4,Signaling,8,0,0.0,0,0.0
