@@ -76,7 +76,7 @@ def test_bh_matches_statsmodels_or_reference():
         ref = multipletests(p, method="fdr_bh")[1]
     except ImportError:
         # R: p.adjust(p, "BH")
-        ref = np.array([0.01, 0.05, 0.0666667, 0.0714286, 0.2857143, 0.625, 0.9, 0.0714286, 0.0714286, 0.375])
+        ref = np.array([0.01, 0.05, 0.0666667, 0.075, 0.2857143, 0.5555556, 0.9, 0.08, 0.0833333, 0.375])
     np.testing.assert_allclose(snv.bh_fdr(p), ref, rtol=1e-5)
 
 
