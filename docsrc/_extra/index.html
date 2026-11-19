@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SimpNetworkViz is a Python package for pathway enrichment, gene and pathway networks, and interactive maps of gene-set libraries.">
+  <title>SimpNetworkViz — Pathway enrichment and network visualization</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="./">SimpNetworkViz</a>
+      <nav aria-label="Site navigation">
+        <a href="install.html">Install</a>
+        <a href="tutorial/index.html">Get started</a>
+        <a href="commands/index.html">Subcommands</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="documentation.html">Documentation</a>
+        <a href="https://github.com/helenhuangmath/SimpNetworkViz">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Open-source Python package</p>
+        <h1 id="hero-title">Pathway enrichment and network visualization</h1>
+        <p class="intro">Turn gene lists, ranked scores, or existing enrichment results into annotated pathway and gene networks. Compare conditions and explore their hits across an entire gene-set library.</p>
+        <div class="actions">
+          <a class="button primary" href="tutorial/index.html">Get started</a>
+          <a class="button secondary" href="examples/cl13-vs-arm.html">Explore the interactive map</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img src="images/pathway_map_umap.png" width="882" height="877" alt="UMAP pathway map with colored gene-set regions and highlighted hits from the Cl13 versus Arm comparison">
+        <figcaption>Cl13 vs Arm · Mouse GO biological process pathways</figcaption>
+      </figure>
+    </section>
+
+    <section class="features" aria-labelledby="features-title">
+      <div class="shell">
+        <h2 id="features-title" class="section-title">What it does</h2>
+        <div class="feature-grid">
+          <article class="feature">
+            <h3>Enrichment maps in one command</h3>
+            <p>Over-representation analysis or preranked GSEA, gene-set similarity, Markov clustering and automatic cluster labels, following EnrichmentMap and AutoAnnotate. No Cytoscape needed.</p>
+          </article>
+          <article class="feature">
+            <h3>From themes to genes</h3>
+            <p>A matching gene network whose modules carry the same labels and colors as the pathway clusters, with genes colored by fold change.</p>
+          </article>
+          <article class="feature">
+            <h3>Several conditions at once</h3>
+            <p>Contrasts, time points or single-cell clusters in one network. Each pathway is a pie chart with one slice per condition.</p>
+          </article>
+          <article class="feature">
+            <h3>A map of the whole library</h3>
+            <p>Every gene set of a library on a fixed 2-D map, so results from different experiments share the same coordinates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell tutorials" aria-labelledby="tutorials-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Tutorials</p>
+          <h2 id="tutorials-title">Learn by example</h2>
+        </div>
+        <a class="text-link" href="tutorial/index.html">All tutorials</a>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="tutorial/demo.html">
+          <img src="_images/guided_pathway_direction.png" loading="lazy" alt="Pathway network with five labeled clusters">
+          <div class="card-body">
+            <h3>Guided tutorial</h3>
+            <p>From a gene list to a pathway network, one step at a time.</p>
+          </div>
+        </a>
+        <a class="card" href="tutorial/gsea.html">
+          <img src="_images/gsea_nes.png" loading="lazy" alt="Pathway network colored by normalized enrichment score">
+          <div class="card-body">
+            <h3>Preranked GSEA</h3>
+            <p>Rank all measured genes and color the network by enrichment score.</p>
+          </div>
+        </a>
+        <a class="card" href="tutorial/compare.html">
+          <img src="_images/compare_condition.png" loading="lazy" alt="Network with pie-chart nodes, one slice per condition">
+          <div class="card-body">
+            <h3>Comparing conditions</h3>
+            <p>Several gene lists in one network, with pie-chart nodes.</p>
+          </div>
+        </a>
+        <a class="card" href="tutorial/singlecell.html">
+          <img src="_images/singlecell_library.png" loading="lazy" alt="Whole-library network with marker pathways highlighted per cell cluster">
+          <div class="card-body">
+            <h3>Single-cell marker genes</h3>
+            <p>From a Seurat or scanpy marker table to one slice per cell cluster.</p>
+          </div>
+        </a>
+        <a class="card" href="tutorial/cl13_vs_arm.html">
+          <img src="_images/pooled_GOBP.png" loading="lazy" alt="GO biological process network of the Cl13 versus Arm comparison">
+          <div class="card-body">
+            <h3>Cl13 vs Arm</h3>
+            <p>A full comparison on real data: exhausted versus memory CD8 T cells.</p>
+          </div>
+        </a>
+        <a class="card" href="tutorial/pathway_map.html">
+          <img src="images/pathway_map_tsne.png" loading="lazy" alt="t-SNE map of GO biological process terms with highlighted hits">
+          <div class="card-body">
+            <h3>The pathway map</h3>
+            <p>Place a whole gene-set library on a fixed map and draw every analysis on it.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="examples" aria-labelledby="example-title">
+      <div class="shell examples-inner">
+        <div>
+          <p class="eyebrow">Worked example</p>
+          <h2 id="example-title">From differential expression to a pathway map</h2>
+          <p>Follow the Cl13 vs Arm tutorial to compare two gene lists on a shared t-SNE or UMAP map. In the interactive example, search for a pathway, select groups with the lasso, and inspect enrichment statistics and overlapping genes.</p>
+          <a class="text-link" href="tutorial/cl13_vs_arm.html">Read the tutorial</a>
+        </div>
+        <a class="example-figure" href="examples/cl13-vs-arm.html" aria-label="Open the interactive Cl13 versus Arm pathway map">
+          <img src="images/pathway_map_html.png" width="1500" height="900" loading="lazy" alt="Screenshot of the interactive pathway map with selection controls and pathway details">
+        </a>
+      </div>
+    </section>
+
+    <section class="shell quick-start" id="quick-start" aria-labelledby="quick-start-title">
+      <div>
+        <h2 id="quick-start-title">Quick start</h2>
+        <p>Install from GitHub and run the bundled demo. It generates an enrichment table, network figures, and an interactive HTML viewer.</p>
+        <p><a class="text-link" href="install.html">Installation guide</a> · <a class="text-link" href="fileformats.html">Supported input formats</a></p>
+      </div>
+      <pre aria-label="Installation and demo commands"><code>git clone https://github.com/helenhuangmath/SimpNetworkViz.git
+cd SimpNetworkViz
+python -m pip install -e .
+snv demo</code></pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>SimpNetworkViz · Hua Huang · MIT License</span>
+      <span>
+        <a href="documentation.html#citation">Cite</a> ·
+        <a href="qa.html">FAQ</a> ·
+        <a href="https://github.com/helenhuangmath/SimpNetworkViz/releases/tag/V1.0">V1.0 release</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

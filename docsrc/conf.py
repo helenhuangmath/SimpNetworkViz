@@ -29,10 +29,13 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx_copybutton",
     "sphinxarg.ext",
+    "sphinx_design",
 ]
 
 source_suffix = {".md": "markdown"}
-root_doc = "index"
+# The site root (index.html) is the hand-written landing page in _extra/.
+# The documentation starts at documentation.html.
+root_doc = "documentation"
 exclude_patterns = ["_build", "_extra", "README.md", "Thumbs.db", ".DS_Store"]
 
 # MyST (Markdown) options
@@ -53,24 +56,30 @@ copybutton_prompt_text = r">>> |\.\.\. |\$ "
 copybutton_prompt_is_regexp = True
 
 # HTML output
-html_theme = "sphinx_rtd_theme"
-html_title = f"SimpNetworkViz {release} documentation"
+SITE = "https://helenhuangmath.github.io/SimpNetworkViz/"
+html_theme = "pydata_sphinx_theme"
+html_title = "SimpNetworkViz"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-# Files copied to the site root as they are: the interactive example maps and .nojekyll
+# Files copied to the site root as they are: the landing page (index.html, styles.css),
+# the interactive example maps and .nojekyll
 html_extra_path = ["_extra"]
+html_show_sourcelink = False
 html_theme_options = {
-    "navigation_depth": 3,
-    "collapse_navigation": False,
-    "style_external_links": True,
+    "logo": {"text": "SimpNetworkViz", "link": SITE},
+    "header_links_before_dropdown": 5,
+    "navbar_align": "left",
+    "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    "icon_links": [
+        {"name": "GitHub", "url": "https://github.com/helenhuangmath/SimpNetworkViz", "icon": "fa-brands fa-github"},
+    ],
+    "secondary_sidebar_items": ["page-toc"],
+    "show_toc_level": 2,
+    "navigation_with_keys": False,
+    "footer_start": ["copyright"],
+    "footer_end": ["sphinx-version"],
 }
-html_context = {
-    "display_github": True,
-    "github_user": "helenhuangmath",
-    "github_repo": "SimpNetworkViz",
-    "github_version": "gh-pages",
-    "conf_py_path": "/docsrc/",
-}
+html_context = {"default_mode": "light"}
 
 
 def _tidy_docstring(app, what, name, obj, options, lines):

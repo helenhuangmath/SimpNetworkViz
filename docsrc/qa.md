@@ -1,4 +1,4 @@
-# Common Q & A
+# FAQ
 
 ## Installing and running
 
@@ -78,4 +78,4 @@ Where Arial is not installed, Liberation Sans is used. It has identical metrics,
 
 ### How do I cite SimpNetworkViz?
 
-See [Citation](index.md#citation).
+See [Citation](documentation.md#citation).

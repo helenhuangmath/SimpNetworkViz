@@ -1,4 +1,4 @@
-# API reference
+# Reference
 
 Everything on this page is available from the top-level package:
 

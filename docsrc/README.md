@@ -1,6 +1,6 @@
 # Documentation sources
 
-This folder holds the sources of the documentation site, <https://helenhuangmath.github.io/SimpNetworkViz/>. The pages are Markdown, built with Sphinx and the Read the Docs theme.
+This folder holds the sources of the documentation site, <https://helenhuangmath.github.io/SimpNetworkViz/>. The pages are Markdown, built with Sphinx and the PyData theme. The front page is a hand-written HTML page.
 
 GitHub Pages serves the `docs/` folder of the `gh-pages` branch, so the built site is committed there.
 
@@ -17,13 +17,15 @@ bash docsrc/build.sh
 
 | Path | Contents |
 |---|---|
-| `index.md` | Landing page |
+| `_extra/index.html`, `_extra/styles.css` | The front page of the site, hand-written HTML and CSS |
+| `documentation.md` | Home page of the documentation |
 | `install.md`, `workflow.md`, `fileformats.md`, `gallery.md`, `theory.md`, `qa.md` | Top-level pages |
 | `commands/` | One page per `snv` subcommand. The option lists are generated from the parser in `src/simpnetworkviz/cli.py`. |
 | `guide/` | The whole-library view and pathway map, grouping, figures, Python API |
-| `tutorial/` | The demo walkthrough and the Cl13 vs Arm tutorial |
-| `api.md` | API reference, generated from the docstrings |
-| `images/tutorial/` | PNG previews of the tutorial's PDF figures |
-| `_extra/` | Files copied to the site as they are: the interactive example maps |
+| `tutorial/` | The step-by-step tutorials; `tutorial/index.md` is the "Get started" page |
+| `api.md` | Reference of the Python API, generated from the docstrings |
+| `images/tutorial/` | PNG previews of the Cl13 vs Arm tutorial's PDF figures |
+| `images/vignettes/` | Figures of the other tutorials, made by running their code on the demo data |
+| `_extra/examples/` | Interactive example maps, copied to the site as they are |
 
 Most pages started as sections of the top-level `README.md`, and `tutorial/cl13_vs_arm.md` as `examples/Cl13_vs_Arm/TUTORIAL.md`. When you change one of those, change the matching page here too.

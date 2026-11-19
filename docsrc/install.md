@@ -1,4 +1,4 @@
-# Install SimpNetworkViz
+# Install
 
 Python 3.9 or newer is required.
 

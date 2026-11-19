@@ -17,7 +17,7 @@ snv demo --compare           # also a three-condition comparison in demo_output/
 
 With `--compare`, the up-regulated genes, the down-regulated genes and all genes are compared as three conditions on the whole demo library.
 
-The [demo walkthrough](../tutorial/demo.md) explains the output.
+The [guided tutorial](../tutorial/demo.md) goes through the same analysis step by step.
 
 ## Command-line options
 

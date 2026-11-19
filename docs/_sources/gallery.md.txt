@@ -1,4 +1,4 @@
-# Gallery of outputs
+# Gallery
 
 All figures come from `snv demo`, which runs offline on 88 genes with log2 fold changes and 32 shortened gene sets. The package writes vector PDF/SVG files; the previews below are PNG renderings of them. Click a figure for full size.
 
