@@ -1,17 +1,19 @@
 # SimpNetworkViz: pathway enrichment and network figures in Python
 
-[![Docs](https://img.shields.io/badge/docs-user%20guide-blue)](docs/index.md)
+[![docs](https://img.shields.io/badge/docs-github.io-blue)](https://helenhuangmath.github.io/SimpNetworkViz/)
 [![tests](https://github.com/helenhuangmath/SimpNetworkViz/actions/workflows/tests.yml/badge.svg)](https://github.com/helenhuangmath/SimpNetworkViz/actions/workflows/tests.yml)
 ![Python ≥ 3.9](https://img.shields.io/badge/python-%E2%89%A5%203.9-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**[Project website](https://helenhuangmath.github.io/SimpNetworkViz/) · [Documentation and tutorials](docs/index.md)**
+**Documentation and tutorials: <https://helenhuangmath.github.io/SimpNetworkViz/>**
 
 ## Introduction
 
-SimpNetworkViz is an open-source Python package for pathway enrichment analysis and network visualization. It takes a gene list, an enrichment table or a list of pathways and draws **EnrichmentMap / AutoAnnotate-style network figures**, the Cytoscape look you see in many papers. You don't need to install Cytoscape or click through it by hand.
+SimpNetworkViz is an open-source Python package that provides a simple, streamlined framework for pathway enrichment analysis, grouping enriched pathways into functionally related biological themes and generating EnrichmentMap and AutoAnnotate-style network visualizations without requiring Cytoscape installation.
 
-An enrichment analysis usually returns dozens to hundreds of significant pathways, and many of them are the same biology under different names. A clustered pathway network collapses those overlapping pathways into a handful of labeled themes. SimpNetworkViz draws that network from one command, and then draws a matching gene network so you can go from each theme to the genes behind it.
+Pathway enrichment analysis is a standard step in interpreting transcriptomic, proteomic and other omics experiments, but its output is difficult to read and most times redundant. A single analysis typically returns dozens to hundreds of significant pathways, many of which describe the same underlying biology under different names because their gene sets overlap. Enrichment maps address this redundancy by representing pathways as nodes, connecting those that share genes, and grouping the resulting network into a small number of annotated themes. This approach, established by EnrichmentMap and AutoAnnotate in Cytoscape, has become a widely used way to present enrichment results. Producing these figures, however, requires a desktop application and a sequence of manual steps that is hard to script, reproduce or include in an automated analysis pipeline.
+
+SimpNetworkViz performs the full analysis, from enrichment through clustering to figures, in a single command. Starting from a gene list, a differential expression table, an existing enrichment result or a list of pathway names, SimpNetworkViz computes gene-set similarity, clusters pathways into themes and labels each theme automatically. It then draws a matching gene network in which clusters keep the color and label of their theme, linking each theme to the genes that drive it. Figures are exported in publication-ready vector and raster formats, as an interactive viewer, and as files that open in Cytoscape for further editing.
 
 <table>
   <tr>
@@ -125,7 +127,7 @@ Or start the web app with `snv gui`.
 
 ## Documentation
 
-Start with the [documentation index](docs/index.md) or the [detailed user guide](docs/user-guide.md). The [project website](https://helenhuangmath.github.io/SimpNetworkViz/) includes a live example.
+The full documentation is at <https://helenhuangmath.github.io/SimpNetworkViz/>. Start with the [detailed user guide](docs/user-guide.md) or browse the sources in [docs/](docs/):
 
 * **Tutorials:** [demo walkthrough](docs/tutorial/demo.md), [analyze your own data](docs/tutorial/your_data.md), [step-by-step in Python](docs/tutorial/python.md), [publication figures and Cytoscape](docs/tutorial/figures.md)
 * **Reference:** [subcommands](docs/commands/index.md), [file formats](docs/fileformats.md), [how the network is built](docs/method.md), [API](docs/api.md)
@@ -140,11 +142,11 @@ Questions, bug reports and pull requests are welcome.
 
 ## Citation
 
-There is no paper for SimpNetworkViz yet. If you use it, please cite the repository and state the version you used:
+If you use it, please cite the repository and state the version you used:
 
 > Huang H. SimpNetworkViz: pathway enrichment and EnrichmentMap-style network figures in Python. https://github.com/helenhuangmath/SimpNetworkViz
 
-Please also cite the methods and resources it builds on, as they apply to your analysis:
+## Acknowledge
 
 * **EnrichmentMap:** Merico D. et al. *PLoS ONE* 5, e13984 (2010).
 * **AutoAnnotate:** Kucera M. et al. *F1000Research* 5, 1717 (2016).
